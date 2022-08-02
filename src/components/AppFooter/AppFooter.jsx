@@ -1,0 +1,9 @@
+import './AppFooter.css';
+
+export function AppFooter() {
+  return (
+    <div className="App-Footer">
+
+    </div>
+  );
+}
