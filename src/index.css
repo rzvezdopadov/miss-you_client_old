@@ -5,6 +5,11 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  background-image: url(/src/img/relations.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
