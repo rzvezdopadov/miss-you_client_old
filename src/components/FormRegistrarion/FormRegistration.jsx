@@ -8,9 +8,8 @@ export function FormRegistration() {
             <div className="mb-4">
                 <div className="mb-4 relative w-64">
                     <select placeholder="Имя"  className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                        <option value='0' disabled>Я</option>
-                        <option value='1'>Я мужчина</option>
-                        <option value='2'>Я женщина</option>
+                        <option value='0'>Я мужчина</option>
+                        <option value='1'>Я женщина</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -18,10 +17,9 @@ export function FormRegistration() {
                 </div>
                 <div className="mb-4 relative w-64">
                     <select placeholder="Имя"  className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                        <option value='0' disabled>Ищу</option>
-                        <option value='1'>Ищу женщину</option>
-                        <option value='2'>Ищу мужчину</option>
-                        <option value='3'>Ищу друзей</option>
+                        <option value='0'>Ищу женщину</option>
+                        <option value='1'>Ищу мужчину</option>
+                        <option value='2'>Ищу друзей</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
