@@ -3,7 +3,7 @@ function getStorage() {
 
     if (!storage) {
         storage = {
-            JWT: '',
+            jwt: '554',
             profile: {
                 login: '',
                 name: '',
