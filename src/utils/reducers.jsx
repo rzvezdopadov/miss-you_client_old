@@ -9,7 +9,9 @@ export const jwtAction = (value) => ({
 })
 
 export const jwtReducer = (state = getStorage(), action) => {
+    const { jwt } = state;
+
     switch (action.type) {
-        default: return state;
+        default: return jwt;
     }
 } 
