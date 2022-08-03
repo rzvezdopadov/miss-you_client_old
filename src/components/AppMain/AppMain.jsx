@@ -14,7 +14,7 @@ export function AppMain() {
                 <Route path="/about" element={ <AboutUs /> } />
                 <Route path="/partners" element={ <Partners /> } />
                 <Route path="/agreement" element={ <Agreement /> } />
-                <Route path="/" element={ <FormRegistration /> } />
+                <Route path="*" element={ <FormRegistration /> } />
             </Routes>
         </div>
     );
