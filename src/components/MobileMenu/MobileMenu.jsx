@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { JWT_TOKEN } from "../../utils/reducers";
 import { store } from "../../utils/store";
 
 function MobileMenuNoAuth() {  
@@ -44,11 +45,11 @@ export function closeMobileMenu(event) {
 }
 
 export function MobileMenu() { 
-    const { JWT } = store.getState();
+    const { jwt } = store.getState(JWT_TOKEN);
 
     return (
         <div id="mobile-menu" onClick={ closeMobileMenu } className="fixed top-0 left-[-250px] w-[240px] h-screen z-50 bg-gray-700 p-5 flex flex-col space-y-5 text-white duration-300">
-            { JWT ? <MobileMenuAuth /> : <MobileMenuNoAuth /> } 
+            { jwt ? <MobileMenuAuth /> : <MobileMenuNoAuth /> } 
         </div>
     );
 }
