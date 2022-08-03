@@ -1,8 +1,9 @@
 import { React } from 'react';
 import { Link } from "react-router-dom";
+import { JWT_TOKEN } from '../../utils/reducers';
 import { store } from "../../utils/store";
 
-export function AppHeaderRightSideBarNoAuth() {
+function AppHeaderRightSideBarNoAuth() {
     return (
         <>
             <Link to="/" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Главная</Link>
@@ -13,24 +14,25 @@ export function AppHeaderRightSideBarNoAuth() {
     );
 }
 
-export function AppHeaderRightSideBarAuth() {
+function AppHeaderRightSideBarAuth() {
     return (
         <>
-            <Link Link="/" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Главная</Link>
-            <Link href="/vapors" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Мои пары</Link>
-            <Link href="/searchvapors" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Искать людей</Link>
-            <Link href="/settings" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Настройки</Link>    
-            <Link href="/logout" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Выйти</Link>    
+            <Link to="/vapors" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Мои пары</Link>
+            <Link to="/searchvapors" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Искать людей</Link>
+            <Link to="/settings" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Настройки</Link>    
+            <Link to="/logout" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Выйти</Link>    
         </>
     );
 }
 
 export function AppHeaderRightSideBar() {
-    const { JWT } = store.getState();
+    const { jwt } = store.getState(JWT_TOKEN);
 
     return (
         <div className="flex space-x-4">
-            { JWT ? <AppHeaderRightSideBarAuth /> : <AppHeaderRightSideBarNoAuth /> } 
+            {
+               jwt ? <AppHeaderRightSideBarAuth /> : <AppHeaderRightSideBarNoAuth />
+            } 
         </div>
     );
 }
