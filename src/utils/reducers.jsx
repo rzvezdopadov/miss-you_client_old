@@ -9,8 +9,6 @@ export const jwtAction = (value) => ({
 
 export const jwtReducer = (jwt = getStorageJWT(), action) => {
     const value = action.payload;
-
-    console.log('state after:', jwt);
     
     switch (action.type) {
         case JWT_TOKEN: {
