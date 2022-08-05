@@ -1,33 +1,53 @@
-function getStorage() {
-    let storage = JSON.parse(localStorage.getItem('state'));
+export function getStorage(key, defaultVal) {
+    let storage = JSON.parse(localStorage.getItem(key));
 
     if (!storage) {
-        storage = {
-            jwt: '554',
-            profile: {
-                login: '',
-                name: '',
-                surname: '',
-                myGender: '',
-                searchGender: '',
-                relation: '',
-                interests: [],
-                about: '',
-                linkPhoto: [],
-            },
-            myFriends: [],
-        }
+        storage = defaultVal;
 
-        setStorage(storage);
+        setStorage(key, storage);
     }
 
     return storage;
 }
 
-function setStorage(obj) {
-    localStorage.setItem('state', JSON.stringify(obj));
+export function setStorage(key, obj) {
+    localStorage.setItem(key, JSON.stringify(obj));
 
     return obj;
 }
 
-export {getStorage, setStorage};
+export function getStorageJWT() {
+    return getStorage('jwt', '');
+}
+ 
+export function setStorageJWT(data) {
+    setStorage('jwt', data);
+}
+
+export function getStorageProfile() {
+    return getStorage('profile', 
+        {
+            login: '',
+            name: '',
+            surname: '',
+            myGender: '',
+            searchGender: '',
+            relation: '',
+            interests: [],
+            about: '',
+            linkPhoto: '',
+        }       
+    );
+}
+ 
+export function setStorageProfile(data) {
+    setStorage('profile', data);
+}
+
+export function getStorageMyVapors() {
+    return getStorage('myVapors', []);
+}
+ 
+export function setStorageMyVapors(data) {
+    setStorage('myVapors', data);
+}
