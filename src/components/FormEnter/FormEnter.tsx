@@ -1,5 +1,5 @@
-import axios from 'axios';
-import React from 'react';
+import * as React from 'react';
+import axios from '../../../node_modules/axios/index';
 import { jwtAction } from '../../utils/reducers';
 import { setStorageJWT } from '../../utils/storage';
 import { store } from '../../utils/store';

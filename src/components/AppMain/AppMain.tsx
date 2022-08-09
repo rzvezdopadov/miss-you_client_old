@@ -1,4 +1,5 @@
-import React from 'react';
+// @ts-nocheck
+import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { store } from '../../utils/store';
 import { AboutUs } from '../AboutUs/AboutUs';
