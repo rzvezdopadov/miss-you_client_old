@@ -4,6 +4,7 @@ import { AppMain } from './components/AppMain/AppMain';
 import { AppFooter } from './components/AppFooter/AppFooter';
 import { MobileMenu } from './components/MobileMenu/MobileMenu';
 import { ModalLoading } from './components/ModalLoading/ModalLoading';
+import { ModalMessage } from './components/ModalMessage/ModalMessage';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             <AppFooter />
             <MobileMenu />
             <ModalLoading />
+            <ModalMessage />
         </div>
     );
 }
