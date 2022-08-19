@@ -15,7 +15,7 @@ export function AppMain() {
     const { jwt } = store.getState();
 
     return (
-        <div className="App-Main flex flex-grow p-4 justify-center items-center">
+        <div className="App-Main flex flex-grow pt-4 pb-4 justify-center items-center">
             {
                 <Routes>
                     <Route path="/enter" element={ <FormEnter /> } />
