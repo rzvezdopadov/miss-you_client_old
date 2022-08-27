@@ -6,7 +6,7 @@ import { UserProfileShortWrapper } from '../UserProfileShortWrapper/UserProfileS
 export function SearchVapors() {
     return (
         <div className="flex h-full w-full justify-center">
-            <div className="flex bg-gray-700 text-neutral-50 flex-col shadow-md rounded-3xl px-8 pt-2 pb-2 w-auto">
+            <div className="flex relative bg-gray-700 text-neutral-50 flex-col shadow-md rounded-3xl px-8 pt-2 pb-2 w-full">
                 <div className="flex justify-center">
                 Поиск пары
                 </div>
