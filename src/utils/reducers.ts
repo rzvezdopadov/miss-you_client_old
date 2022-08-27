@@ -141,22 +141,84 @@ export const filtersUserReducer = (filters: IFilterUsers = {
     }
 } 
 
-export const PROFILES_USERS = 'PROFILES_USERS';
+export const USERS_PROFILES = 'USERS_PROFILES';
 
-export const profilesUsersAction = (profiles: [IProfile]) => ({
-    type: PROFILES_USERS,
+export const usersProfilesAction = (profiles: [IProfile]) => ({
+    type: USERS_PROFILES,
     payload: profiles,
 })
 
-export const profilesUsersReducer = (profiles: [] = [], action: IActionReducer) => {
+export const usersProfilesReducer = (profiles: [] = [], action: IActionReducer) => {
     switch (action.type) {
-        case PROFILES_USERS: {
+        case USERS_PROFILES: {
             const value = [...action.payload];
 
             return value;
         }
 
         default: return profiles;    
+    }
+} 
+
+export const USER_PROFILE = 'USER_PROFILE';
+
+export const userProfileAction = (enabled: boolean, profile: IProfile) => ({
+    type: USER_PROFILE,
+    payload: {
+        enabled,
+        profile
+    },
+})
+
+export const userProfileReducer = (state: { enabled: boolean, profile: IProfile } 
+= {
+    enabled: false,
+    profile: {
+        email: '',
+        password: '',
+        jwt: '',
+        id: 0,
+        name: '',
+        latitude: 0,
+        longitude: 0,
+        location: '',
+        likes: [],
+        age: 0,
+        birthday: 0,
+        monthOfBirth: 0,
+        yearOfBirth: 0,
+        gender: 0,
+        genderVapor: 0,
+        photoMain: 0,
+        photoLink: [],
+        signZodiac: 0,
+        education: 0,
+        fieldOfActivity: 0,
+        maritalStatus: 0,
+        children: 0,
+        religion: 0,
+        rise: 0,
+        smoke: 0,
+        alcohol: 0,
+        discription: '',
+        profit: 0,
+        interests: [],
+        iLikeСharacter: [],
+        iDontLikeСharacter: [],
+        vapors: [],
+        likePeople: [],
+        dislikePeople: [], 
+    },
+}
+, action: IActionReducer) => {
+    switch (action.type) {
+        case USER_PROFILE: {
+            const { enabled, profile } = action.payload;
+
+            return { enabled, profile };
+        }
+
+        default: return state;    
     }
 } 
 
