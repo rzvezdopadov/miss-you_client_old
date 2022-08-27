@@ -5,7 +5,7 @@ import { useQueryGetProfiles } from '../../hooks/api.hook';
 import { useFormFieldSelectNumber, useFormFieldSelectString } from '../../hooks/form.hook';
 import { IFilterUsers } from '../../interfaces/ifilters';
 import { IQueryGetProfiles } from '../../interfaces/iquery';
-import { filtersUserAction, profilesUsersAction } from '../../utils/reducers';
+import { filtersUserAction, usersProfilesAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 
@@ -51,7 +51,7 @@ export function UserProfileFilters() {
         querySendHAL(data);
     }, [filtersUser]);
 
-    useMemo(() => {
+    useEffect(() => {
         const filters: IFilterUsers = {
             location: location.value,
             ageStart: ageStart.value,
@@ -68,7 +68,7 @@ export function UserProfileFilters() {
 
     useEffect(() => {
         if (data) {
-            store.dispatch(profilesUsersAction(data));
+            store.dispatch(usersProfilesAction(data));
         } else if (error) {
             openModalMessage(error.response.data.message);
         }
