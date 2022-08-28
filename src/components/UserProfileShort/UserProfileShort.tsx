@@ -15,7 +15,7 @@ export function UserProfileShort(params: { key: string, profile: IProfile }) {
             <div className="flex flex-col justify-center" >
                 <div 
                     style={{ 
-                        backgroundImage: 'URL(' + profile.photoLink[profile.photoMain] + ')' 
+                        backgroundImage: 'URL(' + profile.photolink[profile.photomain] + ')' 
                     }} 
                     className= "flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-3xl m-1 h-32 w-32"
                 >

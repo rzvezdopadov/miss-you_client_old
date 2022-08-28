@@ -23,10 +23,10 @@ export function UserProfileFilters() {
     const { data, error, querySendHAL} = useQueryGetProfiles();
 
     const location = useFormFieldSelectString(filtersUser.location);
-    const ageStart = useFormFieldSelectNumber(filtersUser.ageStart);
-    const ageEnd = useFormFieldSelectNumber(filtersUser.ageEnd);
-    const signZodiac = useFormFieldSelectNumber(filtersUser.signZodiac);
-    const genderVapor = useFormFieldSelectNumber(filtersUser.genderVapor);
+    const ageStart = useFormFieldSelectNumber(filtersUser.agestart);
+    const ageEnd = useFormFieldSelectNumber(filtersUser.ageend);
+    const signZodiac = useFormFieldSelectNumber(filtersUser.signzodiac);
+    const genderVapor = useFormFieldSelectNumber(filtersUser.gendervapor);
     const religion = useFormFieldSelectNumber(filtersUser.religion);
     const smoke = useFormFieldSelectNumber(filtersUser.smoke);
     const alcohol = useFormFieldSelectNumber(filtersUser.alcohol);
@@ -38,10 +38,10 @@ export function UserProfileFilters() {
             amount: 0,
             filters: {
                 location: location.value,
-                ageStart: ageStart.value,
-                ageEnd: ageEnd.value,
-                signZodiac: signZodiac.value,
-                genderVapor: genderVapor.value,
+                agestart: ageStart.value,
+                ageend: ageEnd.value,
+                signzodiac: signZodiac.value,
+                gendervapor: genderVapor.value,
                 religion: religion.value,
                 smoke: smoke.value,
                 alcohol: alcohol.value,
@@ -54,10 +54,10 @@ export function UserProfileFilters() {
     useEffect(() => {
         const filters: IFilterUsers = {
             location: location.value,
-            ageStart: ageStart.value,
-            ageEnd: ageEnd.value,
-            signZodiac: signZodiac.value,
-            genderVapor: genderVapor.value,
+            agestart: ageStart.value,
+            ageend: ageEnd.value,
+            signzodiac: signZodiac.value,
+            gendervapor: genderVapor.value,
             religion: religion.value,
             smoke: smoke.value,
             alcohol: alcohol.value

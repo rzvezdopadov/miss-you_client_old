@@ -32,8 +32,7 @@ export function UserProfile() {
     }
 
     return (
-        // <div ref={ refUserProfile } className="flex flex-col absolute justify-center bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 pb-2 h-fit w-fit" >
-        <div ref={ refUserProfile } className="flex flex-col fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl  overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-fit w-fit" >
+        <div ref={ refUserProfile } className="flex flex-col fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl  overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-2/3 lg:max-w-5xl" >
             <div className='flex justify-end h-6 w-full'>
                 <div onClick={ closeUserProfileHandler } className='flex justify-center cursor-pointer rounded-full bg-red-400 h-6 w-6'>X</div>
             </div>
@@ -64,8 +63,8 @@ export function UserProfile() {
                         <span className="flex">Личное:</span>
                         <div className="flex flex-wrap justify-center">
                             { <UserProfileInterest key={ 'location' + userProfile.profile.location } value={ userProfile.profile.location } /> }
-                            { <UserProfileInterest key={ 'signZodiac' + userProfile.profile.signZodiac } value={ arr_signZodiac[userProfile.profile.signZodiac] } /> }
-                            { <UserProfileInterest key={ 'genderVapors' + userProfile.profile.genderVapor } value={ arr_genderVapor[userProfile.profile.genderVapor] } /> }
+                            { <UserProfileInterest key={ 'signZodiac' + userProfile.profile.signzodiac } value={ arr_signZodiac[userProfile.profile.signzodiac] } /> }
+                            { <UserProfileInterest key={ 'genderVapors' + userProfile.profile.gendervapor } value={ arr_genderVapor[userProfile.profile.gendervapor] } /> }
                             { 
                                 !(userProfile.profile.children === 0)
                                 ? <UserProfileInterest key={ 'children' + userProfile.profile.children } value={ arr_children[userProfile.profile.children] } />
@@ -112,7 +111,7 @@ export function UserProfile() {
                             
                             <div className="flex flex-wrap justify-center">
                                 <div className="flex flex-wrap justify-center">
-                                    { userProfile.profile.iLikeСharacter.length ? userProfile.profile.iLikeСharacter.map((quality, i) => {
+                                    { userProfile.profile.ilikecharacter.length ? userProfile.profile.ilikecharacter.map((quality, i) => {
                                         return <UserProfileInterest key={ arr_iLikeСharacter[quality] + i } value={ arr_iLikeСharacter[quality][0] } />
                                     }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' } /> }
                                 </div>
@@ -125,7 +124,7 @@ export function UserProfile() {
                             <span className="flex">Не нравятся качества:</span>
                             
                             <div className="flex flex-wrap justify-center">
-                                { userProfile.profile.iLikeСharacter.length ? userProfile.profile.iLikeСharacter.map((quality, i) => {
+                                { userProfile.profile.ilikecharacter.length ? userProfile.profile.ilikecharacter.map((quality, i) => {
                                         return <UserProfileInterest key={ arr_iDontLikeСharacter[quality] + i } value={ arr_iDontLikeСharacter[quality][0] } />
                                 }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' } /> }
                             </div>
