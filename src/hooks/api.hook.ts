@@ -1,6 +1,6 @@
 import { IProfile, IProfileShort } from "../interfaces/iprofiles";
-import { ILogin, IQueryGetProfiles } from "../interfaces/iquery";
-import { IQueryAnswerError, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerProfile, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData } from "../interfaces/iqueryanswer";
+import { ILike, ILogin, IQueryGetProfiles } from "../interfaces/iquery";
+import { IQueryAnswerError, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessageData, IQueryAnswerProfile, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData } from "../interfaces/iqueryanswer";
 import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
 
 /* API Query to server */
@@ -33,6 +33,22 @@ export function useQueryLogin() {
     const errorNew = error as IQueryAnswerError;
 
     const queryAnswer: IQueryAnswerLogin = { data: dataNew, error: errorNew, loaded, querySendHAL };
+
+    return queryAnswer;
+}
+
+/* Enter user */
+export function useQueryLike() {  
+    const { data, error, loaded, querySend } = useQueryPut();
+
+    const querySendHAL = async (dataQuery: ILike) => {
+        querySend('/api/like', dataQuery, false);
+    }
+
+    const dataNew = data as IQueryAnswerMessageData;
+    const errorNew = error as IQueryAnswerError;
+
+    const queryAnswer: IQueryAnswerLike = { data: dataNew, error: errorNew, loaded, querySendHAL };
 
     return queryAnswer;
 }
