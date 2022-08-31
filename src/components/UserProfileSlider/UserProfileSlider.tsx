@@ -1,10 +1,16 @@
 import * as React from 'react';
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useQueryLike } from '../../hooks/api.hook';
+import { ILike } from '../../interfaces/iquery';
+import { userProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
+import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function UserProfileSlider() {
+    const { jwt } = store.getState();
     const [positionPhoto, setPositionPhoto] = useState(0);
     const { userProfile } = store.getState();
+    const { data, error, querySendHAL } = useQueryLike();
 
     if (positionPhoto > userProfile.profile.photolink.length - 1) {
         setTimeout(()=>{
@@ -38,7 +44,36 @@ export function UserProfileSlider() {
         }
 
         setPositionPhoto(posPhoto);
-    } 
+    }
+
+    const likeSlideHandler = () => {
+        const dataQuery: ILike = {
+            jwt: jwt,
+            id: userProfile.profile.id,
+        }
+
+        querySendHAL(dataQuery);
+    }
+
+    useEffect(() => {
+        if (data) {
+            console.log(data);
+
+            const newProfile = { ...userProfile.profile };
+            newProfile.likes = data;
+
+            store.dispatch(userProfileAction(true, newProfile));
+            
+        } else if (error) {
+            openModalMessage(error.response.data.message);
+        }
+    }, [data, error]);
+
+    let colorHeart = "bg-red-500 text-white";
+
+    if (userProfile.profile.likes.length === 0) {
+        colorHeart = "bg-white text-black";
+    }
 
     return (
         <>
@@ -54,13 +89,13 @@ export function UserProfileSlider() {
             </div>
 
             <div className="flex justify-center cursor-pointer m-1 rounded-md">
-                <div onClick={ leftBtnSlideHandler } className="flex bg-gray-300 text-black text-xl font-bold justify-center cursor-pointer m-1 w-24 rounded-md">
+                <div onClick={ leftBtnSlideHandler } className="flex select-none bg-gray-300 text-black text-xl font-bold justify-center cursor-pointer m-1 w-24 rounded-md">
                     &lt;
                 </div>
-                <div className="flex bg-white text-black justify-center text-xl cursor-pointer m-1 w-24 rounded-md">
+                <div onClick={ likeSlideHandler } className= { "flex select-none " + colorHeart + " justify-center text-xl cursor-pointer m-1 w-24 rounded-md" }>
                     &hearts;
                 </div>
-                <div onClick={ rightBtnSlideHandler } className="flex bg-gray-300 text-black text-xl font-bold justify-center cursor-pointer m-1 w-24 rounded-md">
+                <div onClick={ rightBtnSlideHandler } className="flex select-none bg-gray-300 text-black text-xl font-bold justify-center cursor-pointer m-1 w-24 rounded-md">
                     &gt;
                 </div>
             </div>
