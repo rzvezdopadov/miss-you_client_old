@@ -33,7 +33,10 @@ export interface IProfile {
 }
 
 export interface IProfileShort {
-    jwt: string,
-    email: string,
-    password: string,
+    id: number,
+    name: string,
+    age: number,
+    photomain: number,
+    photolink: [],
+    interests: [],
 }
