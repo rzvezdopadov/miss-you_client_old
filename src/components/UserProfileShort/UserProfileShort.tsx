@@ -1,14 +1,35 @@
 import * as React from 'react';
-import { IProfile } from '../../interfaces/iprofiles';
+import { useEffect } from 'react';
+import { useQueryGetProfile } from '../../hooks/api.hook';
+import { IProfileShort } from '../../interfaces/iprofiles';
+import { IQueryGetProfile } from '../../interfaces/iquery';
+import { store } from '../../utils/store';
+import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { openUserProfile } from '../UserProfile/UserProfile';
 import { UserProfileInterest } from '../UserProfileInterest/UserProfileInterest';
 
-export function UserProfileShort(params: { key: string, profile: IProfile }) {
+export function UserProfileShort(params: { key: string, profile: IProfileShort }) {
+    const { data, error, querySendHAL } = useQueryGetProfile();
+    const { jwt } = store.getState();
+
     const { profile } = params;
 
     const openProfileHandler = () => {
-        openUserProfile(profile);
+        const data: IQueryGetProfile = {
+            jwt: jwt,
+            id: profile.id,
+        };
+
+        querySendHAL(data);        
     }
+
+    useEffect(() => {
+        if (data) {
+            openUserProfile(data);
+        } else if (error) {
+            openModalMessage(error.response.data.message);
+        }
+    }, [data, error]);
 
     return (
         <div className="flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-row bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 max-h-30 h-30 w-80" >
