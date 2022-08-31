@@ -57,9 +57,8 @@ export function UserProfileSlider() {
 
     useEffect(() => {
         if (data) {
-            console.log(data);
-
             const newProfile = { ...userProfile.profile };
+            
             newProfile.likes = data;
 
             store.dispatch(userProfileAction(true, newProfile));
