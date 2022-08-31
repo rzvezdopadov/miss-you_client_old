@@ -1,6 +1,6 @@
 import { arr_age, arr_genderVapor, arr_location, arr_signZodiac } from "../arrdata/profiles";
 import { IFilterUsers } from "../interfaces/ifilters";
-import { IProfile } from "../interfaces/iprofiles";
+import { IProfile, IProfileShort } from "../interfaces/iprofiles";
 import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
 import { getStorageJWT } from "./storage";
 
@@ -143,7 +143,7 @@ export const filtersUserReducer = (filters: IFilterUsers = {
 
 export const USERS_PROFILES = 'USERS_PROFILES';
 
-export const usersProfilesAction = (profiles: [IProfile]) => ({
+export const usersProfilesAction = (profiles: [IProfileShort]) => ({
     type: USERS_PROFILES,
     payload: profiles,
 })
