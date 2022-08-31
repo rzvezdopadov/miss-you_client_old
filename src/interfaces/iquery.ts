@@ -18,6 +18,11 @@ export interface IQueryGetProfile {
     id: number,
 }
 
+export interface ILike {
+    jwt: string;
+    id: number,
+}
+
 export interface IQueryGetProfiles {
     jwt: string;
     startCount: number, 
