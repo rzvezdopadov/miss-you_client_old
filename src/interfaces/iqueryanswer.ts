@@ -19,6 +19,10 @@ export interface IQueryAnswer {
     querySend(link: string, data: {}, modalLoad: boolean): void,
 }
 
+export interface IQueryAnswerMessageData {
+    message: '',
+}
+
 export interface IQueryAnswerRegistrationData {
     message: '',
 }
@@ -57,7 +61,14 @@ export interface IQueryAnswerProfileShort {
 }
 
 export interface IQueryAnswerProfiles {
-    data: [IProfile],
+    data: [IProfileShort],
+    error: IQueryAnswerError,
+    loaded: boolean,
+    querySendHAL(data: {}): void,
+}
+
+export interface IQueryAnswerLike {
+    data: IQueryAnswerMessageData,
     error: IQueryAnswerError,
     loaded: boolean,
     querySendHAL(data: {}): void,
