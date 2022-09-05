@@ -7,9 +7,8 @@ import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function UserProfileSlider() {
-    const { jwt } = store.getState();
+    const { jwt, userProfile } = store.getState();
     const [positionPhoto, setPositionPhoto] = useState(0);
-    const { userProfile } = store.getState();
     const { data, error, querySendHAL } = useQueryLike();
 
     if (positionPhoto > userProfile.profile.photolink.length - 1) {
