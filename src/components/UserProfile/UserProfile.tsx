@@ -120,11 +120,11 @@ export function UserProfile() {
                     </div>
 
                     <div className="flex flex-col justify-center">
-                        <div className="flex justify-center items-center flex-col select-none text-white p-1 m-1 rounded-lg">
+                        <div className="flex justify-center items-center flex-col select-none text-white max-w-xl p-1 m-1 rounded-lg">
                             <span className="flex">Не нравятся качества:</span>
                             
                             <div className="flex flex-wrap justify-center">
-                                { userProfile.profile.ilikecharacter.length ? userProfile.profile.ilikecharacter.map((quality, i) => {
+                                { userProfile.profile.idontlikecharacter.length ? userProfile.profile.idontlikecharacter.map((quality, i) => {
                                         return <UserProfileInterest key={ arr_iDontLikeСharacter[quality] + i } value={ arr_iDontLikeСharacter[quality][0] } />
                                 }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' } /> }
                             </div>
