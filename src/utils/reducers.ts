@@ -74,26 +74,6 @@ export const jwtReducer = (jwt = getStorageJWT(), action: IActionReducer) => {
     }
 } 
 
-export const PROFILE = 'PROFILE';
-
-export const profileAction = (value) => ({
-    type: PROFILE,
-    payload: value,
-})
-
-export const profileReducer = (profile: '' = '', action: IActionReducer) => {
-    const value = action.payload;
-
-    switch (action.type) {
-        case PROFILE: {
-            profile = value;
-
-            return profile;
-        }        
-        default: return profile;    
-    }
-} 
-
 export const MY_VAPORS = 'MY_VAPORS';
 
 export const myVaporsAction = (value) => ({
@@ -218,4 +198,63 @@ export const userProfileReducer = (state: { enabled: boolean, profile: IProfile 
         default: return state;    
     }
 } 
+
+
+export const USER_MYPROFILE = 'USER_MYPROFILE';
+
+export const userMyProfileAction = (profile: IProfile) => ({
+    type: USER_MYPROFILE,
+    payload: {
+        profile
+    },
+})
+
+export const userMyProfileReducer = (state: IProfile  
+= {
+    id: 0,
+    name: '',
+    latitude: 0,
+    longitude: 0,
+    location: '',
+    likes: [],
+    age: 0,
+    birthday: 1,
+    monthofbirth: 1,
+    yearofbirth: 1970,
+    gender: 0,
+    gendervapor: 0,
+    photomain: 0,
+    photolink: [],
+    signzodiac: 0,
+    education: 0,
+    fieldofactivity: 0,
+    maritalstatus: 0,
+    children: 0,
+    religion: 0,
+    rise: 0,
+    smoke: 0,
+    alcohol: 0,
+    discription: '',
+    profit: 0,
+    interests: [],
+    ilikecharacter: [],
+    idontlikecharacter: [],
+    vapors: [],
+    likepeople: [],
+    dislikepeople: [], 
+}
+, action: IActionReducer) => {
+    switch (action.type) {
+        case USER_MYPROFILE: {
+            const { profile } = action.payload;
+
+            return profile;
+        }
+
+        default: return state;    
+    }
+} 
+
+
+
 
