@@ -6,7 +6,7 @@ import { AboutUs } from '../AboutUs/AboutUs';
 import { Agreement } from '../Agreement/Agreement';
 import { FormEnter } from '../FormEnter/FormEnter';
 import { FormRegistration } from '../FormRegistrarion/FormRegistration';
-import { FormSettingProfile } from '../FormSettingProfile/FormSettingProfile';
+import { SettingProfile } from '../SettingProfile/SettingProfile';
 import { Partners } from '../Partners/Partners';
 import { Vapors } from '../Vapors/Vapors';
 import { SearchVapors } from '../SearchVapors/SearchVapors';
@@ -22,7 +22,7 @@ export function AppMain() {
                     <Route path="/about" element={ <AboutUs /> } />
                     <Route path="/partners" element={ <Partners /> } />
                     <Route path="/agreement" element={ <Agreement /> } />
-                    <Route path="/settings" element={ <FormSettingProfile /> } />
+                    <Route path="/settings" element={ <SettingProfile /> } />
                     <Route path="/vapors" element={ <Vapors /> } />
                     <Route path="/searchvapors" element={ <SearchVapors /> } />
                     { jwt ? <Route path="/" element={ <Vapors /> } /> : <Route path="/" element={ <FormRegistration /> } /> }
