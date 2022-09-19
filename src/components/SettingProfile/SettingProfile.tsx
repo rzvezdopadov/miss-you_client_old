@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { arr_alcohol, arr_children, arr_education, arr_fieldOfActivity, arr_gender, arr_genderVapor, arr_maritalStatus, arr_profit, arr_religion, arr_smoke } from '../../arrdata/profiles';
 import { useQueryGetProfile } from '../../hooks/api.hook';
+import { useFormFieldInputString } from '../../hooks/form.hook';
 import { IProfile } from '../../interfaces/iprofiles';
 import { IQueryGetProfile } from '../../interfaces/iquery';
 import { userMyProfileAction } from '../../utils/reducers';
@@ -15,6 +16,7 @@ export function SettingProfile() {
     const { data, error, querySendHAL } = useQueryGetProfile();
     const myProfile: IProfile = userMyProfile;
     const [profile, setProfile] = useState(myProfile);
+    const [interest, setInterest] = useState('');
 
     let date = new Date();
 
@@ -82,9 +84,36 @@ export function SettingProfile() {
     const smokeOnChangeHandler = (e) => { onChangeValueProfile(e, 'smoke') }
     const alcoholOnChangeHandler = (e) => { onChangeValueProfile(e, 'alcohol') }
     const profitOnChangeHandler = (e) => { onChangeValueProfile(e, 'profit') }
-    
-    
-    
+
+    const interestOnChangeHandler = (e) => {
+        setInterest(e.target.value);
+    }
+
+    const interestAddOnKeyPressHandler = (e) => {
+        if (e.key === 'Enter') interestAddOnClickHandler();
+    }
+
+    const interestAddOnClickHandler = () => {
+        if (!interest) return;
+
+        const newProfile = { ...profile }
+            newProfile.interests = [ ...newProfile.interests];
+            newProfile.interests.push(interest as never);
+        setProfile(newProfile);
+
+        setInterest('');
+    }
+
+    const interestDeleteOnClickHandler = (value: never) => { 
+        const index = profile.interests.indexOf(value);
+        
+        if (index === -1) return;
+
+        const newProfile = { ...profile }
+            newProfile.interests = [ ...newProfile.interests];
+            newProfile.interests.splice(index, 1);
+        setProfile(newProfile);
+    }
 
     useEffect(() => {
         const data: IQueryGetProfile = {
@@ -263,7 +292,43 @@ export function SettingProfile() {
                     title={ 'Заработок в месяц' } 
                 />
 
-                
+                <div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center m-2">
+                    <div className='flex m-2'>
+                        <span> { 'Интересы' } </span>
+                    </div>
+                    
+                    {
+                        profile.interests.map((value, index) => {
+                            return <div key={ 'interest' + index } className='flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2'>
+                                { value }
+                                <div 
+                                    className='flex ml-2 justify-center cursor-pointer text-xs rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-4 w-4' 
+                                    title='Удалить интерес'
+                                    onClick={ () => interestDeleteOnClickHandler(value) }
+                                >X</div>
+                            </div>
+                        })
+                    }
+
+                    <div className='flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center m-2'>
+                        <input 
+                            className='shadow appearance-none border border-black-500 rounded w-full ml-2 h-8 py-2 px-3 bg-slate-300 text-black leading-tight focus:outline-none focus:shadow-outline' 
+                            value={ interest } 
+                            onChange={ interestOnChangeHandler }
+                            onKeyDown={ interestAddOnKeyPressHandler }
+                        />
+                        <div 
+                            className='flex border-2 rounded-full cursor-pointer border-white justify-center items-center text-lg m-2 h-8 w-8'
+                            onClick={ interestAddOnClickHandler }
+                        >+</div>
+                    </div>
+                </div>
+            </div>
+            <div className='flex flex-wrap justify-around m-2'>
+                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+                    type="button">
+                    Сохранить
+                </button>
             </div>
         </div>
     );
