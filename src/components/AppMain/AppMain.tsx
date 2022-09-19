@@ -10,6 +10,7 @@ import { SettingProfile } from '../SettingProfile/SettingProfile';
 import { Partners } from '../Partners/Partners';
 import { Vapors } from '../Vapors/Vapors';
 import { SearchVapors } from '../SearchVapors/SearchVapors';
+import { Messages } from '../Messages/Messages';
 
 export function AppMain() {
     const { jwt } = store.getState();
@@ -18,15 +19,24 @@ export function AppMain() {
         <div className="App-Main flex flex-grow pt-4 pb-4 justify-center items-center">
             {
                 <Routes>
-                    <Route path="/enter" element={ <FormEnter /> } />
+                    <Route path="/agreement" element={ <Agreement /> } />
                     <Route path="/about" element={ <AboutUs /> } />
                     <Route path="/partners" element={ <Partners /> } />
-                    <Route path="/agreement" element={ <Agreement /> } />
-                    <Route path="/settings" element={ <SettingProfile /> } />
-                    <Route path="/vapors" element={ <Vapors /> } />
-                    <Route path="/searchvapors" element={ <SearchVapors /> } />
-                    { jwt ? <Route path="/" element={ <Vapors /> } /> : <Route path="/" element={ <FormRegistration /> } /> }
-                    <Route path="/*" element={ <FormRegistration /> } />
+                    
+                    { 
+                        jwt ?
+                            <>
+                                <Route path="/messages" element={ <Messages /> } />
+                                <Route path="/settings" element={ <SettingProfile /> } />
+                                <Route path="/searchvapors" element={ <SearchVapors /> } />
+                                <Route path="/*" element={ <Vapors /> } />
+                            </>
+                            : 
+                            <>
+                                <Route path="/enter" element={ <FormEnter /> } />
+                                <Route path="/*" element={ <FormRegistration /> } />
+                            </>
+                    }
                 </Routes>
             }
         </div>
