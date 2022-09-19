@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "../../node_modules/axios/index";
 import { modalLoadingOnHide, modalLoadingOnShow } from "../components/ModalLoading/ModalLoading";
 import { IQueryAnswer } from "../interfaces/iqueryanswer";
+import { jwtAction } from "../utils/reducers";
+import { setStorageJWT } from "../utils/storage";
+import { store } from "../utils/store";
 
 export function useQueryGet() {
     const [data, setDataAnswer] = useState(null);
@@ -20,6 +23,13 @@ export function useQueryGet() {
             setDataAnswer(payload.data);
         }).catch((error) => {
             setErrorAnswer(error);
+            if ('Токен не валидный!') {
+                setTimeout(() => {
+                    store.dispatch(jwtAction(''));
+                    setStorageJWT('');
+                    document.location.href = '/'
+                }, 1500);
+            }
         }).finally(() => {
             if (modalLoad) modalLoadingOnHide();
             setLoaded(false);
