@@ -10,7 +10,7 @@ export function SelectFromArr(
     } 
 ) {
     return (
-        <div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-3 relative items-center h-12 m-3">
+        <div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-3 relative items-center h-12 m-2">
             <div className='flex mr-2'>
                 <span> { params.title } </span>
             </div>
