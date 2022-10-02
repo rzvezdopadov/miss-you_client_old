@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useEffect, useMemo } from 'react';
-import { arr_age, arr_alcohol, arr_genderVapor, arr_location, arr_religion, arr_signZodiac, arr_smoke } from '../../arrdata/profiles';
+import { useEffect } from 'react';
+import { arr_age, arr_alcohol, arr_genderVapor, arr_growth, arr_location, arr_religion, arr_signZodiac, arr_smoke, arr_weight } from '../../arrdata/profiles';
 import { useQueryGetProfiles } from '../../hooks/api.hook';
 import { useFormFieldSelectNumber, useFormFieldSelectString } from '../../hooks/form.hook';
-import { IFilterUsers } from '../../interfaces/ifilters';
+import { IFilterUsers } from '../../interfaces/iprofiles';
 import { IQueryGetProfiles } from '../../interfaces/iquery';
 import { filtersUserAction, usersProfilesAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
@@ -25,6 +25,10 @@ export function UserProfileFilters() {
     const location = useFormFieldSelectString(filtersUser.location);
     const ageStart = useFormFieldSelectNumber(filtersUser.agestart);
     const ageEnd = useFormFieldSelectNumber(filtersUser.ageend);
+    const growthStart = useFormFieldSelectNumber(filtersUser.growthstart);
+    const growthEnd = useFormFieldSelectNumber(filtersUser.growthend);
+    const weightStart = useFormFieldSelectNumber(filtersUser.weightstart);
+    const weightEnd = useFormFieldSelectNumber(filtersUser.weightend);
     const signZodiac = useFormFieldSelectNumber(filtersUser.signzodiac);
     const genderVapor = useFormFieldSelectNumber(filtersUser.gendervapor);
     const religion = useFormFieldSelectNumber(filtersUser.religion);
@@ -40,11 +44,16 @@ export function UserProfileFilters() {
                 location: location.value,
                 agestart: ageStart.value,
                 ageend: ageEnd.value,
+                growthstart: growthStart.value,
+                growthend: growthEnd.value,
+                weightstart: weightStart.value,
+                weightend: weightEnd.value,
                 signzodiac: signZodiac.value,
                 gendervapor: genderVapor.value,
                 religion: religion.value,
                 smoke: smoke.value,
                 alcohol: alcohol.value,
+                interests: [],
             }
         };
 
@@ -56,15 +65,26 @@ export function UserProfileFilters() {
             location: location.value,
             agestart: ageStart.value,
             ageend: ageEnd.value,
+            growthstart: growthStart.value,
+            growthend: growthEnd.value,
+            weightstart: weightStart.value,
+            weightend: weightEnd.value,
             signzodiac: signZodiac.value,
             gendervapor: genderVapor.value,
             religion: religion.value,
             smoke: smoke.value,
-            alcohol: alcohol.value
+            alcohol: alcohol.value,
+            interests: [],
         }
 
         store.dispatch(filtersUserAction(filters));
-    }, [location.value, ageStart.value, ageEnd.value, signZodiac.value, genderVapor.value, religion.value, smoke.value, alcohol.value]);
+    }, [
+        location.value, 
+        ageStart.value, ageEnd.value, 
+        growthStart.value, growthEnd.value, 
+        weightStart.value, weightEnd.value, 
+        signZodiac.value, genderVapor.value, 
+        religion.value, smoke.value, alcohol.value]);
 
     useEffect(() => {
         if (data) {
@@ -104,6 +124,45 @@ export function UserProfileFilters() {
                     {
                         arr_age.map((value) => {
                             return <UserProfileFiltersAgeOption key={ 'ageEnd' + value } id={ value } />
+                        })
+                    }
+                </select>
+            </div>
+
+
+            <div className="flex flex-row  bg-gray-900 p-1 m-1 rounded-xl justify-center" >
+                <span className="flex m-1">Рост:</span>
+                
+                <select {...growthStart} className="flex bg-gray-300 text-black m-1 rounded-lg">
+                    {
+                        arr_growth.map((value) => {
+                            return <UserProfileFiltersAgeOption key={ 'growthStart' + value } id={ value } />
+                        })
+                    }
+                </select>-
+                <select {...growthEnd} className="flex bg-gray-300 text-black m-1 rounded-lg">
+                    {
+                        arr_growth.map((value) => {
+                            return <UserProfileFiltersAgeOption key={ 'growthEnd' + value } id={ value } />
+                        })
+                    }
+                </select>
+            </div>
+
+            <div className="flex flex-row  bg-gray-900 p-1 m-1 rounded-xl justify-center" >
+                <span className="flex m-1">Вес:</span>
+                
+                <select {...weightStart} className="flex bg-gray-300 text-black m-1 rounded-lg">
+                    {
+                        arr_weight.map((value) => {
+                            return <UserProfileFiltersAgeOption key={ 'weightStart' + value } id={ value } />
+                        })
+                    }
+                </select>-
+                <select {...weightEnd} className="flex bg-gray-300 text-black m-1 rounded-lg">
+                    {
+                        arr_weight.map((value) => {
+                            return <UserProfileFiltersAgeOption key={ 'weightEnd' + value } id={ value } />
                         })
                     }
                 </select>
