@@ -1,4 +1,4 @@
-import { IFilterUsers } from "./ifilters";
+import { IFilterUsers } from "./iprofiles";
 
 export interface IRegistration {
     gender: number,
@@ -28,4 +28,11 @@ export interface IQueryGetProfiles {
     startCount: number, 
     amount: number, 
     filters: IFilterUsers,
+}
+
+export interface IQueryGetProfilesOnlyLikes {
+    jwt: string;
+    startCount: number, 
+    amount: number, 
+    users: any,
 }
