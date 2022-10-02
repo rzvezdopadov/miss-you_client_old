@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { arr_alcohol, arr_children, arr_education, arr_fieldOfActivity, arr_gender, arr_genderVapor, arr_maritalStatus, arr_profit, arr_religion, arr_smoke } from '../../arrdata/profiles';
+import { arr_alcohol, arr_children, arr_education, arr_fieldOfActivity, arr_gender, arr_genderVapor, arr_growth, arr_maritalStatus, arr_profit, arr_religion, arr_smoke, arr_weight } from '../../arrdata/profiles';
 import { useQueryGetProfile } from '../../hooks/api.hook';
 import { useFormFieldInputString } from '../../hooks/form.hook';
 import { IProfile } from '../../interfaces/iprofiles';
 import { IQueryGetProfile } from '../../interfaces/iquery';
-import { userMyProfileAction } from '../../utils/reducers';
+import { filtersUserAction, userMyProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { SelectFromArr } from '../SelectFromArr/SelectFromArr';
@@ -75,6 +75,9 @@ export function SettingProfile() {
 
         setProfile(newProfile);
     };
+
+    const growthOnChangeHandler = (e) => { onChangeValueProfile(e, 'growth') };
+    const weightOnChangeHandler = (e) => { onChangeValueProfile(e, 'weight') };
     const educationOnChangeHandler = (e) => { onChangeValueProfile(e, 'education') };
     const fieldofactivityOnChangeHandler = (e) => { onChangeValueProfile(e, 'fieldofactivity') }
     const maritalstatusOnChangeHandler = (e) => { onChangeValueProfile(e, 'maritalstatus') }
@@ -98,7 +101,7 @@ export function SettingProfile() {
 
         const newProfile = { ...profile }
             newProfile.interests = [ ...newProfile.interests];
-            newProfile.interests.push(interest as never);
+            newProfile.interests.push(interest.toLowerCase() as never);
         setProfile(newProfile);
 
         setInterest('');
@@ -127,6 +130,7 @@ export function SettingProfile() {
     useEffect(() => {
         if (data) {           
             store.dispatch(userMyProfileAction(data));
+            store.dispatch(filtersUserAction(data.filters));
         } else if (error) {
             openModalMessage(error.response.data.message);
         }
@@ -227,6 +231,22 @@ export function SettingProfile() {
                         onChange={ birhdayOnChangeHandler }
                     />
                 </div>
+
+                <SelectFromArr 
+                    keyOpt={ 'growth' }
+                    value={ profile.growth } 
+                    onChangeHandler={ growthOnChangeHandler } 
+                    arr={ arr_growth } 
+                    title={ 'Рост' } 
+                />
+
+                <SelectFromArr 
+                    keyOpt={ 'weight' }
+                    value={ profile.weight } 
+                    onChangeHandler={ weightOnChangeHandler } 
+                    arr={ arr_weight } 
+                    title={ 'Вес' } 
+                />
 
                 <SelectFromArr 
                     keyOpt={ 'education' }
