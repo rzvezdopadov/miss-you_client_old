@@ -23,13 +23,13 @@ export function useQueryGet() {
             setDataAnswer(payload.data);
         }).catch((error) => {
             setErrorAnswer(error);
-            if ('Токен не валидный!') {
-                setTimeout(() => {
-                    store.dispatch(jwtAction(''));
-                    setStorageJWT('');
-                    document.location.href = '/'
-                }, 1500);
-            }
+            // if ('Токен не валидный!') {
+            //     setTimeout(() => {
+            //         store.dispatch(jwtAction(''));
+            //         setStorageJWT('');
+            //         document.location.href = '/'
+            //     }, 1500);
+            // }
         }).finally(() => {
             if (modalLoad) modalLoadingOnHide();
             setLoaded(false);
