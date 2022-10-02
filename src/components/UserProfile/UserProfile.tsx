@@ -63,6 +63,8 @@ export function UserProfile() {
                         <span className="flex">Личное:</span>
                         <div className="flex flex-wrap justify-center">
                             { <UserProfileInterest key={ 'location' + userProfile.profile.location } value={ userProfile.profile.location } /> }
+                            { <UserProfileInterest key={ 'growth' + userProfile.profile.growth } value={ userProfile.profile.growth + ' см'} /> }
+                            { <UserProfileInterest key={ 'weight' + userProfile.profile.weight } value={ userProfile.profile.weight + ' кг' } /> }
                             { <UserProfileInterest key={ 'signZodiac' + userProfile.profile.signzodiac } value={ arr_signZodiac[userProfile.profile.signzodiac] } /> }
                             { <UserProfileInterest key={ 'genderVapors' + userProfile.profile.gendervapor } value={ arr_genderVapor[userProfile.profile.gendervapor] } /> }
                             { 
