@@ -1,6 +1,5 @@
-import { arr_age, arr_genderVapor, arr_location, arr_signZodiac } from "../arrdata/profiles";
-import { IFilterUsers } from "../interfaces/ifilters";
-import { IProfile, IProfileShort } from "../interfaces/iprofiles";
+import { arr_age, arr_genderVapor, arr_growth, arr_location, arr_signZodiac, arr_weight } from "../arrdata/profiles";
+import { IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
 import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
 import { getStorageJWT } from "./storage";
 
@@ -104,12 +103,17 @@ export const filtersUserAction = (filters: IFilterUsers) => ({
 export const filtersUserReducer = (filters: IFilterUsers = {
     location: arr_location[0][0],
     agestart: arr_age[0],
-    ageend: arr_age[0],
+    ageend: arr_age[arr_age.length - 1],
+    growthstart: arr_growth[0],
+    growthend: arr_growth[arr_growth.length - 1],
+    weightstart: arr_weight[0],
+    weightend: arr_weight[arr_weight.length - 1],
     signzodiac: arr_signZodiac.length - 1,
     gendervapor: arr_genderVapor.length - 1,
     religion: 0,
     smoke: 0,
-    alcohol: 0
+    alcohol: 0,
+    interests: [],
 }, action: IActionReducer) => {
     switch (action.type) {
         case FILTERS_USER: {
@@ -164,6 +168,8 @@ export const userProfileReducer = (state: { enabled: boolean, profile: IProfile 
         birthday: 0,
         monthofbirth: 0,
         yearofbirth: 0,
+        growth: 80,
+        weight: 180,
         gender: 0,
         gendervapor: 0,
         photomain: 0,
@@ -182,9 +188,21 @@ export const userProfileReducer = (state: { enabled: boolean, profile: IProfile 
         interests: [],
         ilikecharacter: [],
         idontlikecharacter: [],
-        vapors: [],
-        likepeople: [],
-        dislikepeople: [], 
+        filters: {
+            location: arr_location[0][0],
+            agestart: arr_age[0],
+            ageend: arr_age[arr_age.length - 1],
+            growthstart: arr_growth[0],
+            growthend: arr_growth[arr_growth.length - 1],
+            weightstart: arr_weight[0],
+            weightend: arr_weight[arr_weight.length - 1],
+            signzodiac: arr_signZodiac.length - 1,
+            gendervapor: arr_genderVapor.length - 1,
+            religion: 0,
+            smoke: 0,
+            alcohol: 0,
+            interests: [],
+        }
     },
 }
 , action: IActionReducer) => {
@@ -221,6 +239,8 @@ export const userMyProfileReducer = (state: IProfile
     birthday: 1,
     monthofbirth: 1,
     yearofbirth: 1970,
+    growth: 80,
+    weight: 180,
     gender: 0,
     gendervapor: 0,
     photomain: 0,
@@ -239,9 +259,21 @@ export const userMyProfileReducer = (state: IProfile
     interests: [],
     ilikecharacter: [],
     idontlikecharacter: [],
-    vapors: [],
-    likepeople: [],
-    dislikepeople: [], 
+    filters: {
+        location: arr_location[0][0],
+        agestart: arr_age[0],
+        ageend: arr_age[arr_age.length - 1],
+        growthstart: arr_growth[0],
+        growthend: arr_growth[arr_growth.length - 1],
+        weightstart: arr_weight[0],
+        weightend: arr_weight[arr_weight.length - 1],
+        signzodiac: arr_signZodiac.length - 1,
+        gendervapor: arr_genderVapor.length - 1,
+        religion: 0,
+        smoke: 0,
+        alcohol: 0,
+        interests: [],
+    }
 }
 , action: IActionReducer) => {
     switch (action.type) {
