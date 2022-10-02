@@ -1,3 +1,19 @@
+export interface IFilterUsers {
+    location: string,
+    agestart: number,
+    ageend: number,
+    growthstart: number,
+    growthend: number,
+    weightstart: number,
+    weightend: number,
+    signzodiac: number,
+    gendervapor: number,
+    religion: number,
+    smoke: number,
+    alcohol: number,
+    interests: [],
+}
+
 export interface IProfile {
     id: number,
     name: string,
@@ -9,6 +25,8 @@ export interface IProfile {
     birthday: number,
     monthofbirth: number,
     yearofbirth: number,
+    growth: number,
+    weight:number,
     gender: number,
     gendervapor: number,
     photomain: number,
@@ -27,9 +45,7 @@ export interface IProfile {
     interests: [],
     ilikecharacter: [],
     idontlikecharacter: [],
-    vapors: [],
-    likepeople: [],
-    dislikepeople: [], 
+    filters: IFilterUsers,
 }
 
 export interface IProfileShort {
