@@ -1,6 +1,12 @@
 export const arr_age = [];
 for (let i = 18; i < 121; i++) { arr_age.push(i); }
 
+export const arr_growth = [];
+for (let i = 120; i < 230; i++) { arr_growth.push(i); }
+
+export const arr_weight = [];
+for (let i = 40; i < 130; i++) { arr_weight.push(i); }
+
 export const arr_location = [
     ['Ryazan', 'Рязань'],
     ['Moscow', 'Москва'],
@@ -11,7 +17,7 @@ export const arr_monthOfBirth = ['Января', 'Февраля', 'Марта',
 
 export const arr_gender = ['Я мужчина', 'Я женщина'];
 
-export const arr_genderVapor = ['Ищу женщин', 'Ищу мужчин', 'Ищу друзей'];
+export const arr_genderVapor = ['Ищу мужчин', 'Ищу женщин', 'Ищу друзей'];
 
 export const arr_signZodiac = ['Овен', 'Телец', 'Близнецы', 'Рак', 'Лев', 'Дева', 'Весы', 'Скорпион', 'Стрелец', 'Козерог', 'Водолей', 'Рыбы', 'Не имеет значения'];
 
