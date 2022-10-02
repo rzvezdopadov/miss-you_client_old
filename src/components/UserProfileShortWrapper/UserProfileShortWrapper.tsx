@@ -13,7 +13,7 @@ export function UserProfileShortWrapper() {
                 ? usersProfiles.map((profile: IProfile ) => <UserProfileShort 
                     key={ 'profile' + profile.id } profile={ profile }
                 />)
-                : <span className='flex bg-black p-2 rounded-lg'>По данному фильтру никто не нашелся ^..^</span> 
+                : <span className='flex bg-black p-2 rounded-lg'>Никто не нашелся ^..^</span> 
             }
         </>
     );
