@@ -1,6 +1,6 @@
 // @ts-ignore
 import { configureStore } from "@reduxjs/toolkit"
-import { filtersUserReducer, jwtReducer, modalLoadingReducer, modalMessageReducer, myVaporsReducer, usersProfilesReducer, userProfileReducer, userMyProfileReducer } from "./reducers"
+import { filtersUserReducer, jwtReducer, modalLoadingReducer, modalMessageReducer, myVaporsReducer, usersProfilesReducer, userProfileReducer, userMyProfileReducer, settingProfileCharactersReducer } from "./reducers"
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +11,7 @@ export const store = configureStore({
         filtersUser: filtersUserReducer,
         usersProfiles: usersProfilesReducer, 
         userProfile: userProfileReducer,
-        userMyProfile: userMyProfileReducer,    
+        userMyProfile: userMyProfileReducer,
+        settingProfileCharacters: settingProfileCharactersReducer,
     }
 })

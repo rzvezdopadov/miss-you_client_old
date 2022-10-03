@@ -286,5 +286,28 @@ export const userMyProfileReducer = (state: IProfile
 } 
 
 
+export const SETTING_PROFILE_CHARACTER = 'SETTING_PROFILE_CHARACTER';
 
+export const settingProfileCharactersAction = (enabled: boolean) => ({
+    type: USER_PROFILE,
+    payload: {
+        enabled,
+    },
+})
+
+export const settingProfileCharactersReducer = (state: { enabled: boolean } 
+= {
+    enabled: false,
+}
+, action: IActionReducer) => {
+    switch (action.type) {
+        case SETTING_PROFILE_CHARACTER: {
+            const { enabled } = action.payload;
+
+            return { enabled };
+        }
+
+        default: return state;    
+    }
+} 
 
