@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
-import { arr_alcohol, arr_children, arr_genderVapor, arr_iDontLikeСharacter, arr_iLikeСharacter, arr_location, arr_profit, arr_religion, arr_signZodiac, arr_smoke } from '../../arrdata/profiles';
+import { arr_alcohol, arr_children, arr_genderVapor, arr_iDontLikeСharacter, arr_iLikeСharacter, arr_profit, arr_religion, arr_signZodiac, arr_smoke } from '../../arrdata/profiles';
 import { IProfile } from '../../interfaces/iprofiles';
 import { userProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
