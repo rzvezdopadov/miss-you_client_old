@@ -62,34 +62,34 @@ export function UserProfile() {
                     <div className="flex justify-center items-center flex-col select-none text-white max-w-xl p-1 m-1 rounded-lg">
                         <span className="flex">Личное:</span>
                         <div className="flex flex-wrap justify-center">
-                            { <UserProfileInterest key={ 'location' + userProfile.profile.location } value={ userProfile.profile.location } /> }
-                            { <UserProfileInterest key={ 'growth' + userProfile.profile.growth } value={ userProfile.profile.growth + ' см'} /> }
-                            { <UserProfileInterest key={ 'weight' + userProfile.profile.weight } value={ userProfile.profile.weight + ' кг' } /> }
-                            { <UserProfileInterest key={ 'signZodiac' + userProfile.profile.signzodiac } value={ arr_signZodiac[userProfile.profile.signzodiac] } /> }
-                            { <UserProfileInterest key={ 'genderVapors' + userProfile.profile.gendervapor } value={ arr_genderVapor[userProfile.profile.gendervapor] } /> }
+                            { <UserProfileInterest key={ 'location' + userProfile.profile.location } value={ userProfile.profile.location } title= { 'Локация' } /> }
+                            { <UserProfileInterest key={ 'growth' + userProfile.profile.growth } value={ userProfile.profile.growth + ' см' } title= { 'Рост' } /> }
+                            { <UserProfileInterest key={ 'weight' + userProfile.profile.weight } value={ userProfile.profile.weight + ' кг' } title= { 'Вес' } /> }
+                            { <UserProfileInterest key={ 'signZodiac' + userProfile.profile.signzodiac } value={ arr_signZodiac[userProfile.profile.signzodiac] } title= { 'Знак зодиака' } /> }
+                            { <UserProfileInterest key={ 'genderVapors' + userProfile.profile.gendervapor } value={ arr_genderVapor[userProfile.profile.gendervapor] }  title= { 'Ищу' }/> }
                             { 
                                 !(userProfile.profile.children === 0)
-                                ? <UserProfileInterest key={ 'children' + userProfile.profile.children } value={ arr_children[userProfile.profile.children] } />
+                                ? <UserProfileInterest key={ 'children' + userProfile.profile.children } value={ arr_children[userProfile.profile.children] } title= { 'Дети' } />
                                 : <></>
                             }
                             { 
                                 !(userProfile.profile.religion === 0)
-                                ? <UserProfileInterest key={ 'religion' + userProfile.profile.religion } value={ arr_religion[userProfile.profile.religion] } />
+                                ? <UserProfileInterest key={ 'religion' + userProfile.profile.religion } value={ arr_religion[userProfile.profile.religion] } title= { 'Религия' } />
                                 : <></>
                             }
                             { 
                                 !(userProfile.profile.profit === 0)
-                                ? <UserProfileInterest key={ 'profit' + userProfile.profile.profit } value={ arr_profit[userProfile.profile.profit] } /> 
+                                ? <UserProfileInterest key={ 'profit' + userProfile.profile.profit } value={ arr_profit[userProfile.profile.profit] } title= { 'Заработок в месяц' } /> 
                                 : <></>
                             }
                             { 
                                 !(userProfile.profile.smoke === 0)
-                                ? <UserProfileInterest key={ 'smoke' + userProfile.profile.smoke } value={ arr_smoke[userProfile.profile.smoke] } />
+                                ? <UserProfileInterest key={ 'smoke' + userProfile.profile.smoke } value={ arr_smoke[userProfile.profile.smoke] } title= { 'Курение' } />
                                 : <></>
                             }
                             { 
                                 !(userProfile.profile.alcohol === 0)
-                                ? <UserProfileInterest key={ 'alcohol' + userProfile.profile.alcohol } value={ arr_alcohol[userProfile.profile.alcohol] } />
+                                ? <UserProfileInterest key={ 'alcohol' + userProfile.profile.alcohol } value={ arr_alcohol[userProfile.profile.alcohol] } title= { 'Алкоголь' } />
                                 : <></>
                             }
                         </div>
@@ -101,8 +101,8 @@ export function UserProfile() {
 
                             <div className="flex flex-wrap justify-center">
                                 { userProfile.profile.interests.length ? userProfile.profile.interests.map((interest, i) => {
-                                    return <UserProfileInterest key={ interest + i } value={ interest } />
-                                }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' } /> }
+                                    return <UserProfileInterest key={ interest + i } value={ interest } title= { interest }/>
+                                }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' }/> }
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@ export function UserProfile() {
                             <div className="flex flex-wrap justify-center">
                                 <div className="flex flex-wrap justify-center">
                                     { userProfile.profile.ilikecharacter.length ? userProfile.profile.ilikecharacter.map((quality, i) => {
-                                        return <UserProfileInterest key={ arr_iLikeСharacter[quality] + i } value={ arr_iLikeСharacter[quality][0] } />
+                                        return <UserProfileInterest key={ arr_iLikeСharacter[quality] + i } value={ arr_iLikeСharacter[quality][0] } title={ arr_iLikeСharacter[quality][1] } />
                                     }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' } /> }
                                 </div>
                             </div>
@@ -127,7 +127,7 @@ export function UserProfile() {
                             
                             <div className="flex flex-wrap justify-center">
                                 { userProfile.profile.idontlikecharacter.length ? userProfile.profile.idontlikecharacter.map((quality, i) => {
-                                        return <UserProfileInterest key={ arr_iDontLikeСharacter[quality] + i } value={ arr_iDontLikeСharacter[quality][0] } />
+                                        return <UserProfileInterest key={ arr_iDontLikeСharacter[quality] + i } value={ arr_iDontLikeСharacter[quality][0] }  title={ arr_iDontLikeСharacter[quality][1] } />
                                 }) :<UserProfileInterest key={ 'interest' + userProfile.profile.id } value={ 'Отсутствуют' } /> }
                             </div>
                         </div>

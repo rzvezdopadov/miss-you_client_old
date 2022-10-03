@@ -56,7 +56,7 @@ export function UserProfileShort(params: { key: string, profile: IProfileShort }
                 <div className="flex items-center justify-center overflow-hidden flex-wrap text-sm text-neutral-50 h-28">
                     {
                         profile.interests.length ? profile.interests.map((interest, i) => {
-                            return <UserProfileInterest key={ interest + i } value={ interest } />
+                            return <UserProfileInterest key={ interest + i } value={ interest } title={ interest } />
                         }) :<UserProfileInterest key={ 'interest' + profile.id } value={ 'Отсутствуют' } />
                     }
                 </div>
