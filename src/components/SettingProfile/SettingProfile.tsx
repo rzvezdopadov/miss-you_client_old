@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { arr_alcohol, arr_children, arr_education, arr_fieldOfActivity, arr_gender, arr_genderVapor, arr_growth, arr_maritalStatus, arr_profit, arr_religion, arr_smoke, arr_weight } from '../../arrdata/profiles';
+import { arr_alcohol, arr_children, arr_education, arr_fieldOfActivity, arr_gender, arr_genderVapor, arr_growth, arr_iDontLikeСharacter, arr_iLikeСharacter, arr_maritalStatus, arr_profit, arr_religion, arr_smoke, arr_weight } from '../../arrdata/profiles';
 import { useQueryGetProfile } from '../../hooks/api.hook';
-import { useFormFieldInputString } from '../../hooks/form.hook';
 import { IProfile } from '../../interfaces/iprofiles';
 import { IQueryGetProfile } from '../../interfaces/iquery';
 import { filtersUserAction, userMyProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { SelectFromArr } from '../SelectFromArr/SelectFromArr';
+import { openSettingProfileCharacters } from '../SettingProfileCharacters/SettingProfileCharacters';
 
 export function SettingProfile() {
     const { jwt, userMyProfile } = store.getState();
@@ -83,7 +83,6 @@ export function SettingProfile() {
     const maritalstatusOnChangeHandler = (e) => { onChangeValueProfile(e, 'maritalstatus') }
     const childrenOnChangeHandler = (e) => { onChangeValueProfile(e, 'children') }
     const religionOnChangeHandler = (e) => { onChangeValueProfile(e, 'religion') }
-    const riseOnChangeHandler = (e) => { onChangeValueProfile(e, 'rise') }
     const smokeOnChangeHandler = (e) => { onChangeValueProfile(e, 'smoke') }
     const alcoholOnChangeHandler = (e) => { onChangeValueProfile(e, 'alcohol') }
     const profitOnChangeHandler = (e) => { onChangeValueProfile(e, 'profit') }
@@ -343,6 +342,43 @@ export function SettingProfile() {
                         >+</div>
                     </div>
                 </div>
+
+                <div className="flex flex-wrap flex-col shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center m-2">
+                    <div className='flex'>
+                        <div className='flex m-2'>
+                            <span> Ценю качества: </span>
+                        </div>
+
+                        {
+                            profile.ilikecharacter.map((value, index) => {
+                                return <div key={ 'ilikecharacter' + index } className='flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2'>
+                                    { arr_iLikeСharacter[value][0] }
+                                </div>
+                            })
+                        }
+                    
+                        <div className='flex m-2'>
+                            <span> Не нравятся качества:  </span>
+                        </div>
+
+                        {
+                            profile.idontlikecharacter.map((value, index) => {
+                                return <div key={ 'idontlikecharacter' + index } className='flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2'>
+                                    { arr_iDontLikeСharacter[value][0] }
+                                </div>
+                            })
+                        }
+                    </div>
+
+                    <div className='flex m-2'>
+                        <div 
+                            className='flex items-center shadow-[0px_0px_3px_3px] shadow-yellow-300 rounded-xl p-1 m-2 cursor-pointer'
+                            onClick={ openSettingProfileCharacters }
+                        >Изменить параметры</div>
+                    </div>
+                </div>
+
+                
             </div>
             <div className='flex flex-wrap justify-around m-2'>
                 <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
@@ -350,6 +386,8 @@ export function SettingProfile() {
                     Сохранить
                 </button>
             </div>
+            
+            
         </div>
     );
 }
