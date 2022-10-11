@@ -9,8 +9,8 @@ for (let i = 40; i < 130; i++) { arr_weight.push(i); }
 
 export const arr_location = [
     ['Ryazan', 'Рязань'],
-    ['Moscow', 'Москва'],
-    ['StPetersburg', 'Санкт-Петербург'],
+    // ['Moscow', 'Москва'],
+    // ['StPetersburg', 'Санкт-Петербург'],
 ];
 
 export const arr_monthOfBirth = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
