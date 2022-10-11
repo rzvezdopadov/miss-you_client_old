@@ -1,16 +1,18 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQueryGetProfiles } from '../../hooks/api.hook';
 import { IQueryGetProfilesOnlyLikes } from '../../interfaces/iquery';
 import { usersProfilesAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { UserProfile } from '../UserProfile/UserProfile';
+import { UserProfileShortLoader } from '../UserProfileShortLoader/UserProfileShortLoader';
 import { UserProfileShortWrapper } from '../UserProfileShortWrapper/UserProfileShortWrapper';
 
 export function Vapors() {
     const { jwt, userMyProfile } = store.getState();
     const { data, error, querySendHAL} = useQueryGetProfiles();
+    const [dataLoader, setDataLoader] = useState(true);
 
     useEffect(() => {
         const data: IQueryGetProfilesOnlyLikes = {
@@ -21,17 +23,16 @@ export function Vapors() {
         };
 
         querySendHAL(data);
-    }, [])
+    }, [userMyProfile])
 
     useEffect(() => {
         if (data) {
             store.dispatch(usersProfilesAction(data));
+            setDataLoader(false);
         } else if (error) {
             openModalMessage(error.response.data.message);
         }
     }, [data, error])
-
-    
 
     return (
         <div className="flex h-full w-full justify-center">
@@ -39,9 +40,11 @@ export function Vapors() {
                 <div className="flex justify-center">
                     Кто меня лайкнул
                 </div>
+
                 <div className="flex flex-row flex-wrap justify-center">
-                    <UserProfileShortWrapper />
+                    { dataLoader ? <UserProfileShortLoader /> : <UserProfileShortWrapper /> }
                 </div>
+                
                 <UserProfile />
             </div>
         </div>
