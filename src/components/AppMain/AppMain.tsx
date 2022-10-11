@@ -27,7 +27,9 @@ export function AppMain() {
             id: 0,
         };
 
-        querySendHAL(data);    
+        if (jwt) {
+            querySendHAL(data); 
+        }
     }, [])
 
     useEffect(() => {
