@@ -6,6 +6,16 @@ import { jwtAction } from "../utils/reducers";
 import { setStorageJWT } from "../utils/storage";
 import { store } from "../utils/store";
 
+function testOnBadTokenStatus(message) {
+    if (message === 'Токен просрочен, повторите вход в систему!') {
+        setTimeout(() => {
+            store.dispatch(jwtAction(''));
+            setStorageJWT('');
+            document.location.href = '/'
+        }, 1500);
+    }
+}
+
 export function useQueryGet() {
     const [data, setDataAnswer] = useState(null);
     const [error, setErrorAnswer] = useState('');
@@ -23,13 +33,7 @@ export function useQueryGet() {
             setDataAnswer(payload.data);
         }).catch((error) => {
             setErrorAnswer(error);
-            // if ('Токен не валидный!') {
-            //     setTimeout(() => {
-            //         store.dispatch(jwtAction(''));
-            //         setStorageJWT('');
-            //         document.location.href = '/'
-            //     }, 1500);
-            // }
+            testOnBadTokenStatus(error.response.data.message);
         }).finally(() => {
             if (modalLoad) modalLoadingOnHide();
             setLoaded(false);
@@ -55,6 +59,7 @@ export function useQueryPost() {
             setDataAnswer(payload.data);
         }).catch((error) => {
             setErrorAnswer(error);
+            testOnBadTokenStatus(error.response.data.message);
         }).finally(() => {
             if (modalLoad) modalLoadingOnHide();
             setLoaded(false);
@@ -80,6 +85,7 @@ export function useQueryPut() {
             setDataAnswer(payload.data);
         }).catch((error) => {
             setErrorAnswer(error);
+            testOnBadTokenStatus(error.response.data.message);
         }).finally(() => {
             if (modalLoad) modalLoadingOnHide();
             setLoaded(false);
@@ -105,6 +111,7 @@ export function useQueryDelete() {
             setDataAnswer(payload.data);
         }).catch((error) => {
             setErrorAnswer(error);
+            testOnBadTokenStatus(error.response.data.message);
         }).finally(() => {
             if (modalLoad) modalLoadingOnHide();
             setLoaded(false);
