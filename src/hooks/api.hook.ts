@@ -1,5 +1,5 @@
 import { IProfile, IProfileShort } from "../interfaces/iprofiles";
-import { ILike, ILogin, IQueryGetProfiles } from "../interfaces/iquery";
+import { ILike, ILogin, IQueryGetProfiles, IQuerySetProfile } from "../interfaces/iquery";
 import { IQueryAnswerError, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessageData, IQueryAnswerProfile, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData } from "../interfaces/iqueryanswer";
 import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
 
@@ -59,7 +59,7 @@ export function useQueryLike() {
 export function useQuerySetProfile() {
     const { data, error, loaded, querySend } = useQueryPut();
 
-    const querySendHAL = async (dataQuery: IProfile) => {
+    const querySendHAL = async (dataQuery: IQuerySetProfile) => {
         querySend('/api/profile', dataQuery, true);
     }
 
