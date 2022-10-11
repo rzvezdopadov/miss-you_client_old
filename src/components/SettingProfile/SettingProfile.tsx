@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { arr_alcohol, arr_children, arr_education, arr_fieldOfActivity, arr_gender, arr_genderVapor, arr_growth, arr_iDontLikeСharacter, arr_iLikeСharacter, arr_location, arr_maritalStatus, arr_profit, arr_religion, arr_smoke, arr_weight } from '../../arrdata/profiles';
+import { useQuerySetProfile } from '../../hooks/api.hook';
 import { IProfile } from '../../interfaces/iprofiles';
+import { IQuerySetProfile } from '../../interfaces/iquery';
+import { filtersUserAction, userMyProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { Filters } from '../Filters/Filters';
+import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { SelectFromArr } from '../SelectFromArr/SelectFromArr';
 import { openSettingProfileCharacters, SettingProfileCharacters } from '../SettingProfileCharacters/SettingProfileCharacters';
 
@@ -13,6 +17,7 @@ export function SettingProfile() {
     const myProfile: IProfile = userMyProfile;
     const [profile, setProfile] = useState(myProfile);
     const [interest, setInterest] = useState('');
+    const { data, error, querySendHAL } = useQuerySetProfile();
 
     let date = new Date();
 
@@ -133,6 +138,27 @@ export function SettingProfile() {
     const filtersReligionOnChangeHandler = (e) => { onChangeValueProfileFilter(e, 'religion') };
     const filtersSmokeOnChangeHandler = (e) => { onChangeValueProfileFilter(e, 'smoke') };
     const filtersAlcoholOnChangeHandler = (e) => { onChangeValueProfileFilter(e, 'alcohol') };
+
+    const btnSaveOnClick = () => {
+        const data: IQuerySetProfile = {
+            jwt: jwt,
+            profile: { ...myProfile },
+        };
+
+        data.profile.likes = [];
+
+        querySendHAL(data);
+    }
+
+    useEffect(() => {
+        if (data) {
+            // store.dispatch(filtersUserAction(data.filters));           
+            // store.dispatch(userMyProfileAction(data));
+            openModalMessage('Успешно сохранено!');
+        } else if (error) {
+            openModalMessage(error.response.data.message);
+        }
+    }, [data, error]);
 
     useEffect(() => {
         setProfile(myProfile);
@@ -444,9 +470,11 @@ export function SettingProfile() {
                 </div>
                 
                 <div className='flex flex-wrap justify-around m-2'>
-                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline select-none" 
-                        type="button">
-                        Сохранить
+                    <button 
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline select-none" 
+                        type="button"
+                        onClick={ btnSaveOnClick }
+                    >Сохранить
                     </button>
                 </div>
             </div>
