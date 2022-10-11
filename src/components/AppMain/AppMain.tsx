@@ -11,9 +11,33 @@ import { Partners } from '../Partners/Partners';
 import { Vapors } from '../Vapors/Vapors';
 import { SearchVapors } from '../SearchVapors/SearchVapors';
 import { Messages } from '../Messages/Messages';
+import { useQueryGetProfile } from '../../hooks/api.hook';
+import { IQueryGetProfile } from '../../interfaces/iquery';
+import { useEffect } from 'react';
+import { filtersUserAction, userMyProfileAction } from '../../utils/reducers';
+import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function AppMain() {
     const { jwt } = store.getState();
+    const { data, error, querySendHAL } = useQueryGetProfile();
+
+    useEffect(() => {
+        const data: IQueryGetProfile = {
+            jwt: jwt,
+            id: 0,
+        };
+
+        querySendHAL(data);    
+    }, [])
+
+    useEffect(() => {
+        if (data) {
+            store.dispatch(filtersUserAction(data.filters));           
+            store.dispatch(userMyProfileAction(data));
+        } else if (error) {
+            openModalMessage(error.response.data.message);
+        }
+    }, [data, error]);
 
     return (
         <div className="App-Main flex flex-grow pt-4 pb-4 justify-center items-center">
