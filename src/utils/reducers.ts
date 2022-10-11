@@ -102,8 +102,8 @@ export const filtersUserAction = (filters: IFilterUsers) => ({
 
 export const filtersUserReducer = (filters: IFilterUsers = {
     location: arr_location[0][0],
-    agestart: arr_age[0],
-    ageend: arr_age[arr_age.length - 1],
+    agestart: arr_age[arr_age.length - 1],
+    ageend: arr_age[0],
     growthstart: arr_growth[0],
     growthend: arr_growth[arr_growth.length - 1],
     weightstart: arr_weight[0],
@@ -189,8 +189,8 @@ export const userProfileReducer = (state: { enabled: boolean, profile: IProfile 
         idontlikecharacter: [],
         filters: {
             location: arr_location[0][0],
-            agestart: arr_age[0],
-            ageend: arr_age[arr_age.length - 1],
+            agestart: arr_age[arr_age.length - 1],
+            ageend: arr_age[0],
             growthstart: arr_growth[0],
             growthend: arr_growth[arr_growth.length - 1],
             weightstart: arr_weight[0],
@@ -259,8 +259,8 @@ export const userMyProfileReducer = (state: IProfile
     idontlikecharacter: [],
     filters: {
         location: arr_location[0][0],
-        agestart: arr_age[0],
-        ageend: arr_age[arr_age.length - 1],
+        agestart: arr_age[arr_age.length - 1],
+        ageend: arr_age[0],
         growthstart: arr_growth[0],
         growthend: arr_growth[arr_growth.length - 1],
         weightstart: arr_weight[0],
@@ -289,7 +289,7 @@ export const userMyProfileReducer = (state: IProfile
 export const SETTING_PROFILE_CHARACTER = 'SETTING_PROFILE_CHARACTER';
 
 export const settingProfileCharactersAction = (enabled: boolean) => ({
-    type: USER_PROFILE,
+    type: SETTING_PROFILE_CHARACTER,
     payload: {
         enabled,
     },
@@ -310,4 +310,3 @@ export const settingProfileCharactersReducer = (state: { enabled: boolean }
         default: return state;    
     }
 } 
-
