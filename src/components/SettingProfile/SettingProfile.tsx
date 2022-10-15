@@ -8,14 +8,13 @@ import { filtersUserAction, userMyProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { Filters } from '../Filters/Filters';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
-import { SelectFromArr } from '../SelectFromArr/SelectFromArr';
+import { SelectFromArr, SelectFromArrValue } from '../SelectFromArr/SelectFromArr';
 import { openSettingProfileCharacters, SettingProfileCharacters } from '../SettingProfileCharacters/SettingProfileCharacters';
 
 export function SettingProfile() {
     const { jwt, userMyProfile } = store.getState();
     const [positionPhoto, setPositionPhoto] = useState(0);
     const myProfile: IProfile = userMyProfile;
-    const [profile, setProfile] = useState(myProfile);
     const [interest, setInterest] = useState('');
     const { data, error, querySendHAL } = useQuerySetProfile();
 
@@ -28,11 +27,11 @@ export function SettingProfile() {
     const leftBtnSlideHandler = () => {
         let posPhoto = positionPhoto;
 
-        if (profile.photolink.length > 0) {
+        if (myProfile.photolink.length > 0) {
             posPhoto--;
 
             if (posPhoto < 0) {
-                posPhoto =  profile.photolink.length - 1;
+                posPhoto =  myProfile.photolink.length - 1;
             }
         }
 
@@ -42,10 +41,10 @@ export function SettingProfile() {
     const rightBtnSlideHandler = () => {
         let posPhoto = positionPhoto;
 
-        if (profile.photolink.length > 0) {
+        if (myProfile.photolink.length > 0) {
             posPhoto++;
 
-            if (posPhoto > profile.photolink.length - 1) {
+            if (posPhoto > myProfile.photolink.length - 1) {
                 posPhoto = 0;
             }
         }
@@ -53,19 +52,25 @@ export function SettingProfile() {
         setPositionPhoto(posPhoto);
     }
 
-    const onChangeValueProfile = (e, key) => { 
-        const newProfile = { ...profile }
-        newProfile[key] = e.target.value;
-        setProfile(newProfile);
+    const onChangeValueProfile = (e, key, type = 'number') => { 
+        const newProfile = { ...myProfile }
+        let value: number | string = e.target.value;
+
+        if (type !== 'string') {
+            value = Number(value);
+        }
+
+        newProfile[key] = value;
+        store.dispatch(userMyProfileAction(newProfile));
     } 
 
-    const nameOnChangeHandler = (e) => { onChangeValueProfile(e, 'name') };
-    const discriptionOnChangeHandler = (e) => { onChangeValueProfile(e, 'discription') };
-    const locationOnChangeHandler = (e) => { onChangeValueProfile(e, 'location') };
+    const nameOnChangeHandler = (e) => { onChangeValueProfile(e, 'name', 'string') };
+    const discriptionOnChangeHandler = (e) => { onChangeValueProfile(e, 'discription', 'string') };
+    const locationOnChangeHandler = (e) => { onChangeValueProfile(e, 'location', 'string') };
     const genderOnChangeHandler = (e) => { onChangeValueProfile(e, 'gender') };
     const genderVaporOnChangeHandler = (e) => { onChangeValueProfile(e, 'gendervapor') };
     const birhdayOnChangeHandler = (e) => {
-        const newProfile = { ...profile }
+        const newProfile = { ...myProfile }
         const date: string = e.target.value;
         const arrDate = date.split('-');
 
@@ -74,8 +79,7 @@ export function SettingProfile() {
         newProfile.yearofbirth = Number(arrDate[0]);
         newProfile.monthofbirth = Number(arrDate[1]);
         newProfile.birthday = Number(arrDate[2]);
-
-        setProfile(newProfile);
+        store.dispatch(userMyProfileAction(newProfile));
     };
 
     const growthOnChangeHandler = (e) => { onChangeValueProfile(e, 'growth') };
@@ -100,30 +104,36 @@ export function SettingProfile() {
     const interestAddOnClickHandler = () => {
         if (!interest) return;
 
-        const newProfile = { ...profile }
+        const newProfile = { ...myProfile }
             newProfile.interests = [ ...newProfile.interests];
             newProfile.interests.push(interest.toLowerCase() as never);
-        setProfile(newProfile);
+        store.dispatch(userMyProfileAction(newProfile));
 
         setInterest('');
     }
 
     const interestDeleteOnClickHandler = (value: never) => { 
-        const index = profile.interests.indexOf(value);
+        const index = myProfile.interests.indexOf(value);
         
         if (index === -1) return;
 
-        const newProfile = { ...profile }
+        const newProfile = { ...myProfile }
             newProfile.interests = [ ...newProfile.interests];
             newProfile.interests.splice(index, 1);
-        setProfile(newProfile);
+        store.dispatch(userMyProfileAction(newProfile));
     }
 
-    const onChangeValueProfileFilter = (e, key) => { 
-        const newProfile = { ...profile }
+    const onChangeValueProfileFilter = (e, key, type = 'number') => { 
+        const newProfile = { ...myProfile }
         newProfile.filters = { ...newProfile.filters }
-        newProfile.filters[key] = e.target.value;
-        setProfile(newProfile);
+        let value: number | string = e.target.value;
+
+        if (type !== 'string') {
+            value = Number(value);
+        }
+
+        newProfile.filters[key] = value;
+        store.dispatch(userMyProfileAction(newProfile));
     } 
 
     const filtersLocationOnChangeHandler = (e) => { onChangeValueProfileFilter(e, 'location') };
@@ -152,17 +162,13 @@ export function SettingProfile() {
 
     useEffect(() => {
         if (data) {
-            // store.dispatch(filtersUserAction(data.filters));           
-            // store.dispatch(userMyProfileAction(data));
+            store.dispatch(filtersUserAction(data.filters));           
+            store.dispatch(userMyProfileAction(data));
             openModalMessage('Успешно сохранено!');
         } else if (error) {
             openModalMessage(error.response.data.message);
         }
     }, [data, error]);
-
-    useEffect(() => {
-        setProfile(myProfile);
-    }, [myProfile]);
     
     return (
         <>
@@ -172,7 +178,7 @@ export function SettingProfile() {
                     <div className="flex justify-center m-1">
                         <div 
                             style={{ 
-                                backgroundImage: 'URL(' + profile.photolink[positionPhoto] + ')' 
+                                backgroundImage: 'URL(' + myProfile.photolink[positionPhoto] + ')' 
                             }} 
                             className='flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1'>
                             <div 
@@ -198,7 +204,7 @@ export function SettingProfile() {
                         >&gt;</div>
                     </div>
                     <div className="flex flex-wrap justify-center m-1">
-                        { profile.photolink.map((value, index) => {
+                        { myProfile.photolink.map((value, index) => {
                             return <div 
                                 style={{ 
                                     backgroundImage: 'URL(' + value + ')' 
@@ -213,7 +219,7 @@ export function SettingProfile() {
                 
                 <div className="flex flex-col my-1">
                     <input 
-                        value={ profile.name }
+                        value={ myProfile.name }
                         onChange={ nameOnChangeHandler }
                         title='Ваше имя'
                         className='flex text-center rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-1' 
@@ -223,7 +229,7 @@ export function SettingProfile() {
 
                 <div className="flex flex-col my-1">
                     <textarea
-                        value={ profile.discription }
+                        value={ myProfile.discription }
                         onChange={ discriptionOnChangeHandler }
                         title='О себе'
                         className='flex text-center resize-none rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-1' 
@@ -237,7 +243,7 @@ export function SettingProfile() {
                         <span className="flex m-1">Город:</span>
                         
                         <select 
-                            value={ profile.location } 
+                            value={ myProfile.location } 
                             className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
                             onChange={ locationOnChangeHandler }
                         >
@@ -253,7 +259,7 @@ export function SettingProfile() {
 
                     <SelectFromArr 
                         keyOpt={ 'gender' }
-                        value={ profile.gender } 
+                        value={ myProfile.gender } 
                         onChangeHandler={ genderOnChangeHandler } 
                         arr={ arr_gender } 
                         title={ 'Кто я?' } 
@@ -261,7 +267,7 @@ export function SettingProfile() {
 
                     <SelectFromArr 
                         keyOpt={ 'gendervapor' }
-                        value={ profile.gendervapor } 
+                        value={ myProfile.gendervapor } 
                         onChangeHandler={ genderVaporOnChangeHandler } 
                         arr={ arr_genderVapor } 
                         title={ 'Кого ищу?' } 
@@ -270,9 +276,9 @@ export function SettingProfile() {
                     <div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-1.5 w-64 m-2">
                         <label htmlFor="date" className='text-white'>Дата рождения: </label> &nbsp;
                         <input
-                            value={ '' + profile.yearofbirth + '-' + 
-                                (profile.monthofbirth < 10 ? '0' + profile.monthofbirth : profile.monthofbirth)  + '-' + 
-                                (profile.birthday < 10 ? '0' + profile.birthday : profile.birthday) 
+                            value={ '' + myProfile.yearofbirth + '-' + 
+                                (myProfile.monthofbirth < 10 ? '0' + myProfile.monthofbirth : myProfile.monthofbirth)  + '-' + 
+                                (myProfile.birthday < 10 ? '0' + myProfile.birthday : myProfile.birthday) 
                             }
                             className='border rounded bg-slate-300 text-black ' 
                             type="date" 
@@ -282,94 +288,94 @@ export function SettingProfile() {
                         />
                     </div>
                     
-                    <SelectFromArr 
+                    <SelectFromArrValue 
                         keyOpt={ 'growth' }
-                        value={ profile.growth } 
+                        value={ myProfile.growth } 
                         onChangeHandler={ growthOnChangeHandler } 
                         arr={ arr_growth } 
-                        title={ 'Рост' } 
+                        title={ 'Рост:' } 
                     />
 
-                    <SelectFromArr 
+                    <SelectFromArrValue 
                         keyOpt={ 'weight' }
-                        value={ profile.weight } 
+                        value={ myProfile.weight } 
                         onChangeHandler={ weightOnChangeHandler } 
                         arr={ arr_weight } 
-                        title={ 'Вес' } 
+                        title={ 'Вес:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'education' }
-                        value={ profile.education } 
+                        value={ myProfile.education } 
                         onChangeHandler={ educationOnChangeHandler } 
                         arr={ arr_education } 
-                        title={ 'Образование' } 
+                        title={ 'Образование:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'fieldofactivity' }
-                        value={ profile.fieldofactivity } 
+                        value={ myProfile.fieldofactivity } 
                         onChangeHandler={ fieldofactivityOnChangeHandler } 
                         arr={ arr_fieldOfActivity } 
-                        title={ 'Сфера деятельности' } 
+                        title={ 'Сфера деятельности:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'maritalstatus' }
-                        value={ profile.maritalstatus } 
+                        value={ myProfile.maritalstatus } 
                         onChangeHandler={ maritalstatusOnChangeHandler } 
                         arr={ arr_maritalStatus } 
-                        title={ 'Семейное положение' } 
+                        title={ 'Семейное положение:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'children' }
-                        value={ profile.children } 
+                        value={ myProfile.children } 
                         onChangeHandler={ childrenOnChangeHandler } 
                         arr={ arr_children } 
-                        title={ 'Дети' } 
+                        title={ 'Дети:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'religion' }
-                        value={ profile.religion } 
+                        value={ myProfile.religion } 
                         onChangeHandler={ religionOnChangeHandler } 
                         arr={ arr_religion } 
-                        title={ 'Религия' } 
+                        title={ 'Религия:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'smoke' }
-                        value={ profile.smoke } 
+                        value={ myProfile.smoke } 
                         onChangeHandler={ smokeOnChangeHandler } 
                         arr={ arr_smoke } 
-                        title={ 'Курение' } 
+                        title={ 'Курение:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'alcohol' }
-                        value={ profile.alcohol } 
+                        value={ myProfile.alcohol } 
                         onChangeHandler={ alcoholOnChangeHandler } 
                         arr={ arr_alcohol } 
-                        title={ 'Алкоголь' } 
+                        title={ 'Алкоголь:' } 
                     />
 
                     <SelectFromArr 
                         keyOpt={ 'profit' }
-                        value={ profile.profit } 
+                        value={ myProfile.profit } 
                         onChangeHandler={ profitOnChangeHandler } 
                         arr={ arr_profit } 
-                        title={ 'Заработок в месяц' } 
+                        title={ 'Заработок в месяц:' } 
                     />
                 </div>
 
                 <div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
                     <div className='flex m-2'>
-                        <span> { 'Интересы' } </span>
+                        <span> { 'Интересы:' } </span>
                     </div>
                     
                     {
-                        profile.interests.map((value, index) => {
+                        myProfile.interests.map((value, index) => {
                             return <div key={ 'interest' + index } className='flex select-none items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2'>
                                 { value }
                                 <div 
@@ -403,7 +409,7 @@ export function SettingProfile() {
                             </div>
 
                             {
-                                profile.ilikecharacter.length ? profile.ilikecharacter.map((value, index) => {
+                                myProfile.ilikecharacter.length ? myProfile.ilikecharacter.map((value, index) => {
                                     return <div 
                                         key={ 'ilikecharacter' + index } 
                                         className='flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none'
@@ -423,7 +429,7 @@ export function SettingProfile() {
                             </div>
 
                             {
-                                profile.idontlikecharacter.length ? profile.idontlikecharacter.map((value, index) => {
+                                myProfile.idontlikecharacter.length ? myProfile.idontlikecharacter.map((value, index) => {
                                     return <div 
                                     key={ 'idontlikecharacter' + index } 
                                     className='flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none'
@@ -453,18 +459,18 @@ export function SettingProfile() {
  
                     <div className='flex flex-wrap justify-center m-2'>
                         <Filters 
-                            location={ { value: profile.filters.location, onChange: filtersLocationOnChangeHandler } }
-                            ageStart={ { value: profile.filters.agestart, onChange: filtersAgeStartOnChangeHandler } }
-                            ageEnd={ { value: profile.filters.ageend, onChange: filtersAgeEndOnChangeHandler } }
-                            growthStart={ { value: profile.filters.growthstart, onChange: filtersGrowthStartOnChangeHandler } }
-                            growthEnd={ { value: profile.filters.growthend, onChange: filtersGrowthEndOnChangeHandler } }
-                            weightStart={ { value: profile.filters.weightstart, onChange: filtersWeightStartOnChangeHandler } }
-                            weightEnd={ { value: profile.filters.weightend, onChange: filtersWeightEndOnChangeHandler } }
-                            signZodiac={ { value: profile.filters.signzodiac, onChange: filtersSignZodiacOnChangeHandler } }
-                            genderVapor={ { value: profile.filters.gendervapor, onChange: filtersGenderVaporOnChangeHandler } }
-                            religion={ { value: profile.filters.religion, onChange: filtersReligionOnChangeHandler } }
-                            smoke={ { value: profile.filters.smoke, onChange: filtersSmokeOnChangeHandler } }
-                            alcohol={ { value: profile.filters.alcohol, onChange: filtersAlcoholOnChangeHandler } }
+                            location={ { value: myProfile.filters.location, onChange: filtersLocationOnChangeHandler } }
+                            ageStart={ { value: myProfile.filters.agestart, onChange: filtersAgeStartOnChangeHandler } }
+                            ageEnd={ { value: myProfile.filters.ageend, onChange: filtersAgeEndOnChangeHandler } }
+                            growthStart={ { value: myProfile.filters.growthstart, onChange: filtersGrowthStartOnChangeHandler } }
+                            growthEnd={ { value: myProfile.filters.growthend, onChange: filtersGrowthEndOnChangeHandler } }
+                            weightStart={ { value: myProfile.filters.weightstart, onChange: filtersWeightStartOnChangeHandler } }
+                            weightEnd={ { value: myProfile.filters.weightend, onChange: filtersWeightEndOnChangeHandler } }
+                            signZodiac={ { value: myProfile.filters.signzodiac, onChange: filtersSignZodiacOnChangeHandler } }
+                            genderVapor={ { value: myProfile.filters.gendervapor, onChange: filtersGenderVaporOnChangeHandler } }
+                            religion={ { value: myProfile.filters.religion, onChange: filtersReligionOnChangeHandler } }
+                            smoke={ { value: myProfile.filters.smoke, onChange: filtersSmokeOnChangeHandler } }
+                            alcohol={ { value: myProfile.filters.alcohol, onChange: filtersAlcoholOnChangeHandler } }
                         />
                     </div>
                 </div>
