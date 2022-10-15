@@ -6,6 +6,7 @@ import { userProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { UserProfileInterest } from '../UserProfileInterest/UserProfileInterest';
 import { UserProfileSlider } from '../UserProfileSlider/UserProfileSlider';
+import { UserVisitDateTime } from '../UserVisitDateTime/UserVisitDateTime';
 
 export function openUserProfile(profile: IProfile) {
     store.dispatch(userProfileAction(true, profile));
@@ -33,15 +34,17 @@ export function UserProfile() {
 
     return (
         <div ref={ refUserProfile } className="flex flex-col fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl  overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-2/3 lg:max-w-5xl" >
-            <div className='flex justify-end h-6 w-full'>
-                <div onClick={ closeUserProfileHandler } className='flex justify-center cursor-pointer rounded-full bg-red-400 h-6 w-6'>X</div>
+            <div className='flex justify-center h-6 w-full'>
+                
+
+                <div onClick={ closeUserProfileHandler } className='flex justify-center absolute right-2 cursor-pointer rounded-full bg-red-400 h-6 w-6'>X</div>
             </div>
 
             <div className='flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full'>
                 <div className="flex flex-col">
                     <UserProfileSlider />
 
-                    <div className="flex bg-lime-700 justify-center cursor-pointer m-1 rounded-md">
+                    <div className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md">
                         Написать сообщение
                     </div>
                 </div>
@@ -50,6 +53,8 @@ export function UserProfile() {
                     <div className="flex justify-center select-none text-white p-1 m-1 h-7 rounded-lg">
                         { userProfile.profile.name }, { userProfile.profile.age } лет
                     </div>
+
+                    <UserVisitDateTime profile = { userProfile.profile } />
 
                     <div className="flex justify-center items-center flex-col select-none text-white max-w-xl p-1 m-1 rounded-lg">
                         <span className="flex">О себе:</span>
