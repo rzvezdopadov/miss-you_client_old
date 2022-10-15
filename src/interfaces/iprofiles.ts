@@ -16,6 +16,7 @@ export interface IFilterUsers {
 
 export interface IProfile {
     id: number,
+    timecode: number,
     name: string,
     latitude: number,
     longitude: number,
@@ -49,8 +50,10 @@ export interface IProfile {
 
 export interface IProfileShort {
     id: number,
+    timecode: number,
     name: string,
     age: number,
+    gender: number,
     photomain: number,
     photolink: [],
     interests: [],
