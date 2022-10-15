@@ -159,6 +159,7 @@ export const userProfileReducer = (state: { enabled: boolean, profile: IProfile 
     enabled: false,
     profile: {
         id: 0,
+        timecode: 0,
         name: '',
         latitude: 0,
         longitude: 0,
@@ -229,6 +230,7 @@ export const userMyProfileAction = (profile: IProfile) => ({
 export const userMyProfileReducer = (state: IProfile  
 = {
     id: 0,
+    timecode: 0,
     name: '',
     latitude: 0,
     longitude: 0,
@@ -278,7 +280,7 @@ export const userMyProfileReducer = (state: IProfile
         case USER_MYPROFILE: {
             const { profile } = action.payload;
 
-            return profile;
+            return profile as IProfile;
         }
 
         default: return state;    
