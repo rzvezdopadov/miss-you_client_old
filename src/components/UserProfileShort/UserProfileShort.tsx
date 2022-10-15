@@ -7,6 +7,7 @@ import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { openUserProfile } from '../UserProfile/UserProfile';
 import { UserProfileInterest } from '../UserProfileInterest/UserProfileInterest';
+import { UserVisitDateTimeShort } from '../UserVisitDateTime/UserVisitDateTime';
 
 export function UserProfileShort(params: { key: string, profile: IProfileShort }) {
     const { data, error, querySendHAL } = useQueryGetProfile();
@@ -32,7 +33,7 @@ export function UserProfileShort(params: { key: string, profile: IProfileShort }
     }, [data, error]);
 
     return (
-        <div className="flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-row bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 max-h-30 h-30 w-80" >
+        <div className="flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-row bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 max-h-52 w-80" >
             <div className="flex flex-col justify-center" >
                 <div 
                     style={{ 
@@ -41,15 +42,20 @@ export function UserProfileShort(params: { key: string, profile: IProfileShort }
                     className= "flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-3xl m-1 h-32 w-32"
                 >
                 </div>
-                <div onClick={ openProfileHandler } className="flex bg-lime-700 justify-center cursor-pointer m-1 rounded-md">
+                <div onClick={ openProfileHandler } className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md">
                     Посмотреть
                 </div>
+                
+                <UserVisitDateTimeShort profile = { profile } />
             </div>
 
             <div className="flex flex-col text-neutral-50 rounded-3xl w-44">
                 <div className="flex justify-center text-neutral-50 rounded-3xl">
                     { profile.name }
                 </div>
+
+                
+
                 <div className="flex justify-center text-neutral-50 rounded-3xl">
                     { profile.age } лет, Интересы:
                 </div>
