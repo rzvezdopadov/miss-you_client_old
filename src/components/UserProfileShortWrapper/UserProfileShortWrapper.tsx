@@ -8,12 +8,12 @@ export function UserProfileShortWrapper() {
 
     return (
         <>
-            { 
-                usersProfiles.length 
-                ? usersProfiles.map((profile: IProfile ) => <UserProfileShort 
+            {
+                usersProfiles.length
+                ? usersProfiles.map((profile: IProfile ) => <UserProfileShort
                     key={ 'profile' + profile.id } profile={ profile }
                 />)
-                : <span className='flex bg-gray-900 p-2 rounded-lg'>Никто не нашелся ^..^</span> 
+                : <span className='flex bg-gray-900 p-2 m-2 rounded-lg'>Никто не нашелся ^..^</span>
             }
         </>
     );
