@@ -1,5 +1,5 @@
 import { arr_age, arr_genderVapor, arr_growth, arr_location, arr_signZodiac, arr_weight } from "../arrdata/profiles";
-import { IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
+import { IDialogs, IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
 import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
 import { getStorageJWT } from "./storage";
 
@@ -307,6 +307,27 @@ export const settingProfileCharactersReducer = (state: { enabled: boolean }
             const { enabled } = action.payload;
 
             return { enabled };
+        }
+
+        default: return state;    
+    }
+} 
+
+export const DIALOGS = 'DIALOGS';
+
+export const dialogsAction = (messages: boolean) => ({
+    type: DIALOGS,
+    payload: {
+        messages,
+    },
+})
+
+export const dialogsReducer = (state: IDialogs[] = [], action: IActionReducer) => {
+    switch (action.type) {
+        case DIALOGS: {
+            const { dialogs } = action.payload;
+
+            return { dialogs };
         }
 
         default: return state;    
