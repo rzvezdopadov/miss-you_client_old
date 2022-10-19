@@ -58,3 +58,21 @@ export interface IProfileShort {
     photolink: [],
     interests: [],
 }
+
+export interface IMessage {
+    timecode: number,
+    message: string,
+}
+
+export interface IDialog {
+    timecode: number,
+    name: string,
+    age: number,
+    photomain: number,
+    photolink: [],
+    messages: [IMessage],
+}
+
+export interface IDialogs {
+    dialogs: [IDialog],
+}
