@@ -15,6 +15,12 @@ function getColorRound(timecodeSub) {
     return colorRound;
 }
 
+export function getDateTimeFromTimeCode(timecode: number) {
+    const date = new Date(Number(timecode));
+    
+    return date.toLocaleTimeString();
+}
+
 export function UserVisitDateTimeShort(params: { profile: IProfile | IProfileShort }) {
     const date = new Date(Number(params.profile.timecode));
     const dateNow = new Date();
