@@ -34,7 +34,7 @@ function AppHeaderRightSideBarAuth() {
             <Link to="/vapors" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                 <img className="block h-5 w-auto" src={ heart } alt="Кто лайкнул" title='Кто лайкнул'/> 
             </Link>
-            <Link to="/messages" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+            <Link to="/dialogs" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
                 <img className="block h-5 w-auto" src={ message } alt="Сообщения" title='Сообщения'/> 
             </Link>
             <Link to="/searchvapors" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">

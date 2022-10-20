@@ -10,7 +10,7 @@ import { SettingProfile } from '../SettingProfile/SettingProfile';
 import { Partners } from '../Partners/Partners';
 import { Vapors } from '../Vapors/Vapors';
 import { SearchVapors } from '../SearchVapors/SearchVapors';
-import { Messages } from '../Messages/Messages';
+import { Dialogs } from '../Dialogs/Dialogs';
 import { useQueryGetProfile } from '../../hooks/api.hook';
 import { IQueryGetProfile } from '../../interfaces/iquery';
 import { useEffect } from 'react';
@@ -52,7 +52,7 @@ export function AppMain() {
                     { 
                         jwt ?
                             <>
-                                <Route path="/messages" element={ <Messages /> } />
+                                <Route path="/dialogs" element={ <Dialogs /> } />
                                 <Route path="/settings" element={ <SettingProfile /> } />
                                 <Route path="/searchvapors" element={ <SearchVapors /> } />
                                 <Route path="/*" element={ <Vapors /> } />
