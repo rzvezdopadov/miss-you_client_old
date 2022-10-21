@@ -381,7 +381,7 @@ export function SettingProfile() {
                                 <div 
                                     className='flex ml-2 justify-center cursor-pointer text-xs rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-4 w-4' 
                                     title='Удалить интерес'
-                                    onClick={ () => interestDeleteOnClickHandler(value) }
+                                    onClick={ () => interestDeleteOnClickHandler(value as never) }
                                 >X</div>
                             </div>
                         })
