@@ -18,7 +18,7 @@ function getColorRound(timecodeSub) {
 export function getDateTimeFromTimeCode(timecode: number) {
     const date = new Date(Number(timecode));
     
-    return date.toLocaleTimeString();
+    return `${ date.toLocaleDateString() } ${ date.toLocaleTimeString() }`;
 }
 
 export function UserVisitDateTimeShort(params: { profile: IProfile | IProfileShort }) {
@@ -56,7 +56,7 @@ export function UserVisitDateTime(params: { profile: IProfile | IProfileShort })
 
     let dateStr = params.profile.gender ? 'Была ' : 'Был ';
     
-    dateStr += date.toLocaleDateString() + ' в ' +  date.toLocaleTimeString().slice(0, -3); 
+    dateStr += `${ date.toLocaleDateString() } в ${ date.toLocaleTimeString().slice(0, -3) }`; 
 
     return (
         <div className="flex justify-center items-center">
