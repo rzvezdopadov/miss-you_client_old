@@ -1,5 +1,5 @@
 import { arr_age, arr_genderVapor, arr_growth, arr_location, arr_signZodiac, arr_weight } from "../arrdata/profiles";
-import { IDialogs, IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
+import { IDialog, IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
 import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
 import { getStorageJWT } from "./storage";
 
@@ -60,7 +60,7 @@ export const jwtAction = (value: string) => ({
     payload: value,
 })
 
-export const jwtReducer = (jwt = getStorageJWT(), action: IActionReducer) => {
+export const jwtReducer = (jwt: string = getStorageJWT(), action: IActionReducer) => {
     const value = action.payload;
     
     switch (action.type) {
@@ -315,19 +315,40 @@ export const settingProfileCharactersReducer = (state: { enabled: boolean }
 
 export const DIALOGS = 'DIALOGS';
 
-export const dialogsAction = (messages: boolean) => ({
+export const dialogsAction = (dialogs: Array<IDialog>) => ({
     type: DIALOGS,
     payload: {
-        messages,
+        dialogs,
     },
 })
 
-export const dialogsReducer = (state: IDialogs[] = [], action: IActionReducer) => {
+export const dialogsReducer = (state: Array<IDialog> = [] , action: IActionReducer): Array<IDialog> => {
     switch (action.type) {
         case DIALOGS: {
             const { dialogs } = action.payload;
 
-            return { dialogs };
+            return dialogs;
+        }
+
+        default: return state;    
+    }
+} 
+
+export const DIALOG = 'DIALOG';
+
+export const dialogAction = (dialog: IDialog) => ({
+    type: DIALOG,
+    payload: {
+        dialog,
+    },
+})
+
+export const dialogReducer = (state: IDialog = null, action: IActionReducer): IDialog => {
+    switch (action.type) {
+        case DIALOG: {
+            const { dialog } = action.payload;
+
+            return dialog;
         }
 
         default: return state;    
