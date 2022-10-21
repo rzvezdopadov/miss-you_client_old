@@ -11,7 +11,7 @@ export interface IFilterUsers {
     religion: number,
     smoke: number,
     alcohol: number,
-    interests: [],
+    interests: Array<string>,
 }
 
 export interface IProfile {
@@ -21,7 +21,7 @@ export interface IProfile {
     latitude: number,
     longitude: number,
     location: string,
-    likes: [],
+    likes: Array<number>,
     age: number,
     birthday: number,
     monthofbirth: number,
@@ -31,7 +31,7 @@ export interface IProfile {
     gender: number,
     gendervapor: number,
     photomain: number,
-    photolink: [],
+    photolink: Array<string>,
     signzodiac: number,
     education: number,
     fieldofactivity: number,
@@ -42,9 +42,9 @@ export interface IProfile {
     alcohol: number,
     discription: string,
     profit: number,
-    interests: [],
-    ilikecharacter: [],
-    idontlikecharacter: [],
+    interests: Array<string>,
+    ilikecharacter: Array<number>,
+    idontlikecharacter: Array<number>,
     filters: IFilterUsers,
 }
 
@@ -55,24 +55,22 @@ export interface IProfileShort {
     age: number,
     gender: number,
     photomain: number,
-    photolink: [],
-    interests: [],
+    photolink: Array<string>,
+    interests: Array<string>,
 }
 
 export interface IMessage {
     timecode: number,
+    idUser: number,
     message: string,
 }
 
 export interface IDialog {
     timecode: number,
+    idUser: number,
     name: string,
     age: number,
     photomain: number,
-    photolink: [],
-    messages: [IMessage],
-}
-
-export interface IDialogs {
-    dialogs: [IDialog],
+    photolink: Array<string>,
+    messages: Array<IMessage>,
 }
