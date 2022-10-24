@@ -4,7 +4,8 @@ import { IDialog } from '../../interfaces/iprofiles';
 import { dialogAction, dialogsAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { Dialog } from '../Dialog/Dialog';
-import { DialogShort } from '../DialogShort/DialogShort';
+import { DialogsLeftSideBar } from '../DialogsLeftSideBar/DialogsLeftSideBar';
+import { DialogsRightSideBarAd } from '../DialogsRightSideBarAd/DialogsRightSideBarAd';
 
 export function Dialogs() {
     const { jwt, userMyProfile, dialogs, dialog } = store.getState();
@@ -30,7 +31,7 @@ export function Dialogs() {
                     }, {
                         timecode: 1601000000000,
                         idUser: 1,
-                        message: 'Привет, меня зовут Джо, я секс машина',
+                        message: 'Привет, меня зовут Джо, я машина зла',
                     }, {
                         timecode: 1602000000000,
                         idUser: 20,
@@ -74,20 +75,68 @@ export function Dialogs() {
                     }, {
                         timecode: 1603000000000,
                         idUser: 30,
-                        message: 'Я очень люблю глотать приборы до яиц, у тебя большой?',
+                        message: 'Я очень люблю всякие приборы, у тебя есть?',
                     }, {
                         timecode: 1604000000000,
                         idUser: 1,
-                        message: 'Ну не очень, около 25 см, могу тебе сделать ФГС своим шлангом!',
+                        message: 'Само собой, всякие штуки дома есть!',
                     }, {
                         timecode: 1605000000000,
                         idUser: 30,
-                        message: 'Блин, класно, я не против глотнуть его всеми губами',
+                        message: 'Блин, класно, я не против посмотреть',
                     }, {
                         timecode: 1606000000000,
                         idUser: 1,
                         message: 'Я уже выдвигаюсь, говори адрес!',
-                    }                
+                    }, {
+                        timecode: 1601000000000,
+                        idUser: 30,
+                        message: 'Привет, меня зовут Изольда, я плохая девочка',
+                    }, {
+                        timecode: 1602000000000,
+                        idUser: 1,
+                        message: 'Привет, меня зовут Звезда, а я плохой мальчик',
+                    }, {
+                        timecode: 1603000000000,
+                        idUser: 30,
+                        message: 'Я очень люблю всякие приборы, у тебя есть?',
+                    }, {
+                        timecode: 1604000000000,
+                        idUser: 1,
+                        message: 'Само собой, всякие штуки дома есть!',
+                    }, {
+                        timecode: 1605000000000,
+                        idUser: 30,
+                        message: 'Блин, класно, я не против посмотреть',
+                    }, {
+                        timecode: 1606000000000,
+                        idUser: 1,
+                        message: 'Я уже выдвигаюсь, говори адрес!',
+                    }, {
+                        timecode: 1601000000000,
+                        idUser: 30,
+                        message: 'Привет, меня зовут Изольда, я плохая девочка',
+                    }, {
+                        timecode: 1602000000000,
+                        idUser: 1,
+                        message: 'Привет, меня зовут Звезда, а я плохой мальчик',
+                    }, {
+                        timecode: 1603000000000,
+                        idUser: 30,
+                        message: 'Я очень люблю всякие приборы, у тебя есть?',
+                    }, {
+                        timecode: 1604000000000,
+                        idUser: 1,
+                        message: 'Само собой, всякие штуки дома есть!',
+                    }, {
+                        timecode: 1605000000000,
+                        idUser: 30,
+                        message: 'Блин, класно, я не против посмотреть',
+                    }, {
+                        timecode: 1606000000000,
+                        idUser: 1,
+                        message: 'Я уже выдвигаюсь, говори адрес!',
+                    }      
                 ]
             }
         ]
@@ -104,32 +153,18 @@ export function Dialogs() {
             store.dispatch(dialogAction(arr_dialogs_test[0]));
         }, 500);
     }, [userMyProfile])
-
-    useEffect(() => {
-        // console.log(dialogs);
-    }, [dialogs])
-    
-
+  
     return (
-        <div className="flex h-full w-full justify-center">
-            <div className="flex justify-center relative bg-gray-700 text-neutral-50 flex-row shadow-md rounded-3xl px-8 pt-2 pb-2 w-full">
-                <div className="flex justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 h-full w-80" >
-                    <div className='flex justify-center items-center w-full my-1 select-none'>
-                        Диалоги
-                    </div>
-
-                    { 
-                        dialogs.length ? dialogs.map((dialog: IDialog, index)=>{                            
-                            return <DialogShort 
-                                dialog={ dialog } 
-                                onClickHandler={ () => { setDialogOnClick(dialog.idUser) }}
-                            />
-                        }) : <div className='flex justify-center text-lime-400'>Пока нет диалогов =(</div> 
-                    }
-
+        <div className="flex relative h-full w-full justify-center">
+            <div className="flex justify-center relative bg-gray-700 text-neutral-50 flex-row shadow-md rounded-3xl px-2 pt-2 pb-2 w-full">
+                <div className="flex flex-shrink-0 justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 h-full w-64" >
+                    <DialogsLeftSideBar />
                 </div>
-                <div className="flex justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 py-2 h-full w-full">
+                <div className="flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 py-2 h-full w-full">
                     <Dialog { ...dialog } />                   
+                </div>
+                <div className="hidden lg:flex flex-shrink-0 items-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl m-2 h-full w-60" >
+                    <DialogsRightSideBarAd />
                 </div>
             </div>
         </div>
