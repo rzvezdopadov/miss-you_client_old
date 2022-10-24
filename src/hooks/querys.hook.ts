@@ -1,16 +1,14 @@
 import { useState } from "react";
 import axios from "../../node_modules/axios/index";
+import { logout } from "../components/logout/logout";
 import { modalLoadingOnHide, modalLoadingOnShow } from "../components/ModalLoading/ModalLoading";
 import { IQueryAnswer } from "../interfaces/iqueryanswer";
-import { jwtAction } from "../utils/reducers";
-import { setStorageJWT } from "../utils/storage";
-import { store } from "../utils/store";
 
 function testOnBadTokenStatus(message) {
     if (message === 'Токен просрочен, повторите вход в систему!') {
         setTimeout(() => {
-            store.dispatch(jwtAction(''));
-            setStorageJWT('');
+            logout();
+
             document.location.href = '/'
         }, 1500);
     }
