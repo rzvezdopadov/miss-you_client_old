@@ -9,13 +9,12 @@ import { Filters } from '../Filters/Filters';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function UserProfileFilters() {
-    const { jwt, filtersUser } = store.getState();
+    const { filtersUser } = store.getState();
     const myfiltersUser: IFilterUsers = filtersUser;
     const { data, error, querySendHAL} = useQueryGetProfiles();
     
     useEffect(() => {
         const data: IQueryGetProfiles = {
-            jwt: jwt,
             startCount: 0,
             amount: 0,
             filters: {

@@ -23,7 +23,6 @@ export function AppMain() {
 
     useEffect(() => {
         const data: IQueryGetProfile = {
-            jwt: jwt,
             id: 0,
         };
 

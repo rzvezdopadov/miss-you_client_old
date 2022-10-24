@@ -1,13 +1,10 @@
+import { getCookiesJWT } from "../../utils/cookie";
 import { jwtAction } from "../../utils/reducers";
-import { setStorageJWT } from "../../utils/storage";
 import { store } from "../../utils/store";
 
 export function logout() {
-    const state = store.getState();
-    let { jwt } = state;
+    const jwt = getCookiesJWT();
 
-    jwt = "";
-    
-    setStorageJWT(jwt);
-    store.dispatch(jwtAction(jwt));    
+    document.cookie = `jwt=${ jwt }; max-age=${ -1 }`;
+    store.dispatch(jwtAction(''));    
 }

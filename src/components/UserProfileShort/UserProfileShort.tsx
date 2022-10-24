@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useQueryGetProfile } from '../../hooks/api.hook';
 import { IProfileShort } from '../../interfaces/iprofiles';
 import { IQueryGetProfile } from '../../interfaces/iquery';
-import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { openUserProfile } from '../UserProfile/UserProfile';
 import { UserProfileInterest } from '../UserProfileInterest/UserProfileInterest';
@@ -11,13 +10,11 @@ import { UserVisitDateTimeShort } from '../UserVisitDateTime/UserVisitDateTime';
 
 export function UserProfileShort(params: { key: string, profile: IProfileShort }) {
     const { data, error, querySendHAL } = useQueryGetProfile();
-    const { jwt } = store.getState();
 
     const { profile } = params;
 
     const openProfileHandler = () => {
         const data: IQueryGetProfile = {
-            jwt: jwt,
             id: profile.id,
         };
 

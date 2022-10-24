@@ -29,6 +29,8 @@ export function FormEnter() {
 
             openModalMessage(data.message);
 
+            document.cookie = `jwt=${ jwt }; max-age=${ 7 * 24 * 60 * 60 }`
+
             setTimeout(() => {
                 store.dispatch(jwtAction(jwt));
                 setStorageJWT(jwt);

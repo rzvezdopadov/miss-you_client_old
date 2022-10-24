@@ -10,13 +10,12 @@ import { UserProfileShortLoader } from '../UserProfileShortLoader/UserProfileSho
 import { UserProfileShortWrapper } from '../UserProfileShortWrapper/UserProfileShortWrapper';
 
 export function Vapors() {
-    const { jwt, userMyProfile } = store.getState();
+    const { userMyProfile } = store.getState();
     const { data, error, querySendHAL} = useQueryGetProfiles();
     const [dataLoader, setDataLoader] = useState(true);
 
     useEffect(() => {
         const data: IQueryGetProfilesOnlyLikes = {
-            jwt: jwt,
             startCount: 0,
             amount: 0,
             users: String(userMyProfile.likes)

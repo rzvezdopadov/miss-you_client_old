@@ -12,7 +12,7 @@ import { SelectFromArr, SelectFromArrValue } from '../SelectFromArr/SelectFromAr
 import { openSettingProfileCharacters, SettingProfileCharacters } from '../SettingProfileCharacters/SettingProfileCharacters';
 
 export function SettingProfile() {
-    const { jwt, userMyProfile } = store.getState();
+    const { userMyProfile } = store.getState();
     const [positionPhoto, setPositionPhoto] = useState(0);
     const myProfile: IProfile = userMyProfile;
     const [interest, setInterest] = useState('');
@@ -151,7 +151,6 @@ export function SettingProfile() {
 
     const btnSaveOnClick = () => {
         const data: IQuerySetProfile = {
-            jwt: jwt,
             profile: { ...myProfile },
         };
 

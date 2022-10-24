@@ -1,7 +1,7 @@
 import { arr_age, arr_genderVapor, arr_growth, arr_location, arr_signZodiac, arr_weight } from "../arrdata/profiles";
 import { IDialog, IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
 import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
-import { getStorageJWT } from "./storage";
+import { getCookiesJWT } from "./cookie";
 
 export const MODAL_LOADING = 'MODAL_LOADING';
 
@@ -60,7 +60,7 @@ export const jwtAction = (value: string) => ({
     payload: value,
 })
 
-export const jwtReducer = (jwt: string = getStorageJWT(), action: IActionReducer) => {
+export const jwtReducer = (jwt: string = getCookiesJWT(), action: IActionReducer) => {
     const value = action.payload;
     
     switch (action.type) {

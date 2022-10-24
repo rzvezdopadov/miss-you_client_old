@@ -7,7 +7,7 @@ import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function UserProfileSlider() {
-    const { jwt, userProfile } = store.getState();
+    const { userProfile } = store.getState();
     const [positionPhoto, setPositionPhoto] = useState(0);
     const { data, error, querySendHAL } = useQueryLike();
 
@@ -47,7 +47,6 @@ export function UserProfileSlider() {
 
     const likeSlideHandler = () => {
         const dataQuery: ILike = {
-            jwt: jwt,
             id: userProfile.profile.id,
         }
 

@@ -14,29 +14,24 @@ export interface ILogin {
 }
 
 export interface IQueryGetProfile {
-    jwt: string;
     id: number,
 }
 
 export interface IQuerySetProfile {
-    jwt: string;
     profile: IProfile,
 }
 
 export interface ILike {
-    jwt: string;
     id: number,
 }
 
 export interface IQueryGetProfiles {
-    jwt: string;
     startCount: number, 
     amount: number, 
     filters: IFilterUsers,
 }
 
 export interface IQueryGetProfilesOnlyLikes {
-    jwt: string;
     startCount: number, 
     amount: number, 
     users: any,
