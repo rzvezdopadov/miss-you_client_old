@@ -16,7 +16,7 @@ export function DialogMessage( payload: { name: string, timecode: number, messag
                 <div className='flex justify-start text-lime-400 items-center w-full select-none'>
                     { `${ payload.name }, ${ getDateTimeFromTimeCode(payload.timecode) }`}
                 </div>
-                <div className='flex justify-center items-center w-full select-none'>
+                <div className='flex text-left justify-start items-center w-full select-none'>
                     { payload.message }
                 </div>
             </div>
