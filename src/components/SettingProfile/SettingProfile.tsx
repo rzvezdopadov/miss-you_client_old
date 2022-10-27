@@ -16,7 +16,7 @@ export function SettingProfile() {
     const [positionPhoto, setPositionPhoto] = useState(0);
     const myProfile: IProfile = userMyProfile;
     const [interest, setInterest] = useState('');
-    const { data, error, querySendHAL } = useQuerySetProfile();
+    const { data, error, querySendSetProfile } = useQuerySetProfile();
 
     let date = new Date();
 
@@ -156,7 +156,7 @@ export function SettingProfile() {
 
         data.profile.likes = [];
 
-        querySendHAL(data);
+        querySendSetProfile(data);
     }
 
     useEffect(() => {

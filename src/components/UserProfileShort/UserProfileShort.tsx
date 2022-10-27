@@ -9,7 +9,7 @@ import { UserProfileInterest } from '../UserProfileInterest/UserProfileInterest'
 import { UserVisitDateTimeShort } from '../UserVisitDateTime/UserVisitDateTime';
 
 export function UserProfileShort(params: { key: string, profile: IProfileShort }) {
-    const { data, error, querySendHAL } = useQueryGetProfile();
+    const { data, error, querySendGetProfile } = useQueryGetProfile();
 
     const { profile } = params;
 
@@ -18,7 +18,7 @@ export function UserProfileShort(params: { key: string, profile: IProfileShort }
             id: profile.id,
         };
 
-        querySendHAL(data);        
+        querySendGetProfile(data);        
     }
 
     useEffect(() => {

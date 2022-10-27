@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useQueryLike } from '../../hooks/api.hook';
-import { ILike } from '../../interfaces/iquery';
+import { IQueryLike } from '../../interfaces/iquery';
 import { userProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
@@ -9,7 +9,7 @@ import { openModalMessage } from '../ModalMessage/ModalMessage';
 export function UserProfileSlider() {
     const { userProfile } = store.getState();
     const [positionPhoto, setPositionPhoto] = useState(0);
-    const { data, error, querySendHAL } = useQueryLike();
+    const { data, error, querySendLike } = useQueryLike();
 
     if (positionPhoto > userProfile.profile.photolink.length - 1) {
         setTimeout(()=>{
@@ -46,11 +46,11 @@ export function UserProfileSlider() {
     }
 
     const likeSlideHandler = () => {
-        const dataQuery: ILike = {
+        const dataQuery: IQueryLike = {
             id: userProfile.profile.id,
         }
 
-        querySendHAL(dataQuery);
+        querySendLike(dataQuery);
     }
 
     useEffect(() => {

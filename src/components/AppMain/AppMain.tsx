@@ -19,7 +19,7 @@ import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function AppMain() {
     const { jwt } = store.getState();
-    const { data, error, querySendHAL } = useQueryGetProfile();
+    const { data, error, querySendGetProfile } = useQueryGetProfile();
 
     useEffect(() => {
         const data: IQueryGetProfile = {
@@ -27,7 +27,7 @@ export function AppMain() {
         };
 
         if (jwt) {
-            querySendHAL(data); 
+            querySendGetProfile(data); 
         }
     }, [])
 

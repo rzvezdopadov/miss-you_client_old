@@ -1,6 +1,6 @@
-import { IProfile, IProfileShort } from "../interfaces/iprofiles";
-import { ILike, ILogin, IQueryGetProfiles, IQuerySetProfile } from "../interfaces/iquery";
-import { IQueryAnswerError, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessageData, IQueryAnswerProfile, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData } from "../interfaces/iqueryanswer";
+import { IDialog, IProfile, IProfileShort } from "../interfaces/iprofiles";
+import { ILogin, IQueryGetProfiles, IQueryLike, IQuerySetProfile } from "../interfaces/iquery";
+import { IQueryAnswerDialog, IQueryAnswerDialogs, IQueryAnswerError, IQueryAnswerGetProfile, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessageData, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData, IQueryAnswerSetProfile } from "../interfaces/iqueryanswer";
 import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
 
 /* API Query to server */
@@ -9,14 +9,14 @@ import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
 export function useQueryRegistration() {  
     const { data, error, loaded, querySend } = useQueryPost();
 
-    const querySendHAL = async (dataQuery: ILogin) => {
+    const querySendRegistration = async (dataQuery: ILogin) => {
         querySend('/api/registration', dataQuery, true);
     }
 
     const dataNew = data as IQueryAnswerRegistrationData;
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerRegistration = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerRegistration = { data: dataNew, error: errorNew, loaded, querySendRegistration };
 
     return queryAnswer; 
 }
@@ -25,14 +25,14 @@ export function useQueryRegistration() {
 export function useQueryLogin() {  
     const { data, error, loaded, querySend } = useQueryPost();
 
-    const querySendHAL = async (dataQuery: ILogin) => {
+    const querySendLogin = async (dataQuery: ILogin) => {
         querySend('/api/login', dataQuery, true);
     }
 
     const dataNew = data as IQueryAnswerLoginData;
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerLogin = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerLogin = { data: dataNew, error: errorNew, loaded, querySendLogin };
 
     return queryAnswer;
 }
@@ -41,14 +41,14 @@ export function useQueryLogin() {
 export function useQueryLike() {  
     const { data, error, loaded, querySend } = useQueryPut();
 
-    const querySendHAL = async (dataQuery: ILike) => {
+    const querySendLike = async (dataQuery: IQueryLike) => {
         querySend('/api/like', dataQuery, false);
     }
 
     const dataNew = data as IQueryAnswerMessageData;
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerLike = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerLike = { data: dataNew, error: errorNew, loaded, querySendLike };
 
     return queryAnswer;
 }
@@ -59,32 +59,32 @@ export function useQueryLike() {
 export function useQuerySetProfile() {
     const { data, error, loaded, querySend } = useQueryPut();
 
-    const querySendHAL = async (dataQuery: IQuerySetProfile) => {
+    const querySendSetProfile = async (dataQuery: IQuerySetProfile) => {
         querySend('/api/profile', dataQuery, true);
     }
 
     const dataNew = data as IProfile;
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerProfile = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerSetProfile = { data: dataNew, error: errorNew, loaded, querySendSetProfile };
 
     return queryAnswer;
 }
 
-/* Set profile 
+/* Set profile short
     - profileShort - modified user profile  
 */
 export function useQuerySetProfileShort() { 
     const { data, error, loaded, querySend } = useQueryPut();
 
-    const querySendHAL = async (dataQuery: IProfileShort) => {
+    const querySendSetProfileShort = async (dataQuery: IProfileShort) => {
         querySend('/api/profileshort', dataQuery, true);
     }
 
     const dataNew = data as IProfileShort;
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerProfileShort = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerProfileShort = { data: dataNew, error: errorNew, loaded, querySendSetProfileShort };
 
     return queryAnswer;
 }
@@ -95,14 +95,14 @@ export function useQuerySetProfileShort() {
 export function useQueryGetProfile() {
     const { data, error, loaded, querySend } = useQueryGet();
 
-    const querySendHAL = async (dataQuery: IProfileShort) => {
+    const querySendGetProfile = async (dataQuery: IProfileShort) => {
         querySend('/api/profile', dataQuery, true);
     }
 
     const dataNew = data as IProfile;
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerProfile = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerGetProfile = { data: dataNew, error: errorNew, loaded, querySendGetProfile };
 
     return queryAnswer;
 }
@@ -116,7 +116,7 @@ export function useQueryGetProfile() {
 export function useQueryGetProfiles() {   
     const { data, error, loaded, querySend } = useQueryGet();
 
-    const querySendHAL = async (dataQuery: IQueryGetProfiles) => {
+    const querySendGetProfiles = async (dataQuery: IQueryGetProfiles) => {
 
         querySend('/api/profiles', dataQuery, true);
     }
@@ -124,7 +124,44 @@ export function useQueryGetProfiles() {
     const dataNew = data as [IProfile];
     const errorNew = error as IQueryAnswerError;
 
-    const queryAnswer: IQueryAnswerProfiles = { data: dataNew, error: errorNew, loaded, querySendHAL };
+    const queryAnswer: IQueryAnswerProfiles = { data: dataNew, error: errorNew, loaded, querySendGetProfiles };
+
+    return queryAnswer;
+}
+
+/* Get dialogs
+*/
+export function useQueryGetDialogs() {   
+    const { data, error, loaded, querySend } = useQueryGet();
+
+    const querySendGetDialogs = async () => {
+
+        querySend('/api/dialogs', {} , true);
+    }
+
+    const dataNew = data as [IDialog];
+    const errorNew = error as IQueryAnswerError;
+
+    const queryAnswer: IQueryAnswerDialogs = { data: dataNew, error: errorNew, loaded, querySendGetDialogs };
+
+    return queryAnswer;
+}
+
+/* Get dialog
+    - id = 0 - get our profile, * - other profiles 
+*/
+export function useQueryGetDialog() {   
+    const { data, error, loaded, querySend } = useQueryGet();
+
+    const querySendGetDialog = async () => {
+
+        querySend('/api/dialog', {} , true);
+    }
+
+    const dataNew = data as IDialog;
+    const errorNew = error as IQueryAnswerError;
+
+    const queryAnswer: IQueryAnswerDialog = { data: dataNew, error: errorNew, loaded, querySendGetDialog };
 
     return queryAnswer;
 }

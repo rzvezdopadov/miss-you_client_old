@@ -11,7 +11,7 @@ import { openModalMessage } from '../ModalMessage/ModalMessage';
 export function UserProfileFilters() {
     const { filtersUser } = store.getState();
     const myfiltersUser: IFilterUsers = filtersUser;
-    const { data, error, querySendHAL} = useQueryGetProfiles();
+    const { data, error, querySendGetProfiles} = useQueryGetProfiles();
     
     useEffect(() => {
         const data: IQueryGetProfiles = {
@@ -34,7 +34,7 @@ export function UserProfileFilters() {
             }
         };
 
-        querySendHAL(data);
+        querySendGetProfiles(data);
     }, [myfiltersUser]);
     
     useEffect(() => {

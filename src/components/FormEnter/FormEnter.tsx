@@ -9,7 +9,7 @@ import { useQueryLogin } from '../../hooks/api.hook';
 import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function FormEnter() {
-    const { data, error, querySendHAL} = useQueryLogin();
+    const { data, error, querySendLogin } = useQueryLogin();
 
     const email = useFormFieldInputString();
     const password = useFormFieldInputString();
@@ -20,7 +20,7 @@ export function FormEnter() {
             password: password.value,
         }
 
-        querySendHAL(dataQuery);
+        querySendLogin(dataQuery);
     }
 
     useEffect(() => {
