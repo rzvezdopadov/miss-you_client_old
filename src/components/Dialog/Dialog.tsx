@@ -3,14 +3,16 @@ import { IDialog, IMessage } from '../../interfaces/iprofiles';
 import { store } from '../../utils/store';
 import { DialogMessage } from '../DialogMessage/DialogMessage';
 
-export function Dialog( dialog: IDialog ) {
-    const { userMyProfile } = store.getState();
+export function Dialog() {
+    const { userMyProfile, dialog } = store.getState();
+
+    dialog as IDialog;
 
     return (
         <>
             <div className='flex flex-shrink-0 justify-center items-center w-full my-1 text-lime-400 select-none cursor-pointer'>
                     { 
-                        Object.keys(dialog).length ? 
+                        dialog && Object.keys(dialog).length ? 
                             `${ dialog.name }, ${ dialog.age } год` : 
                                 <div className='flex justify-center text-lime-400'>Диалог с пользователем</div>
                     }
@@ -18,7 +20,7 @@ export function Dialog( dialog: IDialog ) {
 
             <div className="flex justify-end shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl px-2 pt-2 pb-2 h-full w-full">
                 {
-                    Object.keys(dialog).length ? 
+                    dialog && Object.keys(dialog).length ? 
                     dialog.messages.map((value: IMessage, index) => {
                         let name = userMyProfile.name;
                         let photolink = userMyProfile.photolink[userMyProfile.photomain];
