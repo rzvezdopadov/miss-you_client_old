@@ -11,7 +11,7 @@ import { UserProfileShortWrapper } from '../UserProfileShortWrapper/UserProfileS
 
 export function Vapors() {
     const { userMyProfile } = store.getState();
-    const { data, error, querySendHAL} = useQueryGetProfiles();
+    const { data, error, querySendGetProfiles} = useQueryGetProfiles();
     const [dataLoader, setDataLoader] = useState(true);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export function Vapors() {
             users: String(userMyProfile.likes)
         };
 
-        querySendHAL(data);
+        querySendGetProfiles(data);
     }, [userMyProfile])
 
     useEffect(() => {
