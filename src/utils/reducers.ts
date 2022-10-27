@@ -287,7 +287,6 @@ export const userMyProfileReducer = (state: IProfile
     }
 } 
 
-
 export const SETTING_PROFILE_CHARACTER = 'SETTING_PROFILE_CHARACTER';
 
 export const settingProfileCharactersAction = (enabled: boolean) => ({
@@ -354,3 +353,31 @@ export const dialogReducer = (state: IDialog = null, action: IActionReducer): ID
         default: return state;    
     }
 } 
+/////////////////////////////////////////
+export const DIALOG_MODAL = 'DIALOG_MODAL';
+
+export const dialogModalAction = (enabled: boolean, dialog: IDialog) => ({
+    type: DIALOG_MODAL,
+    payload: {
+        enabled,
+        dialog
+    },
+})
+
+export const dialogModalReducer = (state: { enabled: boolean, dialog: IDialog } 
+= {
+    enabled: false,
+    dialog: null,
+}
+, action: IActionReducer) => {
+    switch (action.type) {
+        case DIALOG_MODAL: {
+            const { enabled, dialog } = action.payload;
+
+            return { enabled, dialog };
+        }
+
+        default: return state;    
+    }
+} 
+
