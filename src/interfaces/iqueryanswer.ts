@@ -1,4 +1,4 @@
-import { IProfile, IProfileShort } from "./iprofiles"
+import { IDialog, IProfile, IProfileShort } from "./iprofiles"
 
 export interface IQueryAnswerError {
     message: '',
@@ -31,7 +31,7 @@ export interface IQueryAnswerRegistration {
     data: IQueryAnswerRegistrationData,
     error: IQueryAnswerError,
     loaded: boolean,
-    querySendHAL(data: {}): void,
+    querySendRegistration(data: {}): void,
 }
 
 export interface IQueryAnswerLoginData {
@@ -43,33 +43,54 @@ export interface IQueryAnswerLogin {
     data: IQueryAnswerLoginData,
     error: IQueryAnswerError,
     loaded: boolean,
-    querySendHAL(data: {}): void,
+    querySendLogin(data: {}): void,
 }
 
-export interface IQueryAnswerProfile {
+export interface IQueryAnswerSetProfile {
     data: IProfile,
     error: IQueryAnswerError,
     loaded: boolean,
-    querySendHAL(data: {}): void,
+    querySendSetProfile(data: {}): void,
+}
+
+export interface IQueryAnswerGetProfile {
+    data: IProfile,
+    error: IQueryAnswerError,
+    loaded: boolean,
+    querySendGetProfile(data: {}): void,
 }
 
 export interface IQueryAnswerProfileShort {
     data: IProfileShort,
     error: IQueryAnswerError,
     loaded: boolean,
-    querySendHAL(data: {}): void,
+    querySendSetProfileShort(data: {}): void,
 }
 
 export interface IQueryAnswerProfiles {
     data: [IProfileShort],
     error: IQueryAnswerError,
     loaded: boolean,
-    querySendHAL(data: {}): void,
+    querySendGetProfiles(data: {}): void,
 }
 
 export interface IQueryAnswerLike {
     data: IQueryAnswerMessageData,
     error: IQueryAnswerError,
     loaded: boolean,
-    querySendHAL(data: {}): void,
+    querySendLike(data: {}): void,
+}
+
+export interface IQueryAnswerDialogs {
+    data: [IDialog],
+    error: IQueryAnswerError,
+    loaded: boolean,
+    querySendGetDialogs(): void,
+}
+
+export interface IQueryAnswerDialog {
+    data: IDialog,
+    error: IQueryAnswerError,
+    loaded: boolean,
+    querySendGetDialog(): void,
 }
