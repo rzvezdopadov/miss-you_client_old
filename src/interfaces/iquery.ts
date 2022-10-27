@@ -1,6 +1,6 @@
 import { IFilterUsers, IProfile } from "./iprofiles";
 
-export interface IRegistration {
+export interface IQueryRegistration {
     gender: number,
     genderVapor: number,
     name: string,
@@ -21,7 +21,7 @@ export interface IQuerySetProfile {
     profile: IProfile,
 }
 
-export interface ILike {
+export interface IQueryLike {
     id: number,
 }
 
@@ -35,4 +35,8 @@ export interface IQueryGetProfilesOnlyLikes {
     startCount: number, 
     amount: number, 
     users: any,
+}
+
+export interface IQueryDialog {
+    id: number,
 }
