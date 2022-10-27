@@ -1,11 +1,28 @@
 import * as React from 'react';
+import { useEffect } from 'react';
+import { useQueryGetDialogs } from '../../hooks/api.hook';
 import { IDialog } from '../../interfaces/iprofiles';
-import { dialogAction } from '../../utils/reducers';
+import { dialogAction, dialogsAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
 import { DialogShort } from '../DialogShort/DialogShort';
+import { openModalMessage } from '../ModalMessage/ModalMessage';
 
 export function DialogsLeftSideBar() {
-    const { dialogs } = store.getState();
+    const { userMyProfile, userProfile, dialogs } = store.getState();
+
+    const { data, error, querySendGetDialogs } = useQueryGetDialogs();
+
+    useEffect(() => {
+        querySendGetDialogs();
+    }, [userMyProfile, userProfile])
+    
+    useEffect(() => {
+        if (data) {
+            store.dispatch(dialogsAction(data));
+        } else if (error) {
+            openModalMessage(error.response.data.message);
+        }
+    }, [data, error]);
 
     const setDialogOnClick = (idUser: number) => {
         const outDialog = dialogs.filter((value: IDialog) =>  value.idUser === idUser);
