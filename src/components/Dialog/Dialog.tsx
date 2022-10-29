@@ -37,7 +37,7 @@ export function Dialog() {
                             message={ value.message } 
                             photolink={ photolink } 
                         />
-                    }) : <div>Диалогов нет</div>
+                    }) : <div>Диалога нет</div>
                 }
             </div>
             <div className='flex flex-shrink-0 justify-center items-end shadow-[0px_0px_1px_1px] shadow-lime-300 w-full mt-2 rounded-xl text-lime-400 select-none'>
