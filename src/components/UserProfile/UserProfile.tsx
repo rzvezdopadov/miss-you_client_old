@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { arr_alcohol, arr_children, arr_genderVapor, arr_iDontLikeСharacter, arr_iLikeСharacter, arr_profit, arr_religion, arr_signZodiac, arr_smoke } from '../../arrdata/profiles';
+import { useQueryGetDialog } from '../../hooks/api.hook';
 import { IProfile } from '../../interfaces/iprofiles';
-import { userProfileAction } from '../../utils/reducers';
+import { IQueryDialog } from '../../interfaces/iquery';
+import { dialogAction, userProfileAction } from '../../utils/reducers';
 import { store } from '../../utils/store';
-import { DialogModal } from '../DialogModal/DialogModal';
+import { DialogModal, openDialogModal } from '../DialogModal/DialogModal';
+import { openModalMessage } from '../ModalMessage/ModalMessage';
 import { UserProfileInterest } from '../UserProfileInterest/UserProfileInterest';
 import { UserProfileSlider } from '../UserProfileSlider/UserProfileSlider';
 import { UserVisitDateTime } from '../UserVisitDateTime/UserVisitDateTime';
@@ -18,8 +21,18 @@ function closeUserProfile(profile: IProfile) {
 }
 
 export function UserProfile() {
+    const { data, error, querySendGetDialog } = useQueryGetDialog();
     const { userProfile } = store.getState();
     const refUserProfile = useRef(null);
+
+    useEffect(() => {
+        if (data) {
+            openDialogModal();
+            store.dispatch(dialogAction(data));   
+        } else if (error) {
+            openModalMessage(error.response.data.message);
+        }
+    }, [data, error]);
 
     useEffect(() => {
         if (userProfile.enabled) {
@@ -28,6 +41,14 @@ export function UserProfile() {
             refUserProfile.current.classList.add('invisible');
         }
     }, [userProfile.enabled]);
+
+    const openDialogModalHandler = () => {
+        const data: IQueryDialog = {
+            id: userProfile.profile.id,
+        };
+
+        querySendGetDialog(data);        
+    }
 
     const closeUserProfileHandler = () => {
         closeUserProfile(userProfile.profile);
@@ -44,7 +65,11 @@ export function UserProfile() {
                     <div className="flex flex-col">
                         <UserProfileSlider />
 
-                        <div className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md">
+                        <div 
+                            className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md"
+                            onClick={ openDialogModalHandler }
+                        >
+
                             Написать сообщение
                         </div>
                     </div>
