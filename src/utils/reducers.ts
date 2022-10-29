@@ -356,18 +356,16 @@ export const dialogReducer = (state: IDialog = null, action: IActionReducer): ID
 /////////////////////////////////////////
 export const DIALOG_MODAL = 'DIALOG_MODAL';
 
-export const dialogModalAction = (enabled: boolean, dialog: IDialog) => ({
+export const dialogModalAction = (enabled: boolean) => ({
     type: DIALOG_MODAL,
     payload: {
         enabled,
-        dialog
     },
 })
 
-export const dialogModalReducer = (state: { enabled: boolean, dialog: IDialog } 
+export const dialogModalReducer = (state: { enabled: boolean } 
 = {
     enabled: false,
-    dialog: null,
 }
 , action: IActionReducer) => {
     switch (action.type) {
