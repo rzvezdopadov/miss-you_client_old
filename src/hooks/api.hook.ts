@@ -1,5 +1,5 @@
 import { IDialog, IProfile, IProfileShort } from "../interfaces/iprofiles";
-import { ILogin, IQueryGetProfiles, IQueryLike, IQuerySetProfile } from "../interfaces/iquery";
+import { ILogin, IQueryDialog, IQueryGetProfiles, IQueryLike, IQuerySetProfile } from "../interfaces/iquery";
 import { IQueryAnswerDialog, IQueryAnswerDialogs, IQueryAnswerError, IQueryAnswerGetProfile, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessageData, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData, IQueryAnswerSetProfile } from "../interfaces/iqueryanswer";
 import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
 
@@ -153,9 +153,9 @@ export function useQueryGetDialogs() {
 export function useQueryGetDialog() {   
     const { data, error, loaded, querySend } = useQueryGet();
 
-    const querySendGetDialog = async () => {
+    const querySendGetDialog = async (dataQuery: IQueryDialog) => {
 
-        querySend('/api/dialog', {} , true);
+        querySend('/api/dialog', dataQuery , true);
     }
 
     const dataNew = data as IDialog;
