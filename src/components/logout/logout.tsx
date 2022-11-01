@@ -3,8 +3,8 @@ import { jwtAction } from "../../utils/reducers";
 import { store } from "../../utils/store";
 
 export function logout() {
-    const jwt = getCookiesJWT();
+	const jwt = getCookiesJWT();
 
-    document.cookie = `jwt=${ jwt }; max-age=${ -1 }`;
-    store.dispatch(jwtAction(''));    
+	document.cookie = `jwt=${jwt}; max-age=${-1}`;
+	store.dispatch(jwtAction(""));
 }
