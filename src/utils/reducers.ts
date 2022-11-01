@@ -353,7 +353,7 @@ export const dialogReducer = (state: IDialog = null, action: IActionReducer): ID
         default: return state;    
     }
 } 
-/////////////////////////////////////////
+
 export const DIALOG_MODAL = 'DIALOG_MODAL';
 
 export const dialogModalAction = (enabled: boolean) => ({
@@ -378,4 +378,22 @@ export const dialogModalReducer = (state: { enabled: boolean }
         default: return state;    
     }
 } 
+/////////////////////////////////////////
+export const DIALOG_ID = 'DIALOG_ID';
 
+export const dialogIdAction = (idDialog: number) => ({
+    type: DIALOG_ID,
+    payload: idDialog,
+})
+
+export const dialogIdReducer = (state: number = 0, action: IActionReducer) => {
+    switch (action.type) {
+        case DIALOG_ID: {
+            const idDialog = action.payload;
+
+            return idDialog;
+        }
+
+        default: return state;    
+    }
+} 
