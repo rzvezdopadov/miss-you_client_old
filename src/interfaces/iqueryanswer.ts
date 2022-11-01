@@ -94,3 +94,10 @@ export interface IQueryAnswerDialog {
     loaded: boolean,
     querySendGetDialog(data: {}): void,
 }
+
+export interface IQueryAnswerMessage {
+    data: IDialog,
+    error: IQueryAnswerError,
+    loaded: boolean,
+    querySendMessage(data: {}): void,
+}

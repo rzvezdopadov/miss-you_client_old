@@ -40,3 +40,8 @@ export interface IQueryGetProfilesOnlyLikes {
 export interface IQueryDialog {
     id: number,
 }
+
+export interface IQuerySendMessage {
+    id: number,
+    message: string,
+}
