@@ -1,6 +1,6 @@
 import { IDialog, IProfile, IProfileShort } from "../interfaces/iprofiles";
-import { ILogin, IQueryDialog, IQueryGetProfiles, IQueryLike, IQuerySetProfile } from "../interfaces/iquery";
-import { IQueryAnswerDialog, IQueryAnswerDialogs, IQueryAnswerError, IQueryAnswerGetProfile, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessageData, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData, IQueryAnswerSetProfile } from "../interfaces/iqueryanswer";
+import { ILogin, IQueryDialog, IQueryGetProfiles, IQueryLike, IQuerySendMessage, IQuerySetProfile } from "../interfaces/iquery";
+import { IQueryAnswerDialog, IQueryAnswerDialogs, IQueryAnswerError, IQueryAnswerGetProfile, IQueryAnswerLike, IQueryAnswerLogin, IQueryAnswerLoginData, IQueryAnswerMessage, IQueryAnswerMessageData, IQueryAnswerProfiles, IQueryAnswerProfileShort, IQueryAnswerRegistration, IQueryAnswerRegistrationData, IQueryAnswerSetProfile } from "../interfaces/iqueryanswer";
 import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
 
 /* API Query to server */
@@ -148,7 +148,7 @@ export function useQueryGetDialogs() {
 }
 
 /* Get dialog
-    - id = 0 - get our profile, * - other profiles 
+    - * - id user
 */
 export function useQueryGetDialog() {   
     const { data, error, loaded, querySend } = useQueryGet();
@@ -162,6 +162,25 @@ export function useQueryGetDialog() {
     const errorNew = error as IQueryAnswerError;
 
     const queryAnswer: IQueryAnswerDialog = { data: dataNew, error: errorNew, loaded, querySendGetDialog };
+
+    return queryAnswer;
+}
+
+/* Set message
+    - * - id user
+*/
+export function useQuerySendMessage() {   
+    const { data, error, loaded, querySend } = useQueryPut();
+
+    const querySendMessage = async (dataQuery: IQuerySendMessage) => {
+
+        querySend('/api/message', dataQuery , true);
+    }
+
+    const dataNew = data as IDialog;
+    const errorNew = error as IQueryAnswerError;
+
+    const queryAnswer: IQueryAnswerMessage = { data: dataNew, error: errorNew, loaded, querySendMessage };
 
     return queryAnswer;
 }
