@@ -1,50 +1,66 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { useQueryGetDialogs } from '../../hooks/api.hook';
-import { IDialog } from '../../interfaces/iprofiles';
-import { dialogAction, dialogsAction } from '../../utils/reducers';
-import { store } from '../../utils/store';
-import { DialogShort } from '../DialogShort/DialogShort';
-import { openModalMessage } from '../ModalMessage/ModalMessage';
+import * as React from "react";
+import { useEffect } from "react";
+import { useQueryGetDialogs } from "../../hooks/api.hook";
+import { IDialog } from "../../interfaces/iprofiles";
+import {
+	dialogAction,
+	dialogIdAction,
+	dialogsAction,
+} from "../../utils/reducers";
+import { store } from "../../utils/store";
+import { DialogShort } from "../DialogShort/DialogShort";
+import { openModalMessage } from "../ModalMessage/ModalMessage";
 
 export function DialogsLeftSideBar() {
-    const { userMyProfile, userProfile, dialogs } = store.getState();
+	const { userMyProfile, dialogs } = store.getState();
 
-    const { data, error, querySendGetDialogs } = useQueryGetDialogs();
+	const { data, error, querySendGetDialogs } = useQueryGetDialogs();
 
-    useEffect(() => {
-        querySendGetDialogs();
-    }, [userMyProfile, userProfile])
-    
-    useEffect(() => {
-        if (data) {
-            store.dispatch(dialogsAction(data));
-        } else if (error) {
-            openModalMessage(error.response.data.message);
-        }
-    }, [data, error]);
+	useEffect(() => {
+		querySendGetDialogs();
+	}, [userMyProfile]);
 
-    const setDialogOnClick = (idUser: number) => {
-        const outDialog = dialogs.filter((value: IDialog) =>  value.idUser === idUser);
+	useEffect(() => {
+		if (data) {
+			console.log(data);
+			store.dispatch(dialogsAction(data));
+		} else if (error) {
+			openModalMessage(error.response.data.message);
+		}
+	}, [data, error]);
 
-        store.dispatch(dialogAction(outDialog[0]));
-    }
+	const setDialogOnClick = (idUser: number) => {
+		const outDialog = dialogs.filter(
+			(value: IDialog) => value.idUser === idUser
+		);
 
-    return (
-        <>   
-            <div className='flex justify-center items-center w-full my-1 select-none'>
-                Диалоги
-            </div>
+		store.dispatch(dialogAction(outDialog[0]));
+		store.dispatch(dialogIdAction(idUser));
+	};
 
-            { 
-                dialogs.length ? dialogs.map((dialog: IDialog, index)=>{                            
-                    return <DialogShort
-                        key={ dialog.timecode + index }
-                        dialog={ dialog } 
-                        onClickHandler={ () => { setDialogOnClick(dialog.idUser) }}
-                    />
-                }) : <div className='flex justify-center text-lime-400'>Пока нет диалогов =(</div> 
-            }
-        </>
-    );
+	return (
+		<>
+			<div className="flex justify-center items-center w-full my-1 select-none">
+				Диалоги
+			</div>
+
+			{dialogs.length ? (
+				dialogs.map((dialog: IDialog, index) => {
+					return (
+						<DialogShort
+							key={dialog.timecode + index}
+							dialog={dialog}
+							onClickHandler={() => {
+								setDialogOnClick(dialog.idUser);
+							}}
+						/>
+					);
+				})
+			) : (
+				<div className="flex justify-center text-lime-400">
+					Пока нет диалогов =(
+				</div>
+			)}
+		</>
+	);
 }
