@@ -8,6 +8,7 @@ import {
 	dialogsAction,
 } from "../../utils/reducers";
 import { store } from "../../utils/store";
+import { openDialogModal } from "../DialogModal/DialogModal";
 import { DialogShort } from "../DialogShort/DialogShort";
 import { openModalMessage } from "../ModalMessage/ModalMessage";
 
@@ -22,8 +23,11 @@ export function DialogsLeftSideBar() {
 
 	useEffect(() => {
 		if (data) {
-			console.log(data);
-			store.dispatch(dialogsAction(data));
+			data as Array<IDialog>;
+
+			if (data) {
+				store.dispatch(dialogsAction(data));
+			}
 		} else if (error) {
 			openModalMessage(error.response.data.message);
 		}
@@ -36,6 +40,7 @@ export function DialogsLeftSideBar() {
 
 		store.dispatch(dialogAction(outDialog[0]));
 		store.dispatch(dialogIdAction(idUser));
+		openDialogModal();
 	};
 
 	return (
