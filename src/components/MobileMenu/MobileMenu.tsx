@@ -7,17 +7,22 @@ import glass from "../../img/glass.png";
 import gear from "../../img/gear.png";
 import exit from "../../img/exit.png";
 import { logout } from "../logout/logout";
+import { mobileMenuAction } from "../../utils/reducers";
+import { useEffect } from "react";
+
+export function openMobileMenu() {
+	store.dispatch(mobileMenuAction(true));
+}
+
+export function closeMobileMenu(event) {
+	event.preventDefault();
+
+	store.dispatch(mobileMenuAction(false));
+}
 
 function MobileMenuNoAuth() {
 	return (
 		<>
-			<a
-				href="/"
-				className="text-right cursor-pointer text-4xl"
-				onClick={closeMobileMenu}
-			>
-				&times;
-			</a>
 			<Link
 				to="/"
 				className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -49,13 +54,6 @@ function MobileMenuNoAuth() {
 function MobileMenuAuth() {
 	return (
 		<>
-			<a
-				href="/"
-				className="text-right cursor-pointer text-4xl"
-				onClick={closeMobileMenu}
-			>
-				&times;
-			</a>
 			<Link
 				to="/vapors"
 				className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -116,26 +114,22 @@ function MobileMenuAuth() {
 	);
 }
 
-export function openMobileMenu() {
-	let mobileMenu = document.getElementById("mobile-menu");
-	if (!mobileMenu) return;
-
-	mobileMenu.classList.remove("left-[-100px]");
-	mobileMenu.classList.add("left-0");
-}
-
-function closeMobileMenu(event) {
-	event.preventDefault();
-
-	let mobileMenu = document.getElementById("mobile-menu");
-	if (!mobileMenu) return;
-
-	mobileMenu.classList.remove("left-0");
-	mobileMenu.classList.add("left-[-100px]");
-}
-
 export function MobileMenu() {
-	const { jwt } = store.getState();
+	const { jwt, mobileMenu } = store.getState();
+
+	useEffect(() => {
+		let mobileMenuElem = document.getElementById("mobile-menu");
+
+		if (!mobileMenuElem) return;
+
+		if (mobileMenu.enabled) {
+			mobileMenuElem.classList.remove("left-[-100px]");
+			mobileMenuElem.classList.add("left-0");
+		} else {
+			mobileMenuElem.classList.remove("left-0");
+			mobileMenuElem.classList.add("left-[-100px]");
+		}
+	}, [mobileMenu]);
 
 	return (
 		<div
