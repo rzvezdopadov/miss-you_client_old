@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuerySendMessage } from "../../hooks/api.hook";
 import { IDialog, IMessage } from "../../interfaces/iprofiles";
 import { IQuerySendMessage } from "../../interfaces/iquery";
@@ -13,17 +13,31 @@ export function Dialog() {
 	const { data, error, querySendMessage } = useQuerySendMessage();
 	const [message, setMessage] = useState("");
 
+	const bottomRef = useRef(null);
+
 	dialog as IDialog;
 
 	useEffect(() => {
 		if (data) {
-			console.log(data);
 			setMessage("");
 			store.dispatch(dialogAction(data));
 		} else if (error) {
 			openModalMessage(error.response.data.message);
 		}
 	}, [data, error]);
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [dialog]);
+
+	const scrollToBottom = () => {
+		if (bottomRef) {
+			bottomRef.current.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			});
+		}
+	};
 
 	const sendMessageHandler = () => {
 		const data: IQuerySendMessage = {
@@ -38,6 +52,10 @@ export function Dialog() {
 		}
 
 		querySendMessage(data);
+	};
+
+	const sendMessageOnKeyDownHandler = (e) => {
+		if (e.ctrlKey && e.code === "Enter") sendMessageHandler();
 	};
 
 	return (
@@ -79,12 +97,16 @@ export function Dialog() {
 				) : (
 					<div>Диалога нет</div>
 				)}
+				<div ref={bottomRef} className="list-bottom"></div>
 			</div>
 			<div className="flex flex-shrink-0 justify-center items-end shadow-[0px_0px_1px_1px] shadow-lime-300 w-full mt-2 rounded-xl text-lime-400 select-none">
 				<div className="flex w-full flex-col my-1">
 					<textarea
 						onChange={(e) => {
 							setMessage(e.target.value);
+						}}
+						onKeyDown={(e) => {
+							sendMessageOnKeyDownHandler(e);
 						}}
 						title="Напишите сообщение..."
 						className="flex text-center resize-none h-10 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-zinc-600 text-white m-2 p-2"
