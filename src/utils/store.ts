@@ -7,12 +7,13 @@ import {
     filtersUserReducer, 
     usersProfilesReducer, userProfileReducer, userMyProfileReducer, 
     settingProfileCharactersReducer, 
-    dialogsReducer, dialogReducer, dialogModalReducer, dialogIdReducer 
+    dialogsReducer, dialogReducer, dialogModalReducer, dialogIdReducer, mobileMenuReducer 
 } from "./reducers"
 
 export const store = configureStore({
     reducer: {
         jwt: jwtReducer,
+        mobileMenu: mobileMenuReducer,
         modalLoading: modalLoadingReducer,
         modalMessage: modalMessageReducer,
         myVapors: myVaporsReducer,

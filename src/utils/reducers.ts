@@ -3,6 +3,32 @@ import { IDialog, IFilterUsers, IProfile, IProfileShort } from "../interfaces/ip
 import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
 import { getCookiesJWT } from "./cookie";
 
+
+export const MOBILE_MENU = 'MOBILE_MENU';
+
+export const mobileMenuAction = (enabled: boolean) => ({
+    type: MOBILE_MENU,
+    payload: {
+        enabled,
+    },
+})
+
+export const mobileMenuReducer = (state: { enabled: boolean } 
+= {
+    enabled: false,
+}
+, action: IActionReducer) => {
+    switch (action.type) {
+        case MOBILE_MENU: {
+            const { enabled } = action.payload;
+
+            return { enabled };
+        }
+
+        default: return state;    
+    }
+} 
+
 export const MODAL_LOADING = 'MODAL_LOADING';
 
 export const modalLoadingAction = (enabled: boolean, text: string = '') => ({
@@ -378,7 +404,7 @@ export const dialogModalReducer = (state: { enabled: boolean }
         default: return state;    
     }
 } 
-/////////////////////////////////////////
+
 export const DIALOG_ID = 'DIALOG_ID';
 
 export const dialogIdAction = (idDialog: number) => ({
