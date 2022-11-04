@@ -5,7 +5,7 @@ import { modalLoadingOnHide, modalLoadingOnShow } from "../components/ModalLoadi
 import { IQueryAnswer } from "../interfaces/iqueryanswer";
 
 function testOnBadTokenStatus(message) {
-    if (message === 'Токен просрочен, повторите вход в систему!') {
+    if ((message === 'Токен просрочен, повторите вход в систему!') || (message === 'Токен не валидный!') ) {
         setTimeout(() => {
             logout();
 
