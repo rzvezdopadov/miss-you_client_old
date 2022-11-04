@@ -41,7 +41,7 @@ export function AppMain() {
 	}, [data, error]);
 
 	return (
-		<div className="App-Main flex flex-grow pt-4 pb-4 justify-center items-center">
+		<div className="flex flex-grow overflow-hidden my-2 justify-center items-center">
 			{
 				<Routes>
 					<Route path="/agreement" element={<Agreement />} />
