@@ -2,8 +2,8 @@ import * as React from "react";
 
 export function Agreement() {
 	return (
-		<div className="flex w-full">
-			<div className="bg-gray-700 text-neutral-50 shadow-md rounded-3xl px-8 pt-2 pb-2">
+		<div className="flex h-full w-full">
+			<div className="flex flex-col overflow-scroll bg-gray-700 text-neutral-50 shadow-md rounded-3xl px-8 pt-2 pb-2">
 				<div className="text-2xl mb-2 font-bold">
 					{" "}
 					Пользовательское соглашение{" "}
