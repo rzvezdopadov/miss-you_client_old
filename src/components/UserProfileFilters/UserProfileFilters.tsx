@@ -45,46 +45,74 @@ export function UserProfileFilters() {
 		}
 	}, [data, error]);
 
-	const onChangeValueProfileFilter = (e, key) => {
+	const onChangeValueProfileFilter = (
+		e: React.ChangeEvent<HTMLSelectElement>,
+		key: keyof IFilterUsers
+	) => {
 		const newFilters = { ...myfiltersUser };
-		newFilters[key] = e.target.value;
+
+		newFilters[key] = e.target.value as never;
 		store.dispatch(filtersUserAction(newFilters));
 	};
 
-	const filtersLocationOnChangeHandler = (e) => {
+	const filtersLocationOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "location");
 	};
-	const filtersAgeStartOnChangeHandler = (e) => {
+	const filtersAgeStartOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "agestart");
 	};
-	const filtersAgeEndOnChangeHandler = (e) => {
+	const filtersAgeEndOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "ageend");
 	};
-	const filtersGrowthStartOnChangeHandler = (e) => {
+	const filtersGrowthStartOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "growthstart");
 	};
-	const filtersGrowthEndOnChangeHandler = (e) => {
+	const filtersGrowthEndOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "growthend");
 	};
-	const filtersWeightStartOnChangeHandler = (e) => {
+	const filtersWeightStartOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "weightstart");
 	};
-	const filtersWeightEndOnChangeHandler = (e) => {
+	const filtersWeightEndOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "weightend");
 	};
-	const filtersSignZodiacOnChangeHandler = (e) => {
+	const filtersSignZodiacOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "signzodiac");
 	};
-	const filtersGenderVaporOnChangeHandler = (e) => {
+	const filtersGenderVaporOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "gendervapor");
 	};
-	const filtersReligionOnChangeHandler = (e) => {
+	const filtersReligionOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "religion");
 	};
-	const filtersSmokeOnChangeHandler = (e) => {
+	const filtersSmokeOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "smoke");
 	};
-	const filtersAlcoholOnChangeHandler = (e) => {
+	const filtersAlcoholOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "alcohol");
 	};
 
