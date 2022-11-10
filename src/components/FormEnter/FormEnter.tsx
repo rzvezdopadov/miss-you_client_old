@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useFormFieldInputString } from "../../hooks/form.hook";
 import { ILogin } from "../../interfaces/iquery";
 import { jwtAction } from "../../utils/reducers";
-import { setStorageJWT } from "../../utils/storage";
 import { store } from "../../utils/store";
 import { useQueryLogin } from "../../hooks/api.hook";
 import { openModalMessage } from "../ModalMessage/ModalMessage";
@@ -33,7 +32,6 @@ export function FormEnter() {
 
 			setTimeout(() => {
 				store.dispatch(jwtAction(jwt));
-				setStorageJWT(jwt);
 				document.location.href = "/vapors";
 			}, 1500);
 		} else if (error) {
