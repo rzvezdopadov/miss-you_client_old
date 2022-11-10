@@ -1,5 +1,4 @@
 import * as React from "react";
-import { IProfile } from "../../interfaces/iprofiles";
 import { store } from "../../utils/store";
 import { UserProfileShort } from "../UserProfileShort/UserProfileShort";
 
@@ -9,7 +8,7 @@ export function UserProfileShortWrapper() {
 	return (
 		<>
 			{usersProfiles.length ? (
-				usersProfiles.map((profile: IProfile) => (
+				usersProfiles.map((profile) => (
 					<UserProfileShort
 						key={"profile" + profile.id}
 						profile={profile}
