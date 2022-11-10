@@ -1,18 +1,22 @@
+function getCookie(name: string): string {
+    const nameLenPlus = (name.length + 1);
+    
+    let cookie = document.cookie;
+    
+    cookie = cookie.split(';')
+        .map(c => c.trim())
+            .filter(cookie => {
+                return cookie.substring(0, nameLenPlus) === `${name}=`;
+            })
+                .map(cookie => {
+                    return decodeURIComponent(cookie.substring(nameLenPlus));
+                })[0];
+
+    if (!cookie) return '';
+
+    return cookie;
+}
+
 export function getCookiesJWT():string {
-    const obj = { jwt: '' };
-    const cookies = document.cookie.split(/;/);
-
-    for (let i = 0, len = cookies.length; i < len; i++) {
-        let cookie = cookies[i].split(/=/);
-
-        obj[cookie[0]] = cookie[1];
-    }
-
-    if ((
-        Object.keys(obj).length === 0) || 
-            (obj.jwt === undefined) ||
-                (obj.jwt === '')  
-    ) return ''; 
-
-    return obj.jwt;
+    return getCookie('jwt');    
 }
