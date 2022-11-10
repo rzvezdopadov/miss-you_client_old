@@ -25,13 +25,13 @@ export function SettingProfileCharacters() {
 	const { settingProfileCharacters, userMyProfile } = store.getState();
 	const myProfile: IProfile = userMyProfile;
 	const [profile, setProfile] = useState(myProfile);
-	const refSettingProfileCharacters = useRef(null);
+	const refSettingProfileCharacters = useRef<HTMLDivElement>(null);
 
 	const closeUserProfileHandler = () => {
 		closeSettingProfileCharacters(profile);
 	};
 
-	const invertCharacter = (arr, id) => {
+	const invertCharacter = (arr: Array<number>, id: number) => {
 		const newArr = [...arr];
 		if (newArr.includes(id)) {
 			newArr.splice(newArr.indexOf(id), 1);
@@ -42,14 +42,14 @@ export function SettingProfileCharacters() {
 		return newArr;
 	};
 
-	const likeCharacterChangeHandler = (id) => {
+	const likeCharacterChangeHandler = (id: number) => {
 		const newArr = invertCharacter(profile.ilikecharacter, id);
 		const newProfile = { ...profile };
 		newProfile.ilikecharacter = newArr as any;
 		setProfile(newProfile);
 	};
 
-	const dontlikeCharacterChangeHandler = (id) => {
+	const dontlikeCharacterChangeHandler = (id: number) => {
 		const newArr = invertCharacter(profile.idontlikecharacter, id);
 		const newProfile = { ...profile };
 		newProfile.idontlikecharacter = newArr as any;
@@ -57,6 +57,8 @@ export function SettingProfileCharacters() {
 	};
 
 	useEffect(() => {
+		if (!refSettingProfileCharacters.current) return;
+
 		if (settingProfileCharacters.enabled) {
 			refSettingProfileCharacters.current.classList.remove("invisible");
 		} else {
@@ -101,8 +103,11 @@ export function SettingProfileCharacters() {
 						key={value[0] + index}
 						value={value[0]}
 						title={value[1]}
+						color={"shadow-lime-400"}
 						check={profile.ilikecharacter.includes(index as never)}
-						changeClbk={likeCharacterChangeHandler}
+						changeClbk={async (id) =>
+							likeCharacterChangeHandler(id)
+						}
 					/>
 				);
 			})}
@@ -123,7 +128,9 @@ export function SettingProfileCharacters() {
 						check={profile.idontlikecharacter.includes(
 							index as never
 						)}
-						changeClbk={dontlikeCharacterChangeHandler}
+						changeClbk={async (id) =>
+							dontlikeCharacterChangeHandler(id)
+						}
 					/>
 				);
 			})}
