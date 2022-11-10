@@ -75,6 +75,7 @@ export function UserProfileShort(params: {
 						<UserProfileInterest
 							key={"interest" + profile.id}
 							value={"Отсутствуют"}
+							title={""}
 						/>
 					)}
 				</div>
