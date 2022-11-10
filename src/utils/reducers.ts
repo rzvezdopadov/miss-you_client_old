@@ -1,8 +1,8 @@
+import { createReducer } from "@reduxjs/toolkit";
 import { arr_age, arr_genderVapor, arr_growth, arr_location, arr_signZodiac, arr_weight } from "../arrdata/profiles";
 import { IDialog, IFilterUsers, IProfile, IProfileShort } from "../interfaces/iprofiles";
-import { IActionReducer, IStateModalMessage } from "../interfaces/iredusers";
+import { IStateModalMessage } from "../interfaces/iredusers";
 import { getCookiesJWT } from "./cookie";
-
 
 export const MOBILE_MENU = 'MOBILE_MENU';
 
@@ -13,22 +13,24 @@ export const mobileMenuAction = (enabled: boolean) => ({
     },
 })
 
-export const mobileMenuReducer = (state: { enabled: boolean } 
-= {
-    enabled: false,
+interface IEnableParamState {
+    enabled: boolean;
 }
-, action: IActionReducer) => {
-    switch (action.type) {
-        case MOBILE_MENU: {
+
+const initialStateMobileMenu: IEnableParamState = {
+    enabled: false
+}
+
+export const mobileMenuReducer = createReducer(
+    initialStateMobileMenu, {
+        [MOBILE_MENU]: (state: IEnableParamState, action: any) => {
             const { enabled } = action.payload;
 
             return { enabled };
         }
-
-        default: return state;    
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const MODAL_LOADING = 'MODAL_LOADING';
 
 export const modalLoadingAction = (enabled: boolean, text: string = '') => ({
@@ -39,20 +41,21 @@ export const modalLoadingAction = (enabled: boolean, text: string = '') => ({
     },
 })
 
-export const modalLoadingReducer = (state: IStateModalMessage = {
+const initialStateModalLoading: IStateModalMessage = {
     enabled: false,
     text: ""
-}, action: IActionReducer) => {
-    switch (action.type) {
-        case MODAL_LOADING: {
+}
+
+export const modalLoadingReducer = createReducer(
+    initialStateModalLoading, {
+        [MODAL_LOADING]: (state: IStateModalMessage, action: any) => {
             const { enabled, text } = action.payload;
            
             return { enabled, text };
-        }        
-        default: return state;    
+        }
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const MODAL_MESSAGE = 'MODAL_MESSAGE';
 
 export const modalMessageAction = (enabled: boolean, text: string) => ({
@@ -63,62 +66,57 @@ export const modalMessageAction = (enabled: boolean, text: string) => ({
     },
 })
 
-export const modalMessageReducer = (state: IStateModalMessage = {
+const initialStateModalMessage: IStateModalMessage = {
     enabled: false,
     text: ""
-}, action: IActionReducer) => {
-    switch (action.type) {
-        case MODAL_MESSAGE: {
+}
+
+export const modalMessageReducer = createReducer(
+    initialStateModalMessage, {
+        [MODAL_MESSAGE]: (state: IStateModalMessage, action: any) => {
             let { enabled, text } = action.payload;
            
             if (!enabled) text = state.text;
 
             return { enabled, text };
-        }        
-        default: return state;    
+        }
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const JWT_TOKEN = 'JWT_TOKEN';
 
 export const jwtAction = (value: string) => ({
     type: JWT_TOKEN,
-    payload: value,
+    payload: { value },
 })
 
-export const jwtReducer = (jwt: string = getCookiesJWT(), action: IActionReducer) => {
-    const value = action.payload;
-    
-    switch (action.type) {
-        case JWT_TOKEN: {
-            jwt = value;
-            
-            return value;
-        }        
-        default: return jwt;    
-    }
-} 
+const initialStateJWT: string = getCookiesJWT();
 
+export const jwtReducer = createReducer(
+    initialStateJWT, {
+        [JWT_TOKEN]: (state: string, action: any) => {
+            return state = action.payload.value;
+        }
+    }
+)
+////////////////////////////////////////////////////////////////////////
 export const MY_VAPORS = 'MY_VAPORS';
 
-export const myVaporsAction = (value) => ({
+export const myVaporsAction = (value: any) => ({
     type: MY_VAPORS,
     payload: value,
 })
 
-export const myVaporsReducer = (myVapors: '' = '', action: IActionReducer) => {
-    const value = action.payload;
-
-    switch (action.type) {
-        case MY_VAPORS: {
-            myVapors = value;
+export const myVaporsReducer = createReducer(
+    '', {
+        [MY_VAPORS]: (state: string, action: any) => {
+            const myVapors = action.payload;
 
             return myVapors;
-        }        
-        default: return myVapors;    
+        }
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const FILTERS_USER = 'FILTERS_USER';
 
 export const filtersUserAction = (filters: IFilterUsers) => ({
@@ -126,7 +124,7 @@ export const filtersUserAction = (filters: IFilterUsers) => ({
     payload: filters,
 })
 
-export const filtersUserReducer = (filters: IFilterUsers = {
+const initialStateFiltersUser: IFilterUsers = {
     location: arr_location[0][0],
     agestart: arr_age[arr_age.length - 1],
     ageend: arr_age[0],
@@ -139,37 +137,38 @@ export const filtersUserReducer = (filters: IFilterUsers = {
     religion: 0,
     smoke: 0,
     alcohol: 0,
-    interests: [],
-}, action: IActionReducer) => {
-    switch (action.type) {
-        case FILTERS_USER: {
-            const value = action.payload;
+    interests: []
+}
 
-            return value;
-        }        
-        default: return filters;    
+export const filtersUserReducer = createReducer(
+    initialStateFiltersUser, {
+        [FILTERS_USER]: (state: IFilterUsers, action: any) => {
+            const filters = { ...action.payload };
+
+            return filters;
+        }
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const USERS_PROFILES = 'USERS_PROFILES';
 
-export const usersProfilesAction = (profiles: [IProfileShort]) => ({
+export const usersProfilesAction = (profiles: Array<IProfileShort>) => ({
     type: USERS_PROFILES,
     payload: profiles,
 })
 
-export const usersProfilesReducer = (profiles: [] = [], action: IActionReducer) => {
-    switch (action.type) {
-        case USERS_PROFILES: {
-            const value = [...action.payload];
+const initialStateUsersProfiles: Array<IProfileShort> = [];
 
-            return value;
+export const usersProfilesReducer = createReducer(
+    initialStateUsersProfiles, {
+        [USERS_PROFILES]: (state: Array<IProfileShort>, action: any) => {
+            const arrayProfileShort = [...action.payload];
+
+            return arrayProfileShort;
         }
-
-        default: return profiles;    
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const USER_PROFILE = 'USER_PROFILE';
 
 export const userProfileAction = (enabled: boolean, profile: IProfile) => ({
@@ -180,8 +179,12 @@ export const userProfileAction = (enabled: boolean, profile: IProfile) => ({
     },
 })
 
-export const userProfileReducer = (state: { enabled: boolean, profile: IProfile } 
-= {
+interface IUserProfile {
+    enabled: boolean, 
+    profile: IProfile
+}
+
+const initialStateUserProfile: IUserProfile = {
     enabled: false,
     profile: {
         id: 0,
@@ -229,21 +232,19 @@ export const userProfileReducer = (state: { enabled: boolean, profile: IProfile 
             alcohol: 0,
             interests: [],
         }
-    },
+    }
 }
-, action: IActionReducer) => {
-    switch (action.type) {
-        case USER_PROFILE: {
+
+export const userProfileReducer = createReducer(
+    initialStateUserProfile, {
+        [USER_PROFILE]: (state: IUserProfile, action: any) => {
             const { enabled, profile } = action.payload;
 
             return { enabled, profile };
         }
-
-        default: return state;    
     }
-} 
-
-
+);
+////////////////////////////////////////////////////////////////////////
 export const USER_MYPROFILE = 'USER_MYPROFILE';
 
 export const userMyProfileAction = (profile: IProfile) => ({
@@ -253,8 +254,7 @@ export const userMyProfileAction = (profile: IProfile) => ({
     },
 })
 
-export const userMyProfileReducer = (state: IProfile  
-= {
+const initialStateUserMyProfile: IProfile = {
     id: 0,
     timecode: 0,
     name: '',
@@ -301,18 +301,17 @@ export const userMyProfileReducer = (state: IProfile
         interests: [],
     }
 }
-, action: IActionReducer) => {
-    switch (action.type) {
-        case USER_MYPROFILE: {
+
+export const userMyProfileReducer = createReducer(
+    initialStateUserMyProfile, {
+        [USER_MYPROFILE]: (state: IProfile, action: any) => {
             const { profile } = action.payload;
 
-            return profile as IProfile;
+            return profile;
         }
-
-        default: return state;    
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const SETTING_PROFILE_CHARACTER = 'SETTING_PROFILE_CHARACTER';
 
 export const settingProfileCharactersAction = (enabled: boolean) => ({
@@ -322,22 +321,19 @@ export const settingProfileCharactersAction = (enabled: boolean) => ({
     },
 })
 
-export const settingProfileCharactersReducer = (state: { enabled: boolean } 
-= {
-    enabled: false,
-}
-, action: IActionReducer) => {
-    switch (action.type) {
-        case SETTING_PROFILE_CHARACTER: {
-            const { enabled } = action.payload;
+const initialStateSettingProfileCharacters: { enabled: boolean } = { enabled: false };
+
+export const settingProfileCharactersReducer = createReducer(
+    initialStateSettingProfileCharacters, {
+        [SETTING_PROFILE_CHARACTER]: (state: { enabled: boolean }, action: any) => {
+            const { enabled } =  action.payload;
 
             return { enabled };
         }
-
-        default: return state;    
     }
-} 
+);
 
+////////////////////////////////////////////////////////////////////////
 export const DIALOGS = 'DIALOGS';
 
 export const dialogsAction = (dialogs: Array<IDialog>) => ({
@@ -347,18 +343,18 @@ export const dialogsAction = (dialogs: Array<IDialog>) => ({
     },
 })
 
-export const dialogsReducer = (state: Array<IDialog> = [] , action: IActionReducer): Array<IDialog> => {
-    switch (action.type) {
-        case DIALOGS: {
-            const { dialogs } = action.payload;
+const initialStateDialogs: Array<IDialog> = [];
+
+export const dialogsReducer = createReducer(
+    initialStateDialogs, {
+        [DIALOGS]: (state: Array<IDialog>, action: any) => {
+            const { dialogs } =  action.payload;
 
             return dialogs;
         }
-
-        default: return state;    
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const DIALOG = 'DIALOG';
 
 export const dialogAction = (dialog: IDialog) => ({
@@ -368,18 +364,26 @@ export const dialogAction = (dialog: IDialog) => ({
     },
 })
 
-export const dialogReducer = (state: IDialog = null, action: IActionReducer): IDialog => {
-    switch (action.type) {
-        case DIALOG: {
-            const { dialog } = action.payload;
+const initialStateDialog: IDialog = {
+    timecode: 0,
+    idUser: 0,
+    name: "",
+    age: 0,
+    photomain: 0,
+    photolink: [],
+    messages: []
+}
+
+export const dialogReducer = createReducer(
+    initialStateDialog, {
+        [DIALOG]: (state: IDialog, action: any) => {
+            const { dialog } =  action.payload;
 
             return dialog;
         }
-
-        default: return state;    
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const DIALOG_MODAL = 'DIALOG_MODAL';
 
 export const dialogModalAction = (enabled: boolean) => ({
@@ -387,24 +391,18 @@ export const dialogModalAction = (enabled: boolean) => ({
     payload: {
         enabled,
     },
-})
+});
 
-export const dialogModalReducer = (state: { enabled: boolean } 
-= {
-    enabled: false,
-}
-, action: IActionReducer) => {
-    switch (action.type) {
-        case DIALOG_MODAL: {
-            const { enabled, dialog } = action.payload;
+export const dialogModalReducer = createReducer(
+    false, {
+        [DIALOG_MODAL]: (state: boolean, action: any) => {
+            const dialogModal = action.payload.enabled;
 
-            return { enabled, dialog };
+            return dialogModal;
         }
-
-        default: return state;    
     }
-} 
-
+);
+////////////////////////////////////////////////////////////////////////
 export const DIALOG_ID = 'DIALOG_ID';
 
 export const dialogIdAction = (idDialog: number) => ({
@@ -412,14 +410,12 @@ export const dialogIdAction = (idDialog: number) => ({
     payload: idDialog,
 })
 
-export const dialogIdReducer = (state: number = 0, action: IActionReducer) => {
-    switch (action.type) {
-        case DIALOG_ID: {
+export const dialogIdReducer = createReducer(
+    0, {
+        [DIALOG_ID]: (state: number, action: any) => {
             const idDialog = action.payload;
 
-            return idDialog;
+            return idDialog
         }
-
-        default: return state;    
     }
-} 
+);
