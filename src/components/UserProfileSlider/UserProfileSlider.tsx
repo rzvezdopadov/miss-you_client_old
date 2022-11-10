@@ -57,7 +57,7 @@ export function UserProfileSlider() {
 		if (data) {
 			const newProfile = { ...userProfile.profile };
 
-			newProfile.likes = data;
+			newProfile.likes = data as unknown as Array<number>;
 
 			store.dispatch(userProfileAction(true, newProfile));
 		} else if (error) {
