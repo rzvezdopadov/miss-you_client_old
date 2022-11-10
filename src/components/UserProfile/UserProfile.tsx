@@ -41,7 +41,7 @@ function closeUserProfile(profile: IProfile) {
 export function UserProfile() {
 	const { data, error, querySendGetDialog } = useQueryGetDialog();
 	const { userProfile } = store.getState();
-	const refUserProfile = useRef(null);
+	const refUserProfile = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (data) {
@@ -54,6 +54,8 @@ export function UserProfile() {
 	}, [data, error]);
 
 	useEffect(() => {
+		if (!refUserProfile.current) return;
+
 		if (userProfile.enabled) {
 			refUserProfile.current.classList.remove("invisible");
 		} else {
@@ -269,7 +271,7 @@ export function UserProfile() {
 								<div className="flex flex-wrap justify-center">
 									{userProfile.profile.interests.length ? (
 										userProfile.profile.interests.map(
-											(interest, i) => {
+											(interest: string, i: number) => {
 												return (
 													<UserProfileInterest
 														key={interest + i}
@@ -286,6 +288,7 @@ export function UserProfile() {
 												userProfile.profile.id
 											}
 											value={"Отсутствуют"}
+											title={""}
 										/>
 									)}
 								</div>
@@ -301,13 +304,16 @@ export function UserProfile() {
 										{userProfile.profile.ilikecharacter
 											.length ? (
 											userProfile.profile.ilikecharacter.map(
-												(quality, i) => {
+												(
+													quality: number,
+													i: number
+												) => {
 													return (
 														<UserProfileInterest
 															key={
 																arr_iLikeСharacter[
 																	quality
-																] + i
+																][0] + i
 															}
 															value={
 																arr_iLikeСharacter[
@@ -330,6 +336,7 @@ export function UserProfile() {
 													userProfile.profile.id
 												}
 												value={"Отсутствуют"}
+												title={""}
 											/>
 										)}
 									</div>
@@ -347,13 +354,13 @@ export function UserProfile() {
 									{userProfile.profile.idontlikecharacter
 										.length ? (
 										userProfile.profile.idontlikecharacter.map(
-											(quality, i) => {
+											(quality: number, i: number) => {
 												return (
 													<UserProfileInterest
 														key={
 															arr_iDontLikeСharacter[
 																quality
-															] + i
+															][0] + i
 														}
 														value={
 															arr_iDontLikeСharacter[
@@ -376,6 +383,7 @@ export function UserProfile() {
 												userProfile.profile.id
 											}
 											value={"Отсутствуют"}
+											title={""}
 										/>
 									)}
 								</div>
