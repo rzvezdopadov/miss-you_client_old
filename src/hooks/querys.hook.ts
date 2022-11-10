@@ -4,7 +4,7 @@ import { logout } from "../components/logout/logout";
 import { modalLoadingOnHide, modalLoadingOnShow } from "../components/ModalLoading/ModalLoading";
 import { IQueryAnswer } from "../interfaces/iqueryanswer";
 
-function testOnBadTokenStatus(message) {
+function testOnBadTokenStatus(message: string) {
     if ((message === 'Токен просрочен, повторите вход в систему!') || (message === 'Токен не валидный!') ) {
         setTimeout(() => {
             logout();
