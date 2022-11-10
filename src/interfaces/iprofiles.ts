@@ -1,3 +1,8 @@
+export interface IFilterParam {
+	value: string | number;
+	onChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
+
 export interface IFilterUsers {
     location: string,
     agestart: number,
