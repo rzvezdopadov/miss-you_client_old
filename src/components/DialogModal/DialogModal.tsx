@@ -14,15 +14,17 @@ export function closeDialogModal() {
 
 export function DialogModal() {
 	const { dialogModal } = store.getState();
-	const refDialogModal = useRef(null);
+	const refDialogModal = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (dialogModal.enabled) {
+		if (!refDialogModal.current) return;
+
+		if (dialogModal) {
 			refDialogModal.current.classList.remove("invisible");
 		} else {
 			refDialogModal.current.classList.add("invisible");
 		}
-	}, [dialogModal.enabled]);
+	}, [dialogModal]);
 
 	const closeDialogModalHandler = () => {
 		closeDialogModal();
