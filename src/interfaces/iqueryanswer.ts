@@ -13,8 +13,8 @@ export interface IQueryAnswerError {
 }
 
 export interface IQueryAnswer {
-    data: {},
-    error: {},
+    data: {} | null,
+    error: {} | null,
     loaded: boolean,
     querySend(link: string, data: {}, modalLoad: boolean): void,
 }
