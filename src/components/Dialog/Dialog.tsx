@@ -13,7 +13,7 @@ export function Dialog() {
 	const { data, error, querySendMessage } = useQuerySendMessage();
 	const [message, setMessage] = useState("");
 
-	const bottomRef = useRef(null);
+	const bottomRef = useRef<HTMLDivElement>(null);
 
 	dialog as IDialog;
 
@@ -31,12 +31,12 @@ export function Dialog() {
 	}, [dialog]);
 
 	const scrollToBottom = () => {
-		if (bottomRef) {
-			bottomRef.current.scrollIntoView({
-				behavior: "smooth",
-				block: "start",
-			});
-		}
+		if (!bottomRef.current) return;
+
+		bottomRef.current.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
 	};
 
 	const sendMessageHandler = () => {
@@ -54,7 +54,9 @@ export function Dialog() {
 		querySendMessage(data);
 	};
 
-	const sendMessageOnKeyDownHandler = (e) => {
+	const sendMessageOnKeyDownHandler = (
+		e: React.KeyboardEvent<HTMLTextAreaElement>
+	) => {
 		if (e.ctrlKey && e.code === "Enter") sendMessageHandler();
 	};
 
