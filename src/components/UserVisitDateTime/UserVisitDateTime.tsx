@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IProfile, IProfileShort } from "../../interfaces/iprofiles";
 
-function getColorRound(timecodeSub) {
+function getColorRound(timecodeSub: number) {
 	let colorRound = " bg-white";
 
 	if (timecodeSub < 1 * 60 * 60 * 1000) {
