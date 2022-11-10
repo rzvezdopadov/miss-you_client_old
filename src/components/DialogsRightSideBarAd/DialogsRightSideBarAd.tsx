@@ -2,8 +2,6 @@ import * as React from "react";
 import { store } from "../../utils/store";
 
 export function DialogsRightSideBarAd() {
-	const { jwt, userMyProfile } = store.getState();
-
 	const obj = {
 		href: "https://alitems.co/g/568bdkww5g1a0445aa4216525dc3e8/?i=4",
 		src: "https://inlnk.ru/DB5RKM",
