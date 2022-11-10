@@ -13,9 +13,11 @@ function closeModalMessage() {
 
 export function ModalMessage() {
 	const { modalMessage } = store.getState();
-	const refModalMessage = useRef(null);
+	const refModalMessage = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		if (!refModalMessage.current) return;
+
 		if (modalMessage.enabled) {
 			refModalMessage.current.classList.remove("bottom-[-250px]");
 			refModalMessage.current.classList.add("bottom-0");

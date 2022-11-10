@@ -13,13 +13,15 @@ export function modalLoadingOnHide() {
 
 export function ModalLoading() {
 	const { modalLoading } = store.getState();
-	const refModalLoading = useRef(null);
+	const refModalLoading = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (modalLoading.enabled) {
-			refModalLoading.current.classList.remove("invisible");
-		} else {
-			refModalLoading.current.classList.add("invisible");
+		if (refModalLoading.current) {
+			if (modalLoading.enabled) {
+				refModalLoading.current.classList.remove("invisible");
+			} else {
+				refModalLoading.current.classList.add("invisible");
+			}
 		}
 	}, [modalLoading.enabled]);
 
