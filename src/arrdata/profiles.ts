@@ -1,10 +1,10 @@
-export const arr_age = [];
+export const arr_age: Array<number> = [];
 for (let i = 18; i < 121; i++) { arr_age.push(i); }
 
-export const arr_growth = [];
+export const arr_growth: Array<number> = [];
 for (let i = 120; i < 230; i++) { arr_growth.push(i); }
 
-export const arr_weight = [];
+export const arr_weight: Array<number> = [];
 for (let i = 40; i < 130; i++) { arr_weight.push(i); }
 
 export const arr_location = [
