@@ -27,6 +27,7 @@ import {
 } from "../DialogModal/DialogModal";
 import { openModalMessage } from "../ModalMessage/ModalMessage";
 import { UserProfileInterest } from "../UserProfileInterest/UserProfileInterest";
+import { UserProfileInterests } from "../UserProfileInterests/UserProfileInterests";
 import { UserProfileSlider } from "../UserProfileSlider/UserProfileSlider";
 import { UserVisitDateTime } from "../UserVisitDateTime/UserVisitDateTime";
 
@@ -269,28 +270,12 @@ export function UserProfile() {
 								<span className="flex">Интересы:</span>
 
 								<div className="flex flex-wrap justify-center">
-									{userProfile.profile.interests.length ? (
-										userProfile.profile.interests.map(
-											(interest: string, i: number) => {
-												return (
-													<UserProfileInterest
-														key={interest + i}
-														value={interest}
-														title={interest}
-													/>
-												);
-											}
-										)
-									) : (
-										<UserProfileInterest
-											key={
-												"interest" +
-												userProfile.profile.id
-											}
-											value={"Отсутствуют"}
-											title={""}
-										/>
-									)}
+									<UserProfileInterests
+										arrayInterests={
+											userProfile.profile.interests
+										}
+										idUser={userProfile.profile.id}
+									/>
 								</div>
 							</div>
 						</div>
