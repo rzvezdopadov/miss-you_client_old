@@ -18,7 +18,7 @@ import {
 	arr_weight,
 } from "../../arrdata/profiles";
 import { useQuerySetProfile } from "../../hooks/api.hook";
-import { IProfile } from "../../interfaces/iprofiles";
+import { IFilterUsers, IProfile } from "../../interfaces/iprofiles";
 import { IQuerySetProfile } from "../../interfaces/iquery";
 import { filtersUserAction, userMyProfileAction } from "../../utils/reducers";
 import { store } from "../../utils/store";
@@ -74,7 +74,14 @@ export function SettingProfile() {
 		setPositionPhoto(posPhoto);
 	};
 
-	const onChangeValueProfile = (e, key, type = "number") => {
+	const onChangeValueProfile = (
+		e:
+			| React.ChangeEvent<HTMLSelectElement>
+			| React.ChangeEvent<HTMLTextAreaElement>
+			| React.ChangeEvent<HTMLInputElement>,
+		key: keyof IProfile,
+		type = "number"
+	) => {
 		const newProfile = { ...myProfile };
 		let value: number | string = e.target.value;
 
@@ -82,26 +89,32 @@ export function SettingProfile() {
 			value = Number(value);
 		}
 
-		newProfile[key] = value;
+		newProfile[key] = value as never;
 		store.dispatch(userMyProfileAction(newProfile));
 	};
 
-	const nameOnChangeHandler = (e) => {
+	const nameOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		onChangeValueProfile(e, "name", "string");
 	};
-	const discriptionOnChangeHandler = (e) => {
+	const discriptionOnChangeHandler = (
+		e: React.ChangeEvent<HTMLTextAreaElement>
+	) => {
 		onChangeValueProfile(e, "discription", "string");
 	};
-	const locationOnChangeHandler = (e) => {
+	const locationOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "location", "string");
 	};
-	const genderOnChangeHandler = (e) => {
+	const genderOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChangeValueProfile(e, "gender");
 	};
-	const genderVaporOnChangeHandler = (e) => {
+	const genderVaporOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "gendervapor");
 	};
-	const birhdayOnChangeHandler = (e) => {
+	const birhdayOnChangeHandler = (e: { target: { value: string } }) => {
 		const newProfile = { ...myProfile };
 		const date: string = e.target.value;
 		const arrDate = date.split("-");
@@ -114,42 +127,56 @@ export function SettingProfile() {
 		store.dispatch(userMyProfileAction(newProfile));
 	};
 
-	const growthOnChangeHandler = (e) => {
+	const growthOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChangeValueProfile(e, "growth");
 	};
-	const weightOnChangeHandler = (e) => {
+	const weightOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChangeValueProfile(e, "weight");
 	};
-	const educationOnChangeHandler = (e) => {
+	const educationOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "education");
 	};
-	const fieldofactivityOnChangeHandler = (e) => {
+	const fieldofactivityOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "fieldofactivity");
 	};
-	const maritalstatusOnChangeHandler = (e) => {
+	const maritalstatusOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "maritalstatus");
 	};
-	const childrenOnChangeHandler = (e) => {
+	const childrenOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "children");
 	};
-	const religionOnChangeHandler = (e) => {
+	const religionOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "religion");
 	};
-	const smokeOnChangeHandler = (e) => {
+	const smokeOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChangeValueProfile(e, "smoke");
 	};
-	const alcoholOnChangeHandler = (e) => {
+	const alcoholOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfile(e, "alcohol");
 	};
-	const profitOnChangeHandler = (e) => {
+	const profitOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChangeValueProfile(e, "profit");
 	};
 
-	const interestOnChangeHandler = (e) => {
+	const interestOnChangeHandler = (e: {
+		target: { value: React.SetStateAction<string> };
+	}) => {
 		setInterest(e.target.value);
 	};
 
-	const interestAddOnKeyPressHandler = (e) => {
+	const interestAddOnKeyPressHandler = (e: { key: string }) => {
 		if (e.key === "Enter") interestAddOnClickHandler();
 	};
 
@@ -175,7 +202,11 @@ export function SettingProfile() {
 		store.dispatch(userMyProfileAction(newProfile));
 	};
 
-	const onChangeValueProfileFilter = (e, key, type = "number") => {
+	const onChangeValueProfileFilter = (
+		e: React.ChangeEvent<HTMLSelectElement>,
+		key: keyof IFilterUsers,
+		type = "number"
+	) => {
 		const newProfile = { ...myProfile };
 		newProfile.filters = { ...newProfile.filters };
 		let value: number | string = e.target.value;
@@ -184,44 +215,68 @@ export function SettingProfile() {
 			value = Number(value);
 		}
 
-		newProfile.filters[key] = value;
+		newProfile.filters[key] = value as never;
 		store.dispatch(userMyProfileAction(newProfile));
 	};
 
-	const filtersLocationOnChangeHandler = (e) => {
+	const filtersLocationOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "location");
 	};
-	const filtersAgeStartOnChangeHandler = (e) => {
+	const filtersAgeStartOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "agestart");
 	};
-	const filtersAgeEndOnChangeHandler = (e) => {
+	const filtersAgeEndOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "ageend");
 	};
-	const filtersGrowthStartOnChangeHandler = (e) => {
+	const filtersGrowthStartOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "growthstart");
 	};
-	const filtersGrowthEndOnChangeHandler = (e) => {
+	const filtersGrowthEndOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "growthend");
 	};
-	const filtersWeightStartOnChangeHandler = (e) => {
+	const filtersWeightStartOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "weightstart");
 	};
-	const filtersWeightEndOnChangeHandler = (e) => {
+	const filtersWeightEndOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "weightend");
 	};
-	const filtersSignZodiacOnChangeHandler = (e) => {
+	const filtersSignZodiacOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "signzodiac");
 	};
-	const filtersGenderVaporOnChangeHandler = (e) => {
+	const filtersGenderVaporOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "gendervapor");
 	};
-	const filtersReligionOnChangeHandler = (e) => {
+	const filtersReligionOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "religion");
 	};
-	const filtersSmokeOnChangeHandler = (e) => {
+	const filtersSmokeOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "smoke");
 	};
-	const filtersAlcoholOnChangeHandler = (e) => {
+	const filtersAlcoholOnChangeHandler = (
+		e: React.ChangeEvent<HTMLSelectElement>
+	) => {
 		onChangeValueProfileFilter(e, "alcohol");
 	};
 
