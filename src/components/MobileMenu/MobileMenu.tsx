@@ -14,8 +14,10 @@ export function openMobileMenu() {
 	store.dispatch(mobileMenuAction(true));
 }
 
-export function closeMobileMenu(event) {
-	event.preventDefault();
+export function closeMobileMenu(
+	e: React.MouseEvent<HTMLDivElement, MouseEvent>
+) {
+	e.preventDefault();
 
 	store.dispatch(mobileMenuAction(false));
 }
