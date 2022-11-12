@@ -217,6 +217,7 @@ const initialStateUserProfile: IUserProfile = {
         interests: [],
         ilikecharacter: [],
         idontlikecharacter: [],
+        raiting: 0,
         filters: {
             location: arr_location[0][0],
             agestart: arr_age[arr_age.length - 1],
@@ -285,6 +286,7 @@ const initialStateUserMyProfile: IProfile = {
     interests: [],
     ilikecharacter: [],
     idontlikecharacter: [],
+    raiting: 0,
     filters: {
         location: arr_location[0][0],
         agestart: arr_age[arr_age.length - 1],

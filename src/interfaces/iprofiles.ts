@@ -50,6 +50,7 @@ export interface IProfile {
     interests: Array<string>,
     ilikecharacter: Array<number>,
     idontlikecharacter: Array<number>,
+    raiting: number,
     filters: IFilterUsers,
 }
 
@@ -62,6 +63,7 @@ export interface IProfileShort {
     photomain: number,
     photolink: Array<string>,
     interests: Array<string>,
+    raiting: number,
 }
 
 export interface IMessage {
