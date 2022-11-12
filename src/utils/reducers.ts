@@ -384,21 +384,21 @@ export const dialogReducer = createReducer(
     }
 );
 ////////////////////////////////////////////////////////////////////////
-export const DIALOG_MODAL = 'DIALOG_MODAL';
+export const MODAL_DIALOG = 'MODAL_DIALOG';
 
-export const dialogModalAction = (enabled: boolean) => ({
-    type: DIALOG_MODAL,
+export const modalDialogAction = (enabled: boolean) => ({
+    type: MODAL_DIALOG,
     payload: {
         enabled,
     },
 });
 
-export const dialogModalReducer = createReducer(
+export const modalDialogReducer = createReducer(
     false, {
-        [DIALOG_MODAL]: (state: boolean, action: any) => {
-            const dialogModal = action.payload.enabled;
+        [MODAL_DIALOG]: (state: boolean, action: any) => {
+            const modalDialog = action.payload.enabled;
 
-            return dialogModal;
+            return modalDialog;
         }
     }
 );

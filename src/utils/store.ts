@@ -7,7 +7,7 @@ import {
     filtersUserReducer, 
     usersProfilesReducer, userProfileReducer, userMyProfileReducer, 
     settingProfileCharactersReducer, 
-    dialogsReducer, dialogReducer, dialogModalReducer, dialogIdReducer, mobileMenuReducer 
+    dialogsReducer, dialogReducer, modalDialogReducer, dialogIdReducer, mobileMenuReducer 
 } from "./reducers"
 
 export const store = configureStore({
@@ -24,7 +24,7 @@ export const store = configureStore({
         settingProfileCharacters: settingProfileCharactersReducer,
         dialogs: dialogsReducer,
         dialog: dialogReducer,
-        dialogModal: dialogModalReducer,
+        modalDialog: modalDialogReducer,
         dialogId: dialogIdReducer,
     }
 })

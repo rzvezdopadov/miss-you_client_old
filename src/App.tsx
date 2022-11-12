@@ -2,14 +2,14 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import "./App.css";
-import { AppHeader } from "./components/AppHeader/AppHeader";
-import { AppMain } from "./components/AppMain/AppMain";
+import { AppHeader } from "./components/App/AppHeader/AppHeader";
+import { AppMain } from "./components/App/AppMain/AppMain";
 import {
 	closeMobileMenu,
 	MobileMenu,
-} from "./components/MobileMenu/MobileMenu";
-import { ModalLoading } from "./components/ModalLoading/ModalLoading";
-import { ModalMessage } from "./components/ModalMessage/ModalMessage";
+} from "./components/App/MobileMenu/MobileMenu";
+import { ModalLoading } from "./components/Modal/ModalLoading/ModalLoading";
+import { ModalMessage } from "./components/Modal/ModalMessage/ModalMessage";
 import { store } from "./utils/store";
 // import socketIO from "socket.io-client";
 
