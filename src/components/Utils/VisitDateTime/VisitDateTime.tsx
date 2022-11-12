@@ -4,9 +4,9 @@ import { IProfile, IProfileShort } from "../../../interfaces/iprofiles";
 function getColorRound(timecodeSub: number) {
 	let colorRound = " bg-white";
 
-	if (timecodeSub < 1 * 60 * 60 * 1000) {
+	if (timecodeSub < 24 * 60 * 60 * 1000) {
 		colorRound = " bg-lime-500";
-	} else if (timecodeSub < 24 * 60 * 60 * 1000) {
+	} else if (timecodeSub < 48 * 60 * 60 * 1000) {
 		colorRound = " bg-yellow-500";
 	} else if (timecodeSub < 72 * 60 * 60 * 1000) {
 		colorRound = " bg-red-500";
@@ -32,7 +32,7 @@ export function VisitDateTimeShort(payload: {
 
 	let dateStr = payload.profile.gender ? "Была " : "Был ";
 
-	if (timecodeSub < 1 * 60 * 60 * 1000) {
+	if (timecodeSub < 24 * 60 * 60 * 1000) {
 		dateStr += "в " + date.toLocaleTimeString().slice(0, -3);
 	} else {
 		dateStr += date.toLocaleDateString();
