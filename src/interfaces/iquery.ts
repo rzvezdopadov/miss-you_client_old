@@ -1,47 +1,47 @@
 import { IFilterUsers, IProfile } from "./iprofiles";
 
 export interface IQueryRegistration {
-    gender: number,
-    genderVapor: number,
-    name: string,
-    email: string,
-    password: string,
+	gender: number;
+	gendervapor: number;
+	name: string;
+	email: string;
+	password: string;
 }
 
 export interface ILogin {
-    email: string,
-    password: string,
+	email: string;
+	password: string;
 }
 
 export interface IQueryGetProfile {
-    id: number,
+	id: number;
 }
 
 export interface IQuerySetProfile {
-    profile: IProfile,
+	profile: IProfile;
 }
 
 export interface IQueryLike {
-    id: number,
+	id: number;
 }
 
 export interface IQueryGetProfiles {
-    startCount: number, 
-    amount: number, 
-    filters: IFilterUsers,
+	startcount: number;
+	amount: number;
+	filters: IFilterUsers;
 }
 
 export interface IQueryGetProfilesOnlyLikes {
-    startCount: number, 
-    amount: number, 
-    users: any,
+	startcount: number;
+	amount: number;
+	users: any;
 }
 
 export interface IQueryDialog {
-    id: number,
+	id: number;
 }
 
 export interface IQuerySendMessage {
-    id: number,
-    message: string,
+	id: number;
+	message: string;
 }

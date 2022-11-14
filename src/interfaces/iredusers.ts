@@ -1,9 +1,9 @@
 export interface IStateModalMessage {
-    enabled: boolean,
-    text: '',
+	enabled: boolean;
+	text: "";
 }
 
 export interface IActionReducer {
-    type: string,
-    payload: any,
+	type: string;
+	payload: any;
 }
