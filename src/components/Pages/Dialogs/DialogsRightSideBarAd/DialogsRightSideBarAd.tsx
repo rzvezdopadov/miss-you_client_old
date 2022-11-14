@@ -20,7 +20,7 @@ export function DialogsRightSideBarAd() {
 			<div className="flex justify-center items-center w-full mt-2 select-none">
 				Наши партнеры:
 			</div>
-			<div className="flex justify-center flex-col items-center w-full mt-2 select-none">
+			<div className="flex overflow-y-scroll justify-start flex-col items-center w-full mt-2 select-none">
 				{ad.length ? (
 					ad.map((obj, index) => {
 						return (

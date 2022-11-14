@@ -95,7 +95,10 @@ export function UserProfile() {
 				<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 					<div className="flex flex-col">
 						<UserProfileSlider />
-						<div className="flex select-none bg-orange-700 justify-center cursor-pointer m-1 rounded-md">
+						<div
+							className="flex select-none bg-orange-700 justify-center m-1 rounded-md"
+							title="Рейтинг пользователя"
+						>
 							Рейтинг: {userProfile.profile.raiting}
 						</div>
 						<div
