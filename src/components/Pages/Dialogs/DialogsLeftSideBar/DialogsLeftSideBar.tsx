@@ -18,7 +18,7 @@ export function DialogsLeftSideBar() {
 	const { data, error, querySendGetDialogs } = useQueryGetDialogs();
 
 	useEffect(() => {
-		querySendGetDialogs();
+		if (userMyProfile.id) querySendGetDialogs();
 	}, [userMyProfile]);
 
 	useEffect(() => {
@@ -63,7 +63,7 @@ export function DialogsLeftSideBar() {
 				})
 			) : (
 				<div className="flex justify-center text-lime-400">
-					Пока нет диалогов =(
+					Пока нет диалогов &#128524;
 				</div>
 			)}
 		</>
