@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { modalDialogAction } from "../../../utils/reducers";
+import { dialogIdAction, modalDialogAction } from "../../../utils/reducers";
 import { store } from "../../../utils/store";
 import { Dialog } from "../../Pages/Dialogs/Dialog/Dialog";
 
@@ -28,6 +28,7 @@ export function ModalDialog() {
 
 	const closeDialogModalHandler = () => {
 		closeDialogModal();
+		store.dispatch(dialogIdAction(0));
 	};
 
 	return (

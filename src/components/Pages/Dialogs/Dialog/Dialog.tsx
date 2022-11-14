@@ -8,16 +8,15 @@ import { store } from "../../../../utils/store";
 import { DialogMessage } from "../DialogMessage/DialogMessage";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { scrollToBottom } from "../../../../utils/pagescroll";
-import { Emodjis } from "../Emodjis/Emodjis";
+import { Emojis } from "../Emojis/Emojis";
 
 export function Dialog() {
 	const { userMyProfile, dialog, dialogId } = store.getState();
 	const { data, error, querySendMessage } = useQuerySendMessage();
 	const [message, setMessage] = useState("");
+	const [emojisOpen, setEmojisOpen] = useState(false);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
-
-	dialog as IDialog;
 
 	useEffect(() => {
 		if (data) {
@@ -64,7 +63,10 @@ export function Dialog() {
 	return (
 		<>
 			<div className="flex flex-shrink-0 justify-center items-center w-full my-1 text-lime-400 select-none">
-				{dialog && dialog.age && Object.keys(dialog).length ? (
+				{dialog &&
+				dialog.age &&
+				dialogId &&
+				Object.keys(dialog).length ? (
 					`${dialog.name}, ${dialog.age} год`
 				) : (
 					<div className="flex justify-center text-lime-400">
@@ -119,8 +121,24 @@ export function Dialog() {
 				</div>
 
 				<div className="flex relative justify-center items-center flex-shrink-0 h-10 w-10 m-1 mb-4 text-3xl rounded-full cursor-pointer">
-					&#9786;
-					<Emodjis />
+					<div
+						className="flex"
+						onClick={() => {
+							emojisOpen
+								? setEmojisOpen(false)
+								: setEmojisOpen(true);
+						}}
+					>
+						&#9786;
+					</div>
+
+					<Emojis
+						onSetEmojiClbk={(e) => {
+							setEmojisOpen(false);
+							setMessage(message + e.currentTarget.innerHTML);
+						}}
+						emojisOpen={emojisOpen}
+					/>
 				</div>
 				<div
 					onClick={sendMessageHandler}
