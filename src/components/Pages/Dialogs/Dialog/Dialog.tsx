@@ -7,6 +7,8 @@ import { dialogAction } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
 import { DialogMessage } from "../DialogMessage/DialogMessage";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
+import { scrollToBottom } from "../../../../utils/pagescroll";
+import { Emodjis } from "../Emodjis/Emodjis";
 
 export function Dialog() {
 	const { userMyProfile, dialog, dialogId } = store.getState();
@@ -27,17 +29,8 @@ export function Dialog() {
 	}, [data, error]);
 
 	useEffect(() => {
-		scrollToBottom();
+		scrollToBottom(bottomRef);
 	}, [dialog]);
-
-	const scrollToBottom = () => {
-		if (!bottomRef.current) return;
-
-		bottomRef.current.scrollIntoView({
-			behavior: "smooth",
-			block: "start",
-		});
-	};
 
 	const sendMessageHandler = () => {
 		const data: IQuerySendMessage = {
@@ -47,6 +40,14 @@ export function Dialog() {
 
 		if (!message) {
 			openModalMessage("Сообщение не может быть пустым!");
+
+			return;
+		}
+
+		if (!dialogId) {
+			openModalMessage(
+				"Чтобы отправить сообщение, выберите пользователя!"
+			);
 
 			return;
 		}
@@ -99,7 +100,7 @@ export function Dialog() {
 				) : (
 					<div>Диалога нет</div>
 				)}
-				<div ref={bottomRef} className="list-bottom"></div>
+				<div ref={bottomRef}></div>
 			</div>
 			<div className="flex flex-shrink-0 justify-center items-end shadow-[0px_0px_1px_1px] shadow-lime-300 w-full mt-2 rounded-xl text-lime-400 select-none">
 				<div className="flex w-full flex-col my-1">
@@ -116,8 +117,10 @@ export function Dialog() {
 						value={message}
 					></textarea>
 				</div>
-				<div className="flex justify-center items-center flex-shrink-0 h-10 w-10 m-1 mb-4 text-3xl rounded-full cursor-pointer">
+
+				<div className="flex relative justify-center items-center flex-shrink-0 h-10 w-10 m-1 mb-4 text-3xl rounded-full cursor-pointer">
 					&#9786;
+					<Emodjis />
 				</div>
 				<div
 					onClick={sendMessageHandler}
