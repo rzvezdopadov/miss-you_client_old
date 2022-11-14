@@ -113,6 +113,9 @@ export function Dialog() {
 						onKeyDown={(e) => {
 							sendMessageOnKeyDownHandler(e);
 						}}
+						onFocus={() => {
+							setEmojisOpen(false);
+						}}
 						title="Напишите сообщение..."
 						className="flex text-center resize-none h-10 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-zinc-600 text-white m-2 p-2"
 						placeholder="Напишите сообщение..."
