@@ -30,12 +30,18 @@ export function VisitDateTimeShort(payload: {
 	const timecodeSub = timecodeNow - payload.profile.timecode;
 	const colorRound = getColorRound(timecodeSub);
 
-	let dateStr = payload.profile.gender ? "Была " : "Был ";
+	let dateStr = "";
 
-	if (timecodeSub < 24 * 60 * 60 * 1000) {
-		dateStr += "в " + date.toLocaleTimeString().slice(0, -3);
+	if (timecodeSub < 1 * 60 * 1000) {
+		dateStr += "Онлайн";
 	} else {
-		dateStr += date.toLocaleDateString();
+		dateStr += payload.profile.gender ? "Была " : "Был ";
+
+		if (timecodeSub < 24 * 60 * 60 * 1000) {
+			dateStr += "в " + date.toLocaleTimeString().slice(0, -3);
+		} else {
+			dateStr += date.toLocaleDateString();
+		}
 	}
 
 	return (
@@ -60,11 +66,17 @@ export function VisitDateTime(payload: { profile: IProfile | IProfileShort }) {
 	const timecodeSub = timecodeNow - payload.profile.timecode;
 	const colorRound = getColorRound(timecodeSub);
 
-	let dateStr = payload.profile.gender ? "Была " : "Был ";
+	let dateStr = "";
 
-	dateStr += `${date.toLocaleDateString()} в ${date
-		.toLocaleTimeString()
-		.slice(0, -3)}`;
+	if (timecodeSub < 1 * 60 * 1000) {
+		dateStr += "Онлайн";
+	} else {
+		dateStr += payload.profile.gender ? "Была " : "Был ";
+
+		dateStr += `${date.toLocaleDateString()} в ${date
+			.toLocaleTimeString()
+			.slice(0, -3)}`;
+	}
 
 	return (
 		<div className="flex justify-center items-center">
