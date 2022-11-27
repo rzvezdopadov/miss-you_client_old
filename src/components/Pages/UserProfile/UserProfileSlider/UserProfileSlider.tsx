@@ -5,6 +5,7 @@ import { IQueryLike } from "../../../../interfaces/iquery";
 import { userProfileAction } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
+import { setLike } from "../../../Utils/Socket/Socket";
 
 export function UserProfileSlider() {
 	const { userProfile } = store.getState();
@@ -65,10 +66,10 @@ export function UserProfileSlider() {
 		}
 	}, [data, error]);
 
-	let colorHeart = "bg-red-500 text-white";
+	let colorHeart = "bg-red-500";
 
 	if (userProfile.profile.likes.length === 0) {
-		colorHeart = "bg-white text-black";
+		colorHeart = "bg-white";
 	}
 
 	return (
@@ -96,14 +97,18 @@ export function UserProfileSlider() {
 					&lt;
 				</div>
 				<div
-					onClick={likeSlideHandler}
+					onClick={setLike}
 					className={
 						"flex select-none " +
 						colorHeart +
-						" justify-center text-xl cursor-pointer m-1 w-24 rounded-md"
+						" justify-center items-center text-xl cursor-pointer m-1 w-24 rounded-md"
 					}
 				>
-					&hearts;
+					{userProfile.profile.likes.length ? (
+						<span className="text-white">&#9825;</span>
+					) : (
+						<span className="text-red-500">&#10084;</span>
+					)}
 				</div>
 				<div
 					onClick={rightBtnSlideHandler}
