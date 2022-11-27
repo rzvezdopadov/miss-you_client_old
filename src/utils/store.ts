@@ -1,4 +1,3 @@
-// @ts-ignore
 import { configureStore } from "@reduxjs/toolkit";
 import {
 	jwtReducer,
@@ -13,8 +12,10 @@ import {
 	dialogsReducer,
 	dialogReducer,
 	modalDialogReducer,
-	dialogIdReducer,
 	mobileMenuReducer,
+	socketReducer,
+	dialogUserIdReducer,
+	messageForUserReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -32,6 +33,8 @@ export const store = configureStore({
 		dialogs: dialogsReducer,
 		dialog: dialogReducer,
 		modalDialog: modalDialogReducer,
-		dialogId: dialogIdReducer,
+		dialogUserId: dialogUserIdReducer,
+		socket: socketReducer,
+		messageForUser: messageForUserReducer,
 	},
 });

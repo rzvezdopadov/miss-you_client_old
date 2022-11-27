@@ -41,6 +41,27 @@ export const mobileMenuReducer = createReducer(initialStateMobileMenu, {
 	},
 });
 ////////////////////////////////////////////////////////////////////////
+export const SOCKET = "SOCKET";
+
+export const socketAction = (enabled: boolean) => ({
+	type: SOCKET,
+	payload: {
+		enabled,
+	},
+});
+
+const initialStateSocket: IEnableParamState = {
+	enabled: false,
+};
+
+export const socketReducer = createReducer(initialStateSocket, {
+	[MOBILE_MENU]: (state: IEnableParamState, action: any) => {
+		const { enabled } = action.payload;
+
+		return { enabled };
+	},
+});
+////////////////////////////////////////////////////////////////////////
 export const MODAL_LOADING = "MODAL_LOADING";
 
 export const modalLoadingAction = (enabled: boolean, text: string = "") => ({
@@ -182,7 +203,7 @@ interface IUserProfile {
 	profile: IProfile;
 }
 
-const initialStateUserProfile: IUserProfile = {
+export const initialStateUserProfile: IUserProfile = {
 	enabled: false,
 	profile: {
 		id: 0,
@@ -366,7 +387,7 @@ export const dialogAction = (dialog: IDialog) => ({
 
 const initialStateDialog: IDialog = {
 	timecode: 0,
-	idUser: 0,
+	userId: 0,
 	name: "",
 	age: 0,
 	photomain: 0,
@@ -399,17 +420,32 @@ export const modalDialogReducer = createReducer(false, {
 	},
 });
 ////////////////////////////////////////////////////////////////////////
-export const DIALOG_ID = "DIALOG_ID";
+export const DIALOG_USER_ID = "DIALOG_USER_ID";
 
-export const dialogIdAction = (idDialog: number) => ({
-	type: DIALOG_ID,
-	payload: idDialog,
+export const dialogUserIdAction = (dialogUserId: number) => ({
+	type: DIALOG_USER_ID,
+	payload: dialogUserId,
 });
 
-export const dialogIdReducer = createReducer(0, {
-	[DIALOG_ID]: (state: number, action: any) => {
-		const idDialog = action.payload;
+export const dialogUserIdReducer = createReducer(0, {
+	[DIALOG_USER_ID]: (state: number, action: any) => {
+		const dialogUserId = action.payload;
 
-		return idDialog;
+		return dialogUserId;
+	},
+});
+////////////////////////////////////////////////////////////////////////
+export const MESSAGE_FOR_USER = "MESSAGE_FOR_USER";
+
+export const messageForUserAction = (value: string) => ({
+	type: MESSAGE_FOR_USER,
+	payload: { value },
+});
+
+const initialStateMessageForUser: string = "";
+
+export const messageForUserReducer = createReducer(initialStateMessageForUser, {
+	[MESSAGE_FOR_USER]: (state: string, action: any) => {
+		return (state = action.payload.value);
 	},
 });
