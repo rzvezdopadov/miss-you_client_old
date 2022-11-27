@@ -68,13 +68,13 @@ export interface IProfileShort {
 
 export interface IMessage {
 	timecode: number;
-	idUser: number;
+	userId: number;
 	message: string;
 }
 
 export interface IDialog {
 	timecode: number;
-	idUser: number;
+	userId: number;
 	name: string;
 	age: number;
 	photomain: number;
