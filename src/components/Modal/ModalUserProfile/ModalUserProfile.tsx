@@ -16,7 +16,8 @@ import { IProfile } from "../../../interfaces/iprofiles";
 import { IQueryDialog } from "../../../interfaces/iquery";
 import {
 	dialogAction,
-	dialogIdAction,
+	dialogUserIdAction,
+	initialStateUserProfile,
 	userProfileAction,
 } from "../../../utils/reducers";
 import { store } from "../../../utils/store";
@@ -35,8 +36,8 @@ export function openUserProfile(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
 }
 
-function closeUserProfile(profile: IProfile) {
-	store.dispatch(userProfileAction(false, profile));
+function closeUserProfile() {
+	store.dispatch(userProfileAction(false, initialStateUserProfile.profile));
 }
 
 export function UserProfile() {
@@ -48,7 +49,7 @@ export function UserProfile() {
 		if (data) {
 			openDialogModal();
 			store.dispatch(dialogAction(data));
-			store.dispatch(dialogIdAction(userProfile.profile.id));
+			store.dispatch(dialogUserIdAction(userProfile.profile.id));
 		} else if (error) {
 			openModalMessage(error.response.data.message);
 		}
@@ -74,7 +75,7 @@ export function UserProfile() {
 
 	const closeUserProfileHandler = () => {
 		closeDialogModal();
-		closeUserProfile(userProfile.profile);
+		closeUserProfile();
 	};
 
 	return (

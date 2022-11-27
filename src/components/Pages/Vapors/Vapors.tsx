@@ -20,6 +20,7 @@ export function Vapors() {
 	const { userMyProfile, usersProfiles, userProfile } = store.getState();
 	const { data, error, querySendGetProfiles } = useQueryGetProfiles();
 	const [dataLoader, setDataLoader] = useState(true);
+	const [likes, setLikes] = useState(userMyProfile.likes);
 	const scrollTopDiv = useRef(null);
 	const scrollToTopBtn = useRef(null);
 
@@ -34,8 +35,14 @@ export function Vapors() {
 	}, []);
 
 	useEffect(() => {
+		if (userMyProfile.id !== 0) {
+			setLikes(userMyProfile.likes);
+		}
+	}, [userMyProfile.id]);
+
+	useEffect(() => {
 		querySendGetProfilesLocal(0);
-	}, [userMyProfile]);
+	}, [likes]);
 
 	useEffect(() => {
 		if (data) {
@@ -52,7 +59,7 @@ export function Vapors() {
 		const data: IQueryGetProfilesOnlyLikes = {
 			startcount: startcount,
 			amount: lazyloadingusercount,
-			users: String(userMyProfile.likes),
+			users: String(likes),
 		};
 
 		if (userMyProfile.id) querySendGetProfiles(data);

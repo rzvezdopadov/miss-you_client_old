@@ -4,8 +4,8 @@ import { useQueryGetDialogs } from "../../../../hooks/api.hook";
 import { IDialog } from "../../../../interfaces/iprofiles";
 import {
 	dialogAction,
-	dialogIdAction,
 	dialogsAction,
+	dialogUserIdAction,
 } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
 import { openDialogModal } from "../../../Modal/ModalDialog/ModalDialog";
@@ -19,7 +19,7 @@ export function DialogsLeftSideBar() {
 
 	useEffect(() => {
 		if (userMyProfile.id) querySendGetDialogs();
-	}, [userMyProfile]);
+	}, [userMyProfile.id]);
 
 	useEffect(() => {
 		if (data) {
@@ -33,13 +33,13 @@ export function DialogsLeftSideBar() {
 		}
 	}, [data, error]);
 
-	const setDialogOnClick = (idUser: number) => {
+	const setDialogOnClick = (userId: number) => {
 		const outDialog = dialogs.filter(
-			(value: IDialog) => value.idUser === idUser
+			(value: IDialog) => value.userId === userId
 		);
 
 		store.dispatch(dialogAction(outDialog[0]));
-		store.dispatch(dialogIdAction(idUser));
+		store.dispatch(dialogUserIdAction(userId));
 		openDialogModal();
 	};
 
@@ -56,7 +56,7 @@ export function DialogsLeftSideBar() {
 							key={dialog.timecode + index}
 							dialog={dialog}
 							onClickHandler={() => {
-								setDialogOnClick(dialog.idUser);
+								setDialogOnClick(dialog.userId);
 							}}
 						/>
 					);

@@ -1,6 +1,10 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { dialogIdAction, modalDialogAction } from "../../../utils/reducers";
+import {
+	dialogUserIdAction,
+	messageForUserAction,
+	modalDialogAction,
+} from "../../../utils/reducers";
 import { store } from "../../../utils/store";
 import { Dialog } from "../../Pages/Dialogs/Dialog/Dialog";
 
@@ -10,6 +14,8 @@ export function openDialogModal() {
 
 export function closeDialogModal() {
 	store.dispatch(modalDialogAction(false));
+	store.dispatch(dialogUserIdAction(0));
+	store.dispatch(messageForUserAction(""));
 }
 
 export function ModalDialog() {
@@ -28,7 +34,7 @@ export function ModalDialog() {
 
 	const closeDialogModalHandler = () => {
 		closeDialogModal();
-		store.dispatch(dialogIdAction(0));
+		store.dispatch(dialogUserIdAction(0));
 	};
 
 	return (

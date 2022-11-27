@@ -1,49 +1,37 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useQuerySendMessage } from "../../../../hooks/api.hook";
-import { IDialog, IMessage } from "../../../../interfaces/iprofiles";
-import { IQuerySendMessage } from "../../../../interfaces/iquery";
-import { dialogAction } from "../../../../utils/reducers";
+import { IMessage } from "../../../../interfaces/iprofiles";
+import { messageForUserAction } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
 import { DialogMessage } from "../DialogMessage/DialogMessage";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { scrollToBottom } from "../../../../utils/pagescroll";
 import { Emojis } from "../Emojis/Emojis";
+import { sendMessage } from "../../../Utils/Socket/Socket";
 
 export function Dialog() {
-	const { userMyProfile, dialog, dialogId } = store.getState();
-	const { data, error, querySendMessage } = useQuerySendMessage();
-	const [message, setMessage] = useState("");
+	const { userMyProfile, dialog, dialogUserId, messageForUser } =
+		store.getState();
 	const [emojisOpen, setEmojisOpen] = useState(false);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		if (data) {
-			setMessage("");
-			store.dispatch(dialogAction(data));
-		} else if (error) {
-			openModalMessage(error.response.data.message);
-		}
-	}, [data, error]);
+	const setMessageForUser = (str: string) => {
+		store.dispatch(messageForUserAction(str));
+	};
 
 	useEffect(() => {
 		scrollToBottom(bottomRef);
 	}, [dialog]);
 
 	const sendMessageHandler = () => {
-		const data: IQuerySendMessage = {
-			id: dialogId,
-			message: message,
-		};
-
-		if (!message) {
+		if (!messageForUser) {
 			openModalMessage("Сообщение не может быть пустым!");
 
 			return;
 		}
 
-		if (!dialogId) {
+		if (!dialogUserId) {
 			openModalMessage(
 				"Чтобы отправить сообщение, выберите пользователя!"
 			);
@@ -51,7 +39,9 @@ export function Dialog() {
 			return;
 		}
 
-		querySendMessage(data);
+		sendMessage(messageForUser);
+
+		store.dispatch(messageForUserAction(""));
 	};
 
 	const sendMessageOnKeyDownHandler = (
@@ -65,7 +55,7 @@ export function Dialog() {
 			<div className="flex flex-shrink-0 justify-center items-center w-full my-1 text-lime-400 select-none">
 				{dialog &&
 				dialog.age &&
-				dialogId &&
+				dialogUserId &&
 				Object.keys(dialog).length ? (
 					`${dialog.name}, ${dialog.age} год`
 				) : (
@@ -84,7 +74,7 @@ export function Dialog() {
 						let photolink =
 							userMyProfile.photolink[userMyProfile.photomain];
 
-						if (userMyProfile.id !== value.idUser) {
+						if (userMyProfile.id !== value.userId) {
 							name = dialog.name;
 							photolink = dialog.photolink[dialog.photomain];
 						}
@@ -108,7 +98,7 @@ export function Dialog() {
 				<div className="flex w-full flex-col my-1">
 					<textarea
 						onChange={(e) => {
-							setMessage(e.target.value);
+							setMessageForUser(e.target.value);
 						}}
 						onKeyDown={(e) => {
 							sendMessageOnKeyDownHandler(e);
@@ -119,7 +109,7 @@ export function Dialog() {
 						title="Напишите сообщение..."
 						className="flex text-center resize-none h-10 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-zinc-600 text-white m-2 p-2"
 						placeholder="Напишите сообщение..."
-						value={message}
+						value={messageForUser}
 					></textarea>
 				</div>
 
@@ -138,7 +128,9 @@ export function Dialog() {
 					<Emojis
 						onSetEmojiClbk={(e) => {
 							setEmojisOpen(false);
-							setMessage(message + e.currentTarget.innerHTML);
+							setMessageForUser(
+								messageForUser + e.currentTarget.innerHTML
+							);
 						}}
 						emojisOpen={emojisOpen}
 					/>

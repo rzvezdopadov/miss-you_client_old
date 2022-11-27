@@ -18,6 +18,7 @@ import {
 	userMyProfileAction,
 } from "../../../utils/reducers";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
+import { Socket } from "../../Utils/Socket/Socket";
 
 export function AppMain() {
 	const { jwt } = store.getState();
@@ -71,6 +72,7 @@ export function AppMain() {
 					)}
 				</Routes>
 			}
+			{jwt ? <Socket /> : <></>}
 		</div>
 	);
 }
