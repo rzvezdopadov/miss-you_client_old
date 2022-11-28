@@ -55,7 +55,7 @@ const initialStateSocket: IEnableParamState = {
 };
 
 export const socketReducer = createReducer(initialStateSocket, {
-	[MOBILE_MENU]: (state: IEnableParamState, action: any) => {
+	[SOCKET]: (state: IEnableParamState, action: any) => {
 		const { enabled } = action.payload;
 
 		return { enabled };
