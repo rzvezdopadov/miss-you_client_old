@@ -137,7 +137,7 @@ export function useQueryDelete() {
 		setLoaded(true);
 
 		await axios
-			.delete(link, data)
+			.delete(link, { data })
 			.then((payload) => {
 				setDataAnswer(payload.data);
 			})
