@@ -28,6 +28,10 @@ import { store } from "../../../utils/store";
 import { Filters } from "../../Filters/Filters";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import {
+	ModalPhotoDelete,
+	openModalPhotoDelete,
+} from "../../Modal/ModalPhotoDelete/ModalPhotoDelete";
+import {
 	SelectFromArr,
 	SelectFromArrValue,
 } from "../../Utils/SelectFromArr/SelectFromArr";
@@ -41,6 +45,20 @@ export function SettingProfile() {
 	const [positionPhoto, setPositionPhoto] = useState(0);
 	const [interest, setInterest] = useState("");
 	const { data, error, querySendSetProfile } = useQuerySetProfile();
+
+	useEffect(() => {
+		setPositionPhoto(userMyProfile.photomain);
+	}, [userMyProfile.photomain]);
+
+	useEffect(() => {
+		if (data) {
+			store.dispatch(filtersUserAction(data.filters));
+			store.dispatch(userMyProfileAction(data));
+			openModalMessage("Успешно сохранено!");
+		} else if (error) {
+			openModalMessage(error.response.data.message);
+		}
+	}, [data, error]);
 
 	let date = new Date();
 
@@ -292,16 +310,6 @@ export function SettingProfile() {
 		querySendSetProfile(data);
 	};
 
-	useEffect(() => {
-		if (data) {
-			store.dispatch(filtersUserAction(data.filters));
-			store.dispatch(userMyProfileAction(data));
-			openModalMessage("Успешно сохранено!");
-		} else if (error) {
-			openModalMessage(error.response.data.message);
-		}
-	}, [data, error]);
-
 	return (
 		<>
 			<div className="flex flex-col fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-20 bottom-6 left-0 right-0 m-auto px-2 pt-2 pb-2 lg:h-2/3 lg:max-w-5xl">
@@ -320,35 +328,50 @@ export function SettingProfile() {
 							}}
 							className="flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
 						>
-							<div
-								className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-6 w-6"
-								title="Удалить фото"
-							>
-								X
-							</div>
+							{userMyProfile.photolink.length ? (
+								<div
+									className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-6 w-6"
+									title="Удалить фото"
+									onClick={() => {
+										openModalPhotoDelete(positionPhoto);
+									}}
+								>
+									X
+								</div>
+							) : (
+								<></>
+							)}
 						</div>
 					</div>
-					<div className="flex justify-center cursor-pointer m-1 rounded-md">
-						<div
-							onClick={leftBtnSlideHandler}
-							className="flex select-none bg-gray-300 text-black text-xl border-lime-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-							title="Фото влево"
-						>
-							&lt;
-						</div>
+					<div className="flex justify-center m-1 rounded-md">
+						{userMyProfile.photolink.length > 1 ? (
+							<div
+								onClick={leftBtnSlideHandler}
+								className="flex select-none bg-gray-300 text-black text-xl border-lime-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
+								title="Фото влево"
+							>
+								&lt;
+							</div>
+						) : (
+							<></>
+						)}
 						<div
 							className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
 							title="Добавить фото"
 						>
 							+
 						</div>
-						<div
-							onClick={rightBtnSlideHandler}
-							className="flex select-none bg-gray-300 text-black text-xl border-lime-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-							title="Фото вправо"
-						>
-							&gt;
-						</div>
+						{userMyProfile.photolink.length > 1 ? (
+							<div
+								onClick={rightBtnSlideHandler}
+								className="flex select-none bg-gray-300 text-black text-xl border-lime-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
+								title="Фото вправо"
+							>
+								&gt;
+							</div>
+						) : (
+							<></>
+						)}
 					</div>
 					<div className="flex flex-wrap justify-center m-1">
 						{userMyProfile.photolink.map((value, index) => {
@@ -740,6 +763,7 @@ export function SettingProfile() {
 			</div>
 
 			<SettingProfileCharacters />
+			<ModalPhotoDelete />
 		</>
 	);
 }

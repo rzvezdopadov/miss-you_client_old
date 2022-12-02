@@ -1,9 +1,15 @@
-import { IDialog, IProfile, IProfileShort } from "../interfaces/iprofiles";
+import {
+	IDialog,
+	IPhoto,
+	IProfile,
+	IProfileShort,
+} from "../interfaces/iprofiles";
 import {
 	ILogin,
 	IQueryDialog,
 	IQueryGetProfiles,
 	IQueryLike,
+	IQueryPhoto,
 	IQuerySendMessage,
 	IQuerySetProfile,
 } from "../interfaces/iquery";
@@ -17,13 +23,19 @@ import {
 	IQueryAnswerLoginData,
 	IQueryAnswerMessage,
 	IQueryAnswerMessageData,
+	IQueryAnswerPhoto,
 	IQueryAnswerProfiles,
 	IQueryAnswerProfileShort,
 	IQueryAnswerRegistration,
 	IQueryAnswerRegistrationData,
 	IQueryAnswerSetProfile,
 } from "../interfaces/iqueryanswer";
-import { useQueryGet, useQueryPost, useQueryPut } from "./querys.hook";
+import {
+	useQueryDelete,
+	useQueryGet,
+	useQueryPost,
+	useQueryPut,
+} from "./querys.hook";
 
 /* API Query to server */
 
@@ -248,6 +260,29 @@ export function useQuerySendMessage() {
 		error: errorNew,
 		loaded,
 		querySendMessage,
+	};
+
+	return queryAnswer;
+}
+
+/* Delete photo
+    - * - photoPos
+*/
+export function useQueryDeletePhoto() {
+	const { data, error, loaded, querySend } = useQueryDelete();
+
+	const queryDeletePhoto = async (dataQuery: IQueryPhoto) => {
+		querySend("/api/photo", dataQuery, true);
+	};
+
+	const dataNew = data as IPhoto;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerPhoto = {
+		data: dataNew,
+		error: errorNew,
+		loaded,
+		queryDeletePhoto,
 	};
 
 	return queryAnswer;
