@@ -34,7 +34,6 @@ export function ModalDialog() {
 
 	const closeDialogModalHandler = () => {
 		closeDialogModal();
-		store.dispatch(dialogUserIdAction(0));
 	};
 
 	return (
