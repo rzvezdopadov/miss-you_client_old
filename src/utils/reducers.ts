@@ -13,7 +13,7 @@ import {
 	IProfile,
 	IProfileShort,
 } from "../interfaces/iprofiles";
-import { IStateModalMessage } from "../interfaces/iredusers";
+import { IStateModalMessage, IStatePhotoDelete } from "../interfaces/iredusers";
 import { getCookiesJWT } from "./cookie";
 
 export const MOBILE_MENU = "MOBILE_MENU";
@@ -109,6 +109,34 @@ export const modalMessageReducer = createReducer(initialStateModalMessage, {
 		return { enabled, text };
 	},
 });
+////////////////////////////////////////////////////////////////////////
+export const MODAL_PHOTO_DELETE = "MODAL_PHOTO_DELETE";
+
+export const modalPhotoDeleteAction = (enabled: boolean, photoPos: number) => ({
+	type: MODAL_PHOTO_DELETE,
+	payload: {
+		enabled,
+		photoPos,
+	},
+});
+
+const initialStateModalPhotoDelete: IStatePhotoDelete = {
+	enabled: false,
+	photoPos: 0,
+};
+
+export const modalPhotoDeleteReducer = createReducer(
+	initialStateModalPhotoDelete,
+	{
+		[MODAL_PHOTO_DELETE]: (state: IStatePhotoDelete, action: any) => {
+			let { enabled, photoPos } = action.payload;
+
+			if (!enabled) photoPos = state.photoPos;
+
+			return { enabled, photoPos };
+		},
+	}
+);
 ////////////////////////////////////////////////////////////////////////
 export const JWT_TOKEN = "JWT_TOKEN";
 

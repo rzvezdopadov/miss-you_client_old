@@ -16,6 +16,7 @@ import {
 	socketReducer,
 	dialogUserIdReducer,
 	messageForUserReducer,
+	modalPhotoDeleteReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -24,6 +25,7 @@ export const store = configureStore({
 		mobileMenu: mobileMenuReducer,
 		modalLoading: modalLoadingReducer,
 		modalMessage: modalMessageReducer,
+		modalPhotoDelete: modalPhotoDeleteReducer,
 		myVapors: myVaporsReducer,
 		filtersUser: filtersUserReducer,
 		usersProfiles: usersProfilesReducer,
