@@ -1,4 +1,5 @@
-import { IDialog, IProfile, IProfileShort } from "./iprofiles";
+import { IDialog, IPhoto, IProfile, IProfileShort } from "./iprofiles";
+import { IQueryPhoto } from "./iquery";
 
 export interface IQueryAnswerError {
 	message: "";
@@ -100,4 +101,11 @@ export interface IQueryAnswerMessage {
 	error: IQueryAnswerError;
 	loaded: boolean;
 	querySendMessage(data: {}): void;
+}
+
+export interface IQueryAnswerPhoto {
+	data: IPhoto;
+	error: IQueryAnswerError;
+	loaded: boolean;
+	queryDeletePhoto(data: {}): void;
 }

@@ -81,3 +81,8 @@ export interface IDialog {
 	photolink: Array<string>;
 	messages: Array<IMessage>;
 }
+
+export interface IPhoto {
+	photomain: number;
+	photolink: Array<string>;
+}

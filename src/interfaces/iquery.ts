@@ -45,3 +45,7 @@ export interface IQuerySendMessage {
 	id: number;
 	message: string;
 }
+
+export interface IQueryPhoto {
+	photoPos: number;
+}
