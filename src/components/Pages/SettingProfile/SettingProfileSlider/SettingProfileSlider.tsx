@@ -4,6 +4,7 @@ import { useQueryCheckPhoto } from "../../../../hooks/api.hook";
 import { IQueryPhoto } from "../../../../interfaces/iquery";
 import { userMyProfileAction } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
+import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { openModalPhotoDelete } from "../../../Modal/ModalPhotoDelete/ModalPhotoDelete";
 
 export function SettingProfileSlider() {
@@ -19,6 +20,7 @@ export function SettingProfileSlider() {
 			newUserMyProfile.photomain = data.photomain;
 
 			store.dispatch(userMyProfileAction(newUserMyProfile));
+			openModalMessage("Успешно сохранено!");
 		}
 	}, [data, error]);
 
