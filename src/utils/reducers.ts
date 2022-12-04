@@ -413,7 +413,7 @@ export const dialogAction = (dialog: IDialog) => ({
 	},
 });
 
-const initialStateDialog: IDialog = {
+export const initialStateDialog: IDialog = {
 	timecode: 0,
 	userId: 0,
 	name: "",
