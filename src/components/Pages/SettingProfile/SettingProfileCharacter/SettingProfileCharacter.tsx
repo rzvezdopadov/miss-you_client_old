@@ -16,7 +16,7 @@ export function SettingProfileCharacter(payload: {
 			>
 				<div className="flex items-center">
 					<input
-						className=" shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-lg m-2"
+						className="cursor-pointer shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-lg m-2"
 						onChange={() => {
 							payload.changeClbk(payload.id);
 						}}
