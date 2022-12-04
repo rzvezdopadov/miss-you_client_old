@@ -14,6 +14,8 @@ import {
 	IQuerySetProfile,
 } from "../interfaces/iquery";
 import {
+	IQueryAnswerCheckPhoto,
+	IQueryAnswerDeletePhoto,
 	IQueryAnswerDialog,
 	IQueryAnswerDialogs,
 	IQueryAnswerError,
@@ -23,7 +25,6 @@ import {
 	IQueryAnswerLoginData,
 	IQueryAnswerMessage,
 	IQueryAnswerMessageData,
-	IQueryAnswerPhoto,
 	IQueryAnswerProfiles,
 	IQueryAnswerProfileShort,
 	IQueryAnswerRegistration,
@@ -278,11 +279,34 @@ export function useQueryDeletePhoto() {
 	const dataNew = data as IPhoto;
 	const errorNew = error as IQueryAnswerError;
 
-	const queryAnswer: IQueryAnswerPhoto = {
+	const queryAnswer: IQueryAnswerDeletePhoto = {
 		data: dataNew,
 		error: errorNew,
 		loaded,
 		queryDeletePhoto,
+	};
+
+	return queryAnswer;
+}
+
+/* Check photo
+    - * - photoPos
+*/
+export function useQueryCheckPhoto() {
+	const { data, error, loaded, querySend } = useQueryPut();
+
+	const queryCheckPhoto = async (dataQuery: IQueryPhoto) => {
+		querySend("/api/photo", dataQuery, true);
+	};
+
+	const dataNew = data as IPhoto;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerCheckPhoto = {
+		data: dataNew,
+		error: errorNew,
+		loaded,
+		queryCheckPhoto,
 	};
 
 	return queryAnswer;
