@@ -55,6 +55,7 @@ export const arr_signZodiac = [
 ];
 
 export const arr_education = [
+	"Не имеет значения",
 	"Среднее",
 	"Неоконченное высшее",
 	"Высшее",
@@ -63,6 +64,8 @@ export const arr_education = [
 ];
 
 export const arr_fieldOfActivity = [
+	"Не имеет значения",
+	"Не работаю",
 	"Образование",
 	"Здравохранение",
 	"Наука",
@@ -97,7 +100,6 @@ export const arr_fieldOfActivity = [
 	"Судебные органы",
 	"HR, управление персоналом",
 	"Студент",
-	"Не работаю",
 ];
 
 export const arr_maritalStatus = [
