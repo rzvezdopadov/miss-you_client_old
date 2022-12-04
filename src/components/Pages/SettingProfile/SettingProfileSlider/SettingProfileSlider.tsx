@@ -1,42 +1,82 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useQueryCheckPhoto } from "../../../../hooks/api.hook";
+import { IQueryPhoto } from "../../../../interfaces/iquery";
+import { userMyProfileAction } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
 import { openModalPhotoDelete } from "../../../Modal/ModalPhotoDelete/ModalPhotoDelete";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
-	const [positionPhoto, setPositionPhoto] = useState(0);
+	const [photoPosition, setPhotoPosition] = useState(0);
+	const checkMainPhoto = useRef<HTMLDivElement>(null);
+	const { data, error, loaded, queryCheckPhoto } = useQueryCheckPhoto();
 
 	useEffect(() => {
-		setPositionPhoto(userMyProfile.photomain);
+		if (data) {
+			const newUserMyProfile = { ...userMyProfile };
+			newUserMyProfile.photolink = data.photolink;
+			newUserMyProfile.photomain = data.photomain;
+
+			store.dispatch(userMyProfileAction(newUserMyProfile));
+		}
+	}, [data, error]);
+
+	useEffect(() => {
+		setPhotoPosition(userMyProfile.photomain);
+		changeCheckPhotoMain();
 	}, [userMyProfile.photomain]);
 
+	useEffect(() => {
+		changeCheckPhotoMain();
+	}, [photoPosition]);
+
+	const changeCheckPhotoMain = () => {
+		if (!checkMainPhoto.current) return;
+
+		if (photoPosition === userMyProfile.photomain) {
+			checkMainPhoto.current.classList.remove("bg-white");
+			checkMainPhoto.current.classList.add("bg-lime-400");
+		} else {
+			checkMainPhoto.current.classList.remove("bg-lime-400");
+			checkMainPhoto.current.classList.add("bg-white");
+		}
+	};
+
 	const leftBtnSlideHandler = () => {
-		let posPhoto = positionPhoto;
+		let photoPos = photoPosition;
 
 		if (userMyProfile.photolink.length > 0) {
-			posPhoto--;
+			photoPos--;
 
-			if (posPhoto < 0) {
-				posPhoto = userMyProfile.photolink.length - 1;
+			if (photoPos < 0) {
+				photoPos = userMyProfile.photolink.length - 1;
 			}
 		}
 
-		setPositionPhoto(posPhoto);
+		setPhotoPosition(photoPos);
 	};
 
 	const rightBtnSlideHandler = () => {
-		let posPhoto = positionPhoto;
+		let photoPos = photoPosition;
 
 		if (userMyProfile.photolink.length > 0) {
-			posPhoto++;
+			photoPos++;
 
-			if (posPhoto > userMyProfile.photolink.length - 1) {
-				posPhoto = 0;
+			if (photoPos > userMyProfile.photolink.length - 1) {
+				photoPos = 0;
 			}
 		}
 
-		setPositionPhoto(posPhoto);
+		setPhotoPosition(photoPos);
+	};
+
+	const checkMainPhotoHandler = () => {
+		const data: IQueryPhoto = {
+			photoPos: photoPosition,
+		};
+
+		queryCheckPhoto(data);
 	};
 
 	return (
@@ -46,17 +86,29 @@ export function SettingProfileSlider() {
 					style={{
 						backgroundImage:
 							"URL(" +
-							userMyProfile.photolink[positionPhoto] +
+							userMyProfile.photolink[photoPosition] +
 							")",
 					}}
 					className="flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
 				>
 					{userMyProfile.photolink.length ? (
 						<div
+							className="flex justify-center absolute left-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 text-black bg-lime-400 h-6 w-6"
+							title="Сделать главным фото"
+							ref={checkMainPhoto}
+							onClick={checkMainPhotoHandler}
+						>
+							&#10004;
+						</div>
+					) : (
+						<></>
+					)}
+					{userMyProfile.photolink.length ? (
+						<div
 							className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-6 w-6"
 							title="Удалить фото"
 							onClick={() => {
-								openModalPhotoDelete(positionPhoto);
+								openModalPhotoDelete(photoPosition);
 							}}
 						>
 							X
@@ -105,7 +157,7 @@ export function SettingProfileSlider() {
 							}}
 							key={"slide" + index}
 							onClick={() => {
-								setPositionPhoto(index);
+								setPhotoPosition(index);
 							}}
 							className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl cursor-pointer justify-center ml-2 mr-2 h-16 w-16 m-1"
 						></div>
