@@ -103,9 +103,16 @@ export interface IQueryAnswerMessage {
 	querySendMessage(data: {}): void;
 }
 
-export interface IQueryAnswerPhoto {
+export interface IQueryAnswerDeletePhoto {
 	data: IPhoto;
 	error: IQueryAnswerError;
 	loaded: boolean;
 	queryDeletePhoto(data: {}): void;
+}
+
+export interface IQueryAnswerCheckPhoto {
+	data: IPhoto;
+	error: IQueryAnswerError;
+	loaded: boolean;
+	queryCheckPhoto(data: {}): void;
 }
