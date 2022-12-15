@@ -103,7 +103,7 @@ export function SettingProfileGeneral() {
 	return (
 		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
 			<div className="flex flex-row bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
-				<span className="flex m-1">Город:</span>
+				<span className="flex m-1 select-none">Город:</span>
 
 				<select
 					value={userMyProfile.location}
