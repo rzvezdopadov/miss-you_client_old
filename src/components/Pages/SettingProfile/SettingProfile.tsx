@@ -10,6 +10,7 @@ import { store } from "../../../utils/store";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import { ModalPhotoDelete } from "../../Modal/ModalPhotoDelete/ModalPhotoDelete";
 import { ModalSettingProfileCharacters } from "../../Modal/ModalSettingProfileCharacters/ModalSettingProfileCharacters";
+import { ModalSettingProfilePhotoEditor } from "../../Modal/ModalSettingProfilePhotoEditor/ModalSettingProfilePhotoEditor";
 import { SettingProfileAbout } from "./SettingProfileAbout/SettingProfileAbout";
 import { SettingProfileCharacters } from "./SettingProfileCharacters/SettingProfileCharacters";
 import { SettingProfileFilters } from "./SettingProfileFilters/SettingProfileFilters";
@@ -69,6 +70,7 @@ export function SettingProfile() {
 
 			<ModalSettingProfileCharacters />
 			<ModalPhotoDelete />
+			<ModalSettingProfilePhotoEditor />
 		</>
 	);
 }
