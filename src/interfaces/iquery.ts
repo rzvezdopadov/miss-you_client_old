@@ -49,3 +49,7 @@ export interface IQuerySendMessage {
 export interface IQueryPhoto {
 	photoPos: number;
 }
+
+export interface IQueryUploadPhoto {
+	data: FormData;
+}

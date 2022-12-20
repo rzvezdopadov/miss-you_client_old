@@ -10,13 +10,13 @@ import { store } from "../../../utils/store";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import { ModalPhotoDelete } from "../../Modal/ModalPhotoDelete/ModalPhotoDelete";
 import { ModalSettingProfileCharacters } from "../../Modal/ModalSettingProfileCharacters/ModalSettingProfileCharacters";
-import { ModalSettingProfilePhotoEditor } from "../../Modal/ModalSettingProfilePhotoEditor/ModalSettingProfilePhotoEditor";
 import { SettingProfileAbout } from "./SettingProfileAbout/SettingProfileAbout";
 import { SettingProfileCharacters } from "./SettingProfileCharacters/SettingProfileCharacters";
 import { SettingProfileFilters } from "./SettingProfileFilters/SettingProfileFilters";
 import { SettingProfileGeneral } from "./SettingProfileGeneral/SettingProfileGeneral";
 import { SettingProfileInterests } from "./SettingProfileInterests/SettingProfileInterests";
 import { SettingProfileSlider } from "./SettingProfileSlider/SettingProfileSlider";
+import { ModalPhotoEditor } from "../../Modal/ModalPhotoEditor/ModalPhotoEditor";
 
 export function SettingProfile() {
 	const { userMyProfile } = store.getState();
@@ -70,7 +70,7 @@ export function SettingProfile() {
 
 			<ModalSettingProfileCharacters />
 			<ModalPhotoDelete />
-			<ModalSettingProfilePhotoEditor />
+			<ModalPhotoEditor />
 		</>
 	);
 }

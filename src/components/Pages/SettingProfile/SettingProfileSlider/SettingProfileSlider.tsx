@@ -6,6 +6,7 @@ import { userMyProfileAction } from "../../../../utils/reducers";
 import { store } from "../../../../utils/store";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { openModalPhotoDelete } from "../../../Modal/ModalPhotoDelete/ModalPhotoDelete";
+import { openModalPhotoEditor } from "../../../Modal/ModalPhotoEditor/ModalPhotoEditor";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
@@ -95,7 +96,7 @@ export function SettingProfileSlider() {
 				>
 					{userMyProfile.photolink.length ? (
 						<div
-							className="flex justify-center absolute left-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 text-black bg-lime-400 h-6 w-6"
+							className="flex justify-center absolute left-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 text-black bg-lime-400 select-none h-6 w-6"
 							title="Сделать главным фото"
 							ref={checkMainPhoto}
 							onClick={checkMainPhotoHandler}
@@ -107,7 +108,7 @@ export function SettingProfileSlider() {
 					)}
 					{userMyProfile.photolink.length ? (
 						<div
-							className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-6 w-6"
+							className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 select-none h-6 w-6"
 							title="Удалить фото"
 							onClick={() => {
 								openModalPhotoDelete(photoPosition);
@@ -132,12 +133,17 @@ export function SettingProfileSlider() {
 				) : (
 					<></>
 				)}
-				<div
-					className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-					title="Добавить фото"
-				>
-					+
-				</div>
+				{userMyProfile.photolink.length < 10 ? (
+					<div
+						onClick={openModalPhotoEditor}
+						className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
+						title="Добавить фото"
+					>
+						+
+					</div>
+				) : (
+					<></>
+				)}
 				{userMyProfile.photolink.length > 1 ? (
 					<div
 						onClick={rightBtnSlideHandler}

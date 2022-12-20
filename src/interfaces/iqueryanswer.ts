@@ -17,7 +17,7 @@ export interface IQueryAnswer {
 	data: {} | null;
 	error: {} | null;
 	loaded: boolean;
-	querySend(link: string, data: {}, modalLoad: boolean): void;
+	querySend(link: string, data: {}, modalLoad: boolean, config?: {}): void;
 }
 
 export interface IQueryAnswerMessageData {
@@ -115,4 +115,11 @@ export interface IQueryAnswerCheckPhoto {
 	error: IQueryAnswerError;
 	loaded: boolean;
 	queryCheckPhoto(data: {}): void;
+}
+
+export interface IQueryAnswerUploadPhoto {
+	data: IPhoto;
+	error: IQueryAnswerError;
+	loaded: boolean;
+	queryUploadPhoto(data: {}): void;
 }

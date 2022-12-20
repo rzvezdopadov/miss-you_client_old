@@ -12,6 +12,7 @@ import {
 	IQueryPhoto,
 	IQuerySendMessage,
 	IQuerySetProfile,
+	IQueryUploadPhoto,
 } from "../interfaces/iquery";
 import {
 	IQueryAnswerCheckPhoto,
@@ -30,6 +31,7 @@ import {
 	IQueryAnswerRegistration,
 	IQueryAnswerRegistrationData,
 	IQueryAnswerSetProfile,
+	IQueryAnswerUploadPhoto,
 } from "../interfaces/iqueryanswer";
 import {
 	useQueryDelete,
@@ -307,6 +309,31 @@ export function useQueryCheckPhoto() {
 		error: errorNew,
 		loaded,
 		queryCheckPhoto,
+	};
+
+	return queryAnswer;
+}
+
+/* Upload photo
+    - * - photoPos
+*/
+export function useQueryUploadPhoto() {
+	const { data, error, loaded, querySend } = useQueryPost();
+
+	const queryUploadPhoto = async (dataQuery: IQueryUploadPhoto) => {
+		querySend("/api/photo", dataQuery, true, {
+			headers: { "Content-Type": "multipart/form-data" },
+		});
+	};
+
+	const dataNew = data as IPhoto;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerUploadPhoto = {
+		data: dataNew,
+		error: errorNew,
+		loaded,
+		queryUploadPhoto,
 	};
 
 	return queryAnswer;

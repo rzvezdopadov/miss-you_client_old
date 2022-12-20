@@ -65,13 +65,14 @@ export function useQueryPost() {
 	const querySend = async (
 		link: string = "",
 		data: {} = {},
-		modalLoad: boolean = false
+		modalLoad: boolean = false,
+		config: {} = {}
 	) => {
 		if (modalLoad) modalLoadingOnShow();
 		setLoaded(true);
 
 		await axios
-			.post(link, data)
+			.post(link, data, config)
 			.then((payload) => {
 				setDataAnswer(payload.data);
 			})
@@ -98,13 +99,14 @@ export function useQueryPut() {
 	const querySend = async (
 		link: string = "",
 		data: {} = {},
-		modalLoad: boolean = false
+		modalLoad: boolean = false,
+		config: {} = {}
 	) => {
 		if (modalLoad) modalLoadingOnShow();
 		setLoaded(true);
 
 		await axios
-			.put(link, data)
+			.put(link, data, config)
 			.then((payload) => {
 				setDataAnswer(payload.data);
 			})

@@ -64,7 +64,7 @@ export function ModalPhotoDelete() {
 		>
 			<div className="flex">{`Вы действительно хотите удалить ${
 				modalPhotoDelete.photoPos + 1
-			} фото?`}</div>
+			}-е фото?`}</div>
 			<div className="flex justify-center h-6 w-full">
 				<button
 					className="bg-green-500 hover:bg-green-700 text-white font-bold m-2 w-20 h-7 rounded"

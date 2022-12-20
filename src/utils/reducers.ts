@@ -448,6 +448,23 @@ export const modalDialogReducer = createReducer(false, {
 	},
 });
 ////////////////////////////////////////////////////////////////////////
+export const MODAL_PHOTO_EDITOR = "MODAL_PHOTO_EDITOR";
+
+export const modalPhotoEditorAction = (enabled: boolean) => ({
+	type: MODAL_PHOTO_EDITOR,
+	payload: {
+		enabled,
+	},
+});
+
+export const modalPhotoEditorReducer = createReducer(false, {
+	[MODAL_PHOTO_EDITOR]: (state: boolean, action: any) => {
+		const modalPhotoEditor = action.payload.enabled;
+
+		return modalPhotoEditor;
+	},
+});
+////////////////////////////////////////////////////////////////////////
 export const DIALOG_USER_ID = "DIALOG_USER_ID";
 
 export const dialogUserIdAction = (dialogUserId: number) => ({

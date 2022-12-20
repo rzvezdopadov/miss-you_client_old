@@ -17,6 +17,7 @@ import {
 	dialogUserIdReducer,
 	messageForUserReducer,
 	modalPhotoDeleteReducer,
+	modalPhotoEditorReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -35,6 +36,7 @@ export const store = configureStore({
 		dialogs: dialogsReducer,
 		dialog: dialogReducer,
 		modalDialog: modalDialogReducer,
+		modalPhotoEditor: modalPhotoEditorReducer,
 		dialogUserId: dialogUserIdReducer,
 		socket: socketReducer,
 		messageForUser: messageForUserReducer,
