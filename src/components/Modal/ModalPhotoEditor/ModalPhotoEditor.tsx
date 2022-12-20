@@ -78,12 +78,13 @@ export function ModalPhotoEditor() {
 
 	useEffect(() => {
 		if (data) {
-			const { photolink } = data;
+			const { photolink, photomain } = data;
 
 			if (!photolink) return;
 
 			const newUserMyProfile = { ...userMyProfile };
 			newUserMyProfile.photolink = photolink;
+			newUserMyProfile.photomain = photomain;
 			store.dispatch(userMyProfileAction(newUserMyProfile));
 			store.dispatch(modalPhotoEditorAction(false));
 			openModalMessage("Успешно загруженно!");

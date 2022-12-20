@@ -26,6 +26,10 @@ export function SettingProfileSlider() {
 	}, [data, error]);
 
 	useEffect(() => {
+		setPhotoPosition(userMyProfile.photolink.length - 1);
+	}, [userMyProfile.photolink.length]);
+
+	useEffect(() => {
 		setPhotoPosition(userMyProfile.photomain);
 		changeCheckPhotoMain();
 	}, [userMyProfile.photomain]);
