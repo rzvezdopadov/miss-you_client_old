@@ -36,6 +36,9 @@ function App() {
 			<MobileMenu />
 			<ModalLoading />
 			<ModalMessage />
+			<div className="text-white absolute m-auto left-0 right-0 select-none text-3xl">
+				&#10053; &#10052; &#10054; &#10052; &#10053;
+			</div>
 		</div>
 	);
 }
