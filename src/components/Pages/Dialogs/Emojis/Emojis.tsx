@@ -1,12 +1,7 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { emojis } from "../../../../arrdata/emojis";
-
-function decode(str: string) {
-	let txt = new DOMParser().parseFromString(str, "text/html");
-
-	return txt.documentElement.textContent;
-}
+import { convertTextToSign } from "../../../../utils/convert";
 
 export function Emojis(payload: {
 	onSetEmojiClbk: React.MouseEventHandler<HTMLDivElement>;
@@ -38,7 +33,7 @@ export function Emojis(payload: {
 							className="flex justify-center items-center text-3xl h-10 w-10 cursor-pointer"
 							onClick={payload.onSetEmojiClbk}
 						>
-							{decode(value)}
+							{convertTextToSign(value)}
 						</div>
 					);
 				})}
@@ -54,7 +49,7 @@ export function Emojis(payload: {
 								setEmodjiBookMark(index);
 							}}
 						>
-							{decode(value[0])}
+							{convertTextToSign(value[0])}
 						</div>
 					);
 				})}
