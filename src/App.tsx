@@ -12,6 +12,7 @@ import { ModalLoading } from "./components/Modal/ModalLoading/ModalLoading";
 import { ModalMessage } from "./components/Modal/ModalMessage/ModalMessage";
 import { store } from "./utils/store";
 import { getJWT } from "./components/Utils/Socket/Socket";
+import { Snowflakes } from "./components/Backjokes/Snowflakes/Snowflakes";
 
 function App() {
 	const { jwt, mobileMenu } = store.getState();
@@ -36,9 +37,7 @@ function App() {
 			<MobileMenu />
 			<ModalLoading />
 			<ModalMessage />
-			<div className="text-white absolute m-auto left-0 right-0 select-none text-3xl">
-				&#10053; &#10052; &#10054; &#10052; &#10053;
-			</div>
+			<Snowflakes />
 		</div>
 	);
 }
