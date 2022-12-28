@@ -15,22 +15,6 @@ interface ISnowflake {
 	deg: number;
 }
 
-function Snowflake(payload: { snowflake: ISnowflake; key: any }) {
-	return (
-		<div
-			className="absolute text-white select-none"
-			key={payload.key}
-			style={{
-				fontSize: `${payload.snowflake.size}px`,
-				left: payload.snowflake.posX,
-				top: payload.snowflake.posY,
-			}}
-		>
-			{convertTextToSign(snowflakes_type_arr[payload.snowflake.type])}
-		</div>
-	);
-}
-
 export function Snowflakes() {
 	const [snowflakes, setSnowflakes] = useState<Array<ISnowflake>>([]);
 
@@ -83,10 +67,17 @@ export function Snowflakes() {
 			{snowflakes ? (
 				snowflakes.map((value, index) => {
 					return (
-						<Snowflake
+						<div
+							className="absolute text-white select-none"
 							key={`snowflake${index}`}
-							snowflake={value}
-						/>
+							style={{
+								fontSize: `${value.size}px`,
+								left: value.posX,
+								top: value.posY,
+							}}
+						>
+							{convertTextToSign(snowflakes_type_arr[value.type])}
+						</div>
 					);
 				})
 			) : (
