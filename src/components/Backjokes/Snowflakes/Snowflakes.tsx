@@ -39,7 +39,10 @@ export function Snowflakes() {
 					snowflakesNew[i].posX += (15 - randNum(30)) / 30;
 					snowflakesNew[i].posY += randNum(100) / 100;
 
-					if (snowflakesNew[i].posY > window.innerHeight) {
+					if (
+						snowflakesNew[i].posY >
+						window.innerHeight - snowflakes[i].size * 1.5
+					) {
 						snowflakesNew[i].type = randNum(
 							snowflakes_type_arr.length - 1
 						);
