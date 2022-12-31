@@ -8,9 +8,9 @@ export function SelectFromArr(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 relative items-center">
+		<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-3 relative items-center">
 			<div className="flex mr-2">
-				<span className="select-none"> {params.title} </span>
+				<span className="select-none text-white"> {params.title} </span>
 			</div>
 			<div className="flex ml-2">
 				<select
@@ -40,9 +40,9 @@ export function SelectFromArrValue(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 relative items-center">
+		<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-3 relative items-center">
 			<div className="flex mr-2">
-				<span className="select-none"> {params.title} </span>
+				<span className="select-none text-white"> {params.title} </span>
 			</div>
 			<div className="flex ml-2">
 				<select
