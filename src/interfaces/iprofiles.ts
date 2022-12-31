@@ -9,14 +9,27 @@ export interface IFilterUsers {
 	ageend: number;
 	growthstart: number;
 	growthend: number;
-	weightstart: number;
-	weightend: number;
+	weight: number;
 	signzodiac: number;
 	gendervapor: number;
 	religion: number;
 	smoke: number;
 	alcohol: number;
 	interests: Array<string>;
+}
+
+export interface IRegistration {
+	name: string;
+	location: string;
+	birthday: number;
+	monthofbirth: number;
+	yearofbirth: number;
+	gender: number;
+	gendervapor: number;
+	growth: number;
+	weight: number;
+	email: string;
+	password: string;
 }
 
 export interface IProfile {
