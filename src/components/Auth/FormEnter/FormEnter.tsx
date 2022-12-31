@@ -40,41 +40,39 @@ export function FormEnter() {
 	}, [data, error]);
 
 	return (
-		<div className="flex trasition-opacity duration-1000 delay-1000 opacity-100 w-full justify-center ">
-			<form className="bg-gray-700 shadow-md rounded-3xl px-8 pt-2 pb-2 w-80">
+		<div className="flex w-full justify-center min-w-xs">
+			<div className="block bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80">
 				<label className="block text-white text-2xl font-bold mb-4">
 					Вход
 				</label>
-				<div className="mb-4">
-					<div className="mb-4">
-						<input
-							{...email}
-							className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="email"
-							type="email"
-							placeholder="E-mail"
-						/>
-					</div>
-					<div className="mb-4">
-						<input
-							{...password}
-							className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-							id="password"
-							type="password"
-							placeholder="Пароль"
-						/>
-					</div>
-					<div className="flex items-center justify-center">
-						<button
-							className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-							type="button"
-							onClick={handlerBtnClick}
-						>
-							Войти
-						</button>
-					</div>
+				<div className="flex flex-col my-1">
+					<input
+						{...email}
+						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
+						id="email"
+						type="email"
+						placeholder="E-mail"
+					/>
 				</div>
-			</form>
+				<div className="flex flex-col my-1">
+					<input
+						{...password}
+						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
+						id="password"
+						type="password"
+						placeholder="Пароль"
+					/>
+				</div>
+				<div className="flex items-center justify-center">
+					<button
+						className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+						type="button"
+						onClick={handlerBtnClick}
+					>
+						Войти
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 }
