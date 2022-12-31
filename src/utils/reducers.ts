@@ -12,6 +12,7 @@ import {
 	IFilterUsers,
 	IProfile,
 	IProfileShort,
+	IRegistration,
 } from "../interfaces/iprofiles";
 import { IStateModalMessage, IStatePhotoDelete } from "../interfaces/iredusers";
 import { getCookiesJWT } from "./cookie";
@@ -181,8 +182,7 @@ const initialStateFiltersUser: IFilterUsers = {
 	ageend: arr_age[0],
 	growthstart: arr_growth[0],
 	growthend: arr_growth[arr_growth.length - 1],
-	weightstart: arr_weight[0],
-	weightend: arr_weight[arr_weight.length - 1],
+	weight: 0,
 	signzodiac: arr_signZodiac.length - 1,
 	gendervapor: arr_genderVapor.length - 1,
 	religion: 0,
@@ -246,7 +246,7 @@ export const initialStateUserProfile: IUserProfile = {
 		monthofbirth: 0,
 		yearofbirth: 0,
 		growth: 80,
-		weight: 180,
+		weight: 0,
 		gender: 0,
 		gendervapor: 0,
 		photomain: 0,
@@ -271,8 +271,7 @@ export const initialStateUserProfile: IUserProfile = {
 			ageend: arr_age[0],
 			growthstart: arr_growth[0],
 			growthend: arr_growth[arr_growth.length - 1],
-			weightstart: arr_weight[0],
-			weightend: arr_weight[arr_weight.length - 1],
+			weight: 0,
 			signzodiac: arr_signZodiac.length - 1,
 			gendervapor: arr_genderVapor.length - 1,
 			religion: 0,
@@ -290,6 +289,38 @@ export const userProfileReducer = createReducer(initialStateUserProfile, {
 		return { enabled, profile };
 	},
 });
+////////////////////////////////////////////////////////////////////////
+export const REGISTRATION = "REGISTRATION";
+
+export const registrationAction = (registration: IRegistration) => ({
+	type: REGISTRATION,
+	payload: {
+		registration,
+	},
+});
+
+const initialStateRegistration: IRegistration = {
+	name: "",
+	location: "",
+	birthday: 1,
+	monthofbirth: 1,
+	yearofbirth: 1970,
+	gender: 0,
+	gendervapor: 0,
+	growth: 80,
+	weight: 0,
+	email: "",
+	password: "",
+};
+
+export const registrationReducer = createReducer(initialStateRegistration, {
+	[REGISTRATION]: (state: IRegistration, action: any) => {
+		const { registration } = action.payload;
+
+		return registration;
+	},
+});
+
 ////////////////////////////////////////////////////////////////////////
 export const USER_MYPROFILE = "USER_MYPROFILE";
 
@@ -313,7 +344,7 @@ const initialStateUserMyProfile: IProfile = {
 	monthofbirth: 1,
 	yearofbirth: 1970,
 	growth: 80,
-	weight: 180,
+	weight: 0,
 	gender: 0,
 	gendervapor: 0,
 	photomain: 0,
@@ -338,8 +369,7 @@ const initialStateUserMyProfile: IProfile = {
 		ageend: arr_age[0],
 		growthstart: arr_growth[0],
 		growthend: arr_growth[arr_growth.length - 1],
-		weightstart: arr_weight[0],
-		weightend: arr_weight[arr_weight.length - 1],
+		weight: 0,
 		signzodiac: arr_signZodiac.length - 1,
 		gendervapor: arr_genderVapor.length - 1,
 		religion: 0,

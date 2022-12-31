@@ -18,6 +18,7 @@ import {
 	messageForUserReducer,
 	modalPhotoDeleteReducer,
 	modalPhotoEditorReducer,
+	registrationReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -32,6 +33,7 @@ export const store = configureStore({
 		usersProfiles: usersProfilesReducer,
 		userProfile: userProfileReducer,
 		userMyProfile: userMyProfileReducer,
+		registration: registrationReducer,
 		settingProfileCharacters: settingProfileCharactersReducer,
 		dialogs: dialogsReducer,
 		dialog: dialogReducer,
