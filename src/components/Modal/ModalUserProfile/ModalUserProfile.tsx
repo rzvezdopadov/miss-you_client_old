@@ -10,6 +10,7 @@ import {
 	arr_religion,
 	arr_signZodiac,
 	arr_smoke,
+	arr_weight,
 } from "../../../arrdata/profiles";
 import { useQueryGetDialog } from "../../../hooks/api.hook";
 import { IProfile } from "../../../interfaces/iprofiles";
@@ -153,18 +154,23 @@ export function UserProfile() {
 										title={"Рост"}
 									/>
 								}
-								{
+								{!(userProfile.profile.weight === 0) ? (
 									<UserProfileInterest
 										key={
 											"weight" +
 											userProfile.profile.weight
 										}
 										value={
-											userProfile.profile.weight + " кг"
+											arr_weight[
+												userProfile.profile.weight
+											]
 										}
-										title={"Вес"}
+										title={"Телосложение"}
 									/>
-								}
+								) : (
+									<></>
+								)}
+
 								{
 									<UserProfileInterest
 										key={

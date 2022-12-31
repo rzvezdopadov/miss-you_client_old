@@ -55,8 +55,7 @@ export function Filters(payload: {
 	ageEnd: IFilterParam;
 	growthStart: IFilterParam;
 	growthEnd: IFilterParam;
-	weightStart: IFilterParam;
-	weightEnd: IFilterParam;
+	weight: IFilterParam;
 	signZodiac: IFilterParam;
 	genderVapor: IFilterParam;
 	religion: IFilterParam;
@@ -102,13 +101,12 @@ export function Filters(payload: {
 				]}
 			/>
 			<FiltersOptionAtArr
-				headName={"Вес:"}
+				headName={"Телосложение:"}
 				argsArr={[
 					{
 						arr: arr_weight,
-						filterParam: { ...payload.weightStart },
+						filterParam: { ...payload.weight },
 					},
-					{ arr: arr_weight, filterParam: { ...payload.weightEnd } },
 				]}
 			/>
 			<FiltersOptionAtArr

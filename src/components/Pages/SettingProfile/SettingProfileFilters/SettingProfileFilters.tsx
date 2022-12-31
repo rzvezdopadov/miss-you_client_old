@@ -49,15 +49,10 @@ export function SettingProfileFilters() {
 	) => {
 		onChangeValueProfileFilter(e, "growthend");
 	};
-	const filtersWeightStartOnChangeHandler = (
+	const filtersWeightOnChangeHandler = (
 		e: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		onChangeValueProfileFilter(e, "weightstart");
-	};
-	const filtersWeightEndOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "weightend");
+		onChangeValueProfileFilter(e, "weight");
 	};
 	const filtersSignZodiacOnChangeHandler = (
 		e: React.ChangeEvent<HTMLSelectElement>
@@ -113,13 +108,9 @@ export function SettingProfileFilters() {
 						value: userMyProfile.filters.growthend,
 						onChange: filtersGrowthEndOnChangeHandler,
 					}}
-					weightStart={{
-						value: userMyProfile.filters.weightstart,
-						onChange: filtersWeightStartOnChangeHandler,
-					}}
-					weightEnd={{
-						value: userMyProfile.filters.weightend,
-						onChange: filtersWeightEndOnChangeHandler,
+					weight={{
+						value: userMyProfile.filters.weight,
+						onChange: filtersWeightOnChangeHandler,
 					}}
 					signZodiac={{
 						value: userMyProfile.filters.signzodiac,

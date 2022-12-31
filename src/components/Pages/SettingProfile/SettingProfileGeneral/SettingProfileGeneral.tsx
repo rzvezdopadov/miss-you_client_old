@@ -177,7 +177,7 @@ export function SettingProfileGeneral() {
 				value={userMyProfile.weight}
 				onChangeHandler={weightOnChangeHandler}
 				arr={arr_weight}
-				title={"Вес:"}
+				title={"Телосложение:"}
 			/>
 
 			<SelectFromArr
