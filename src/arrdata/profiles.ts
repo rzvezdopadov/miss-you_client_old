@@ -1,5 +1,7 @@
+import { minage } from "../utils/globalconst";
+
 export const arr_age: Array<number> = [];
-for (let i = 18; i < 121; i++) {
+for (let i = minage; i < 121; i++) {
 	arr_age.push(i);
 }
 
@@ -16,11 +18,7 @@ export const arr_weight = [
 	"Пара лишних кило",
 ];
 
-export const arr_location = [
-	["Ryazan", "Рязань"],
-	// ['Moscow', 'Москва'],
-	// ['StPetersburg', 'Санкт-Петербург'],
-];
+export const arr_location = ["Россия, Рязанская область, г.Рязань"];
 
 export const arr_monthOfBirth = [
 	"Января",
