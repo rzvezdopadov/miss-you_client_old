@@ -14,7 +14,7 @@ export function openDialogModal() {
 
 export function closeDialogModal() {
 	store.dispatch(modalDialogAction(false));
-	store.dispatch(dialogUserIdAction(0));
+	store.dispatch(dialogUserIdAction(""));
 	store.dispatch(messageForUserAction(""));
 }
 

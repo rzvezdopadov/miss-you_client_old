@@ -64,18 +64,19 @@ export function Filters(payload: {
 }) {
 	return (
 		<>
-			<div className="flex flex-row bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
-				<span className="flex m-1">Город:</span>
+			<div className="flex flex-row flex-wrap bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
+				<span className="flex m-1">Локация:</span>
 
 				<select
 					{...payload.location}
 					className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
 				>
-					{arr_location.map((arr) => {
-						const [key, value] = arr;
-
+					{arr_location.map((value, index) => {
 						return (
-							<option key={key + value} value={key}>
+							<option
+								key={`filterscountrytown${index}`}
+								value={value}
+							>
 								{value}
 							</option>
 						);

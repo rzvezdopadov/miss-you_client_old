@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useQueryGetProfiles } from "../../../hooks/api.hook";
-import { IQueryGetProfilesOnlyLikes } from "../../../interfaces/iquery";
+import { useQueryGetProfilesForLikes } from "../../../hooks/api.hook";
+import { IQueryGetProfilesForLikes } from "../../../interfaces/iquery";
 import { lazyloadingusercount } from "../../../utils/globalconst";
 import { invisibleOnScrollToTop } from "../../../utils/pagescroll";
 import {
@@ -11,14 +11,15 @@ import {
 import { store } from "../../../utils/store";
 import { closeDialogModal } from "../../Modal/ModalDialog/ModalDialog";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
-import { UserProfile } from "../../Modal/ModalUserProfile/ModalUserProfile";
+import { ModalUserProfile } from "../../Modal/ModalUserProfile/ModalUserProfile";
 import { ScrollToTopBtn } from "../../Utils/ScrollToTopBtn/ScrollToTopBtn";
 import { UserProfileShortLoader } from "../UserProfile/UserProfileShortLoader/UserProfileShortLoader";
 import { UserProfileShortWrapper } from "../UserProfile/UserProfileShortWrapper/UserProfileShortWrapper";
 
 export function Vapors() {
 	const { userMyProfile, usersProfiles, userProfile } = store.getState();
-	const { data, error, querySendGetProfiles } = useQueryGetProfiles();
+	const { data, error, querySendGetProfilesForLikes } =
+		useQueryGetProfilesForLikes();
 	const [dataLoader, setDataLoader] = useState(true);
 	const [likes, setLikes] = useState(userMyProfile.likes);
 	const scrollTopDiv = useRef(null);
@@ -35,10 +36,10 @@ export function Vapors() {
 	}, []);
 
 	useEffect(() => {
-		if (userMyProfile.id !== 0) {
+		if (userMyProfile.userid !== "") {
 			setLikes(userMyProfile.likes);
 		}
-	}, [userMyProfile.id]);
+	}, [userMyProfile.userid]);
 
 	useEffect(() => {
 		querySendGetProfilesLocal(0);
@@ -56,13 +57,12 @@ export function Vapors() {
 	}, [data, error]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
-		const data: IQueryGetProfilesOnlyLikes = {
+		const data: IQueryGetProfilesForLikes = {
 			startcount: startcount,
 			amount: lazyloadingusercount,
-			users: String(likes),
 		};
 
-		if (userMyProfile.id) querySendGetProfiles(data);
+		if (userMyProfile.userid) querySendGetProfilesForLikes(data);
 	};
 
 	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
@@ -98,7 +98,7 @@ export function Vapors() {
 					)}
 				</div>
 
-				<UserProfile />
+				<ModalUserProfile />
 			</div>
 		</div>
 	);

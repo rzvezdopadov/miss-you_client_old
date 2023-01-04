@@ -74,14 +74,15 @@ export function Dialog() {
 						let photolink =
 							userMyProfile.photolink[userMyProfile.photomain];
 
-						if (userMyProfile.id !== value.userId) {
+						if (userMyProfile.userid !== value.userid) {
 							name = dialog.name;
 							photolink = dialog.photolink[dialog.photomain];
 						}
 
 						return (
 							<DialogMessage
-								key={dialog.timecode + value.timecode + index}
+								key={`dialog${dialog.timecode}${value.timecode}`}
+								keyopt={`${dialog.timecode}${value.timecode}`}
 								name={name}
 								timecode={value.timecode}
 								message={value.message}

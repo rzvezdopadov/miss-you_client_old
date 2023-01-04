@@ -8,6 +8,7 @@ import {
 	ILogin,
 	IQueryDialog,
 	IQueryGetProfiles,
+	IQueryGetProfilesForLikes,
 	IQueryLike,
 	IQueryPhoto,
 	IQuerySendMessage,
@@ -27,6 +28,7 @@ import {
 	IQueryAnswerMessage,
 	IQueryAnswerMessageData,
 	IQueryAnswerProfiles,
+	IQueryAnswerProfilesForLikes,
 	IQueryAnswerProfileShort,
 	IQueryAnswerRegistration,
 	IQueryAnswerRegistrationData,
@@ -195,6 +197,32 @@ export function useQueryGetProfiles() {
 		error: errorNew,
 		loaded,
 		querySendGetProfiles,
+	};
+
+	return queryAnswer;
+}
+
+/* Get profiles for likes
+    - startCount - user position to start;
+    - amount - number of users in response;
+*/
+export function useQueryGetProfilesForLikes() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendGetProfilesForLikes = async (
+		dataQuery: IQueryGetProfilesForLikes
+	) => {
+		querySend("/api/profilesforlikes", dataQuery, true);
+	};
+
+	const dataNew = data as [IProfile];
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerProfilesForLikes = {
+		data: dataNew,
+		error: errorNew,
+		loaded,
+		querySendGetProfilesForLikes,
 	};
 
 	return queryAnswer;

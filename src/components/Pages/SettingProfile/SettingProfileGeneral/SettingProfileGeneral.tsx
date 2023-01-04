@@ -34,7 +34,7 @@ export function SettingProfileGeneral() {
 	const locationOnChangeHandler = (
 		e: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		onChangeValueProfile(e, "location", "string");
+		onChangeValueProfile(e, "location");
 	};
 	const genderOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChangeValueProfile(e, "gender");
@@ -102,19 +102,17 @@ export function SettingProfileGeneral() {
 
 	return (
 		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
-			<div className="flex flex-row bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
-				<span className="flex m-1 select-none">Город:</span>
+			<div className="flex flex-row flex-wrap bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
+				<span className="flex m-1 select-none">Локация:</span>
 
 				<select
 					value={userMyProfile.location}
 					className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
 					onChange={locationOnChangeHandler}
 				>
-					{arr_location.map((arr) => {
-						const [key, value] = arr;
-
+					{arr_location.map((value, index) => {
 						return (
-							<option key={key + value} value={key}>
+							<option key={`countrytown${index}`} value={value}>
 								{value}
 							</option>
 						);

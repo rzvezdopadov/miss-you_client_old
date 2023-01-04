@@ -75,6 +75,13 @@ export interface IQueryAnswerProfiles {
 	querySendGetProfiles(data: {}): void;
 }
 
+export interface IQueryAnswerProfilesForLikes {
+	data: [IProfileShort];
+	error: IQueryAnswerError;
+	loaded: boolean;
+	querySendGetProfilesForLikes(data: {}): void;
+}
+
 export interface IQueryAnswerLike {
 	data: IQueryAnswerMessageData;
 	error: IQueryAnswerError;

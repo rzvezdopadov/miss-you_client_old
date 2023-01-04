@@ -18,8 +18,8 @@ export function DialogsLeftSideBar() {
 	const { data, error, querySendGetDialogs } = useQueryGetDialogs();
 
 	useEffect(() => {
-		if (userMyProfile.id) querySendGetDialogs();
-	}, [userMyProfile.id]);
+		if (userMyProfile.userid) querySendGetDialogs();
+	}, [userMyProfile.userid]);
 
 	useEffect(() => {
 		if (data) {
@@ -33,9 +33,9 @@ export function DialogsLeftSideBar() {
 		}
 	}, [data, error]);
 
-	const setDialogOnClick = (userId: number) => {
+	const setDialogOnClick = (userId: string) => {
 		const outDialog = dialogs.filter(
-			(value: IDialog) => value.userId === userId
+			(value: IDialog) => value.userid === userId
 		);
 
 		store.dispatch(dialogAction(outDialog[0]));
@@ -50,13 +50,13 @@ export function DialogsLeftSideBar() {
 			</div>
 
 			{dialogs.length ? (
-				dialogs.map((dialog: IDialog, index) => {
+				dialogs.map((dialog: IDialog) => {
 					return (
 						<DialogShort
-							key={dialog.timecode + index}
+							key={`dialogs${dialog.timecode}`}
 							dialog={dialog}
 							onClickHandler={() => {
-								setDialogOnClick(dialog.userId);
+								setDialogOnClick(dialog.userid);
 							}}
 						/>
 					);

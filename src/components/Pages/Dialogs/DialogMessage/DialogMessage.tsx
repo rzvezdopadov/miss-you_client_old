@@ -2,6 +2,7 @@ import * as React from "react";
 import { getDateTimeFromTimeCode } from "../../../Utils/VisitDateTime/VisitDateTime";
 
 export function DialogMessage(payload: {
+	keyopt: string;
 	name: string;
 	timecode: number;
 	message: string;
@@ -9,7 +10,7 @@ export function DialogMessage(payload: {
 }) {
 	return (
 		<div
-			key={payload.timecode + payload.name}
+			key={payload.keyopt}
 			className="flex items-start my-1 w-auto h-fit"
 		>
 			<div className="flex m-1">

@@ -42,7 +42,7 @@ function closeUserProfile() {
 	store.dispatch(userProfileAction(false, initialStateUserProfile.profile));
 }
 
-export function UserProfile() {
+export function ModalUserProfile() {
 	const { data, error, querySendGetDialog } = useQueryGetDialog();
 	const { userProfile } = store.getState();
 	const refUserProfile = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ export function UserProfile() {
 		if (data) {
 			openDialogModal();
 			store.dispatch(dialogAction(data));
-			store.dispatch(dialogUserIdAction(userProfile.profile.id));
+			store.dispatch(dialogUserIdAction(userProfile.profile.userid));
 		} else if (error) {
 			openModalMessage(error.response.data.message);
 		}
@@ -69,7 +69,7 @@ export function UserProfile() {
 
 	const openDialogModalHandler = () => {
 		const data: IQueryDialog = {
-			id: userProfile.profile.id,
+			userid: userProfile.profile.userid,
 		};
 
 		querySendGetDialog(data);
@@ -288,7 +288,7 @@ export function UserProfile() {
 										arrayInterests={
 											userProfile.profile.interests
 										}
-										idUser={userProfile.profile.id}
+										userId={userProfile.profile.userid}
 									/>
 								</div>
 							</div>
@@ -332,7 +332,7 @@ export function UserProfile() {
 											<UserProfileInterest
 												key={
 													"interest" +
-													userProfile.profile.id
+													userProfile.profile.userid
 												}
 												value={"Отсутствуют"}
 												title={""}
@@ -379,7 +379,7 @@ export function UserProfile() {
 										<UserProfileInterest
 											key={
 												"interest" +
-												userProfile.profile.id
+												userProfile.profile.userid
 											}
 											value={"Отсутствуют"}
 											title={""}

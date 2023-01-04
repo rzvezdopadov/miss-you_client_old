@@ -177,7 +177,7 @@ export const filtersUserAction = (filters: IFilterUsers) => ({
 });
 
 const initialStateFiltersUser: IFilterUsers = {
-	location: arr_location[0][0],
+	location: "",
 	agestart: arr_age[arr_age.length - 1],
 	ageend: arr_age[0],
 	growthstart: arr_growth[0],
@@ -234,7 +234,7 @@ interface IUserProfile {
 export const initialStateUserProfile: IUserProfile = {
 	enabled: false,
 	profile: {
-		id: 0,
+		userid: "",
 		timecode: 0,
 		name: "",
 		latitude: 0,
@@ -266,7 +266,7 @@ export const initialStateUserProfile: IUserProfile = {
 		idontlikecharacter: [],
 		raiting: 0,
 		filters: {
-			location: arr_location[0][0],
+			location: "",
 			agestart: arr_age[arr_age.length - 1],
 			ageend: arr_age[0],
 			growthstart: arr_growth[0],
@@ -332,7 +332,7 @@ export const userMyProfileAction = (profile: IProfile) => ({
 });
 
 const initialStateUserMyProfile: IProfile = {
-	id: 0,
+	userid: "",
 	timecode: 0,
 	name: "",
 	latitude: 0,
@@ -364,7 +364,7 @@ const initialStateUserMyProfile: IProfile = {
 	idontlikecharacter: [],
 	raiting: 0,
 	filters: {
-		location: arr_location[0][0],
+		location: "",
 		agestart: arr_age[arr_age.length - 1],
 		ageend: arr_age[0],
 		growthstart: arr_growth[0],
@@ -445,7 +445,7 @@ export const dialogAction = (dialog: IDialog) => ({
 
 export const initialStateDialog: IDialog = {
 	timecode: 0,
-	userId: 0,
+	userid: "",
 	name: "",
 	age: 0,
 	photomain: 0,
@@ -497,13 +497,13 @@ export const modalPhotoEditorReducer = createReducer(false, {
 ////////////////////////////////////////////////////////////////////////
 export const DIALOG_USER_ID = "DIALOG_USER_ID";
 
-export const dialogUserIdAction = (dialogUserId: number) => ({
+export const dialogUserIdAction = (dialogUserId: string) => ({
 	type: DIALOG_USER_ID,
 	payload: dialogUserId,
 });
 
-export const dialogUserIdReducer = createReducer(0, {
-	[DIALOG_USER_ID]: (state: number, action: any) => {
+export const dialogUserIdReducer = createReducer("", {
+	[DIALOG_USER_ID]: (state: string, action: any) => {
 		const dialogUserId = action.payload;
 
 		return dialogUserId;

@@ -48,7 +48,7 @@ export function UserProfileSlider() {
 
 	const likeSlideHandler = () => {
 		const dataQuery: IQueryLike = {
-			id: userProfile.profile.id,
+			userid: userProfile.profile.userid,
 		};
 
 		querySendLike(dataQuery);
@@ -58,7 +58,7 @@ export function UserProfileSlider() {
 		if (data) {
 			const newProfile = { ...userProfile.profile };
 
-			newProfile.likes = data as unknown as Array<number>;
+			newProfile.likes = data as unknown as Array<string>;
 
 			store.dispatch(userProfileAction(true, newProfile));
 		} else if (error) {

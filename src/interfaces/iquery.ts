@@ -14,7 +14,7 @@ export interface ILogin {
 }
 
 export interface IQueryGetProfile {
-	id: number;
+	userid: string;
 }
 
 export interface IQuerySetProfile {
@@ -22,7 +22,7 @@ export interface IQuerySetProfile {
 }
 
 export interface IQueryLike {
-	id: number;
+	userid: string;
 }
 
 export interface IQueryGetProfiles {
@@ -31,18 +31,22 @@ export interface IQueryGetProfiles {
 	filters: IFilterUsers;
 }
 
-export interface IQueryGetProfilesOnlyLikes {
+export interface IQueryGetProfilesForLikes {
 	startcount: number;
 	amount: number;
-	users: any;
+}
+
+export interface IQueryGetProfilesForLikes {
+	startcount: number;
+	amount: number;
 }
 
 export interface IQueryDialog {
-	id: number;
+	userid: string;
 }
 
 export interface IQuerySendMessage {
-	id: number;
+	userid: string;
 	message: string;
 }
 

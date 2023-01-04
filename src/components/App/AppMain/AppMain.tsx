@@ -26,7 +26,7 @@ export function AppMain() {
 
 	useEffect(() => {
 		const data: IQueryGetProfile = {
-			id: 0,
+			userid: "0",
 		};
 
 		if (jwt) {

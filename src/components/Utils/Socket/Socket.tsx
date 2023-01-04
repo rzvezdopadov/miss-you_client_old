@@ -29,7 +29,7 @@ export const sendMessage = (message: string) => {
 	const { dialogUserId } = store.getState();
 
 	const data: IQuerySendMessage = {
-		id: dialogUserId,
+		userid: dialogUserId,
 		message: message,
 	};
 
@@ -40,7 +40,7 @@ export const setLike = () => {
 	const { userProfile } = store.getState();
 
 	const data: IQueryLike = {
-		id: userProfile.profile.id,
+		userid: userProfile.profile.userid,
 	};
 
 	socketClient.emit("set_like", data);
@@ -69,7 +69,7 @@ export function Socket() {
 		socketClient.on("get_jwt", () => {
 			getJWT();
 		});
-		socketClient.on("set_like", (socket: Array<number>) => {
+		socketClient.on("set_like", (socket: Array<string>) => {
 			const { userProfile } = store.getState();
 
 			const newProfile = { ...userProfile.profile };
@@ -87,14 +87,14 @@ export function Socket() {
 
 			switch (socket.command) {
 				case "add":
-					likesNew.push(socket.userId);
+					likesNew.push(socket.userid);
 					openModalMessage("Вас кто-то лайкнул =)");
 
 					break;
 
 				case "delete":
 					const userLikePos = likesNew.findIndex(
-						(value) => value === socket.userId
+						(value) => value === socket.userid
 					);
 
 					if (userLikePos !== -1) likesNew.splice(userLikePos, 1);
@@ -119,7 +119,7 @@ export function Socket() {
 
 			switch (socket.command) {
 				case "add":
-					if (socket.userId === dialog.userId) {
+					if (socket.userid === dialog.userid) {
 						const newDialog = { ...dialog };
 						const newMessages = [...newDialog.messages];
 
@@ -131,7 +131,7 @@ export function Socket() {
 
 					const newDialogs = [...dialogs];
 					const dialogPos = newDialogs.findIndex(
-						(value) => value.userId === socket.userId
+						(value) => value.userid === socket.userid
 					);
 
 					if (dialogPos !== -1) {
@@ -160,13 +160,13 @@ export function Socket() {
 		});
 		socketClient.on("dialog", (socket: IDialog) => {
 			const { dialogs, dialog } = store.getState();
-			if (dialog.userId === socket.userId) {
+			if (dialog.userid === socket.userid) {
 				store.dispatch(dialogAction(socket));
 			}
 
 			const newDialogs = [...dialogs];
 			const dialogPos = newDialogs.findIndex(
-				(value) => value.userId === socket.userId
+				(value) => value.userid === socket.userid
 			);
 
 			if (dialogPos !== -1) {

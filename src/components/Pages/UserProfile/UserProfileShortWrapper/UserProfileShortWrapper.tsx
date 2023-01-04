@@ -10,7 +10,7 @@ export function UserProfileShortWrapper() {
 			{usersProfiles.length ? (
 				usersProfiles.map((profile) => (
 					<UserProfileShort
-						key={"profile" + profile.id}
+						key={"profile" + profile.userid}
 						profile={profile}
 					/>
 				))

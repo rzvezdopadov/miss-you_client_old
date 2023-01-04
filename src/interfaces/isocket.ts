@@ -2,11 +2,11 @@ import { IMessage } from "./iprofiles";
 
 export interface IGetLike {
 	command: string;
-	userId: number;
+	userid: string;
 }
 
 export interface IGetMessage {
 	command: string;
-	userId: number;
+	userid: string;
 	message: IMessage;
 }

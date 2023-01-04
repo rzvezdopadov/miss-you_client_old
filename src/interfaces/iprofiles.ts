@@ -33,13 +33,13 @@ export interface IRegistration {
 }
 
 export interface IProfile {
-	id: number;
+	userid: string;
 	timecode: number;
 	name: string;
 	latitude: number;
 	longitude: number;
 	location: string;
-	likes: Array<number>;
+	likes: Array<string>;
 	age: number;
 	birthday: number;
 	monthofbirth: number;
@@ -68,7 +68,7 @@ export interface IProfile {
 }
 
 export interface IProfileShort {
-	id: number;
+	userid: string;
 	timecode: number;
 	name: string;
 	age: number;
@@ -81,13 +81,13 @@ export interface IProfileShort {
 
 export interface IMessage {
 	timecode: number;
-	userId: number;
+	userid: string;
 	message: string;
 }
 
 export interface IDialog {
 	timecode: number;
-	userId: number;
+	userid: string;
 	name: string;
 	age: number;
 	photomain: number;

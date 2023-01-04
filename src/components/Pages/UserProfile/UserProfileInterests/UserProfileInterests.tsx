@@ -3,7 +3,7 @@ import { UserProfileInterest } from "../UserProfileInterest/UserProfileInterest"
 
 export function UserProfileInterests(payload: {
 	arrayInterests: Array<string>;
-	idUser: number;
+	userId: string;
 }) {
 	return (
 		<>
@@ -19,7 +19,7 @@ export function UserProfileInterests(payload: {
 				})
 			) : (
 				<UserProfileInterest
-					key={"interest" + payload.idUser}
+					key={"interest" + payload.userId}
 					value={"Отсутствуют"}
 					title={""}
 				/>

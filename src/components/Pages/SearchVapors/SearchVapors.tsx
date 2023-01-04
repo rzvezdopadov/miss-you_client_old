@@ -11,7 +11,7 @@ import {
 import { store } from "../../../utils/store";
 import { closeDialogModal } from "../../Modal/ModalDialog/ModalDialog";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
-import { UserProfile } from "../../Modal/ModalUserProfile/ModalUserProfile";
+import { ModalUserProfile } from "../../Modal/ModalUserProfile/ModalUserProfile";
 import { ScrollToTopBtn } from "../../Utils/ScrollToTopBtn/ScrollToTopBtn";
 import { UserProfileFilters } from "../UserProfile/UserProfileFilters/UserProfileFilters";
 import { UserProfileShortWrapper } from "../UserProfile/UserProfileShortWrapper/UserProfileShortWrapper";
@@ -68,7 +68,7 @@ export function SearchVapors() {
 			},
 		};
 
-		if (userMyProfile.id) querySendGetProfiles(data);
+		if (userMyProfile.userid) querySendGetProfiles(data);
 	};
 
 	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
@@ -101,7 +101,7 @@ export function SearchVapors() {
 				<div className="flex flex-row flex-wrap justify-center">
 					<UserProfileShortWrapper />
 				</div>
-				<UserProfile />
+				<ModalUserProfile />
 			</div>
 		</div>
 	);

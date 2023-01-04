@@ -19,7 +19,7 @@ export function UserProfileShort(params: {
 
 	const openProfileHandler = () => {
 		const data: IQueryGetProfile = {
-			id: profile.id,
+			userid: String(profile.userid),
 		};
 
 		querySendGetProfile(data);
@@ -75,7 +75,7 @@ export function UserProfileShort(params: {
 						})
 					) : (
 						<UserProfileInterest
-							key={"interest" + profile.id}
+							key={"interest" + profile.userid}
 							value={"Отсутствуют"}
 							title={""}
 						/>
