@@ -3,6 +3,7 @@ import {
 	IPhoto,
 	IProfile,
 	IProfileShort,
+	IRegistration,
 } from "../interfaces/iprofiles";
 import {
 	ILogin,
@@ -48,7 +49,7 @@ import {
 export function useQueryRegistration() {
 	const { data, error, loaded, querySend } = useQueryPost();
 
-	const querySendRegistration = async (dataQuery: ILogin) => {
+	const querySendRegistration = async (dataQuery: IRegistration) => {
 		querySend("/api/registration", dataQuery, true);
 	};
 
