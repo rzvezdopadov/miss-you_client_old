@@ -5,7 +5,6 @@ import {
 	arr_growth,
 	arr_location,
 	arr_signZodiac,
-	arr_weight,
 } from "../arrdata/profiles";
 import {
 	IDialog,
@@ -241,7 +240,6 @@ export const initialStateUserProfile: IUserProfile = {
 		longitude: 0,
 		location: "",
 		likes: [],
-		age: 0,
 		birthday: 0,
 		monthofbirth: 0,
 		yearofbirth: 0,
@@ -301,14 +299,13 @@ export const registrationAction = (registration: IRegistration) => ({
 
 const initialStateRegistration: IRegistration = {
 	name: "",
-	location: "",
+	location: arr_location[0],
 	birthday: 1,
 	monthofbirth: 1,
 	yearofbirth: 1970,
 	gender: 0,
 	gendervapor: 0,
-	growth: 80,
-	weight: 0,
+	growth: arr_growth[0],
 	email: "",
 	password: "",
 };
@@ -339,7 +336,6 @@ const initialStateUserMyProfile: IProfile = {
 	longitude: 0,
 	location: "",
 	likes: [],
-	age: 0,
 	birthday: 1,
 	monthofbirth: 1,
 	yearofbirth: 1970,
@@ -447,7 +443,9 @@ export const initialStateDialog: IDialog = {
 	timecode: 0,
 	userid: "",
 	name: "",
-	age: 0,
+	birthday: 0,
+	monthofbirth: 0,
+	yearofbirth: 0,
 	photomain: 0,
 	photolink: [],
 	messages: [],

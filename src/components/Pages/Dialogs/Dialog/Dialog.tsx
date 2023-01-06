@@ -8,6 +8,7 @@ import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { scrollToBottom } from "../../../../utils/pagescroll";
 import { Emojis } from "../Emojis/Emojis";
 import { sendMessage } from "../../../Utils/Socket/Socket";
+import { getAgeFromYear, getStrYearFromAge } from "../../../../utils/age";
 
 export function Dialog() {
 	const { userMyProfile, dialog, dialogUserId, messageForUser } =
@@ -54,10 +55,12 @@ export function Dialog() {
 		<>
 			<div className="flex flex-shrink-0 justify-center items-center w-full my-1 text-lime-400 select-none">
 				{dialog &&
-				dialog.age &&
+				dialog.yearofbirth &&
 				dialogUserId &&
 				Object.keys(dialog).length ? (
-					`${dialog.name}, ${dialog.age} год`
+					`${dialog.name}, ${getAgeFromYear(
+						dialog.yearofbirth
+					)} ${getStrYearFromAge(getAgeFromYear(dialog.yearofbirth))}`
 				) : (
 					<div className="flex justify-center text-lime-400">
 						Диалог с пользователем

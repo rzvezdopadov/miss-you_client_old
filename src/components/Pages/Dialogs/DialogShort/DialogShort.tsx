@@ -1,5 +1,6 @@
 import * as React from "react";
 import { IDialog } from "../../../../interfaces/iprofiles";
+import { getAgeFromYear } from "../../../../utils/age";
 
 export function DialogShort(payload: {
 	dialog: IDialog;
@@ -9,7 +10,7 @@ export function DialogShort(payload: {
 
 	return (
 		<div
-			key={payload.dialog.timecode + dialog.age}
+			key={payload.dialog.timecode}
 			className="flex items-center my-1 w-auto h-16 bg-gray-700 rounded-xl shadow-[0px_0px_1px_1px] shadow-lime-300 cursor-pointer"
 			onClick={onClickHandler}
 		>
@@ -23,7 +24,7 @@ export function DialogShort(payload: {
 			></div>
 			<div className="flex flex-col md:w-40 h-full m-1 overflow-hidden">
 				<div className="flex flex-shrink-0 justify-center w-max overflow-hidden select-none">
-					{`${dialog.name}, ${dialog.age}`}
+					{`${dialog.name}, ${getAgeFromYear(dialog.yearofbirth)}`}
 				</div>
 				<div className="flex justify-start md:justify-center text-zinc-400 text-sm overflow-hidden select-none">
 					{dialog.messages[dialog.messages.length - 1].message}

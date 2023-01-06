@@ -7,7 +7,7 @@ import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { openUserProfile } from "../../../Modal/ModalUserProfile/ModalUserProfile";
 import { UserProfileInterest } from "../UserProfileInterest/UserProfileInterest";
 import { VisitDateTimeShort } from "../../../Utils/VisitDateTime/VisitDateTime";
-import { getStrYearFromAge } from "../../../../utils/age";
+import { getAgeFromYear, getStrYearFromAge } from "../../../../utils/age";
 
 export function UserProfileShort(params: {
 	key: string;
@@ -59,8 +59,12 @@ export function UserProfileShort(params: {
 				</div>
 
 				<div className="flex justify-center text-neutral-50 rounded-3xl">
-					{`${profile.age} ${getStrYearFromAge(profile.age)}`},
-					Интересы:
+					{`${getAgeFromYear(
+						profile.yearofbirth
+					)} ${getStrYearFromAge(
+						getAgeFromYear(profile.yearofbirth)
+					)}`}
+					, Интересы:
 				</div>
 				<div className="flex items-center justify-center overflow-hidden flex-wrap text-sm text-neutral-50 h-28">
 					{profile.interests.length ? (

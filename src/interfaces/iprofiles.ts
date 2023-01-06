@@ -27,7 +27,6 @@ export interface IRegistration {
 	gender: number;
 	gendervapor: number;
 	growth: number;
-	weight: number;
 	email: string;
 	password: string;
 }
@@ -40,7 +39,6 @@ export interface IProfile {
 	longitude: number;
 	location: string;
 	likes: Array<string>;
-	age: number;
 	birthday: number;
 	monthofbirth: number;
 	yearofbirth: number;
@@ -71,7 +69,9 @@ export interface IProfileShort {
 	userid: string;
 	timecode: number;
 	name: string;
-	age: number;
+	birthday: number;
+	monthofbirth: number;
+	yearofbirth: number;
 	gender: number;
 	photomain: number;
 	photolink: Array<string>;
@@ -89,7 +89,9 @@ export interface IDialog {
 	timecode: number;
 	userid: string;
 	name: string;
-	age: number;
+	birthday: number;
+	monthofbirth: number;
+	yearofbirth: number;
 	photomain: number;
 	photolink: Array<string>;
 	messages: Array<IMessage>;

@@ -1,3 +1,9 @@
+export const getAgeFromYear = (year: number): number => {
+	const date = new Date();
+	const yearNow = date.getFullYear();
+	return yearNow - year;
+};
+
 export const getStrYearFromAge = (year: number): string => {
 	if (
 		year === 0 ||

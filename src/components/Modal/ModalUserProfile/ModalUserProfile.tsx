@@ -32,7 +32,7 @@ import { UserProfileInterest } from "../../Pages/UserProfile/UserProfileInterest
 import { UserProfileInterests } from "../../Pages/UserProfile/UserProfileInterests/UserProfileInterests";
 import { UserProfileSlider } from "../../Pages/UserProfile/UserProfileSlider/UserProfileSlider";
 import { VisitDateTime } from "../../Utils/VisitDateTime/VisitDateTime";
-import { getStrYearFromAge } from "../../../utils/age";
+import { getAgeFromYear, getStrYearFromAge } from "../../../utils/age";
 
 export function openUserProfile(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -114,9 +114,11 @@ export function ModalUserProfile() {
 
 					<div className="flex items-center flex-col">
 						<div className="flex justify-center select-none text-white p-1 m-1 h-7 rounded-lg">
-							{`${userProfile.profile.name}, ${
-								userProfile.profile.age
-							} ${getStrYearFromAge(userProfile.profile.age)}`}
+							{`${userProfile.profile.name}, ${getAgeFromYear(
+								userProfile.profile.yearofbirth
+							)} ${getStrYearFromAge(
+								getAgeFromYear(userProfile.profile.yearofbirth)
+							)}`}
 						</div>
 
 						<VisitDateTime profile={userProfile.profile} />
