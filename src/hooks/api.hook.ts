@@ -4,9 +4,9 @@ import {
 	IProfile,
 	IProfileShort,
 	IRegistration,
+	ILogin,
 } from "../interfaces/iprofiles";
 import {
-	ILogin,
 	IQueryDialog,
 	IQueryGetProfiles,
 	IQueryGetProfilesForLikes,
@@ -17,6 +17,7 @@ import {
 	IQueryUploadPhoto,
 } from "../interfaces/iquery";
 import {
+	IQueryAnswerCaptcha,
 	IQueryAnswerCheckPhoto,
 	IQueryAnswerDeletePhoto,
 	IQueryAnswerDialog,
@@ -78,9 +79,9 @@ export function useQueryLogin() {
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerLogin = {
-		data: dataNew,
-		error: errorNew,
-		loaded,
+		dataLogin: dataNew,
+		errorLogin: errorNew,
+		loadedLogin: loaded,
 		querySendLogin,
 	};
 
@@ -363,6 +364,27 @@ export function useQueryUploadPhoto() {
 		error: errorNew,
 		loaded,
 		queryUploadPhoto,
+	};
+
+	return queryAnswer;
+}
+
+/* Get captcha */
+export function useQueryCaptcha() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendCaptcha = async () => {
+		querySend("/api/captcha", {}, true);
+	};
+
+	const dataNew = data as TexImageSource;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerCaptcha = {
+		dataCaptcha: dataNew,
+		errorCaptcha: errorNew,
+		loadedCaptcha: loaded,
+		querySendCaptcha,
 	};
 
 	return queryAnswer;
