@@ -15,6 +15,7 @@ import { ModalUserProfile } from "../../Modal/ModalUserProfile/ModalUserProfile"
 import { ScrollToTopBtn } from "../../Utils/ScrollToTopBtn/ScrollToTopBtn";
 import { UserProfileFilters } from "../UserProfile/UserProfileFilters/UserProfileFilters";
 import { UserProfileShortWrapper } from "../UserProfile/UserProfileShortWrapper/UserProfileShortWrapper";
+import { LabelHeader } from "../../Utils/Labels/Labels";
 
 export function SearchVapors() {
 	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
@@ -94,7 +95,7 @@ export function SearchVapors() {
 					scrollTopDiv={scrollTopDiv}
 					scrollToTopBtn={scrollToTopBtn}
 				/>
-				<div className="flex justify-center">Поиск пары</div>
+				<LabelHeader value={`Поиск пары`} />
 				<div className="flex justify-center">
 					<UserProfileFilters />
 				</div>

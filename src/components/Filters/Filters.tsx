@@ -17,10 +17,11 @@ function FiltersOptionAtArr(payload: {
 	argsArr: Array<{
 		arr: Array<number | string>;
 		filterParam: IFilterParam;
+		valen?: boolean;
 	}>;
 }) {
 	return (
-		<div className="flex flex-row bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
+		<div className="flex flex-row bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
 			<span className="flex m-1">{payload.headName}</span>
 
 			{payload.argsArr.map((arr, i: number) => {
@@ -33,7 +34,10 @@ function FiltersOptionAtArr(payload: {
 					>
 						{arr.arr.map((value, i: number) => {
 							return payload.argsArr.length < 2 ? (
-								<option key={String(i) + value} value={i}>
+								<option
+									key={String(i) + value}
+									value={arr.valen ? value : i}
+								>
 									{value}
 								</option>
 							) : (
@@ -64,25 +68,16 @@ export function Filters(payload: {
 }) {
 	return (
 		<>
-			<div className="flex flex-row flex-wrap bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
-				<span className="flex m-1">Локация:</span>
-
-				<select
-					{...payload.location}
-					className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
-				>
-					{arr_location.map((value, index) => {
-						return (
-							<option
-								key={`filterscountrytown${index}`}
-								value={value}
-							>
-								{value}
-							</option>
-						);
-					})}
-				</select>
-			</div>
+			<FiltersOptionAtArr
+				headName={"Локация:"}
+				argsArr={[
+					{
+						arr: arr_location,
+						filterParam: { ...payload.location },
+						valen: true,
+					},
+				]}
+			/>
 
 			<FiltersOptionAtArr
 				headName={"Возраст:"}

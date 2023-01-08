@@ -102,23 +102,13 @@ export function SettingProfileGeneral() {
 
 	return (
 		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
-			<div className="flex flex-row flex-wrap bg-gray-900 p-1 m-2 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
-				<span className="flex m-1 select-none">Локация:</span>
-
-				<select
-					value={userMyProfile.location}
-					className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
-					onChange={locationOnChangeHandler}
-				>
-					{arr_location.map((value, index) => {
-						return (
-							<option key={`countrytown${index}`} value={value}>
-								{value}
-							</option>
-						);
-					})}
-				</select>
-			</div>
+			<SelectFromArrValue
+				keyOpt={"location"}
+				value={userMyProfile.location}
+				onChangeHandler={locationOnChangeHandler}
+				arr={arr_location}
+				title={"Локация:"}
+			/>
 
 			<SelectFromArr
 				keyOpt={"gender"}
@@ -136,10 +126,10 @@ export function SettingProfileGeneral() {
 				title={"Кого ищу?"}
 			/>
 
-			<div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-1.5 w-64 m-2">
+			<div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-0.5 py-2 px-1 m-1.5 ">
 				<label htmlFor="date" className="text-white">
-					Дата рождения:{" "}
-				</label>{" "}
+					{`Дата рождения: `}
+				</label>
 				&nbsp;
 				<input
 					value={
@@ -154,7 +144,7 @@ export function SettingProfileGeneral() {
 							? "0" + userMyProfile.birthday
 							: userMyProfile.birthday)
 					}
-					className="border rounded bg-slate-300 text-black "
+					className="border rounded bg-slate-300 text-black h-6 "
 					type="date"
 					max={minDateBirth}
 					name="date"

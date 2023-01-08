@@ -16,12 +16,15 @@ import { minage } from "../../../utils/globalconst";
 import { useQueryRegistration } from "../../../hooks/api.hook";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import { useEffect, useRef } from "react";
+import { Captcha } from "../Captcha/Captcha";
+import { Input } from "../../Utils/Inputs/Inputs";
+import { LabelHeader } from "../../Utils/Labels/Labels";
+import { Button } from "../../Utils/Buttons/Buttons";
 
 export function FormRegistration() {
 	const { registration } = store.getState();
-	const { data, error, loaded, querySendRegistration } =
-		useQueryRegistration();
-	const btnRegistration = useRef<HTMLDivElement>(null);
+	const { data, error, querySendRegistration } = useQueryRegistration();
+	const btnRegistration = React.useRef<HTMLButtonElement>(null);
 	const checkAgreement = useRef<HTMLInputElement>(null);
 
 	let date = new Date();
@@ -29,6 +32,10 @@ export function FormRegistration() {
 	date.setFullYear(date.getFullYear() - minage);
 
 	let minDateBirth = date.toISOString().split("T")[0];
+
+	useEffect(() => {
+		checkboxAgreementCheck(null as never);
+	}, []);
 
 	useEffect(() => {
 		if (data) {
@@ -40,7 +47,7 @@ export function FormRegistration() {
 		}
 	}, [data, error]);
 
-	const registrationOnClickHandler = () => {
+	const btnRegistrationOnClickHandler = () => {
 		if (!checkAgreement.current) return;
 		if (!checkAgreement.current.checked) {
 			openModalMessage(
@@ -73,18 +80,22 @@ export function FormRegistration() {
 			openModalMessage("Неверно задано поле 'Рост'!");
 			return;
 		}
-		if (registration.name.length < 1) {
+		if (!registration.name) {
 			openModalMessage(
 				"Имя пользователя должно быть обязательно указанно!"
 			);
 			return;
 		}
-		if (registration.email.length < 1) {
+		if (!registration.email) {
 			openModalMessage("E-mail должен быть обязательно указан!");
 			return;
 		}
-		if (registration.password.length < 1) {
+		if (!registration.password) {
 			openModalMessage("Пароль должен быть обязательно указан!");
+			return;
+		}
+		if (!registration.captcha) {
+			openModalMessage("Код с картинки должен быть обязательно указан!");
 			return;
 		}
 
@@ -171,13 +182,14 @@ export function FormRegistration() {
 	) => {
 		onChangeValueRegistration(e, "password", "string");
 	};
+	const captchaOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		onChangeValueRegistration(e, "captcha", "string");
+	};
 
 	return (
-		<div className="flex w-full justify-center min-w-xs">
-			<div className="block bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80">
-				<label className="text-white text-2xl font-bold mb-4">
-					Регистрация
-				</label>
+		<div className="flex justify-center min-h-80 h-fit max-h-[80%] w-full">
+			<div className="flex flex-col bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80 overflow-scroll">
+				<LabelHeader value={`Регистрация`} />
 
 				<SelectFromArr
 					keyOpt={"gender"}
@@ -195,30 +207,15 @@ export function FormRegistration() {
 					title={"Кого ищу?"}
 				/>
 
-				<div className="flex flex-row flex-wrap p-1 m-3 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
-					<span className="flex m-1 text-white select-none">
-						Локация:
-					</span>
+				<SelectFromArrValue
+					keyOpt={"location"}
+					value={registration.location}
+					onChangeHandler={locationOnChangeHandler}
+					arr={arr_location}
+					title={"Локация:"}
+				/>
 
-					<select
-						value={registration.location}
-						className="flex bg-gray-300 overflow-hidden text-black m-1 w-64 text-center rounded-lg"
-						onChange={locationOnChangeHandler}
-					>
-						{arr_location.map((value, index) => {
-							return (
-								<option
-									key={`countrytown${index}`}
-									value={value}
-								>
-									{value}
-								</option>
-							);
-						})}
-					</select>
-				</div>
-
-				<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-1.5 m-3">
+				<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative  p-0.5 m-1.5 mx-3">
 					<label htmlFor="date" className="text-white">
 						{"Дата рождения:"}
 					</label>
@@ -236,7 +233,7 @@ export function FormRegistration() {
 								? "0" + registration.birthday
 								: registration.birthday)
 						}
-						className="border rounded select-none bg-slate-300 text-black "
+						className="border rounded-lg select-none bg-slate-300 text-black "
 						type="date"
 						max={minDateBirth}
 						name="date"
@@ -244,47 +241,44 @@ export function FormRegistration() {
 					/>
 				</div>
 
-				<div className="">
-					<SelectFromArrValue
-						keyOpt={"growth"}
-						value={registration.growth}
-						onChangeHandler={growthOnChangeHandler}
-						arr={arr_growth}
-						title={"Рост:"}
-					/>
-				</div>
+				<SelectFromArrValue
+					keyOpt={"growth"}
+					value={registration.growth}
+					onChangeHandler={growthOnChangeHandler}
+					arr={arr_growth}
+					title={"Рост:"}
+				/>
 
-				<div className="flex flex-col my-1">
-					<input
-						value={registration.name}
-						onChange={nameOnChangeHandler}
-						title="Ваше имя"
-						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
-						placeholder="Ваше имя"
-					/>
-				</div>
+				<Input
+					value={registration.name}
+					onChange={nameOnChangeHandler}
+					type="name"
+					placeholder="Ваше имя"
+				/>
 
-				<div className="flex flex-col my-2">
-					<input
-						value={registration.email}
-						onChange={emailOnChangeHandler}
-						title="E-mail"
-						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
-						type="email"
-						placeholder="E-mail"
-					/>
-				</div>
+				<Input
+					value={registration.email}
+					onChange={emailOnChangeHandler}
+					type="email"
+					placeholder="E-mail"
+				/>
 
-				<div className="flex flex-col my-2">
-					<input
-						value={registration.password}
-						onChange={passwordOnChangeHandler}
-						title="Пароль"
-						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
-						type="password"
-						placeholder="Пароль"
-					/>
-				</div>
+				<Input
+					value={registration.password}
+					onChange={passwordOnChangeHandler}
+					type="password"
+					placeholder="Пароль"
+				/>
+
+				<Input
+					value={registration.captcha}
+					onChange={captchaOnChangeHandler}
+					type="captcha"
+					placeholder="Код с картинки"
+				/>
+
+				<Captcha />
+
 				<div className="mb-4">
 					<input
 						type="checkbox"
@@ -303,16 +297,11 @@ export function FormRegistration() {
 						{"Пользовательское соглашение"}
 					</a>
 				</div>
-				<div className="flex items-center justify-center">
-					<div
-						id="btnRegistration"
-						className="bg-red-500 hover:bg-red-700 text-white cursor-pointer font-bold py-2 px-4 rounded"
-						ref={btnRegistration}
-						onClick={registrationOnClickHandler}
-					>
-						Найти себе пару
-					</div>
-				</div>
+				<Button
+					onClick={btnRegistrationOnClickHandler}
+					ref={btnRegistration}
+					value={`Найти себе пару`}
+				/>
 			</div>
 		</div>
 	);

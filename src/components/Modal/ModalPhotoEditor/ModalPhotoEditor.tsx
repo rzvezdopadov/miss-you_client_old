@@ -30,7 +30,7 @@ export function ModalPhotoEditor() {
 	const [baseBiasCoord, setBaseBiasCoord] = useState(baseBiasConst);
 	const [sizeAdd, setSizeAdd] = useState({ w: 0, h: 0 });
 	const [mouseIsDown, setMouseIsDown] = useState(false);
-	const { data, error, loaded, queryUploadPhoto } = useQueryUploadPhoto();
+	const { data, error, queryUploadPhoto } = useQueryUploadPhoto();
 
 	useEffect(() => {
 		return () => {
@@ -88,8 +88,8 @@ export function ModalPhotoEditor() {
 			store.dispatch(userMyProfileAction(newUserMyProfile));
 			store.dispatch(modalPhotoEditorAction(false));
 			openModalMessage("Успешно загруженно!");
-		} else {
-			console.log(error);
+		} else if (error) {
+			openModalMessage(error.response.data.message);
 		}
 	}, [data, error]);
 

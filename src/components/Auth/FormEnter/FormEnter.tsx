@@ -1,32 +1,49 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useFormFieldInputString } from "../../../hooks/form.hook";
-import { ILogin } from "../../../interfaces/iquery";
 import { jwtAction } from "../../../utils/reducers";
 import { store } from "../../../utils/store";
 import { useQueryLogin } from "../../../hooks/api.hook";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
+import { Captcha } from "../Captcha/Captcha";
+import { Input } from "../../Utils/Inputs/Inputs";
+import { LabelHeader } from "../../Utils/Labels/Labels";
+import { Button } from "../../Utils/Buttons/Buttons";
+import { ILogin } from "../../../interfaces/iprofiles";
 
 export function FormEnter() {
-	const { data, error, querySendLogin } = useQueryLogin();
-
+	const { dataLogin, errorLogin, querySendLogin } = useQueryLogin();
 	const email = useFormFieldInputString();
 	const password = useFormFieldInputString();
+	const captcha = useFormFieldInputString();
 
-	const handlerBtnClick = () => {
+	const btnLoginClickHandler = () => {
+		if (!email) {
+			openModalMessage("E-mail должен быть обязательно указан!");
+			return;
+		}
+		if (!password) {
+			openModalMessage("Пароль должен быть обязательно указан!");
+			return;
+		}
+		if (!captcha) {
+			openModalMessage("Код с картинки должен быть обязательно указан!");
+			return;
+		}
 		const dataQuery: ILogin = {
 			email: email.value,
 			password: password.value,
+			captcha: captcha.value,
 		};
 
 		querySendLogin(dataQuery);
 	};
 
 	useEffect(() => {
-		if (data) {
-			const { jwt } = data;
+		if (dataLogin) {
+			const { jwt } = dataLogin;
 
-			openModalMessage(data.message);
+			openModalMessage(dataLogin.message);
 
 			document.cookie = `jwt=${jwt}; max-age=${7 * 24 * 60 * 60}`;
 
@@ -34,44 +51,24 @@ export function FormEnter() {
 				store.dispatch(jwtAction(jwt));
 				document.location.href = "/vapors";
 			}, 1500);
-		} else if (error) {
-			openModalMessage(error.response.data.message);
+		} else if (errorLogin) {
+			openModalMessage(errorLogin.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataLogin, errorLogin]);
 
 	return (
-		<div className="flex w-full justify-center min-w-xs">
-			<div className="block bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80">
-				<label className="block text-white text-2xl font-bold mb-4">
-					Вход
-				</label>
-				<div className="flex flex-col my-1">
-					<input
-						{...email}
-						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
-						id="email"
-						type="email"
-						placeholder="E-mail"
-					/>
-				</div>
-				<div className="flex flex-col my-1">
-					<input
-						{...password}
-						className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 leading-tight text-black m-1 mx-3 py-2 px-3"
-						id="password"
-						type="password"
-						placeholder="Пароль"
-					/>
-				</div>
-				<div className="flex items-center justify-center">
-					<button
-						className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-						type="button"
-						onClick={handlerBtnClick}
-					>
-						Войти
-					</button>
-				</div>
+		<div className="flex h-fit w-full justify-center min-w-xs">
+			<div className="flex flex-col bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80 overflow-scroll">
+				<LabelHeader value={`Вход`} />
+				<Input {...email} type="email" placeholder="E-mail" />
+				<Input {...password} type="password" placeholder="Пароль" />
+				<Input
+					{...captcha}
+					type="captcha"
+					placeholder="Код с картинки"
+				/>
+				<Captcha />
+				<Button onClick={btnLoginClickHandler} value={`Войти`} />
 			</div>
 		</div>
 	);

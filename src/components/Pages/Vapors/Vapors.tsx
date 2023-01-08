@@ -15,6 +15,7 @@ import { ModalUserProfile } from "../../Modal/ModalUserProfile/ModalUserProfile"
 import { ScrollToTopBtn } from "../../Utils/ScrollToTopBtn/ScrollToTopBtn";
 import { UserProfileShortLoader } from "../UserProfile/UserProfileShortLoader/UserProfileShortLoader";
 import { UserProfileShortWrapper } from "../UserProfile/UserProfileShortWrapper/UserProfileShortWrapper";
+import { LabelHeader } from "../../Utils/Labels/Labels";
 
 export function Vapors() {
 	const { userMyProfile, usersProfiles, userProfile } = store.getState();
@@ -88,7 +89,7 @@ export function Vapors() {
 					scrollTopDiv={scrollTopDiv}
 					scrollToTopBtn={scrollToTopBtn}
 				/>
-				<div className="flex justify-center">Кто меня лайкнул</div>
+				<LabelHeader value={`Кто меня лайкнул`} />
 
 				<div className="flex flex-row flex-wrap justify-center">
 					{dataLoader ? (

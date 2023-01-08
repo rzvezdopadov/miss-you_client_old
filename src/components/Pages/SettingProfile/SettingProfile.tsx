@@ -17,6 +17,8 @@ import { SettingProfileGeneral } from "./SettingProfileGeneral/SettingProfileGen
 import { SettingProfileInterests } from "./SettingProfileInterests/SettingProfileInterests";
 import { SettingProfileSlider } from "./SettingProfileSlider/SettingProfileSlider";
 import { ModalPhotoEditor } from "../../Modal/ModalPhotoEditor/ModalPhotoEditor";
+import { LabelHeader } from "../../Utils/Labels/Labels";
+import { Button } from "../../Utils/Buttons/Buttons";
 
 export function SettingProfile() {
 	const { userMyProfile } = store.getState();
@@ -32,7 +34,7 @@ export function SettingProfile() {
 		}
 	}, [data, error]);
 
-	const btnSaveOnClick = () => {
+	const btnSaveOnClickHandler = () => {
 		const data: IQuerySetProfile = {
 			profile: { ...userMyProfile },
 		};
@@ -45,27 +47,14 @@ export function SettingProfile() {
 	return (
 		<>
 			<div className="flex flex-col fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-20 bottom-6 left-0 right-0 m-auto px-2 pt-2 pb-2 lg:h-2/3 lg:max-w-5xl">
-				<div className="flex flex-col font-bold">
-					{" "}
-					Настройки профиля{" "}
-				</div>
-
+				<LabelHeader value={`Настройки профиля`} />
 				<SettingProfileSlider />
 				<SettingProfileAbout />
 				<SettingProfileGeneral />
 				<SettingProfileInterests />
 				<SettingProfileCharacters />
 				<SettingProfileFilters />
-
-				<div className="flex flex-wrap justify-around m-2">
-					<button
-						className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline select-none"
-						type="button"
-						onClick={btnSaveOnClick}
-					>
-						Сохранить
-					</button>
-				</div>
+				<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
 			</div>
 
 			<ModalSettingProfileCharacters />
