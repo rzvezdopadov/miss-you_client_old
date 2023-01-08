@@ -302,12 +302,13 @@ const initialStateRegistration: IRegistration = {
 	location: arr_location[0],
 	birthday: 1,
 	monthofbirth: 1,
-	yearofbirth: 1970,
+	yearofbirth: 1990,
 	gender: 0,
 	gendervapor: 0,
 	growth: arr_growth[0],
 	email: "",
 	password: "",
+	captcha: "",
 };
 
 export const registrationReducer = createReducer(initialStateRegistration, {
