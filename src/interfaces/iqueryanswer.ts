@@ -41,9 +41,9 @@ export interface IQueryAnswerLoginData {
 }
 
 export interface IQueryAnswerLogin {
-	data: IQueryAnswerLoginData;
-	error: IQueryAnswerError;
-	loaded: boolean;
+	dataLogin: IQueryAnswerLoginData;
+	errorLogin: IQueryAnswerError;
+	loadedLogin: boolean;
 	querySendLogin(data: {}): void;
 }
 
@@ -129,4 +129,11 @@ export interface IQueryAnswerUploadPhoto {
 	error: IQueryAnswerError;
 	loaded: boolean;
 	queryUploadPhoto(data: {}): void;
+}
+
+export interface IQueryAnswerCaptcha {
+	dataCaptcha: TexImageSource;
+	errorCaptcha: IQueryAnswerError;
+	loadedCaptcha: boolean;
+	querySendCaptcha(): void;
 }

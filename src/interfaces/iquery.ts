@@ -8,11 +8,6 @@ export interface IQueryRegistration {
 	password: string;
 }
 
-export interface ILogin {
-	email: string;
-	password: string;
-}
-
 export interface IQueryGetProfile {
 	userid: string;
 }
