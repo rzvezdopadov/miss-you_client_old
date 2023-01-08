@@ -8,11 +8,11 @@ export function SelectFromArr(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-3 relative items-center">
-			<div className="flex mr-2">
+		<div className="flex justify-around flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center">
+			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
-			<div className="flex ml-2">
+			<div className="flex ml-0.5">
 				<select
 					value={params.value}
 					onChange={params.onChangeHandler}
@@ -40,11 +40,11 @@ export function SelectFromArrValue(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-3 relative items-center">
-			<div className="flex mr-2">
+		<div className="flex justify-around flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center">
+			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
-			<div className="flex ml-2">
+			<div className="flex ml-0.5">
 				<select
 					value={params.value}
 					onChange={params.onChangeHandler}
@@ -54,8 +54,7 @@ export function SelectFromArrValue(params: {
 					{params.arr.map((value, index) => {
 						return (
 							<option key={params.keyOpt + index} value={value}>
-								{" "}
-								{value}
+								{` ${value}`}
 							</option>
 						);
 					})}
