@@ -108,3 +108,9 @@ export interface IPhoto {
 	photomain: number;
 	photolink: Array<string>;
 }
+
+export interface IChangePass {
+	passwordnow: string;
+	passwordnew: string;
+	captcha: string;
+}

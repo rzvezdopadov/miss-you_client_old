@@ -5,6 +5,7 @@ import {
 	IProfileShort,
 	IRegistration,
 	ILogin,
+	IChangePass,
 } from "../interfaces/iprofiles";
 import {
 	IQueryDialog,
@@ -18,6 +19,7 @@ import {
 } from "../interfaces/iquery";
 import {
 	IQueryAnswerCaptcha,
+	IQueryAnswerChangePass,
 	IQueryAnswerCheckPhoto,
 	IQueryAnswerDeletePhoto,
 	IQueryAnswerDialog,
@@ -385,6 +387,27 @@ export function useQueryCaptcha() {
 		errorCaptcha: errorNew,
 		loadedCaptcha: loaded,
 		querySendCaptcha,
+	};
+
+	return queryAnswer;
+}
+
+/* Change password */
+export function useQueryChangePass() {
+	const { data, error, loaded, querySend } = useQueryPut();
+
+	const querySendChangePass = async (dataQuery: IChangePass) => {
+		querySend("/api/changepass", dataQuery, true);
+	};
+
+	const dataNew = data as IQueryAnswerMessageData;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerChangePass = {
+		dataChangePass: dataNew,
+		errorChangePass: errorNew,
+		loadedChangePass: loaded,
+		querySendChangePass,
 	};
 
 	return queryAnswer;

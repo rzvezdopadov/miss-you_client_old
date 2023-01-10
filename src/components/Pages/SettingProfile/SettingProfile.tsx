@@ -19,6 +19,7 @@ import { SettingProfileSlider } from "./SettingProfileSlider/SettingProfileSlide
 import { ModalPhotoEditor } from "../../Modal/ModalPhotoEditor/ModalPhotoEditor";
 import { LabelHeader } from "../../Utils/Labels/Labels";
 import { Button } from "../../Utils/Buttons/Buttons";
+import { SettingProfileChangePass } from "./SettingProfileChangePass/SettingProfileChangePass";
 
 export function SettingProfile() {
 	const { userMyProfile } = store.getState();
@@ -55,6 +56,7 @@ export function SettingProfile() {
 				<SettingProfileCharacters />
 				<SettingProfileFilters />
 				<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
+				<SettingProfileChangePass />
 			</div>
 
 			<ModalSettingProfileCharacters />

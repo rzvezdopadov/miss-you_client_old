@@ -1,4 +1,10 @@
-import { IDialog, IPhoto, IProfile, IProfileShort } from "./iprofiles";
+import {
+	IChangePass,
+	IDialog,
+	IPhoto,
+	IProfile,
+	IProfileShort,
+} from "./iprofiles";
 import { IQueryPhoto } from "./iquery";
 
 export interface IQueryAnswerError {
@@ -136,4 +142,11 @@ export interface IQueryAnswerCaptcha {
 	errorCaptcha: IQueryAnswerError;
 	loadedCaptcha: boolean;
 	querySendCaptcha(): void;
+}
+
+export interface IQueryAnswerChangePass {
+	dataChangePass: IQueryAnswerMessageData;
+	errorChangePass: IQueryAnswerError;
+	loadedChangePass: boolean;
+	querySendChangePass(data: IChangePass): void;
 }
