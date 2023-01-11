@@ -90,8 +90,13 @@ export function FormRegistration() {
 			openModalMessage("E-mail должен быть обязательно указан!");
 			return;
 		}
-		if (!registration.password) {
-			openModalMessage("Пароль должен быть обязательно указан!");
+		if (
+			registration.password.length < 8 ||
+			registration.password.length > 30
+		) {
+			openModalMessage(
+				"Пароль должен быть обязательно указан, от 8 до 30 символов!"
+			);
 			return;
 		}
 		if (!registration.captcha) {
