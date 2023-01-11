@@ -1,16 +1,11 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { useQueryLike } from "../../../../hooks/api.hook";
-import { IQueryLike } from "../../../../interfaces/iquery";
-import { userProfileAction } from "../../../../utils/reducers";
+import { useState } from "react";
 import { store } from "../../../../utils/store";
-import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { setLike } from "../../../Utils/Socket/Socket";
 
 export function UserProfileSlider() {
 	const { userProfile } = store.getState();
 	const [positionPhoto, setPositionPhoto] = useState(0);
-	const { data, error, querySendLike } = useQueryLike();
 
 	if (positionPhoto > userProfile.profile.photolink.length - 1) {
 		setTimeout(() => {
@@ -45,26 +40,6 @@ export function UserProfileSlider() {
 
 		setPositionPhoto(posPhoto);
 	};
-
-	const likeSlideHandler = () => {
-		const dataQuery: IQueryLike = {
-			userid: userProfile.profile.userid,
-		};
-
-		querySendLike(dataQuery);
-	};
-
-	useEffect(() => {
-		if (data) {
-			const newProfile = { ...userProfile.profile };
-
-			newProfile.likes = data as unknown as Array<string>;
-
-			store.dispatch(userProfileAction(true, newProfile));
-		} else if (error) {
-			openModalMessage(error.response.data.message);
-		}
-	}, [data, error]);
 
 	let colorHeart = "bg-red-500";
 

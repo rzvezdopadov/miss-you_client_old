@@ -15,7 +15,7 @@ export function openModalPhotoDelete(photoPos: number) {
 export function ModalPhotoDelete() {
 	const { modalPhotoDelete, userMyProfile } = store.getState();
 	const refModalPhotoDelete = useRef<HTMLDivElement>(null);
-	const { data, error, loaded, queryDeletePhoto } = useQueryDeletePhoto();
+	const { data, error, queryDeletePhoto } = useQueryDeletePhoto();
 
 	useEffect(() => {
 		return () => {

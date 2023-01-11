@@ -12,7 +12,7 @@ export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
 	const [photoPosition, setPhotoPosition] = useState(0);
 	const checkMainPhoto = useRef<HTMLDivElement>(null);
-	const { data, error, loaded, queryCheckPhoto } = useQueryCheckPhoto();
+	const { data, error, queryCheckPhoto } = useQueryCheckPhoto();
 
 	useEffect(() => {
 		if (data) {

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { store } from "../../../../utils/store";
 
 export function DialogsRightSideBarAd() {
 	const obj = {

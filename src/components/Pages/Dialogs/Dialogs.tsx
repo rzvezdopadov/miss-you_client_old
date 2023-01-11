@@ -8,11 +8,7 @@ import {
 import { DialogsLeftSideBar } from "./DialogsLeftSideBar/DialogsLeftSideBar";
 import { DialogsRightSideBarAd } from "./DialogsRightSideBarAd/DialogsRightSideBarAd";
 import { store } from "../../../utils/store";
-import {
-	dialogAction,
-	initialStateDialog,
-	initialStateUserProfile,
-} from "../../../utils/reducers";
+import { dialogAction, initialStateDialog } from "../../../utils/reducers";
 
 export function Dialogs() {
 	useEffect(() => {
