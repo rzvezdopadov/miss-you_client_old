@@ -1,15 +1,13 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useFormFieldInputString } from "../../../hooks/form.hook";
-import { jwtAction } from "../../../utils/reducers";
-import { store } from "../../../utils/store";
 import { useQueryRecoveryPass } from "../../../hooks/api.hook";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import { Captcha } from "../Captcha/Captcha";
 import { Input } from "../../Utils/Inputs/Inputs";
 import { LabelHeader } from "../../Utils/Labels/Labels";
 import { Button } from "../../Utils/Buttons/Buttons";
-import { ILogin, IRecoveryPassword } from "../../../interfaces/iprofiles";
+import { IRecoveryPassword } from "../../../interfaces/iprofiles";
 
 export function FormRecoveryPass() {
 	const { dataRecoveryPass, errorRecoveryPass, querySendRecoveryPass } =
