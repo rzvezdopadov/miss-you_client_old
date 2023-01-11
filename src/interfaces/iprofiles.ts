@@ -38,6 +38,11 @@ export interface ILogin {
 	captcha: string;
 }
 
+export interface IRecoveryPassword {
+	email: string;
+	captcha: string;
+}
+
 export interface IProfile {
 	userid: string;
 	timecode: number;

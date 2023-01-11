@@ -53,6 +53,13 @@ export interface IQueryAnswerLogin {
 	querySendLogin(data: {}): void;
 }
 
+export interface IQueryAnswerRecoveryPass {
+	dataRecoveryPass: IQueryAnswerMessageData;
+	errorRecoveryPass: IQueryAnswerError;
+	loadedRecoveryPass: boolean;
+	querySendRecoveryPass(data: {}): void;
+}
+
 export interface IQueryAnswerSetProfile {
 	data: IProfile;
 	error: IQueryAnswerError;

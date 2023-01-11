@@ -19,6 +19,7 @@ import {
 } from "../../../utils/reducers";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import { Socket } from "../../Utils/Socket/Socket";
+import { FormRecoveryPass } from "../../Auth/FormRecoveryPass/FormRecoveryPass";
 
 export function AppMain() {
 	const { jwt } = store.getState();
@@ -67,6 +68,10 @@ export function AppMain() {
 					) : (
 						<>
 							<Route path="/enter" element={<FormEnter />} />
+							<Route
+								path="/recoverypass"
+								element={<FormRecoveryPass />}
+							/>
 							<Route path="/*" element={<FormRegistration />} />
 						</>
 					)}

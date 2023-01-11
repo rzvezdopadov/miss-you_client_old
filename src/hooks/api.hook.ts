@@ -6,6 +6,7 @@ import {
 	IRegistration,
 	ILogin,
 	IChangePass,
+	IRecoveryPassword,
 } from "../interfaces/iprofiles";
 import {
 	IQueryDialog,
@@ -34,6 +35,7 @@ import {
 	IQueryAnswerProfiles,
 	IQueryAnswerProfilesForLikes,
 	IQueryAnswerProfileShort,
+	IQueryAnswerRecoveryPass,
 	IQueryAnswerRegistration,
 	IQueryAnswerRegistrationData,
 	IQueryAnswerSetProfile,
@@ -90,7 +92,28 @@ export function useQueryLogin() {
 	return queryAnswer;
 }
 
-/* Enter user */
+/* Recovery password */
+export function useQueryRecoveryPass() {
+	const { data, error, loaded, querySend } = useQueryPost();
+
+	const querySendRecoveryPass = async (dataQuery: IRecoveryPassword) => {
+		querySend("/api/recoverypass", dataQuery, true);
+	};
+
+	const dataNew = data as IQueryAnswerMessageData;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerRecoveryPass = {
+		dataRecoveryPass: dataNew,
+		errorRecoveryPass: errorNew,
+		loadedRecoveryPass: loaded,
+		querySendRecoveryPass,
+	};
+
+	return queryAnswer;
+}
+
+/* Like */
 export function useQueryLike() {
 	const { data, error, loaded, querySend } = useQueryPut();
 
