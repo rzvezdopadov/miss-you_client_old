@@ -1,4 +1,4 @@
-export const randNum = (count: number) => {
+export const getRandNum = (count: number) => {
 	return Math.floor(Math.random() * count);
 };
 
@@ -10,7 +10,7 @@ export function getRandomString(count: number): string {
 	if (!count) return str;
 
 	for (let i = 0; i < count; i++) {
-		var pos = randNum(alphabet.length);
+		var pos = getRandNum(alphabet.length);
 		str += alphabet[pos];
 	}
 

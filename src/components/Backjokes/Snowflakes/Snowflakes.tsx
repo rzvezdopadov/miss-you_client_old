@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { randNum } from "../../../utils/random";
 import { convertTextToSign } from "../../../utils/convert";
+import { getRandNum } from "../../../utils/random";
 
 const snowflakes_type_arr = ["&#10052;", "&#10053;", "&#10054;"];
 
@@ -25,30 +25,30 @@ export function Snowflakes() {
 			if (!snowflakes.length) {
 				for (let i = 0; i < snowflakes_count; i++) {
 					const snowflakeNew: ISnowflake = {
-						type: randNum(snowflakes_type_arr.length - 1),
-						size: 10 + randNum(20),
-						posX: randNum(window.innerWidth),
-						posY: randNum(window.innerHeight),
-						deg: randNum(360),
+						type: getRandNum(snowflakes_type_arr.length - 1),
+						size: 10 + getRandNum(20),
+						posX: getRandNum(window.innerWidth),
+						posY: getRandNum(window.innerHeight),
+						deg: getRandNum(360),
 					};
 
 					snowflakesNew.push(snowflakeNew);
 				}
 			} else {
 				for (let i = 0; i < snowflakesNew.length; i++) {
-					snowflakesNew[i].posX += (15 - randNum(30)) / 30;
-					snowflakesNew[i].posY += randNum(100) / 100;
+					snowflakesNew[i].posX += (15 - getRandNum(30)) / 30;
+					snowflakesNew[i].posY += getRandNum(100) / 100;
 
 					if (
 						snowflakesNew[i].posY >
 						window.innerHeight - snowflakes[i].size * 1.5
 					) {
-						snowflakesNew[i].type = randNum(
+						snowflakesNew[i].type = getRandNum(
 							snowflakes_type_arr.length - 1
 						);
-						snowflakesNew[i].posX = randNum(window.innerWidth);
+						snowflakesNew[i].posX = getRandNum(window.innerWidth);
 						snowflakesNew[i].posY = -100;
-						snowflakesNew[i].size = 10 + randNum(20);
+						snowflakesNew[i].size = 10 + getRandNum(20);
 					}
 				}
 			}
