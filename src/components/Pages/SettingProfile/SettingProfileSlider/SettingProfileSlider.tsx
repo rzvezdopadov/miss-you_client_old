@@ -125,6 +125,7 @@ export function SettingProfileSlider() {
 					)}
 				</div>
 			</div>
+
 			<div className="flex justify-center m-1 rounded-md">
 				{userMyProfile.photolink.length > 1 ? (
 					<div
@@ -160,6 +161,7 @@ export function SettingProfileSlider() {
 					<></>
 				)}
 			</div>
+
 			<div className="flex flex-wrap justify-center m-1">
 				{userMyProfile.photolink.map((value, index) => {
 					return (
