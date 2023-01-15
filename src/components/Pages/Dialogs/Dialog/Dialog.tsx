@@ -84,7 +84,7 @@ export function Dialog() {
 
 						return (
 							<DialogMessage
-								key={`dialog${dialog.timecode}${value.timecode}`}
+								key={`DialogMessage${dialog.timecode}${value.timecode}`}
 								keyopt={`${dialog.timecode}${value.timecode}`}
 								name={name}
 								timecode={value.timecode}
