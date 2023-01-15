@@ -33,6 +33,7 @@ import { UserProfileInterests } from "../../Pages/UserProfile/UserProfileInteres
 import { UserProfileSlider } from "../../Pages/UserProfile/UserProfileSlider/UserProfileSlider";
 import { VisitDateTime } from "../../Utils/VisitDateTime/VisitDateTime";
 import { getAgeFromYear, getStrYearFromAge } from "../../../utils/age";
+import { Rating } from "../../Utils/Labels/Labels";
 
 export function openUserProfile(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -98,12 +99,8 @@ export function ModalUserProfile() {
 				<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 					<div className="flex flex-col">
 						<UserProfileSlider />
-						<div
-							className="flex select-none bg-orange-700 justify-center m-1 rounded-md"
-							title="Рейтинг пользователя"
-						>
-							Рейтинг: {userProfile.profile.raiting}
-						</div>
+						<Rating value={userProfile.profile.raiting} />
+
 						<div
 							className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md"
 							onClick={openDialogModalHandler}
