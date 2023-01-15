@@ -37,6 +37,19 @@ export function Snowflakes() {
 			} else {
 				for (let i = 0; i < snowflakesNew.length; i++) {
 					snowflakesNew[i].posX += (15 - getRandNum(30)) / 30;
+					if (
+						snowflakesNew[i].posX >
+						window.innerWidth - snowflakes[i].size * 1.5
+					) {
+						snowflakesNew[i].posX =
+							window.innerWidth - snowflakes[i].size * 1.5;
+					} else if (
+						snowflakesNew[i].posX <
+						snowflakes[i].size * 1.5
+					) {
+						snowflakesNew[i].posX = snowflakes[i].size * 1.5;
+					}
+
 					snowflakesNew[i].posY += getRandNum(100) / 100;
 
 					if (
