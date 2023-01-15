@@ -18,7 +18,6 @@ import {
 	userMyProfileAction,
 } from "../../../utils/reducers";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
-import { Socket } from "../../Utils/Socket/Socket";
 import { FormRecoveryPass } from "../../Auth/FormRecoveryPass/FormRecoveryPass";
 
 export function AppMain() {
@@ -77,7 +76,6 @@ export function AppMain() {
 					)}
 				</Routes>
 			}
-			{jwt ? <Socket /> : <></>}
 		</div>
 	);
 }

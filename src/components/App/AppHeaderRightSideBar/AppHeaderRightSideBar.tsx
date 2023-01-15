@@ -7,6 +7,7 @@ import heart from "../../../img/heart.png";
 import glass from "../../../img/glass.png";
 import gear from "../../../img/gear.png";
 import exit from "../../../img/exit.png";
+import { Socket } from "../../Utils/Socket/Socket";
 
 function AppHeaderRightSideBarNoAuth() {
 	return (
@@ -108,7 +109,10 @@ export function AppHeaderRightSideBar() {
 	return (
 		<div className="flex space-x-4">
 			{jwt ? (
-				<AppHeaderRightSideBarAuth />
+				<>
+					<AppHeaderRightSideBarAuth />
+					<Socket />
+				</>
 			) : (
 				<AppHeaderRightSideBarNoAuth />
 			)}
