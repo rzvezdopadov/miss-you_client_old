@@ -7,3 +7,15 @@ export function LabelHeader(payload: { value: string }) {
 		</div>
 	);
 }
+
+export function Rating(payload: { value: number }) {
+	return (
+		<div
+			className="flex select-none bg-orange-700 justify-center m-1 rounded-md"
+			title="Рейтинг пользователя"
+			key={`Rating${payload.value}`}
+		>
+			{`Рейтинг: ${payload.value}`}
+		</div>
+	);
+}
