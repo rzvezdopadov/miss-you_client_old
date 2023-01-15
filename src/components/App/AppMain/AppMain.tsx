@@ -10,11 +10,15 @@ import { Partners } from "../../Pages/Partners/Partners";
 import { Vapors } from "../../Pages/Vapors/Vapors";
 import { SearchVapors } from "../../Pages/SearchVapors/SearchVapors";
 import { Dialogs } from "../../Pages/Dialogs/Dialogs";
-import { useQueryGetProfile } from "../../../hooks/api.hook";
+import {
+	useQueryGetProfile,
+	useQueryGetStickerpacks,
+} from "../../../hooks/api.hook";
 import { IQueryGetProfile } from "../../../interfaces/iquery";
 import { useEffect } from "react";
 import {
 	filtersUserAction,
+	stickerpacksAction,
 	userMyProfileAction,
 } from "../../../utils/reducers";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
@@ -23,6 +27,8 @@ import { FormRecoveryPass } from "../../Auth/FormRecoveryPass/FormRecoveryPass";
 export function AppMain() {
 	const { jwt } = store.getState();
 	const { data, error, querySendGetProfile } = useQueryGetProfile();
+	const { dataStickerpacks, errorStickerpacks, querySendGetStickerpacks } =
+		useQueryGetStickerpacks();
 
 	useEffect(() => {
 		const data: IQueryGetProfile = {
@@ -31,6 +37,7 @@ export function AppMain() {
 
 		if (jwt) {
 			querySendGetProfile(data);
+			querySendGetStickerpacks();
 		}
 	}, []);
 
@@ -42,6 +49,14 @@ export function AppMain() {
 			openModalMessage(error.response.data.message);
 		}
 	}, [data, error]);
+
+	useEffect(() => {
+		if (dataStickerpacks) {
+			store.dispatch(stickerpacksAction(dataStickerpacks));
+		} else if (errorStickerpacks) {
+			openModalMessage(errorStickerpacks.response.data.message);
+		}
+	}, [dataStickerpacks, errorStickerpacks]);
 
 	return (
 		<div className="flex flex-grow overflow-hidden my-2 justify-center items-center">

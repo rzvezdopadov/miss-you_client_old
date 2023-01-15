@@ -39,8 +39,10 @@ import {
 	IQueryAnswerRegistration,
 	IQueryAnswerRegistrationData,
 	IQueryAnswerSetProfile,
+	IQueryAnswerStickerpacks,
 	IQueryAnswerUploadPhoto,
 } from "../interfaces/iqueryanswer";
+import { IStickerpack } from "../interfaces/istickers";
 import {
 	useQueryDelete,
 	useQueryGet,
@@ -431,6 +433,28 @@ export function useQueryChangePass() {
 		errorChangePass: errorNew,
 		loadedChangePass: loaded,
 		querySendChangePass,
+	};
+
+	return queryAnswer;
+}
+
+/* Get all stickerpacks
+ */
+export function useQueryGetStickerpacks() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendGetStickerpacks = async () => {
+		querySend("/api/stickerpacks", {}, true);
+	};
+
+	const dataNew = data as Array<IStickerpack>;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerStickerpacks = {
+		dataStickerpacks: dataNew,
+		errorStickerpacks: errorNew,
+		loadedStickerpacks: loaded,
+		querySendGetStickerpacks,
 	};
 
 	return queryAnswer;

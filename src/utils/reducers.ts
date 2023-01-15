@@ -15,6 +15,7 @@ import {
 } from "../interfaces/iprofiles";
 import { IStateModalMessage, IStatePhotoDelete } from "../interfaces/iredusers";
 import { getCookiesJWT } from "./cookie";
+import { IStickerpack } from "../interfaces/istickers";
 
 export const MOBILE_MENU = "MOBILE_MENU";
 
@@ -263,6 +264,7 @@ export const initialStateUserProfile: IUserProfile = {
 		ilikecharacter: [],
 		idontlikecharacter: [],
 		raiting: 0,
+		stickerpacks: [],
 		filters: {
 			location: "",
 			agestart: arr_age[arr_age.length - 1],
@@ -360,6 +362,7 @@ const initialStateUserMyProfile: IProfile = {
 	ilikecharacter: [],
 	idontlikecharacter: [],
 	raiting: 0,
+	stickerpacks: [],
 	filters: {
 		location: "",
 		agestart: arr_age[arr_age.length - 1],
@@ -521,5 +524,23 @@ const initialStateMessageForUser: string = "";
 export const messageForUserReducer = createReducer(initialStateMessageForUser, {
 	[MESSAGE_FOR_USER]: (state: string, action: any) => {
 		return (state = action.payload.value);
+	},
+});
+
+////////////////////////////////////////////////////////////////////////
+export const STICKERPACKS = "STICKERPACKS";
+
+export const stickerpacksAction = (stickerpacks: Array<IStickerpack>) => ({
+	type: STICKERPACKS,
+	payload: stickerpacks,
+});
+
+const initialStateStickerpacks: Array<IStickerpack> = [];
+
+export const stickerpacksReducer = createReducer(initialStateStickerpacks, {
+	[STICKERPACKS]: (state: Array<IStickerpack>, action: any) => {
+		const arrayStickerpacks = [...action.payload];
+
+		return arrayStickerpacks;
 	},
 });

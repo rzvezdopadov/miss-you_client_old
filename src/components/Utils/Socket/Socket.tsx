@@ -2,7 +2,11 @@ import * as React from "react";
 import { useEffect } from "react";
 import socketIO from "socket.io-client";
 import { IDialog } from "../../../interfaces/iprofiles";
-import { IQueryLike, IQuerySendMessage } from "../../../interfaces/iquery";
+import {
+	IQueryLike,
+	IQuerySendMessage,
+	IQuerySendSticker,
+} from "../../../interfaces/iquery";
 import { IGetLike, IGetMessage } from "../../../interfaces/isocket";
 import {
 	dialogAction,
@@ -34,6 +38,18 @@ export const sendMessage = (message: string) => {
 	};
 
 	socketClient.emit("message", data);
+};
+
+export const sendSticker = (stickerid: string, stickerpos: number) => {
+	const { dialogUserId } = store.getState();
+
+	const data: IQuerySendSticker = {
+		userid: dialogUserId,
+		stickerid,
+		stickerpos,
+	};
+
+	socketClient.emit("sticker", data);
 };
 
 export const setLike = () => {

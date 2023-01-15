@@ -5,7 +5,7 @@ import {
 	IProfile,
 	IProfileShort,
 } from "./iprofiles";
-import { IQueryPhoto } from "./iquery";
+import { IStickerpack } from "./istickers";
 
 export interface IQueryAnswerError {
 	message: "";
@@ -156,4 +156,11 @@ export interface IQueryAnswerChangePass {
 	errorChangePass: IQueryAnswerError;
 	loadedChangePass: boolean;
 	querySendChangePass(data: IChangePass): void;
+}
+
+export interface IQueryAnswerStickerpacks {
+	dataStickerpacks: Array<IStickerpack>;
+	errorStickerpacks: IQueryAnswerError;
+	loadedStickerpacks: boolean;
+	querySendGetStickerpacks(): void;
 }

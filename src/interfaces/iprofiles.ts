@@ -74,6 +74,7 @@ export interface IProfile {
 	ilikecharacter: Array<number>;
 	idontlikecharacter: Array<number>;
 	raiting: number;
+	stickerpacks: Array<string>;
 	filters: IFilterUsers;
 }
 
