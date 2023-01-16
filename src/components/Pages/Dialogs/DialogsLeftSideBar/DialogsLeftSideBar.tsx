@@ -53,7 +53,7 @@ export function DialogsLeftSideBar() {
 				dialogs.map((dialog: IDialog) => {
 					return (
 						<DialogShort
-							key={`dialogs${dialog.timecode}`}
+							key={`DialogShort${dialog.timecode}`}
 							dialog={dialog}
 							onClickHandler={() => {
 								setDialogOnClick(dialog.userid);
