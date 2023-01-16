@@ -15,7 +15,7 @@ export function UserProfileShortWrapper() {
 					/>
 				))
 			) : (
-				<span className="flex bg-gray-900 p-2 m-2 rounded-lg">
+				<span className="flex bg-gray-900 p-2 m-2 rounded-lg select-none">
 					Никто не нашелся ^..^
 				</span>
 			)}

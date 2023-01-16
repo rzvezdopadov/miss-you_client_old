@@ -45,7 +45,7 @@ export function VisitDateTimeShort(payload: {
 	}
 
 	return (
-		<div className="flex justify-center items-center">
+		<div className="flex justify-center items-center select-none">
 			<span
 				className={
 					"flex justify-center rounded-full text-sm shadow-[0px_0px_2px_2px] shadow-zinc-400  h-3 w-3 mx-1" +
@@ -79,10 +79,10 @@ export function VisitDateTime(payload: { profile: IProfile | IProfileShort }) {
 	}
 
 	return (
-		<div className="flex justify-center items-center">
+		<div className="flex justify-center items-center select-none">
 			<span
 				className={
-					"flex justify-center rounded-full text-sm shadow-[0px_0px_2px_2px] shadow-zinc-400  h-3 w-3 mx-1" +
+					"flex justify-center rounded-full text-sm shadow-[0px_0px_2px_2px] shadow-zinc-400 h-3 w-3 mx-1" +
 					colorRound
 				}
 			></span>

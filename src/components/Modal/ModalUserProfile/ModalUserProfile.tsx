@@ -91,7 +91,7 @@ export function ModalUserProfile() {
 				<div className="flex justify-center h-6 w-full">
 					<div
 						onClick={closeUserProfileHandler}
-						className="flex justify-center absolute right-2 cursor-pointer rounded-full bg-red-400 h-6 w-6"
+						className="flex justify-center absolute right-2 cursor-pointer rounded-full select-none bg-red-400 h-6 w-6"
 					>
 						X
 					</div>

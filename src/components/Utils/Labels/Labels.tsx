@@ -1,6 +1,6 @@
 export function LabelHeader(payload: { value: string }) {
 	return (
-		<div className="flex justify-center items-center">
+		<div className="flex justify-center items-center select-none">
 			<label className="flex text-white text-xl font-bold mb-4">
 				{payload.value}
 			</label>

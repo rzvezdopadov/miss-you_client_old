@@ -40,7 +40,7 @@ export function SettingProfileInterests() {
 	};
 
 	return (
-		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
+		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 select-none w-full">
 			<div className="flex m-2">
 				<span> {"Интересы:"} </span>
 			</div>

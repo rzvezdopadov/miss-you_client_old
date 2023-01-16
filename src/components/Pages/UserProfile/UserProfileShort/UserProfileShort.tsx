@@ -50,11 +50,11 @@ export function UserProfileShort(params: {
 			</div>
 
 			<div className="flex flex-col text-neutral-50 rounded-3xl w-44">
-				<div className="flex justify-center text-neutral-50 rounded-3xl">
+				<div className="flex justify-center text-neutral-50 rounded-3xl select-none">
 					{profile.name}
 				</div>
 
-				<div className="flex justify-center text-neutral-50 rounded-3xl">
+				<div className="flex justify-center text-neutral-50 rounded-3xl select-none">
 					{`${getAgeFromYear(
 						profile.yearofbirth
 					)} ${getStrYearFromAge(
