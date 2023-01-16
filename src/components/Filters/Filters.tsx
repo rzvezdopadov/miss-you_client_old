@@ -27,7 +27,7 @@ function FiltersOptionAtArr(payload: {
 			{payload.argsArr.map((arr, i: number) => {
 				return (
 					<select
-						className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
+						className="flex bg-gray-300 text-black text-center cursor-pointer m-1 rounded-lg"
 						key={i + payload.headName}
 						value={arr.filterParam.value}
 						onChange={arr.filterParam.onChange}

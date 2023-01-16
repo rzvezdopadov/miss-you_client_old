@@ -16,7 +16,7 @@ export function SelectFromArr(params: {
 				<select
 					value={params.value}
 					onChange={params.onChangeHandler}
-					className="flex bg-gray-300  text-center w-full text-black m-1 rounded-lg"
+					className="flex bg-gray-300  text-center w-full text-black cursor-pointer m-1 rounded-lg"
 					title={params.title}
 				>
 					{params.arr.map((value, index) => {
@@ -48,7 +48,7 @@ export function SelectFromArrValue(params: {
 				<select
 					value={params.value}
 					onChange={params.onChangeHandler}
-					className="flex bg-gray-300  text-center w-full text-black m-1 rounded-lg"
+					className="flex bg-gray-300  text-center w-full text-black cursor-pointer m-1 rounded-lg"
 					title={params.title}
 				>
 					{params.arr.map((value, index) => {

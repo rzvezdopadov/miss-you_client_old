@@ -62,7 +62,7 @@ export function UserProfileShort(params: {
 					)}`}
 					, Интересы:
 				</div>
-				<div className="flex items-center justify-center overflow-hidden flex-wrap text-sm text-neutral-50 h-28">
+				<div className="flex items-center justify-center overflow-y-scroll flex-wrap text-sm text-neutral-50">
 					{profile.interests.length ? (
 						profile.interests.map((interest, i) => {
 							return (
