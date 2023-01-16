@@ -11,7 +11,7 @@ export function LabelHeader(payload: { value: string }) {
 export function Rating(payload: { value: number }) {
 	return (
 		<div
-			className="flex select-none bg-orange-700 justify-center m-1 rounded-md"
+			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-1 rounded-md"
 			title="Рейтинг пользователя"
 			key={`Rating${payload.value}`}
 		>
