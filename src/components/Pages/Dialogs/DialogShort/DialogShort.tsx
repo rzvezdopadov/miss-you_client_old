@@ -10,7 +10,6 @@ export function DialogShort(payload: {
 
 	return (
 		<div
-			key={payload.dialog.timecode}
 			className="flex items-center my-1 w-auto h-16 bg-gray-700 rounded-xl shadow-[0px_0px_1px_1px] shadow-lime-300 cursor-pointer"
 			onClick={onClickHandler}
 		>
