@@ -7,6 +7,11 @@ import { store } from "../../../../utils/store";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { openModalPhotoDelete } from "../../../Modal/ModalPhotoDelete/ModalPhotoDelete";
 import { openModalPhotoEditor } from "../../../Modal/ModalPhotoEditor/ModalPhotoEditor";
+import {
+	SliderPhotoBtnAdd,
+	SliderPhotoBtnLeft,
+	SliderPhotoBtnRight,
+} from "../../../Utils/Sliders/Sliders";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
@@ -127,39 +132,18 @@ export function SettingProfileSlider() {
 			</div>
 
 			<div className="flex justify-center m-1 rounded-md">
-				{userMyProfile.photolink.length > 1 ? (
-					<div
-						onClick={leftBtnSlideHandler}
-						className="flex select-none bg-gray-300 text-black text-xl border-lime-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-						title="Фото влево"
-					>
-						&lt;
-					</div>
-				) : (
-					<></>
-				)}
-				{userMyProfile.photolink.length < 10 ? (
-					<div
-						onClick={openModalPhotoEditor}
-						className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-						title="Добавить фото"
-					>
-						+
-					</div>
-				) : (
-					<></>
-				)}
-				{userMyProfile.photolink.length > 1 ? (
-					<div
-						onClick={rightBtnSlideHandler}
-						className="flex select-none bg-gray-300 text-black text-xl border-lime-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-						title="Фото вправо"
-					>
-						&gt;
-					</div>
-				) : (
-					<></>
-				)}
+				<SliderPhotoBtnLeft
+					photolink={userMyProfile.photolink}
+					onClick={leftBtnSlideHandler}
+				/>
+				<SliderPhotoBtnAdd
+					photolink={userMyProfile.photolink}
+					onClick={openModalPhotoEditor}
+				/>
+				<SliderPhotoBtnRight
+					photolink={userMyProfile.photolink}
+					onClick={rightBtnSlideHandler}
+				/>
 			</div>
 
 			<div className="flex flex-wrap justify-center m-1">

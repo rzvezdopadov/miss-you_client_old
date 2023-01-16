@@ -2,6 +2,11 @@ import * as React from "react";
 import { useState } from "react";
 import { store } from "../../../../utils/store";
 import { setLike } from "../../../Utils/Socket/Socket";
+import {
+	SliderPhotoBtnLeft,
+	SliderPhotoBtnLike,
+	SliderPhotoBtnRight,
+} from "../../../Utils/Sliders/Sliders";
 
 export function UserProfileSlider() {
 	const { userProfile } = store.getState();
@@ -65,32 +70,18 @@ export function UserProfileSlider() {
 			</div>
 
 			<div className="flex justify-center cursor-pointer m-1 rounded-md">
-				<div
+				<SliderPhotoBtnLeft
+					photolink={userProfile.profile.photolink}
 					onClick={leftBtnSlideHandler}
-					className="flex select-none bg-gray-300 text-black text-xl font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-				>
-					&lt;
-				</div>
-				<div
+				/>
+				<SliderPhotoBtnLike
+					likes={userProfile.profile.likes}
 					onClick={setLike}
-					className={
-						"flex select-none " +
-						colorHeart +
-						" justify-center items-center text-xl cursor-pointer m-1 w-24 rounded-md"
-					}
-				>
-					{userProfile.profile.likes.length ? (
-						<span className="text-white">&#9825;</span>
-					) : (
-						<span className="text-red-500">&#10084;</span>
-					)}
-				</div>
-				<div
+				/>
+				<SliderPhotoBtnRight
+					photolink={userProfile.profile.photolink}
 					onClick={rightBtnSlideHandler}
-					className="flex select-none bg-gray-300 text-black text-xl font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
-				>
-					&gt;
-				</div>
+				/>
 			</div>
 		</>
 	);
