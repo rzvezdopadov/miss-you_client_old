@@ -34,6 +34,7 @@ import { UserProfileSlider } from "../../Pages/UserProfile/UserProfileSlider/Use
 import { VisitDateTime } from "../../Utils/VisitDateTime/VisitDateTime";
 import { getAgeFromYear, getStrYearFromAge } from "../../../utils/age";
 import { Rating } from "../../Utils/Labels/Labels";
+import { Button } from "../../Utils/Buttons/Buttons";
 
 export function openUserProfile(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -100,13 +101,10 @@ export function ModalUserProfile() {
 					<div className="flex flex-col">
 						<UserProfileSlider />
 						<Rating value={userProfile.profile.raiting} />
-
-						<div
-							className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md"
+						<Button
+							value={"Написать сообщение"}
 							onClick={openDialogModalHandler}
-						>
-							Написать сообщение
-						</div>
+						/>
 					</div>
 
 					<div className="flex items-center flex-col">

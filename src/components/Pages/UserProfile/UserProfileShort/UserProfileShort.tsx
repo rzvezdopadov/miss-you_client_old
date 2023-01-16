@@ -8,6 +8,7 @@ import { openUserProfile } from "../../../Modal/ModalUserProfile/ModalUserProfil
 import { UserProfileInterest } from "../UserProfileInterest/UserProfileInterest";
 import { VisitDateTimeShort } from "../../../Utils/VisitDateTime/VisitDateTime";
 import { getAgeFromYear, getStrYearFromAge } from "../../../../utils/age";
+import { Button } from "../../../Utils/Buttons/Buttons";
 
 export function UserProfileShort(params: {
 	key: string;
@@ -43,12 +44,7 @@ export function UserProfileShort(params: {
 					}}
 					className="flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-3xl m-1 h-32 w-32"
 				></div>
-				<div
-					onClick={openProfileHandler}
-					className="flex select-none bg-lime-700 justify-center cursor-pointer m-1 rounded-md"
-				>
-					Посмотреть
-				</div>
+				<Button value={"Посмотреть"} onClick={openProfileHandler} />
 
 				<VisitDateTimeShort profile={profile} />
 			</div>
