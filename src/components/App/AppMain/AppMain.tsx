@@ -23,6 +23,7 @@ import {
 } from "../../../utils/reducers";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
 import { FormRecoveryPass } from "../../Auth/FormRecoveryPass/FormRecoveryPass";
+import { Shop } from "../../Pages/Shop/Shop";
 
 export function AppMain() {
 	const { jwt } = store.getState();
@@ -77,6 +78,7 @@ export function AppMain() {
 								path="/searchvapors"
 								element={<SearchVapors />}
 							/>
+							<Route path="/shop" element={<Shop />} />
 							<Route path="/*" element={<Vapors />} />
 						</>
 					) : (

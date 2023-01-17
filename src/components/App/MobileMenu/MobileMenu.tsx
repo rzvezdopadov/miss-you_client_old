@@ -5,6 +5,7 @@ import message from "../../../img/message.png";
 import heart from "../../../img/heart.png";
 import glass from "../../../img/glass.png";
 import gear from "../../../img/gear.png";
+import basket from "../../../img/basket.png";
 import exit from "../../../img/exit.png";
 import { logout } from "../../Auth/logout/logout";
 import { mobileMenuAction } from "../../../utils/reducers";
@@ -98,6 +99,17 @@ function MobileMenuAuth() {
 					src={gear}
 					alt="Настройки"
 					title="Настройки"
+				/>
+			</Link>
+			<Link
+				to="/shop"
+				className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+			>
+				<img
+					className="block h-5 w-auto"
+					src={basket}
+					alt="Магазин"
+					title="Магазин"
 				/>
 			</Link>
 			<Link
