@@ -92,7 +92,7 @@ export function SliderPhotoBtnAdd(payload: {
 			{payload.photolink.length < 10 ? (
 				<div
 					onClick={payload.onClick}
-					className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-md"
+					className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-xl"
 					title="Добавить фото"
 				>
 					+
@@ -108,7 +108,7 @@ export function SliderPhotoBtnLike(payload: {
 	likes: Array<string>;
 	onClick: any;
 }) {
-	const colorHeart = payload.likes.length ? "bg-red-500" : "bg-white";
+	const colorHeart = payload.likes.length ? "bg-red-500" : "bg-gray-300";
 
 	return (
 		<div
@@ -116,7 +116,7 @@ export function SliderPhotoBtnLike(payload: {
 			className={
 				"flex select-none " +
 				colorHeart +
-				" justify-center items-center text-xl cursor-pointer m-1 w-24 rounded-md"
+				" justify-center items-center text-xl border-yellow-300 border-2 cursor-pointer m-1 w-24 rounded-xl"
 			}
 		>
 			{payload.likes.length ? (
