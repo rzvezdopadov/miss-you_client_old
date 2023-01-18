@@ -1,37 +1,22 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { emojis } from "../../../../arrdata/emojis";
-import { convertTextToSign } from "../../../../utils/convert";
+import { emojis } from "../../../../../arrdata/emojis";
+import { convertTextToSign } from "../../../../../utils/convert";
 
 export function Emojis(payload: {
-	onSetEmojiClbk: React.MouseEventHandler<HTMLDivElement>;
-	emojisOpen: boolean;
+	onAddStrInMsgClbk: React.MouseEventHandler<HTMLDivElement>;
 }) {
 	const [emodjiBookMark, setEmodjiBookMark] = useState(0);
-	const refEmojis = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!refEmojis.current) return;
-
-		if (payload.emojisOpen) {
-			refEmojis.current.classList.remove("invisible");
-		} else {
-			refEmojis.current.classList.add("invisible");
-		}
-	}, [payload.emojisOpen]);
 
 	return (
-		<div
-			className="flex invisible flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-700 h-72 w-72"
-			ref={refEmojis}
-		>
+		<div className="flex flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-700 h-72 w-72">
 			<div className="flex flex-wrap overflow-y-scroll h-60 w-72">
 				{emojis[emodjiBookMark].map((value) => {
 					return (
 						<div
 							key={value}
 							className="flex justify-center items-center text-3xl h-10 w-10 cursor-pointer"
-							onClick={payload.onSetEmojiClbk}
+							onClick={payload.onAddStrInMsgClbk}
 						>
 							{convertTextToSign(value)}
 						</div>

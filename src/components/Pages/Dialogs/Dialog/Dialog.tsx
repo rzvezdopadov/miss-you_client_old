@@ -6,14 +6,15 @@ import { store } from "../../../../utils/store";
 import { DialogMessage } from "../DialogMessage/DialogMessage";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 import { scrollToBottom } from "../../../../utils/pagescroll";
-import { Emojis } from "../Emojis/Emojis";
+import { Emojis } from "../Smiles/Emojis/Emojis";
 import { sendMessage } from "../../../Utils/Socket/Socket";
 import { getAgeFromYear, getStrYearFromAge } from "../../../../utils/age";
+import { Smiles } from "../Smiles/Smiles";
 
 export function Dialog() {
 	const { userMyProfile, dialog, dialogUserId, messageForUser } =
 		store.getState();
-	const [emojisOpen, setEmojisOpen] = useState(false);
+	const [smilesOpen, setSmilesOpen] = useState(false);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -108,7 +109,7 @@ export function Dialog() {
 							sendMessageOnKeyDownHandler(e);
 						}}
 						onFocus={() => {
-							setEmojisOpen(false);
+							setSmilesOpen(false);
 						}}
 						title="Напишите сообщение..."
 						className="flex text-center resize-none h-10 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-zinc-600 text-white m-2 p-2"
@@ -121,22 +122,22 @@ export function Dialog() {
 					<div
 						className="flex"
 						onClick={() => {
-							emojisOpen
-								? setEmojisOpen(false)
-								: setEmojisOpen(true);
+							smilesOpen
+								? setSmilesOpen(false)
+								: setSmilesOpen(true);
 						}}
 					>
 						&#9786;
 					</div>
 
-					<Emojis
-						onSetEmojiClbk={(e) => {
-							setEmojisOpen(false);
+					<Smiles
+						onAddStrInMsgClbk={(e) => {
+							setSmilesOpen(false);
 							setMessageForUser(
 								messageForUser + e.currentTarget.innerHTML
 							);
 						}}
-						emojisOpen={emojisOpen}
+						smilesOpen={smilesOpen}
 					/>
 				</div>
 				<div
