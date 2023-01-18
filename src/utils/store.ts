@@ -19,6 +19,7 @@ import {
 	modalPhotoDeleteReducer,
 	modalPhotoEditorReducer,
 	registrationReducer,
+	stickerpacksReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -42,5 +43,6 @@ export const store = configureStore({
 		dialogUserId: dialogUserIdReducer,
 		socket: socketReducer,
 		messageForUser: messageForUserReducer,
+		stickerpacks: stickerpacksReducer,
 	},
 });
