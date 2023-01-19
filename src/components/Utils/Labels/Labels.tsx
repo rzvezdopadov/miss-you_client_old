@@ -8,6 +8,16 @@ export function LabelHeader(payload: { value: string }) {
 	);
 }
 
+export function LabelHeaderLG(payload: { value: string }) {
+	return (
+		<div className="flex justify-center items-center select-none">
+			<label className="flex text-white text-lg font-bold mb-4">
+				{payload.value}
+			</label>
+		</div>
+	);
+}
+
 export function Rating(payload: { value: number }) {
 	return (
 		<div
