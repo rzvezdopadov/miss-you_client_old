@@ -1,7 +1,7 @@
 import * as React from "react";
 import { store } from "../../../../utils/store";
 import { onChangeValueProfile } from "../utils";
-import { Rating } from "../../../Utils/Labels/Labels";
+import { Cash, Rating } from "../../../Utils/Labels/Labels";
 
 export function SettingProfileAbout() {
 	const { userMyProfile } = store.getState();
@@ -17,7 +17,8 @@ export function SettingProfileAbout() {
 
 	return (
 		<>
-			<Rating value={userMyProfile.raiting} />
+			<Cash value={userMyProfile.cash} />
+			<Rating value={userMyProfile.rating} />
 			<div className="flex flex-col my-1">
 				<input
 					value={userMyProfile.name}
