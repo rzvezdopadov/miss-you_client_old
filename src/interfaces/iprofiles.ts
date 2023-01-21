@@ -73,8 +73,9 @@ export interface IProfile {
 	interests: Array<string>;
 	ilikecharacter: Array<number>;
 	idontlikecharacter: Array<number>;
-	raiting: number;
+	rating: number;
 	stickerpacks: Array<string>;
+	cash: number;
 	filters: IFilterUsers;
 }
 
@@ -89,7 +90,7 @@ export interface IProfileShort {
 	photomain: number;
 	photolink: Array<string>;
 	interests: Array<string>;
-	raiting: number;
+	rating: number;
 }
 
 export interface IMessage {
