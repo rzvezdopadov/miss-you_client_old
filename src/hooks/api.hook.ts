@@ -19,6 +19,7 @@ import {
 	IQueryUploadPhoto,
 } from "../interfaces/iquery";
 import {
+	IQueryAnswerBuyRating,
 	IQueryAnswerCaptcha,
 	IQueryAnswerChangePass,
 	IQueryAnswerCheckPhoto,
@@ -479,6 +480,28 @@ export function useQueryGetRatingTariffs() {
 		errorRatingTariffs: errorNew,
 		loadedRatingTariffs: loaded,
 		querySendGetRatingTariffs,
+	};
+
+	return queryAnswer;
+}
+
+/* Buy ratting
+ */
+export function useQueryBuyRating() {
+	const { data, error, loaded, querySend } = useQueryPost();
+
+	const querySendBuyRating = async (idrate: string) => {
+		querySend("/api/buyrating", { idrate }, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerBuyRating = {
+		dataBuyRating: dataNew,
+		errorBuyRating: errorNew,
+		loadedBuyRating: loaded,
+		querySendBuyRating,
 	};
 
 	return queryAnswer;
