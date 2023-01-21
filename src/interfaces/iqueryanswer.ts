@@ -172,3 +172,10 @@ export interface IQueryAnswerRatingTariffs {
 	loadedRatingTariffs: boolean;
 	querySendGetRatingTariffs(): void;
 }
+
+export interface IQueryAnswerBuyRating {
+	dataBuyRating: IProfile;
+	errorBuyRating: IQueryAnswerError;
+	loadedBuyRating: boolean;
+	querySendBuyRating(idrate: string): void;
+}

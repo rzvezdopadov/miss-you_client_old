@@ -1,3 +1,5 @@
+import { IRate } from "./ishop";
+
 export interface IStateModalMessage {
 	enabled: boolean;
 	text: "";
@@ -11,4 +13,9 @@ export interface IStatePhotoDelete {
 export interface IActionReducer {
 	type: string;
 	payload: any;
+}
+
+export interface IStateBuyRating {
+	enabled: boolean;
+	rate: IRate;
 }
