@@ -13,9 +13,14 @@ import {
 	IProfileShort,
 	IRegistration,
 } from "../interfaces/iprofiles";
-import { IStateModalMessage, IStatePhotoDelete } from "../interfaces/iredusers";
+import {
+	IStateBuyRating,
+	IStateModalMessage,
+	IStatePhotoDelete,
+} from "../interfaces/iredusers";
 import { getCookiesJWT } from "./cookie";
 import { IStickerpack } from "../interfaces/istickers";
+import { IRate } from "../interfaces/ishop";
 
 export const MOBILE_MENU = "MOBILE_MENU";
 
@@ -263,8 +268,9 @@ export const initialStateUserProfile: IUserProfile = {
 		interests: [],
 		ilikecharacter: [],
 		idontlikecharacter: [],
-		raiting: 0,
+		rating: 0,
 		stickerpacks: [],
+		cash: 0,
 		filters: {
 			location: "",
 			agestart: arr_age[arr_age.length - 1],
@@ -361,8 +367,9 @@ const initialStateUserMyProfile: IProfile = {
 	interests: [],
 	ilikecharacter: [],
 	idontlikecharacter: [],
-	raiting: 0,
+	rating: 0,
 	stickerpacks: [],
+	cash: 0,
 	filters: {
 		location: "",
 		agestart: arr_age[arr_age.length - 1],
@@ -544,3 +551,30 @@ export const stickerpacksReducer = createReducer(initialStateStickerpacks, {
 		return arrayStickerpacks;
 	},
 });
+
+////////////////////////////////////////////////////////////////////////
+export const MODAL_BUY_RATTING = "MODAL_BUY_RATING";
+
+export const modalBuyRatingAction = (enabled: boolean, rate: IRate) => ({
+	type: MODAL_BUY_RATTING,
+	payload: {
+		enabled,
+		rate,
+	},
+});
+
+export const initialStateModalBuyRating: IStateBuyRating = {
+	enabled: false,
+	rate: { idRate: "", amountRate: 0, discount: 0, price: 0 },
+};
+
+export const modalBuyRatingReducer = createReducer(initialStateModalBuyRating, {
+	[MODAL_BUY_RATTING]: (state: IStateBuyRating, action: any) => {
+		let { enabled, rate } = action.payload;
+
+		if (!enabled) rate = state.rate;
+
+		return { enabled, rate };
+	},
+});
+////////////////////////////////////////////////////////////////////////

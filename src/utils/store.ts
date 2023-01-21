@@ -20,6 +20,7 @@ import {
 	modalPhotoEditorReducer,
 	registrationReducer,
 	stickerpacksReducer,
+	modalBuyRatingReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -29,6 +30,7 @@ export const store = configureStore({
 		modalLoading: modalLoadingReducer,
 		modalMessage: modalMessageReducer,
 		modalPhotoDelete: modalPhotoDeleteReducer,
+		modalBuyRating: modalBuyRatingReducer,
 		myVapors: myVaporsReducer,
 		filtersUser: filtersUserReducer,
 		usersProfiles: usersProfilesReducer,
