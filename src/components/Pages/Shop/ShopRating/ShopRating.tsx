@@ -4,42 +4,26 @@ import { LabelHeaderLG, Rating } from "../../../Utils/Labels/Labels";
 import { ShopRatingRate } from "./ShopRatingRate/ShopRatingRate";
 import stars from "../../../../img/stars.png";
 import { store } from "../../../../utils/store";
+import { useQueryGetRatingTariffs } from "../../../../hooks/api.hook";
+import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
 
 export function ShopRating() {
 	const { userMyProfile } = store.getState();
-	const [ratingTariffs, setfirst] = useState<Array<IRate>>([]);
-
-	const mockRate = [
-		{
-			idRate: "ssdvs",
-			amountRate: 1,
-			price: 10,
-		},
-		{
-			idRate: "wefw",
-			amountRate: 3,
-			price: 28,
-		},
-		{
-			idRate: "23r2",
-			amountRate: 5,
-			price: 45,
-		},
-		{
-			idRate: "wegfwe",
-			amountRate: 10,
-			price: 90,
-		},
-		{
-			idRate: "wdegvws",
-			amountRate: 50,
-			price: 450,
-		},
-	];
+	const [ratingTariffs, setRatingTariffs] = useState<Array<IRate>>([]);
+	const { dataRatingTariffs, errorRatingTariffs, querySendGetRatingTariffs } =
+		useQueryGetRatingTariffs();
 
 	useEffect(() => {
-		setfirst(mockRate);
+		querySendGetRatingTariffs();
 	}, []);
+
+	useEffect(() => {
+		if (dataRatingTariffs) {
+			setRatingTariffs(dataRatingTariffs);
+		} else if (errorRatingTariffs) {
+			openModalMessage(errorRatingTariffs.response.data.message);
+		}
+	}, [dataRatingTariffs, errorRatingTariffs]);
 
 	return (
 		<div
@@ -58,6 +42,7 @@ export function ShopRating() {
 								idRate={value.idRate}
 								amountRate={value.amountRate}
 								price={value.price}
+								discount={value.discount}
 							/>
 						);
 					})

@@ -35,6 +35,7 @@ import {
 	IQueryAnswerProfiles,
 	IQueryAnswerProfilesForLikes,
 	IQueryAnswerProfileShort,
+	IQueryAnswerRatingTariffs,
 	IQueryAnswerRecoveryPass,
 	IQueryAnswerRegistration,
 	IQueryAnswerRegistrationData,
@@ -42,6 +43,7 @@ import {
 	IQueryAnswerStickerpacks,
 	IQueryAnswerUploadPhoto,
 } from "../interfaces/iqueryanswer";
+import { IRate } from "../interfaces/ishop";
 import { IStickerpack } from "../interfaces/istickers";
 import {
 	useQueryDelete,
@@ -455,6 +457,28 @@ export function useQueryGetStickerpacks() {
 		errorStickerpacks: errorNew,
 		loadedStickerpacks: loaded,
 		querySendGetStickerpacks,
+	};
+
+	return queryAnswer;
+}
+
+/* Get all rate tarrifs
+ */
+export function useQueryGetRatingTariffs() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendGetRatingTariffs = async () => {
+		querySend("/api/ratingtariffs", {}, true);
+	};
+
+	const dataNew = data as Array<IRate>;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerRatingTariffs = {
+		dataRatingTariffs: dataNew,
+		errorRatingTariffs: errorNew,
+		loadedRatingTariffs: loaded,
+		querySendGetRatingTariffs,
 	};
 
 	return queryAnswer;

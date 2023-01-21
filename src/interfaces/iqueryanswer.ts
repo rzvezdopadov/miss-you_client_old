@@ -5,6 +5,7 @@ import {
 	IProfile,
 	IProfileShort,
 } from "./iprofiles";
+import { IRate } from "./ishop";
 import { IStickerpack } from "./istickers";
 
 export interface IQueryAnswerError {
@@ -163,4 +164,11 @@ export interface IQueryAnswerStickerpacks {
 	errorStickerpacks: IQueryAnswerError;
 	loadedStickerpacks: boolean;
 	querySendGetStickerpacks(): void;
+}
+
+export interface IQueryAnswerRatingTariffs {
+	dataRatingTariffs: Array<IRate>;
+	errorRatingTariffs: IQueryAnswerError;
+	loadedRatingTariffs: boolean;
+	querySendGetRatingTariffs(): void;
 }
