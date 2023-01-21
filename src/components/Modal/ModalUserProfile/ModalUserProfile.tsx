@@ -100,7 +100,7 @@ export function ModalUserProfile() {
 				<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 					<div className="flex flex-col">
 						<UserProfileSlider />
-						<Rating value={userProfile.profile.raiting} />
+						<Rating value={userProfile.profile.rating} />
 						<Button
 							value={"Написать сообщение"}
 							onClick={openDialogModalHandler}
