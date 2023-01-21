@@ -6,6 +6,7 @@ import stars from "../../../../img/stars.png";
 import { store } from "../../../../utils/store";
 import { useQueryGetRatingTariffs } from "../../../../hooks/api.hook";
 import { openModalMessage } from "../../../Modal/ModalMessage/ModalMessage";
+import { ModalBuyRating } from "../../../Modal/ModalBuyRating/ModalBuyRating";
 
 export function ShopRating() {
 	const { userMyProfile } = store.getState();
@@ -31,7 +32,7 @@ export function ShopRating() {
 		>
 			<LabelHeaderLG value={"Приобрести рейтинг"} />
 			<div className="w-48">
-				<Rating value={userMyProfile?.raiting} />
+				<Rating value={userMyProfile?.rating} />
 			</div>
 			<div className="flex justify-center flex-wrap m-4 w-full">
 				{ratingTariffs.length ? (
@@ -58,6 +59,7 @@ export function ShopRating() {
 					className="flex bg-contain bg-bottom bg-no-repeat w-full h-full"
 				></div>
 			</div>
+			<ModalBuyRating />
 		</div>
 	);
 }
