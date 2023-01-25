@@ -179,3 +179,17 @@ export interface IQueryAnswerBuyRating {
 	loadedBuyRating: boolean;
 	querySendBuyRating(idrate: string): void;
 }
+
+export interface IQueryAnswerAddStickerpack {
+	dataAddStickerpack: IProfile;
+	errorAddStickerpack: IQueryAnswerError;
+	loadedAddStickerpack: boolean;
+	querySendAddStickerpack(idstickerpack: string): void;
+}
+
+export interface IQueryAnswerDeleteStickerpack {
+	dataDeleteStickerpack: IProfile;
+	errorDeleteStickerpack: IQueryAnswerError;
+	loadedDeleteStickerpack: boolean;
+	querySendDeleteStickerpack(idstickerpack: string): void;
+}

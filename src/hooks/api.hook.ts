@@ -19,11 +19,13 @@ import {
 	IQueryUploadPhoto,
 } from "../interfaces/iquery";
 import {
+	IQueryAnswerAddStickerpack,
 	IQueryAnswerBuyRating,
 	IQueryAnswerCaptcha,
 	IQueryAnswerChangePass,
 	IQueryAnswerCheckPhoto,
 	IQueryAnswerDeletePhoto,
+	IQueryAnswerDeleteStickerpack,
 	IQueryAnswerDialog,
 	IQueryAnswerDialogs,
 	IQueryAnswerError,
@@ -502,6 +504,50 @@ export function useQueryBuyRating() {
 		errorBuyRating: errorNew,
 		loadedBuyRating: loaded,
 		querySendBuyRating,
+	};
+
+	return queryAnswer;
+}
+
+/* Add stickerpack
+ */
+export function useQueryAddStickerpack() {
+	const { data, error, loaded, querySend } = useQueryPost();
+
+	const querySendAddStickerpack = async (idstickerpack: string) => {
+		querySend("/api/stickerpack", { idstickerpack }, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerAddStickerpack = {
+		dataAddStickerpack: dataNew,
+		errorAddStickerpack: errorNew,
+		loadedAddStickerpack: loaded,
+		querySendAddStickerpack,
+	};
+
+	return queryAnswer;
+}
+
+/* Delete stickerpack
+ */
+export function useQueryDeleteStickerpack() {
+	const { data, error, loaded, querySend } = useQueryDelete();
+
+	const querySendDeleteStickerpack = async (idstickerpack: string) => {
+		querySend("/api/stickerpack", { idstickerpack }, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerDeleteStickerpack = {
+		dataDeleteStickerpack: dataNew,
+		errorDeleteStickerpack: errorNew,
+		loadedDeleteStickerpack: loaded,
+		querySendDeleteStickerpack,
 	};
 
 	return queryAnswer;
