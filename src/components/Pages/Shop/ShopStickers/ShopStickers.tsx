@@ -4,6 +4,7 @@ import { Button } from "../../../Utils/Buttons/Buttons";
 import { MyStickers } from "./MyStickers/MyStickers";
 import { FreeStickers } from "./FreeStickers/FreeStickers";
 import { BuyStickers } from "./BuyStickers/BuyStickers";
+import { ModalReviewStickerpack } from "../../../Modal/ModalReviewStickerpack/ModalReviewStickerpack";
 
 enum shopStickersPages {
 	my,
@@ -50,6 +51,7 @@ export function ShopStickers() {
 					)}
 				</div>
 			</div>
+			<ModalReviewStickerpack />
 		</div>
 	);
 }

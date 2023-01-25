@@ -1,5 +1,6 @@
 import { IStickerpack } from "../../../../../interfaces/istickers";
 import { getLinkSticker } from "../../../../../utils/stickers";
+import { modalReviewStickerpackOpen } from "../../../../Modal/ModalReviewStickerpack/ModalReviewStickerpack";
 import { Button } from "../../../../Utils/Buttons/Buttons";
 
 export function ShopSticker(payload: IStickerpack) {
@@ -14,7 +15,12 @@ export function ShopSticker(payload: IStickerpack) {
 					}}
 					className="flex bg-center bg-cover bg-no-repeat rounded-full shadow-[0px_0px_2px_2px] shadow-lime-300 m-1 p-10 h-20 w-20"
 				></div>
-				<Button value={"Обзор"} onClick={() => {}} />
+				<Button
+					value={"Обзор"}
+					onClick={() => {
+						modalReviewStickerpackOpen(payload);
+					}}
+				/>
 			</div>
 
 			<div className="flex flex-grow flex-col justify-center mr-1">
