@@ -578,3 +578,83 @@ export const modalBuyRatingReducer = createReducer(initialStateModalBuyRating, {
 	},
 });
 ////////////////////////////////////////////////////////////////////////
+export const MODAL_STICKERPACK = "MODAL_STICKERPACK";
+
+export const modalReviewStickerpackAction = (
+	enabled: boolean,
+	stickerpack: IStickerpack
+) => ({
+	type: MODAL_STICKERPACK,
+	payload: {
+		enabled,
+		stickerpack,
+	},
+});
+
+interface IModalReviewStickerpack {
+	enabled: boolean;
+	stickerpack: IStickerpack;
+}
+
+export const initialStateModalReviewStickerpack: IModalReviewStickerpack = {
+	enabled: false,
+	stickerpack: {
+		idstickerpack: "",
+		name: "",
+		discription: "",
+		price: 0,
+		author: "",
+		stickers: [],
+	},
+};
+
+export const modalReviewStickerpackReducer = createReducer(
+	initialStateModalReviewStickerpack,
+	{
+		[MODAL_STICKERPACK]: (state: IModalReviewStickerpack, action: any) => {
+			const { enabled, stickerpack } = action.payload;
+
+			return { enabled, stickerpack };
+		},
+	}
+);
+
+////////////////////////////////////////////////////////////////////////
+export const MODAL_ADDDELETE_STICKERPACK = "MODAL_ADDDELETE_STICKERPACK";
+
+export const modalAddDeleteStickerpackAction = (
+	enabled: boolean,
+	stickerpack: IStickerpack
+) => ({
+	type: MODAL_ADDDELETE_STICKERPACK,
+	payload: {
+		enabled,
+		stickerpack,
+	},
+});
+
+export const initialStateModalAddDeleteStickerpack: IModalReviewStickerpack = {
+	enabled: false,
+	stickerpack: {
+		idstickerpack: "",
+		name: "",
+		discription: "",
+		price: 0,
+		author: "",
+		stickers: [],
+	},
+};
+
+export const modalAddDeleteStickerpackReducer = createReducer(
+	initialStateModalReviewStickerpack,
+	{
+		[MODAL_ADDDELETE_STICKERPACK]: (
+			state: IModalReviewStickerpack,
+			action: any
+		) => {
+			const { enabled, stickerpack } = action.payload;
+
+			return { enabled, stickerpack };
+		},
+	}
+);

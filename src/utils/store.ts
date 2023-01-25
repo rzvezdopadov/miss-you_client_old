@@ -21,6 +21,8 @@ import {
 	registrationReducer,
 	stickerpacksReducer,
 	modalBuyRatingReducer,
+	modalReviewStickerpackReducer,
+	modalAddDeleteStickerpackReducer,
 } from "./reducers";
 
 export const store = configureStore({
@@ -46,5 +48,7 @@ export const store = configureStore({
 		socket: socketReducer,
 		messageForUser: messageForUserReducer,
 		stickerpacks: stickerpacksReducer,
+		modalReviewStickerpack: modalReviewStickerpackReducer,
+		modalAddDeleteStickerpack: modalAddDeleteStickerpackReducer,
 	},
 });
