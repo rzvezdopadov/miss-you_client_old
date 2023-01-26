@@ -1,17 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { store } from "../../../../../utils/store";
 import { getLinkSticker } from "../../../../../utils/stickers";
 import { convertTextToSign } from "../../../../../utils/convert";
+import { IStickerpack } from "../../../../../interfaces/istickers";
 
 export function Stickers() {
 	const { stickerpacks, userMyProfile } = store.getState();
+	const [myStickerpacks, setMyStickerpacks] = useState<IStickerpack[]>([]);
+
+	useEffect(() => {
+		const newStickerpacks: IStickerpack[] = [];
+
+		userMyProfile.stickerpacks.forEach((value) => {
+			const stickerpackIndex = stickerpacks.findIndex(
+				(stickerpack) => stickerpack.idstickerpack === value
+			);
+
+			if (stickerpackIndex !== -1)
+				newStickerpacks.push(stickerpacks[stickerpackIndex]);
+		});
+
+		setMyStickerpacks(newStickerpacks);
+	}, [userMyProfile.stickerpacks]);
+
 	const [stikersBookMark, setStickersBookMark] = useState(0);
 	return (
 		<div className="flex flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-700 h-72 w-72">
 			<div className="flex flex-wrap overflow-y-scroll h-60 w-72">
 				{userMyProfile.stickerpacks &&
 				userMyProfile.stickerpacks.length ? (
-					stickerpacks[stikersBookMark]?.stickers.map((value) => {
+					myStickerpacks[stikersBookMark]?.stickers.map((value) => {
 						return (
 							<div
 								style={{
@@ -37,7 +55,7 @@ export function Stickers() {
 			<div className="flex bg-slate-800 h-12 w-72">
 				{userMyProfile.stickerpacks &&
 				userMyProfile.stickerpacks.length ? (
-					stickerpacks?.map((value, index) => {
+					myStickerpacks?.map((value, index) => {
 						return (
 							<div
 								style={{
