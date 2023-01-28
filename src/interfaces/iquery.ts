@@ -47,7 +47,7 @@ export interface IQuerySendMessage {
 
 export interface IQuerySendSticker {
 	userid: string;
-	stickerid: string;
+	stickerpackid: string;
 	stickerpos: number;
 }
 
