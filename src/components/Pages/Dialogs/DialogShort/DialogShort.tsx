@@ -1,6 +1,7 @@
 import * as React from "react";
 import { IDialog } from "../../../../interfaces/iprofiles";
 import { getAgeFromYear } from "../../../../utils/age";
+import { messageType } from "../../../../interfaces/ishop";
 
 export function DialogShort(payload: {
 	dialog: IDialog;
@@ -26,7 +27,10 @@ export function DialogShort(payload: {
 					{`${dialog.name}, ${getAgeFromYear(dialog.yearofbirth)}`}
 				</div>
 				<div className="flex justify-start md:justify-center text-zinc-400 text-sm overflow-hidden select-none">
-					{dialog.messages[dialog.messages.length - 1].message}
+					{dialog.messages[dialog.messages.length - 1].type ===
+					messageType.sticker
+						? "Cтикер"
+						: dialog.messages[dialog.messages.length - 1].message}
 				</div>
 			</div>
 		</div>
