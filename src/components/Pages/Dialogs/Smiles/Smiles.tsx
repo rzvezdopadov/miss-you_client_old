@@ -35,7 +35,7 @@ export function Smiles(payload: {
 			{typeStickers === stickers.emojis ? (
 				<Emojis onAddStrInMsgClbk={payload.onAddStrInMsgClbk} />
 			) : (
-				<Stickers />
+				<Stickers onAddStrInMsgClbk={payload.onAddStrInMsgClbk} />
 			)}
 
 			<div className="flex absolute bottom-0 bg-slate-800 h-12 w-72">
