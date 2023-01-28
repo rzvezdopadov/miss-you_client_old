@@ -1,3 +1,5 @@
+import { messageType } from "./ishop";
+
 export interface IFilterParam {
 	value: string | number;
 	onChange: React.ChangeEventHandler<HTMLSelectElement>;
@@ -95,8 +97,11 @@ export interface IProfileShort {
 
 export interface IMessage {
 	timecode: number;
+	type: messageType;
 	userid: string;
 	message: string;
+	stickerpackid: string;
+	stickerpos: number;
 }
 
 export interface IDialog {
