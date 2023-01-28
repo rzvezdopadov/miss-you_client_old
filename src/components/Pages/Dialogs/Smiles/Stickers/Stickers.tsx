@@ -3,8 +3,11 @@ import { store } from "../../../../../utils/store";
 import { getLinkSticker } from "../../../../../utils/stickers";
 import { convertTextToSign } from "../../../../../utils/convert";
 import { IStickerpack } from "../../../../../interfaces/istickers";
+import { sendSticker } from "../../../../Utils/Socket/Socket";
 
-export function Stickers() {
+export function Stickers(payload: {
+	onAddStrInMsgClbk: React.MouseEventHandler<HTMLDivElement>;
+}) {
 	const { stickerpacks, userMyProfile } = store.getState();
 	const [myStickerpacks, setMyStickerpacks] = useState<IStickerpack[]>([]);
 
@@ -39,7 +42,14 @@ export function Stickers() {
 								}}
 								key={`stickers${value.position}`}
 								className="flex bg-center bg-cover bg-no-repeat justify-center items-center text-3xl h-24 w-24 cursor-pointer"
-								onClick={() => {}}
+								onClick={(e) => {
+									sendSticker(
+										myStickerpacks[stikersBookMark]
+											.idstickerpack,
+										value.position
+									);
+									payload.onAddStrInMsgClbk(e);
+								}}
 							></div>
 						);
 					})
