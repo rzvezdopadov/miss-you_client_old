@@ -1,13 +1,47 @@
 import * as React from "react";
 import { getDateTimeFromTimeCode } from "../../../Utils/VisitDateTime/VisitDateTime";
+import { messageType } from "../../../../interfaces/ishop";
+import { getLinkSticker } from "../../../../utils/stickers";
+import { store } from "../../../../utils/store";
+import { useEffect, useState } from "react";
 
 export function DialogMessage(payload: {
 	keyopt: string;
 	name: string;
 	timecode: number;
+	messageType: messageType;
 	message: string;
+	stickerpackid: string;
+	stikerpos: number;
 	photolink: string;
 }) {
+	const { stickerpacks } = store.getState();
+	const [linkSticker, setLinkSticker] = useState("");
+
+	useEffect(() => {
+		if (payload.messageType === messageType.sticker) {
+			const stickerpackIndex = stickerpacks.findIndex(
+				(stickerpack) =>
+					stickerpack.idstickerpack === payload.stickerpackid
+			);
+
+			if (stickerpackIndex === -1) return;
+
+			const stickerIndex = stickerpacks[
+				stickerpackIndex
+			].stickers.findIndex(
+				(value) => value.position === payload.stikerpos
+			);
+
+			if (stickerIndex === -1) return;
+
+			const stickerLink =
+				stickerpacks[stickerpackIndex].stickers[stickerIndex].link;
+
+			setLinkSticker(getLinkSticker(stickerLink));
+		}
+	}, []);
+
 	return (
 		<div
 			key={payload.keyopt}
@@ -28,7 +62,16 @@ export function DialogMessage(payload: {
 					)}`}
 				</div>
 				<div className="flex text-left overflow-hidden justify-start items-center w-80 select-none">
-					<div className="break-words">{payload.message}</div>
+					{payload.messageType === messageType.sticker ? (
+						<div
+							style={{
+								backgroundImage: `URL(${linkSticker})`,
+							}}
+							className="break-words bg-center bg-cover bg-no-repeat h-24 w-24"
+						></div>
+					) : (
+						<div className="break-words">{payload.message}</div>
+					)}
 				</div>
 			</div>
 		</div>
