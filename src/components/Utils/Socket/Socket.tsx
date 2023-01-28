@@ -40,12 +40,12 @@ export const sendMessage = (message: string) => {
 	socketClient.emit("message", data);
 };
 
-export const sendSticker = (stickerid: string, stickerpos: number) => {
+export const sendSticker = (stickerpackid: string, stickerpos: number) => {
 	const { dialogUserId } = store.getState();
 
 	const data: IQuerySendSticker = {
 		userid: dialogUserId,
-		stickerid,
+		stickerpackid,
 		stickerpos,
 	};
 
