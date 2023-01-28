@@ -191,6 +191,12 @@ export function Socket() {
 				newDialogs.push(socket);
 			}
 
+			newDialogs.sort(
+				(a, b) =>
+					b.messages[b.messages.length - 1].timecode -
+					a.messages[a.messages.length - 1].timecode
+			);
+
 			store.dispatch(dialogsAction(newDialogs));
 		});
 
