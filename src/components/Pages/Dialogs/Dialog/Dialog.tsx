@@ -89,8 +89,11 @@ export function Dialog() {
 								keyopt={`${dialog.timecode}${value.timecode}`}
 								name={name}
 								timecode={value.timecode}
+								messageType={value.type}
 								message={value.message}
 								photolink={photolink}
+								stickerpackid={value.stickerpackid}
+								stikerpos={value.stickerpos}
 							/>
 						);
 					})
