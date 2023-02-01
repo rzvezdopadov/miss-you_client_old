@@ -24,7 +24,7 @@ export function ModalMessage() {
 
 			setTimeout(() => {
 				store.dispatch(modalMessageAction(false, ""));
-			}, 3000);
+			}, 5000);
 		} else {
 			refModalMessage.current.classList.remove("bottom-0");
 			refModalMessage.current.classList.add("bottom-[-250px]");
