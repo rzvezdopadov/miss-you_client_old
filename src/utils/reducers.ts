@@ -7,6 +7,7 @@ import {
 	arr_signZodiac,
 } from "../arrdata/profiles";
 import {
+	ACCTYPE,
 	IDialog,
 	IFilterUsers,
 	IProfile,
@@ -271,6 +272,7 @@ export const initialStateUserProfile: IUserProfile = {
 		rating: 0,
 		stickerpacks: [],
 		cash: 0,
+		acctype: ACCTYPE.user,
 		filters: {
 			location: "",
 			agestart: arr_age[arr_age.length - 1],
@@ -370,6 +372,7 @@ const initialStateUserMyProfile: IProfile = {
 	rating: 0,
 	stickerpacks: [],
 	cash: 0,
+	acctype: ACCTYPE.user,
 	filters: {
 		location: "",
 		agestart: arr_age[arr_age.length - 1],

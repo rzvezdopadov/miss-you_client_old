@@ -1,5 +1,10 @@
 import { messageType } from "./ishop";
 
+export enum ACCTYPE {
+	user = "user",
+	admin = "admin",
+}
+
 export interface IFilterParam {
 	value: string | number;
 	onChange: React.ChangeEventHandler<HTMLSelectElement>;
@@ -78,6 +83,7 @@ export interface IProfile {
 	rating: number;
 	stickerpacks: Array<string>;
 	cash: number;
+	acctype: ACCTYPE;
 	filters: IFilterUsers;
 }
 
