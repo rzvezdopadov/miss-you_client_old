@@ -17,6 +17,7 @@ import {
 } from "../../../utils/reducers";
 import { store } from "../../../utils/store";
 import { openModalMessage } from "../../Modal/ModalMessage/ModalMessage";
+import { logout } from "../../Auth/logout/logout";
 
 const socketClient = socketIO("http://192.168.1.11:8000/", {
 	reconnection: true,
@@ -128,7 +129,7 @@ export function Socket() {
 
 		socketClient.on("delete_jwt", () => {
 			console.log("logout");
-			// logout();
+			logout();
 		});
 		socketClient.on("message", (socket: IGetMessage) => {
 			const { dialogs, dialog, dialogUserId } = store.getState();
