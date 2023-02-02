@@ -2,17 +2,14 @@
 import * as React from "react";
 import { useEffect } from "react";
 import "./App.css";
-import { AppHeader } from "./components/App/AppHeader/AppHeader";
-import { AppMain } from "./components/App/AppMain/AppMain";
-import {
-	closeMobileMenu,
-	MobileMenu,
-} from "./components/App/MobileMenu/MobileMenu";
-import { ModalLoading } from "./components/Modal/ModalLoading/ModalLoading";
-import { ModalMessage } from "./components/Modal/ModalMessage/ModalMessage";
-import { store } from "./utils/store";
-import { getJWT } from "./components/Utils/Socket/Socket";
-import { Snowflakes } from "./components/Backjokes/Snowflakes/Snowflakes";
+import { AppHeader } from "./components/sections/AppHeader";
+import { AppMain } from "./components/sections/AppMain";
+import { closeMobileMenu, MobileMenu } from "./components/sections/MobileMenu";
+import { ModalLoading } from "./components/modal/ModalLoading";
+import { ModalMessage } from "./components/modal/ModalMessage";
+import { store } from "./store/store";
+import { getJWT } from "./components/utils/Socket";
+import { Holiday } from "./components/additions/Holiday";
 
 function App() {
 	const { jwt, mobileMenu } = store.getState();
@@ -37,7 +34,7 @@ function App() {
 			<MobileMenu />
 			<ModalLoading />
 			<ModalMessage />
-			<Snowflakes />
+			<Holiday />
 		</div>
 	);
 }

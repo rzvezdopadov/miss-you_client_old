@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "../../node_modules/axios/index";
-import { logout } from "../components/Auth/logout/logout";
+import { logout } from "../helpers/logout";
 import {
 	modalLoadingOnHide,
 	modalLoadingOnShow,
-} from "../components/Modal/ModalLoading/ModalLoading";
+} from "../components/modal/ModalLoading";
 import { IQueryAnswer } from "../interfaces/iqueryanswer";
 
 function testOnBadTokenStatus(message: string) {

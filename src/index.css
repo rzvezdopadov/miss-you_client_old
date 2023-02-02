@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-image: url(/src/img/relations.jpg);
+  background-image: url(/src/assets/img/relations.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

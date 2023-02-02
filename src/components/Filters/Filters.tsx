@@ -1,21 +1,21 @@
 import * as React from "react";
 import {
-	arr_age,
-	arr_alcohol,
-	arr_genderVapor,
-	arr_growth,
-	arr_location,
-	arr_religion,
-	arr_signZodiac,
-	arr_smoke,
-	arr_weight,
-} from "../../arrdata/profiles";
+	data_age,
+	data_alcohol,
+	data_genderVapor,
+	data_growth,
+	data_location,
+	data_religion,
+	data_signZodiac,
+	data_smoke,
+	data_weight,
+} from "../../data/profiles";
 import { IFilterParam } from "../../interfaces/iprofiles";
 
 function FiltersOptionAtArr(payload: {
 	headName: string;
 	argsArr: Array<{
-		arr: Array<number | string>;
+		data: Array<number | string>;
 		filterParam: IFilterParam;
 		valen?: boolean;
 	}>;
@@ -24,19 +24,19 @@ function FiltersOptionAtArr(payload: {
 		<div className="flex flex-row bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
 			<span className="flex m-1">{payload.headName}</span>
 
-			{payload.argsArr.map((arr, i: number) => {
+			{payload.argsArr.map((data, i: number) => {
 				return (
 					<select
 						className="flex bg-gray-300 text-black text-center cursor-pointer m-1 rounded-lg"
 						key={i + payload.headName}
-						value={arr.filterParam.value}
-						onChange={arr.filterParam.onChange}
+						value={data.filterParam.value}
+						onChange={data.filterParam.onChange}
 					>
-						{arr.arr.map((value, i: number) => {
+						{data.data.map((value, i: number) => {
 							return payload.argsArr.length < 2 ? (
 								<option
 									key={String(i) + value}
-									value={arr.valen ? value : i}
+									value={data.valen ? value : i}
 								>
 									{value}
 								</option>
@@ -72,7 +72,7 @@ export function Filters(payload: {
 				headName={"Локация:"}
 				argsArr={[
 					{
-						arr: arr_location,
+						data: data_location,
 						filterParam: { ...payload.location },
 						valen: true,
 					},
@@ -82,25 +82,28 @@ export function Filters(payload: {
 			<FiltersOptionAtArr
 				headName={"Возраст:"}
 				argsArr={[
-					{ arr: arr_age, filterParam: { ...payload.ageStart } },
-					{ arr: arr_age, filterParam: { ...payload.ageEnd } },
+					{ data: data_age, filterParam: { ...payload.ageStart } },
+					{ data: data_age, filterParam: { ...payload.ageEnd } },
 				]}
 			/>
 			<FiltersOptionAtArr
 				headName={"Рост:"}
 				argsArr={[
 					{
-						arr: arr_growth,
+						data: data_growth,
 						filterParam: { ...payload.growthStart },
 					},
-					{ arr: arr_growth, filterParam: { ...payload.growthEnd } },
+					{
+						data: data_growth,
+						filterParam: { ...payload.growthEnd },
+					},
 				]}
 			/>
 			<FiltersOptionAtArr
 				headName={"Телосложение:"}
 				argsArr={[
 					{
-						arr: arr_weight,
+						data: data_weight,
 						filterParam: { ...payload.weight },
 					},
 				]}
@@ -109,7 +112,7 @@ export function Filters(payload: {
 				headName={"Знак зодиака:"}
 				argsArr={[
 					{
-						arr: arr_signZodiac,
+						data: data_signZodiac,
 						filterParam: { ...payload.signZodiac },
 					},
 				]}
@@ -118,7 +121,7 @@ export function Filters(payload: {
 				headName={"Ищу:"}
 				argsArr={[
 					{
-						arr: arr_genderVapor,
+						data: data_genderVapor,
 						filterParam: { ...payload.genderVapor },
 					},
 				]}
@@ -126,19 +129,22 @@ export function Filters(payload: {
 			<FiltersOptionAtArr
 				headName={"Религия:"}
 				argsArr={[
-					{ arr: arr_religion, filterParam: { ...payload.religion } },
+					{
+						data: data_religion,
+						filterParam: { ...payload.religion },
+					},
 				]}
 			/>
 			<FiltersOptionAtArr
 				headName={"Курение:"}
 				argsArr={[
-					{ arr: arr_smoke, filterParam: { ...payload.smoke } },
+					{ data: data_smoke, filterParam: { ...payload.smoke } },
 				]}
 			/>
 			<FiltersOptionAtArr
 				headName={"Алкоголь:"}
 				argsArr={[
-					{ arr: arr_alcohol, filterParam: { ...payload.alcohol } },
+					{ data: data_alcohol, filterParam: { ...payload.alcohol } },
 				]}
 			/>
 		</>
