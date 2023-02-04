@@ -8,7 +8,7 @@ import { closeMobileMenu, MobileMenu } from "./components/sections/MobileMenu";
 import { ModalLoading } from "./components/modal/ModalLoading";
 import { ModalMessage } from "./components/modal/ModalMessage";
 import { store } from "./store/store";
-import { getJWT } from "./components/utils/Socket";
+import { getJWT, Socket } from "./components/utils/Socket";
 import { Holiday } from "./components/additions/Holiday";
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
 			<ModalLoading />
 			<ModalMessage />
 			<Holiday />
+			<Socket />
 		</div>
 	);
 }
