@@ -14,29 +14,29 @@ import { IFilterParam } from "../../interfaces/iprofiles";
 
 function FiltersOptionAtArr(payload: {
 	headName: string;
-	argsArr: Array<{
+	arrArgs: Array<{
 		data: Array<number | string>;
 		filterParam: IFilterParam;
 		valen?: boolean;
 	}>;
 }) {
 	return (
-		<div className="flex flex-row bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center">
+		<div className="flex flex-row flex-wrap bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center overflow-hidden">
 			<span className="flex m-1">{payload.headName}</span>
 
-			{payload.argsArr.map((data, i: number) => {
+			{payload.arrArgs.map((arg, i: number) => {
 				return (
 					<select
 						className="flex bg-gray-300 text-black text-center cursor-pointer m-1 rounded-lg"
 						key={i + payload.headName}
-						value={data.filterParam.value}
-						onChange={data.filterParam.onChange}
+						value={arg.filterParam.value}
+						onChange={arg.filterParam.onChange}
 					>
-						{data.data.map((value, i: number) => {
-							return payload.argsArr.length < 2 ? (
+						{arg.data.map((value, i: number) => {
+							return payload.arrArgs.length < 2 ? (
 								<option
 									key={String(i) + value}
-									value={data.valen ? value : i}
+									value={arg.valen ? value : i}
 								>
 									{value}
 								</option>
@@ -70,7 +70,7 @@ export function Filters(payload: {
 		<>
 			<FiltersOptionAtArr
 				headName={"Локация:"}
-				argsArr={[
+				arrArgs={[
 					{
 						data: data_location,
 						filterParam: { ...payload.location },
@@ -81,14 +81,14 @@ export function Filters(payload: {
 
 			<FiltersOptionAtArr
 				headName={"Возраст:"}
-				argsArr={[
+				arrArgs={[
 					{ data: data_age, filterParam: { ...payload.ageStart } },
 					{ data: data_age, filterParam: { ...payload.ageEnd } },
 				]}
 			/>
 			<FiltersOptionAtArr
 				headName={"Рост:"}
-				argsArr={[
+				arrArgs={[
 					{
 						data: data_growth,
 						filterParam: { ...payload.growthStart },
@@ -101,7 +101,7 @@ export function Filters(payload: {
 			/>
 			<FiltersOptionAtArr
 				headName={"Телосложение:"}
-				argsArr={[
+				arrArgs={[
 					{
 						data: data_weight,
 						filterParam: { ...payload.weight },
@@ -110,7 +110,7 @@ export function Filters(payload: {
 			/>
 			<FiltersOptionAtArr
 				headName={"Знак зодиака:"}
-				argsArr={[
+				arrArgs={[
 					{
 						data: data_signZodiac,
 						filterParam: { ...payload.signZodiac },
@@ -119,7 +119,7 @@ export function Filters(payload: {
 			/>
 			<FiltersOptionAtArr
 				headName={"Ищу:"}
-				argsArr={[
+				arrArgs={[
 					{
 						data: data_genderVapor,
 						filterParam: { ...payload.genderVapor },
@@ -128,7 +128,7 @@ export function Filters(payload: {
 			/>
 			<FiltersOptionAtArr
 				headName={"Религия:"}
-				argsArr={[
+				arrArgs={[
 					{
 						data: data_religion,
 						filterParam: { ...payload.religion },
@@ -137,13 +137,13 @@ export function Filters(payload: {
 			/>
 			<FiltersOptionAtArr
 				headName={"Курение:"}
-				argsArr={[
+				arrArgs={[
 					{ data: data_smoke, filterParam: { ...payload.smoke } },
 				]}
 			/>
 			<FiltersOptionAtArr
 				headName={"Алкоголь:"}
-				argsArr={[
+				arrArgs={[
 					{ data: data_alcohol, filterParam: { ...payload.alcohol } },
 				]}
 			/>
