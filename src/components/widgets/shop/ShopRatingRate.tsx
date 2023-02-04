@@ -1,6 +1,6 @@
 import { IRate } from "../../../interfaces/ishop";
 import { openModalBuyRating } from "../../modal/ModalBuyRating";
-import { Button } from "../../utils/Sliders";
+import { Button } from "../../utils/Buttons";
 
 export function ShopRatingRate(payload: IRate) {
 	return (
