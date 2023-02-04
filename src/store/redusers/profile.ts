@@ -111,7 +111,7 @@ export const userMyProfileAction = (profile: IProfile) => ({
 	},
 });
 
-const initialStateUserMyProfile: IProfile = {
+export const initialStateUserMyProfile: IProfile = {
 	userid: "",
 	timecode: 0,
 	name: "",

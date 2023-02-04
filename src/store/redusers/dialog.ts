@@ -12,7 +12,7 @@ export const dialogsAction = (dialogs: Array<IDialog>) => ({
 	},
 });
 
-const initialStateDialogs: Array<IDialog> = [];
+export const initialStateDialogs: Array<IDialog> = [];
 
 export const dialogsReducer = createReducer(initialStateDialogs, {
 	[DIALOGS]: (state: Array<IDialog>, action: any) => {
