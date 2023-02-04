@@ -12,6 +12,7 @@ import {
 } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
+import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 
 export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(modalAddDeleteStickerpackAction(true, stickerpack));
@@ -112,20 +113,8 @@ export function ModalAddDeleteStickerpack() {
 				<div className="flex">{`Вы действительно хотите добавить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}"?`}</div>
 			)}
 			<div className="flex justify-center h-6 w-full">
-				<button
-					className="bg-green-500 hover:bg-green-700 text-white font-bold m-2 w-20 h-7 rounded"
-					type="button"
-					onClick={yesModalAddDeleteStickerpackHandler}
-				>
-					Да
-				</button>
-				<button
-					className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold m-2 w-20 h-7 rounded"
-					type="button"
-					onClick={closeModalAddDeleteStickerpackHandler}
-				>
-					Отмена
-				</button>
+				<ButtonYes onClick={yesModalAddDeleteStickerpackHandler} />
+				<ButtonCancel onClick={closeModalAddDeleteStickerpackHandler} />
 			</div>
 		</div>
 	);

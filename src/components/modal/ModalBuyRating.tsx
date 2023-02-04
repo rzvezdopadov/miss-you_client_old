@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { useQueryBuyRating, useQueryDeletePhoto } from "../../hooks/api.hook";
+import { useQueryBuyRating } from "../../hooks/api.hook";
 import { store } from "../../store/store";
 import { IRate } from "../../interfaces/ishop";
 import {
@@ -9,6 +9,7 @@ import {
 } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
+import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 
 export function openModalBuyRating(rate: IRate) {
 	store.dispatch(modalBuyRatingAction(true, rate));
@@ -68,20 +69,8 @@ export function ModalBuyRating() {
 		>
 			<div className="flex">{`Вы действительно хотите купить ${modalBuyRating.rate.amountRate} баллов рейтинга за ${modalBuyRating.rate.price} MY-баллов?`}</div>
 			<div className="flex justify-center h-6 w-full">
-				<button
-					className="bg-green-500 hover:bg-green-700 text-white font-bold m-2 w-20 h-7 rounded"
-					type="button"
-					onClick={yesModalBuyRatingHandler}
-				>
-					Да
-				</button>
-				<button
-					className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold m-2 w-20 h-7 rounded"
-					type="button"
-					onClick={closeModalBuyRatingHandler}
-				>
-					Отмена
-				</button>
+				<ButtonYes onClick={yesModalBuyRatingHandler} />
+				<ButtonCancel onClick={closeModalBuyRatingHandler} />
 			</div>
 		</div>
 	);

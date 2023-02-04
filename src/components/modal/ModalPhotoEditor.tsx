@@ -5,6 +5,7 @@ import { useQueryUploadPhoto } from "../../hooks/api.hook";
 import { modalPhotoEditorAction } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
+import { Button, ButtonModalClose } from "../utils/Buttons";
 
 const baseBiasConst = { x: 160, y: 160 };
 
@@ -261,14 +262,7 @@ export function ModalPhotoEditor() {
 			ref={refModalPhotoEditor}
 			className="flex flex-col fixed justify-start items-center bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-30 pb-2 w-96 h-fit"
 		>
-			<div className="flex absolute justify-center h-6 w-full">
-				<div
-					onClick={closeModalPhotoEditor}
-					className="flex justify-center absolute right-4 cursor-pointer rounded-full bg-red-400 h-6 w-6"
-				>
-					X
-				</div>
-			</div>
+			<ButtonModalClose onClick={closeModalPhotoEditor} />
 			<>
 				<canvas
 					id="photoeditor"
@@ -311,14 +305,8 @@ export function ModalPhotoEditor() {
 						-
 					</div>
 				</div>
-				<div className="flex justify-center items-center h-8 m-1 w-full">
-					<div
-						className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline select-none"
-						onClick={downloadHandler}
-					>
-						Загрузить
-					</div>
-				</div>
+
+				<Button value={"Загрузить"} onClick={downloadHandler} />
 			</>
 		</div>
 	);
