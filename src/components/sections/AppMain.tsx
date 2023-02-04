@@ -21,6 +21,7 @@ import { SettingProfile } from "../pages/SettingProfile";
 import { SearchVapors } from "../pages/SearchVapors";
 import { Shop } from "../pages/Shop";
 import { Vapors } from "../pages/Vapors";
+import { Logout } from "../pages/Logout";
 
 export function AppMain() {
 	const { jwt } = store.getState();
@@ -29,15 +30,15 @@ export function AppMain() {
 		useQueryGetStickerpacks();
 
 	useEffect(() => {
-		const data: IQueryGetProfile = {
-			userid: "0",
-		};
-
 		if (jwt) {
+			const data: IQueryGetProfile = {
+				userid: "0",
+			};
+
 			querySendGetProfile(data);
 			querySendGetStickerpacks();
 		}
-	}, []);
+	}, [jwt]);
 
 	useEffect(() => {
 		if (data) {
@@ -76,6 +77,7 @@ export function AppMain() {
 								element={<SearchVapors />}
 							/>
 							<Route path="/shop" element={<Shop />} />
+							<Route path="/logout" element={<Logout />} />
 							<Route path="/*" element={<Vapors />} />
 						</>
 					) : (
