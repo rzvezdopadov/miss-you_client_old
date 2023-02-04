@@ -10,6 +10,7 @@ import {
 	dialogsAction,
 } from "../../../store/redusers/dialog";
 import { modalMessageOpen } from "../../modal/ModalMessage";
+import { modalDialogOpen } from "../../modal/ModalDialog";
 
 export function DialogsLeftSideBar() {
 	const { userMyProfile, dialogs } = store.getState();
@@ -39,7 +40,7 @@ export function DialogsLeftSideBar() {
 
 		store.dispatch(dialogAction(outDialog[0]));
 		store.dispatch(dialogUserIdAction(userId));
-		openDialogModal();
+		modalDialogOpen();
 	};
 
 	return (
@@ -67,7 +68,4 @@ export function DialogsLeftSideBar() {
 			)}
 		</>
 	);
-}
-function openDialogModal() {
-	throw new Error("Function not implemented.");
 }
