@@ -34,3 +34,52 @@ export function ButtonScrollToTop(payload: {
 		</div>
 	);
 }
+
+export function ButtonModalClose(payload: { onClick: any }) {
+	return (
+		<div className="flex justify-center h-6 w-full">
+			<div
+				onClick={payload.onClick}
+				className="flex justify-center absolute right-2 cursor-pointer rounded-full select-none bg-red-400 h-6 w-6"
+			>
+				X
+			</div>
+		</div>
+	);
+}
+
+function ButtonYesCancel(payload: {
+	value: string;
+	color: string;
+	onClick: any;
+}) {
+	return (
+		<button
+			className={`bg-${payload.color}-500 hover:bg-${payload.color}-700 text-white font-bold m-2 w-20 h-7 rounded`}
+			type="button"
+			onClick={payload.onClick}
+		>
+			{payload.value}
+		</button>
+	);
+}
+
+export function ButtonYes(payload: { onClick: any }) {
+	return (
+		<ButtonYesCancel
+			value={"Да"}
+			color={"green"}
+			onClick={payload.onClick}
+		/>
+	);
+}
+
+export function ButtonCancel(payload: { onClick: any }) {
+	return (
+		<ButtonYesCancel
+			value={"Отмена"}
+			color={"yellow"}
+			onClick={payload.onClick}
+		/>
+	);
+}
