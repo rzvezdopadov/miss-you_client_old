@@ -2,8 +2,8 @@ import * as React from "react";
 import logoNavBar from "../../assets/img/logoNavBar.png";
 import logoNameNavBar from "../../assets/img/logoNameNavBar.png";
 import menuOpenNavBar from "../../assets/img/menuOpenNavBar.png";
-import { AppHeaderRightSideBar } from "./AppHeaderRightSideBar";
 import { openMobileMenu } from "./MobileMenu";
+import { Navigation } from "../widgets/Navigation";
 
 export function AppHeader() {
 	return (
@@ -28,8 +28,8 @@ export function AppHeader() {
 				onClick={openMobileMenu}
 				alt="LogoMenu"
 			/>
-			<div className="hidden md:block md:ml-6">
-				<AppHeaderRightSideBar />
+			<div className="hidden md:flex">
+				<Navigation naviKey={"header"} />
 			</div>
 		</div>
 	);
