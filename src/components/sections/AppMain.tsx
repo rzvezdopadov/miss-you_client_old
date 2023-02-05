@@ -22,9 +22,12 @@ import { SearchVapors } from "../pages/SearchVapors";
 import { Shop } from "../pages/Shop";
 import { Vapors } from "../pages/Vapors";
 import { Logout } from "../pages/Logout";
+import { ACCTYPE } from "../../interfaces/iprofiles";
+import { AdminStatistics } from "../pages/AdminStatistics";
+import { AdminProfiles } from "../pages/AdminProfiles";
 
 export function AppMain() {
-	const { jwt } = store.getState();
+	const { jwt, userMyProfile } = store.getState();
 	const { data, error, querySendGetProfile } = useQueryGetProfile();
 	const { dataStickerpacks, errorStickerpacks, querySendGetStickerpacks } =
 		useQueryGetStickerpacks();
@@ -66,20 +69,42 @@ export function AppMain() {
 					<Route path="/partners" element={<Partners />} />
 
 					{jwt ? (
-						<>
-							<Route path="/dialogs" element={<Dialogs />} />
-							<Route
-								path="/settings"
-								element={<SettingProfile />}
-							/>
-							<Route
-								path="/searchvapors"
-								element={<SearchVapors />}
-							/>
-							<Route path="/shop" element={<Shop />} />
-							<Route path="/logout" element={<Logout />} />
-							<Route path="/*" element={<Vapors />} />
-						</>
+						userMyProfile.userid !== "" ? (
+							<>
+								<Route path="/dialogs" element={<Dialogs />} />
+								<Route
+									path="/settings"
+									element={<SettingProfile />}
+								/>
+								<Route path="/shop" element={<Shop />} />
+								<Route path="/logout" element={<Logout />} />
+
+								{userMyProfile.acctype === ACCTYPE.admin ? (
+									<>
+										<Route
+											path="/userprofiles"
+											element={<AdminProfiles />}
+										/>
+
+										<Route
+											path="/*"
+											element={<AdminStatistics />}
+										/>
+									</>
+								) : (
+									<>
+										<Route
+											path="/searchvapors"
+											element={<SearchVapors />}
+										/>
+
+										<Route path="/*" element={<Vapors />} />
+									</>
+								)}
+							</>
+						) : (
+							<></>
+						)
 					) : (
 						<>
 							<Route path="/enter" element={<FormEnter />} />
