@@ -12,7 +12,7 @@ import {
 } from "../../store/redusers/profile";
 import { lazyloadingusercount } from "../../config";
 import { ButtonScrollToTop } from "../utils/Buttons";
-import { modalDialogClose } from "../modal/ModalDialog";
+import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortLoader } from "../widgets/userprofile/UserProfileShortLoader";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
@@ -100,6 +100,7 @@ export function Vapors() {
 				</div>
 
 				<ModalUserProfile />
+				<ModalDialog />
 			</div>
 		</div>
 	);

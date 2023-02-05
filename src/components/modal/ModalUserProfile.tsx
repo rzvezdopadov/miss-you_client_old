@@ -378,7 +378,6 @@ export function ModalUserProfile() {
 					</div>
 				</div>
 			</div>
-			<ModalDialog />
 		</>
 	);
 }

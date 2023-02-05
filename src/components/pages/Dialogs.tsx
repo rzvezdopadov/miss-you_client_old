@@ -6,6 +6,7 @@ import { DialogsRightSideBarAd } from "../widgets/dialog/DialogsRightSideBarAd";
 import { store } from "../../store/store";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { dialogAction, initialStateDialog } from "../../store/redusers/dialog";
+import { ModalUserProfile } from "../modal/ModalUserProfile";
 
 export function Dialogs() {
 	useEffect(() => {
@@ -32,6 +33,7 @@ export function Dialogs() {
 			<div className="visibility md:hidden">
 				<ModalDialog />
 			</div>
+			<ModalUserProfile />
 		</div>
 	);
 }
