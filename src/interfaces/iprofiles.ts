@@ -5,9 +5,14 @@ export enum ACCTYPE {
 	admin = "admin",
 }
 
-export interface IFilterParam {
+export interface IFilterParamSelect {
 	value: string | number;
 	onChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
+
+export interface IFilterParamInput {
+	value: string | number;
+	onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export interface IFilterUsers {
@@ -23,31 +28,6 @@ export interface IFilterUsers {
 	smoke: number;
 	alcohol: number;
 	interests: Array<string>;
-}
-
-export interface IRegistration {
-	name: string;
-	location: string;
-	birthday: number;
-	monthofbirth: number;
-	yearofbirth: number;
-	gender: number;
-	gendervapor: number;
-	growth: number;
-	email: string;
-	password: string;
-	captcha: string;
-}
-
-export interface ILogin {
-	email: string;
-	password: string;
-	captcha: string;
-}
-
-export interface IRecoveryPassword {
-	email: string;
-	captcha: string;
 }
 
 export interface IProfile {
@@ -125,10 +105,4 @@ export interface IDialog {
 export interface IPhoto {
 	photomain: number;
 	photolink: Array<string>;
-}
-
-export interface IChangePass {
-	passwordnow: string;
-	passwordnew: string;
-	captcha: string;
 }

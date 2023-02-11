@@ -1,10 +1,5 @@
-import {
-	IChangePass,
-	IDialog,
-	IPhoto,
-	IProfile,
-	IProfileShort,
-} from "./iprofiles";
+import { IDialog, IPhoto, IProfile, IProfileShort } from "./iprofiles";
+import { IChangePass } from "./iauth";
 import { IRate } from "./ishop";
 import { IStickerpack } from "./istickers";
 
@@ -87,6 +82,13 @@ export interface IQueryAnswerProfiles {
 	error: IQueryAnswerError;
 	loaded: boolean;
 	querySendGetProfiles(data: {}): void;
+}
+
+export interface IQueryAnswerAdminProfiles {
+	data: [IProfileShort];
+	error: IQueryAnswerError;
+	loaded: boolean;
+	querySendGetAdminProfiles(data: {}): void;
 }
 
 export interface IQueryAnswerProfilesForLikes {
