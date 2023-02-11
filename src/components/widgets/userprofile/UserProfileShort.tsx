@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { IProfileShort } from "../../../interfaces/iprofiles";
+import { ACCTYPE, IProfileShort } from "../../../interfaces/iprofiles";
 import { useQueryGetProfile } from "../../../hooks/api.hook";
 import { IQueryGetProfile } from "../../../interfaces/iquery";
 import { userProfileOpen } from "../../modal/ModalUserProfile";
@@ -9,13 +9,14 @@ import { Button } from "../../utils/Buttons";
 import { DateTimeVisitShort } from "../../utils/DateTime";
 import { getAgeFromYear, getStrYearFromAge } from "../../../helpers/age";
 import { UserProfileInterest } from "./UserProfileInterest";
+import { store } from "../../../store/store";
 
 export function UserProfileShort(params: {
 	key: string;
 	profile: IProfileShort;
 }) {
 	const { data, error, querySendGetProfile } = useQueryGetProfile();
-
+	const { userMyProfile } = store.getState();
 	const { profile } = params;
 
 	const openProfileHandler = () => {
@@ -45,7 +46,14 @@ export function UserProfileShort(params: {
 					className="flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-3xl m-1 h-32 w-32"
 				></div>
 				<Button value={"Посмотреть"} onClick={openProfileHandler} />
-
+				{userMyProfile.userid === ACCTYPE.admin ? (
+					<UserProfileInterest
+						value={`"${profile.userid}"`}
+						title={`"${profile.userid}"`}
+					/>
+				) : (
+					<></>
+				)}
 				<DateTimeVisitShort profile={profile} />
 			</div>
 
