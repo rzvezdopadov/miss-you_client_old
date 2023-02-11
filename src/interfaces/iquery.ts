@@ -1,3 +1,4 @@
+import { IAdminFilterUsers } from "./iadmin";
 import { IFilterUsers, IProfile } from "./iprofiles";
 
 export interface IQueryRegistration {
@@ -24,6 +25,12 @@ export interface IQueryGetProfiles {
 	startcount: number;
 	amount: number;
 	filters: IFilterUsers;
+}
+
+export interface IQueryGetAdminProfiles {
+	startcount: number;
+	amount: number;
+	filters: IAdminFilterUsers;
 }
 
 export interface IQueryGetProfilesForLikes {
