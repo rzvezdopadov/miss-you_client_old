@@ -44,7 +44,7 @@ export function DialogShort(payload: {
 				onClick={openProfileHandler}
 			></div>
 			<div
-				className="flex flex-col md:w-40 h-full m-1 overflow-hidden"
+				className="flex flex-col md:w-40 h-full w-full m-1 overflow-hidden"
 				onClick={onClickHandler}
 			>
 				<div className="flex flex-shrink-0 justify-center w-max overflow-hidden select-none">
