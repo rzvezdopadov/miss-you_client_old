@@ -3,13 +3,18 @@ import {
 	IPhoto,
 	IProfile,
 	IProfileShort,
+} from "../interfaces/iprofiles";
+
+import {
 	IRegistration,
 	ILogin,
 	IChangePass,
 	IRecoveryPassword,
-} from "../interfaces/iprofiles";
+} from "../interfaces/iauth";
+
 import {
 	IQueryDialog,
+	IQueryGetAdminProfiles,
 	IQueryGetProfiles,
 	IQueryGetProfilesForLikes,
 	IQueryLike,
@@ -20,6 +25,7 @@ import {
 } from "../interfaces/iquery";
 import {
 	IQueryAnswerAddStickerpack,
+	IQueryAnswerAdminProfiles,
 	IQueryAnswerBuyRating,
 	IQueryAnswerCaptcha,
 	IQueryAnswerChangePass,
@@ -548,6 +554,34 @@ export function useQueryDeleteStickerpack() {
 		errorDeleteStickerpack: errorNew,
 		loadedDeleteStickerpack: loaded,
 		querySendDeleteStickerpack,
+	};
+
+	return queryAnswer;
+}
+
+/* Get profiles for admin
+    - filters - filters by which to search in the database, 
+    if this field is left blank, then all users will be sent; 
+    - startCount - user position to start;
+    - amount - number of users in response;
+*/
+export function useQueryGetAdminProfiles() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendGetAdminProfiles = async (
+		dataQuery: IQueryGetAdminProfiles
+	) => {
+		querySend("/api/admin/profiles", dataQuery, true);
+	};
+
+	const dataNew = data as [IProfile];
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerAdminProfiles = {
+		data: dataNew,
+		error: errorNew,
+		loaded,
+		querySendGetAdminProfiles,
 	};
 
 	return queryAnswer;
