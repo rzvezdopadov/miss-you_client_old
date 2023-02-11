@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { getCookiesJWT } from "../../helpers/cookie";
-import { IRegistration } from "../../interfaces/iprofiles";
+import { IRegistration } from "../../interfaces/iauth";
 import { data_growth, data_location } from "../../data/profiles";
 
 ////////////////////////////////////////////////////////////////////////
