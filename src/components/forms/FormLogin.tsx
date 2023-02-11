@@ -7,7 +7,7 @@ import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
 import { LabelHeader } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
-import { ILogin } from "../../interfaces/iprofiles";
+import { ILogin } from "../../interfaces/iauth";
 import { Link } from "react-router-dom";
 import { jwtAction } from "../../store/redusers/auth";
 import { maxagejwt } from "../../config";

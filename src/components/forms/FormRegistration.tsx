@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SelectFromArr, SelectFromArrValue } from "../utils/Selects";
 import { store } from "../../store/store";
-import { IRegistration } from "../../interfaces/iprofiles";
+import { IRegistration } from "../../interfaces/iauth";
 import { useQueryRegistration } from "../../hooks/api.hook";
 import { useEffect, useRef } from "react";
 import { Captcha } from "../utils/Captcha";

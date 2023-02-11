@@ -6,7 +6,7 @@ import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
 import { LabelHeader } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
-import { IRecoveryPassword } from "../../interfaces/iprofiles";
+import { IRecoveryPassword } from "../../interfaces/iauth";
 import { modalMessageOpen } from "../modal/ModalMessage";
 
 export function FormRecoveryPass() {
