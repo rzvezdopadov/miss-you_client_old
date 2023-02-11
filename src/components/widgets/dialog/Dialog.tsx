@@ -6,7 +6,11 @@ import { DialogMessage } from "./DialogMessage";
 import { scrollToBottom } from "../../../helpers/pagescroll";
 import { sendMessage } from "../../utils/Socket";
 import { getAgeFromYear, getStrYearFromAge } from "../../../helpers/age";
-import { messageForUserAction } from "../../../store/redusers/dialog";
+import {
+	dialogAction,
+	initialStateDialog,
+	messageForUserAction,
+} from "../../../store/redusers/dialog";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { DialogSmiles } from "./DialogSmiles";
 
@@ -20,6 +24,12 @@ export function Dialog() {
 	const setMessageForUser = (str: string) => {
 		store.dispatch(messageForUserAction(str));
 	};
+
+	useEffect(() => {
+		return () => {
+			store.dispatch(dialogAction(initialStateDialog));
+		};
+	}, []);
 
 	useEffect(() => {
 		scrollToBottom(bottomRef);
