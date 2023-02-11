@@ -1,4 +1,7 @@
 import { minage } from "../config";
+import { ACCTYPE } from "../interfaces/iprofiles";
+
+export const data_acctype = [ACCTYPE.user, ACCTYPE.admin];
 
 export const data_age: Array<number> = [];
 for (let i = minage; i < 121; i++) {
@@ -40,6 +43,7 @@ export const data_gender = ["Я мужчина", "Я женщина"];
 export const data_genderVapor = ["Ищу мужчин", "Ищу женщин", "Ищу друзей"];
 
 export const data_signZodiac = [
+	"Не имеет значения",
 	"Овен",
 	"Телец",
 	"Близнецы",
@@ -52,7 +56,6 @@ export const data_signZodiac = [
 	"Козерог",
 	"Водолей",
 	"Рыбы",
-	"Не имеет значения",
 ];
 
 export const data_education = [
@@ -104,6 +107,7 @@ export const data_fieldOfActivity = [
 ];
 
 export const data_maritalStatus = [
+	"Не имеет значения",
 	"В браке не состою",
 	"В разводе",
 	"Вдова/вдовец",
