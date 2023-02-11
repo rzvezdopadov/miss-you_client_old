@@ -27,6 +27,7 @@ import {
 	usersProfilesReducer,
 } from "./redusers/profile";
 import { socketReducer } from "./redusers/socket";
+import { adminFiltersUserReducer } from "./redusers/admin";
 
 export const store = configureStore({
 	reducer: {
@@ -53,5 +54,6 @@ export const store = configureStore({
 		messageForUser: messageForUserReducer,
 		stickerpacks: stickerpacksReducer,
 		socket: socketReducer,
+		adminFiltersUser: adminFiltersUserReducer,
 	},
 });
