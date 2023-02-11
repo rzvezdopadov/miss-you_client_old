@@ -17,108 +17,55 @@ export function UserProfileFilters() {
 		store.dispatch(filtersUserAction(newFilters));
 	};
 
-	const filtersLocationOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "location");
-	};
-	const filtersAgeStartOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "agestart");
-	};
-	const filtersAgeEndOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "ageend");
-	};
-	const filtersGrowthStartOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "growthstart");
-	};
-	const filtersGrowthEndOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "growthend");
-	};
-	const filtersWeightOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "weight");
-	};
-	const filtersSignZodiacOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "signzodiac");
-	};
-	const filtersGenderVaporOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "gendervapor");
-	};
-	const filtersReligionOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "religion");
-	};
-	const filtersSmokeOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "smoke");
-	};
-	const filtersAlcoholOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "alcohol");
-	};
-
 	return (
 		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center justify-center p-1 my-2">
 			<Filters
 				location={{
 					value: filtersUser.location,
-					onChange: filtersLocationOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "location"),
 				}}
 				ageStart={{
 					value: filtersUser.agestart,
-					onChange: filtersAgeStartOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "agestart"),
 				}}
 				ageEnd={{
 					value: filtersUser.ageend,
-					onChange: filtersAgeEndOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "ageend"),
 				}}
 				growthStart={{
 					value: filtersUser.growthstart,
-					onChange: filtersGrowthStartOnChangeHandler,
+					onChange: (e) =>
+						onChangeValueProfileFilter(e, "growthstart"),
 				}}
 				growthEnd={{
 					value: filtersUser.growthend,
-					onChange: filtersGrowthEndOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "growthend"),
 				}}
 				weight={{
 					value: filtersUser.weight,
-					onChange: filtersWeightOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "weight"),
 				}}
 				signZodiac={{
 					value: filtersUser.signzodiac,
-					onChange: filtersSignZodiacOnChangeHandler,
+					onChange: (e) =>
+						onChangeValueProfileFilter(e, "signzodiac"),
 				}}
 				genderVapor={{
 					value: filtersUser.gendervapor,
-					onChange: filtersGenderVaporOnChangeHandler,
+					onChange: (e) =>
+						onChangeValueProfileFilter(e, "gendervapor"),
 				}}
 				religion={{
 					value: filtersUser.religion,
-					onChange: filtersReligionOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "religion"),
 				}}
 				smoke={{
 					value: filtersUser.smoke,
-					onChange: filtersSmokeOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "smoke"),
 				}}
 				alcohol={{
 					value: filtersUser.alcohol,
-					onChange: filtersAlcoholOnChangeHandler,
+					onChange: (e) => onChangeValueProfileFilter(e, "alcohol"),
 				}}
 			/>
 		</div>
