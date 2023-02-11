@@ -17,9 +17,12 @@ import { modalMessageOpen } from "./ModalMessage";
 import {
 	data_alcohol,
 	data_children,
+	data_education,
+	data_fieldOfActivity,
 	data_genderVapor,
 	data_iDontLikeСharacter,
 	data_iLikeСharacter,
+	data_maritalStatus,
 	data_profit,
 	data_religion,
 	data_signZodiac,
@@ -170,6 +173,62 @@ export function ModalUserProfile() {
 										title={"Знак зодиака"}
 									/>
 								}
+
+								{!(userProfile.profile.education === 0) ? (
+									<UserProfileInterest
+										key={
+											"education" +
+											userProfile.profile.education
+										}
+										value={
+											data_education[
+												userProfile.profile.education
+											]
+										}
+										title={"Образование"}
+									/>
+								) : (
+									<></>
+								)}
+
+								{!(
+									userProfile.profile.fieldofactivity === 0
+								) ? (
+									<UserProfileInterest
+										key={
+											"fieldofactivity" +
+											userProfile.profile.fieldofactivity
+										}
+										value={
+											data_fieldOfActivity[
+												userProfile.profile
+													.fieldofactivity
+											]
+										}
+										title={"Сфера деятельности"}
+									/>
+								) : (
+									<></>
+								)}
+
+								{!(userProfile.profile.maritalstatus === 0) ? (
+									<UserProfileInterest
+										key={
+											"maritalstatus" +
+											userProfile.profile.maritalstatus
+										}
+										value={
+											data_maritalStatus[
+												userProfile.profile
+													.maritalstatus
+											]
+										}
+										title={"Семейное положение"}
+									/>
+								) : (
+									<></>
+								)}
+
 								{
 									<UserProfileInterest
 										key={
