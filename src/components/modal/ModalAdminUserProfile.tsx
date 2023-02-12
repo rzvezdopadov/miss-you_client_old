@@ -21,11 +21,11 @@ import { UserProfileQuality } from "../widgets/userprofile/UserProfileQuality";
 import { UserProfileAboutMe } from "../widgets/userprofile/UserProfileAboutMe";
 import { UserProfileNameAge } from "../widgets/userprofile/UserProfileNameAge";
 
-export function userProfileOpen(profile: IProfile) {
+export function modalAdminUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
 }
 
-function userProfileClose() {
+function modalAdminUserProfileClose() {
 	store.dispatch(userProfileAction(false, initialStateUserProfile.profile));
 }
 
@@ -64,7 +64,7 @@ export function ModalAdminUserProfile() {
 
 	const closeUserProfileHandler = () => {
 		modalDialogClose();
-		userProfileClose();
+		modalAdminUserProfileClose();
 	};
 
 	return (
