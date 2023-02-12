@@ -29,7 +29,8 @@ import { modalMessageOpen } from "../modal/ModalMessage";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = store.getState();
-	const { data, error, querySendGetProfile } = useQueryGetProfile();
+	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
+		useQueryGetProfile();
 	const { dataStickerpacks, errorStickerpacks, querySendGetStickerpacks } =
 		useQueryGetStickerpacks();
 
@@ -45,13 +46,13 @@ export function AppMain() {
 	}, [jwt]);
 
 	useEffect(() => {
-		if (data) {
-			store.dispatch(filtersUserAction(data.filters));
-			store.dispatch(userMyProfileAction(data));
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		if (dataGetProfile) {
+			store.dispatch(filtersUserAction(dataGetProfile.filters));
+			store.dispatch(userMyProfileAction(dataGetProfile));
+		} else if (errorGetProfile) {
+			modalMessageOpen(errorGetProfile.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetProfile, errorGetProfile]);
 
 	useEffect(() => {
 		if (dataStickerpacks) {
