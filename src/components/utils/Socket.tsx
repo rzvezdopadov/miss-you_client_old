@@ -2,11 +2,6 @@ import * as React from "react";
 import { useEffect } from "react";
 import socketIO from "socket.io-client";
 import { IDialog } from "../../interfaces/iprofiles";
-import {
-	IQueryLike,
-	IQuerySendMessage,
-	IQuerySendSticker,
-} from "../../interfaces/iquery";
 import { IGetLike, IGetMessage } from "../../interfaces/isocket";
 
 import { store } from "../../store/store";
@@ -18,6 +13,9 @@ import {
 } from "../../store/redusers/profile";
 import { dialogAction, dialogsAction } from "../../store/redusers/dialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
+import { IQuerySendMessage } from "../../api/dialog/idialog.api";
+import { IQuerySendSticker } from "../../api/sticker/isticker.api";
+import { IQueryLike } from "../../api/like/ilike.api";
 
 const socketClient = socketIO("http://192.168.1.11:8000/", {
 	reconnection: true,

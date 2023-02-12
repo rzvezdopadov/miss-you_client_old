@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { ShopRatingRate } from "./ShopRatingRate";
 import stars from "../../../assets/img/stars.png";
-import { useQueryGetRatingTariffs } from "../../../hooks/api.hook";
 import { IRate } from "../../../interfaces/ishop";
 import { store } from "../../../store/store";
 import { ModalBuyRating } from "../../modal/ModalBuyRating";
 import { LabelHeaderLG, LabelRating } from "../../utils/Labels";
 import { modalMessageOpen } from "../../modal/ModalMessage";
+import { useQueryGetRatingTariffs } from "../../../api/rating/rating.api.hook";
 
 export function ShopRating() {
 	const { userMyProfile } = store.getState();

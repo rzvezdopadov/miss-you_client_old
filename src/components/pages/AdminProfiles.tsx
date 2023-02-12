@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { useQueryGetAdminProfiles } from "../../hooks/api.hook";
 import { store } from "../../store/store";
 import { LabelHeader } from "../utils/Labels";
 import {
@@ -8,19 +7,23 @@ import {
 } from "../../store/redusers/profile";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
-import { IQueryGetAdminProfiles } from "../../interfaces/iquery";
 import { lazyloadingusercount } from "../../config";
 import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { ButtonScrollToTop } from "../utils/Buttons";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { AdminUserProfileFilters } from "../widgets/admin/AdminUserProfileFilters";
 import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
+import { useQueryGetAdminProfiles } from "../../api/admin/admin.api.hook";
+import { IQueryGetAdminProfiles } from "../../api/admin/iadmin.api";
 
 export function AdminProfiles() {
 	const { adminFiltersUser, userMyProfile, usersProfiles, userProfile } =
 		store.getState();
-	const { data, error, querySendGetAdminProfiles } =
-		useQueryGetAdminProfiles();
+	const {
+		dataGetAdminProfiles,
+		errorGetAdminProfiles,
+		querySendGetAdminProfiles,
+	} = useQueryGetAdminProfiles();
 	const scrollTopDiv = useRef(null);
 	const scrollToTopBtn = useRef(null);
 
@@ -40,14 +43,14 @@ export function AdminProfiles() {
 	}, [adminFiltersUser]);
 
 	useEffect(() => {
-		if (data) {
-			let newUsersProfiles = [...usersProfiles, ...data];
+		if (dataGetAdminProfiles) {
+			let newUsersProfiles = [...usersProfiles, ...dataGetAdminProfiles];
 
 			store.dispatch(usersProfilesAction(newUsersProfiles));
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorGetAdminProfiles) {
+			modalMessageOpen(errorGetAdminProfiles.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetAdminProfiles, errorGetAdminProfiles]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
 		const data: IQueryGetAdminProfiles = {

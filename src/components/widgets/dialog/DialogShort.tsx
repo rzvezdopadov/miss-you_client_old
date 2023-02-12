@@ -2,11 +2,11 @@ import * as React from "react";
 import { IDialog } from "../../../interfaces/iprofiles";
 import { messageType } from "../../../interfaces/ishop";
 import { getAgeFromYear } from "../../../helpers/age";
-import { useQueryGetProfile } from "../../../hooks/api.hook";
-import { IQueryGetProfile } from "../../../interfaces/iquery";
 import { useEffect } from "react";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
+import { useQueryGetProfile } from "../../../api/profile/profile.api.hook";
+import { IQueryGetProfile } from "../../../api/profile/iprofile.api";
 
 export function DialogShort(payload: {
 	dialog: IDialog;

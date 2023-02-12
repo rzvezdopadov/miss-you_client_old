@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { useQueryGetProfiles } from "../../hooks/api.hook";
-import { IQueryGetProfiles } from "../../interfaces/iquery";
 import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { store } from "../../store/store";
 import { UserProfileFilters } from "../widgets/userprofile/UserProfileFilters";
@@ -16,11 +14,14 @@ import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
+import { useQueryGetProfiles } from "../../api/profile/profile.api.hook";
+import { IQueryGetProfiles } from "../../api/profile/iprofile.api";
 
 export function SearchVapors() {
 	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
 		store.getState();
-	const { data, error, querySendGetProfiles } = useQueryGetProfiles();
+	const { dataGetProfiles, errorGetProfiles, querySendGetProfiles } =
+		useQueryGetProfiles();
 	const scrollTopDiv = useRef(null);
 	const scrollToTopBtn = useRef(null);
 
@@ -40,14 +41,14 @@ export function SearchVapors() {
 	}, [filtersUser]);
 
 	useEffect(() => {
-		if (data) {
-			let newUsersProfiles = [...usersProfiles, ...data];
+		if (dataGetProfiles) {
+			let newUsersProfiles = [...usersProfiles, ...dataGetProfiles];
 
 			store.dispatch(usersProfilesAction(newUsersProfiles));
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorGetProfiles) {
+			modalMessageOpen(errorGetProfiles.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetProfiles, errorGetProfiles]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
 		const data: IQueryGetProfiles = {

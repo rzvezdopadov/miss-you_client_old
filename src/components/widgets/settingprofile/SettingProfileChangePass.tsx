@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useQueryChangePass } from "../../../hooks/api.hook";
 import { useFormFieldInputString } from "../../../hooks/form.hook";
 import { Captcha } from "../../utils/Captcha";
 import { Button } from "../../utils/Buttons";
 import { Input } from "../../utils/Inputs";
 import { LabelHeader } from "../../utils/Labels";
 import { modalMessageOpen } from "../../modal/ModalMessage";
+import { useQueryChangePass } from "../../../api/auth/auth.api.hook";
 
 export function SettingProfileChangePass() {
 	const { dataChangePass, errorChangePass, querySendChangePass } =

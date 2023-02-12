@@ -2,7 +2,6 @@ import * as React from "react";
 import { SelectFromArr, SelectFromArrValue } from "../utils/Selects";
 import { store } from "../../store/store";
 import { IRegistration } from "../../interfaces/iauth";
-import { useQueryRegistration } from "../../hooks/api.hook";
 import { useEffect, useRef } from "react";
 import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
@@ -17,10 +16,12 @@ import {
 import { registrationAction } from "../../store/redusers/auth";
 import { minage } from "../../config";
 import { modalMessageOpen } from "../modal/ModalMessage";
+import { useQueryRegistration } from "../../api/auth/auth.api.hook";
 
 export function FormRegistration() {
 	const { registration } = store.getState();
-	const { data, error, querySendRegistration } = useQueryRegistration();
+	const { dataRegistration, errorRegistration, querySendRegistration } =
+		useQueryRegistration();
 	const btnRegistration = React.useRef<HTMLButtonElement>(null);
 	const checkAgreement = useRef<HTMLInputElement>(null);
 
@@ -35,14 +36,12 @@ export function FormRegistration() {
 	}, []);
 
 	useEffect(() => {
-		if (data) {
-			modalMessageOpen(data.message);
-			console.log("data", data);
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
-			console.log("error", error.response.data.message);
+		if (dataRegistration) {
+			modalMessageOpen(dataRegistration.message);
+		} else if (errorRegistration) {
+			modalMessageOpen(errorRegistration.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataRegistration, errorRegistration]);
 
 	const btnRegistrationOnClickHandler = () => {
 		if (!checkAgreement.current) return;

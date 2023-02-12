@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useQueryCheckPhoto } from "../../../hooks/api.hook";
-import { IQueryPhoto } from "../../../interfaces/iquery";
 import { store } from "../../../store/store";
 import { openModalPhotoDelete } from "../../modal/ModalPhotoDelete";
 import { openModalPhotoEditor } from "../../modal/ModalPhotoEditor";
@@ -12,6 +10,8 @@ import {
 } from "../../utils/Sliders";
 import { userMyProfileAction } from "../../../store/redusers/profile";
 import { modalMessageOpen } from "../../modal/ModalMessage";
+import { useQueryCheckPhoto } from "../../../api/photo/photo.api.hook";
+import { IQueryPhoto } from "../../../api/photo/iphoto.api";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();

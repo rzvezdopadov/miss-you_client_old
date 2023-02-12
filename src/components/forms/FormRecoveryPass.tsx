@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useFormFieldInputString } from "../../hooks/form.hook";
-import { useQueryRecoveryPass } from "../../hooks/api.hook";
 import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
 import { LabelHeader } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import { IRecoveryPassword } from "../../interfaces/iauth";
 import { modalMessageOpen } from "../modal/ModalMessage";
+import { useQueryRecoveryPass } from "../../api/auth/auth.api.hook";
 
 export function FormRecoveryPass() {
 	const { dataRecoveryPass, errorRecoveryPass, querySendRecoveryPass } =

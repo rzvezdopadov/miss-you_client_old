@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { store } from "../../store/store";
-import { useQueryUploadPhoto } from "../../hooks/api.hook";
 import { modalPhotoEditorAction } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
 import { Button, ButtonModalClose } from "../utils/Buttons";
+import { useQueryUploadPhoto } from "../../api/photo/photo.api.hook";
 
 const baseBiasConst = { x: 160, y: 160 };
 
@@ -29,7 +29,8 @@ export function ModalPhotoEditor() {
 	const [baseBiasCoord, setBaseBiasCoord] = useState(baseBiasConst);
 	const [sizeAdd, setSizeAdd] = useState({ w: 0, h: 0 });
 	const [mouseIsDown, setMouseIsDown] = useState(false);
-	const { data, error, queryUploadPhoto } = useQueryUploadPhoto();
+	const { dataUploadPhoto, errorUploadPhoto, queryUploadPhoto } =
+		useQueryUploadPhoto();
 
 	useEffect(() => {
 		return () => {
@@ -76,8 +77,8 @@ export function ModalPhotoEditor() {
 	}, [modalPhotoEditor]);
 
 	useEffect(() => {
-		if (data) {
-			const { photolink, photomain } = data;
+		if (dataUploadPhoto) {
+			const { photolink, photomain } = dataUploadPhoto;
 
 			if (!photolink) return;
 
@@ -87,10 +88,10 @@ export function ModalPhotoEditor() {
 			store.dispatch(userMyProfileAction(newUserMyProfile));
 			store.dispatch(modalPhotoEditorAction(false));
 			modalMessageOpen("Успешно загруженно!");
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorUploadPhoto) {
+			modalMessageOpen(errorUploadPhoto.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataUploadPhoto, errorUploadPhoto]);
 
 	const downloadHandler = async () => {
 		if (userMyProfile.photolink.length > 9) {

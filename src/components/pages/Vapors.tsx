@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useQueryGetProfilesForLikes } from "../../hooks/api.hook";
-import { IQueryGetProfilesForLikes } from "../../interfaces/iquery";
 import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { store } from "../../store/store";
 import { ModalUserProfile } from "../modal/ModalUserProfile";
@@ -16,11 +14,16 @@ import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortLoader } from "../widgets/userprofile/UserProfileShortLoader";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
+import { useQueryGetProfilesForLikes } from "../../api/profile/profile.api.hook";
+import { IQueryGetProfilesForLikes } from "../../api/profile/iprofile.api";
 
 export function Vapors() {
 	const { userMyProfile, usersProfiles, userProfile } = store.getState();
-	const { data, error, querySendGetProfilesForLikes } =
-		useQueryGetProfilesForLikes();
+	const {
+		dataGetProfilesForLikes,
+		errorGetProfilesForLikes,
+		querySendGetProfilesForLikes,
+	} = useQueryGetProfilesForLikes();
 	const [dataLoader, setDataLoader] = useState(true);
 	const [likes, setLikes] = useState(userMyProfile.likes);
 	const scrollTopDiv = useRef(null);
@@ -47,15 +50,18 @@ export function Vapors() {
 	}, [likes]);
 
 	useEffect(() => {
-		if (data) {
-			let newUsersProfiles = [...usersProfiles, ...data];
+		if (dataGetProfilesForLikes) {
+			let newUsersProfiles = [
+				...usersProfiles,
+				...dataGetProfilesForLikes,
+			];
 
 			store.dispatch(usersProfilesAction(newUsersProfiles));
 			setDataLoader(false);
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorGetProfilesForLikes) {
+			modalMessageOpen(errorGetProfilesForLikes.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetProfilesForLikes, errorGetProfilesForLikes]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
 		const data: IQueryGetProfilesForLikes = {

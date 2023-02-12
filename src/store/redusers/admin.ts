@@ -6,8 +6,9 @@ import {
 	data_growth,
 	data_location,
 } from "../../data/profiles";
-import { IAdminFilterUsers } from "../../interfaces/iadmin";
+import { IAdminChangeRating, IAdminFilterUsers } from "../../interfaces/iadmin";
 import { ACCTYPE } from "../../interfaces/iprofiles";
+import { IStateAdminChangeRating } from "../../interfaces/iredusers";
 
 ////////////////////////////////////////////////////////////////////////
 export const ADMIN_FILTERS_USER = "ADMIN_FILTERS_USER";
@@ -47,6 +48,37 @@ export const adminFiltersUserReducer = createReducer(
 			const filters = { ...action.payload };
 
 			return filters;
+		},
+	}
+);
+////////////////////////////////////////////////////////////////////////
+export const MODAL_ADMIN_RATING = "MODAL_ADMIN_RATING";
+
+export const modalAdminRatingAction = (
+	enabled: boolean,
+	rate: IAdminChangeRating
+) => ({
+	type: MODAL_ADMIN_RATING,
+	payload: {
+		enabled,
+		rate,
+	},
+});
+
+export const initialStateModalAdminRating: IStateAdminChangeRating = {
+	enabled: false,
+	rate: { userid: "", addrating: 0 },
+};
+
+export const modalAdminRatingReducer = createReducer(
+	initialStateModalAdminRating,
+	{
+		[MODAL_ADMIN_RATING]: (state: IStateAdminChangeRating, action: any) => {
+			let { enabled, rate } = action.payload;
+
+			if (!enabled) rate = state.rate;
+
+			return { enabled, rate };
 		},
 	}
 );

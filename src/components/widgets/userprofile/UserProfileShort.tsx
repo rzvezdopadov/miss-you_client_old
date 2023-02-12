@@ -1,11 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { ACCTYPE, IProfileShort } from "../../../interfaces/iprofiles";
-import {
-	useQueryAdminGetProfile,
-	useQueryGetProfile,
-} from "../../../hooks/api.hook";
-import { IQueryGetProfile } from "../../../interfaces/iquery";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { Button } from "../../utils/Buttons";
 import { DateTimeVisitShort } from "../../utils/DateTime";
@@ -14,6 +9,9 @@ import { UserProfileInterest } from "./UserProfileInterest";
 import { store } from "../../../store/store";
 import { modalAdminUserProfileOpen } from "../../modal/ModalAdminUserProfile";
 import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
+import { IQueryGetProfile } from "../../../api/profile/iprofile.api";
+import { useQueryGetProfile } from "../../../api/profile/profile.api.hook";
+import { useQueryGetAdminProfile } from "../../../api/admin/admin.api.hook";
 
 export function UserProfileShort(params: {
 	key: string;
@@ -22,10 +20,10 @@ export function UserProfileShort(params: {
 	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
 		useQueryGetProfile();
 	const {
-		dataAdminGetProfile,
-		errorAdminGetProfile,
-		querySendAdminGetProfile,
-	} = useQueryAdminGetProfile();
+		dataGetAdminProfile,
+		errorGetAdminProfile,
+		querySendGetAdminProfile,
+	} = useQueryGetAdminProfile();
 	const { userMyProfile } = store.getState();
 	const { profile } = params;
 
@@ -35,7 +33,7 @@ export function UserProfileShort(params: {
 		};
 
 		if (userMyProfile.acctype === ACCTYPE.admin) {
-			querySendAdminGetProfile(data);
+			querySendGetAdminProfile(data);
 		} else {
 			querySendGetProfile(data);
 		}
@@ -50,12 +48,12 @@ export function UserProfileShort(params: {
 	}, [dataGetProfile, errorGetProfile]);
 
 	useEffect(() => {
-		if (dataAdminGetProfile) {
-			modalAdminUserProfileOpen(dataAdminGetProfile);
-		} else if (errorAdminGetProfile) {
-			modalMessageOpen(errorAdminGetProfile.response.data.message);
+		if (dataGetAdminProfile) {
+			modalAdminUserProfileOpen(dataGetAdminProfile);
+		} else if (errorGetAdminProfile) {
+			modalMessageOpen(errorGetAdminProfile.response.data.message);
 		}
-	}, [dataAdminGetProfile, errorAdminGetProfile]);
+	}, [dataGetAdminProfile, errorGetAdminProfile]);
 
 	return (
 		<div className="flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-row bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 max-h-52 w-80">

@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { useQuerySetProfile } from "../../hooks/api.hook";
-import { IQuerySetProfile } from "../../interfaces/iquery";
 import { store } from "../../store/store";
 import { ModalPhotoDelete } from "../modal/ModalPhotoDelete";
 import { ModalSettingProfileCharacters } from "../modal/ModalSettingProfileCharacters";
@@ -18,20 +16,23 @@ import { SettingProfileChangePass } from "../widgets/settingprofile/SettingProfi
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { filtersUserAction } from "../../store/redusers/filterusers";
+import { useQuerySetProfile } from "../../api/profile/profile.api.hook";
+import { IQuerySetProfile } from "../../api/profile/iprofile.api";
 
 export function SettingProfile() {
 	const { userMyProfile } = store.getState();
-	const { data, error, querySendSetProfile } = useQuerySetProfile();
+	const { dataSetProfile, errorSetProfile, querySendSetProfile } =
+		useQuerySetProfile();
 
 	useEffect(() => {
-		if (data) {
-			store.dispatch(filtersUserAction(data.filters));
-			store.dispatch(userMyProfileAction(data));
+		if (dataSetProfile) {
+			store.dispatch(filtersUserAction(dataSetProfile.filters));
+			store.dispatch(userMyProfileAction(dataSetProfile));
 			modalMessageOpen("Успешно сохранено!");
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorSetProfile) {
+			modalMessageOpen(errorSetProfile.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataSetProfile, errorSetProfile]);
 
 	const btnSaveOnClickHandler = () => {
 		const data: IQuerySetProfile = {

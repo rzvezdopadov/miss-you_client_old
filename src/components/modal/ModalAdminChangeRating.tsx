@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
 import { store } from "../../store/store";
-import { IRate } from "../../interfaces/ishop";
 import {
 	initialStateModalBuyRating,
 	modalBuyRatingAction,
@@ -9,13 +8,15 @@ import {
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
 import { ButtonCancel, ButtonYes } from "../utils/Buttons";
+import { IAdminChangeRating } from "../../interfaces/iadmin";
+import { modalAdminRatingAction } from "../../store/redusers/admin";
 import { useQueryBuyRating } from "../../api/rating/rating.api.hook";
 
-export function openModalBuyRating(rate: IRate) {
-	store.dispatch(modalBuyRatingAction(true, rate));
+export function openModalAdminRating(rate: IAdminChangeRating) {
+	store.dispatch(modalAdminRatingAction(true, rate));
 }
 
-export function ModalBuyRating() {
+export function ModalAdminChangeRating() {
 	const { modalBuyRating } = store.getState();
 	const refModalBuyRating = useRef<HTMLDivElement>(null);
 	const { dataBuyRating, errorBuyRating, querySendBuyRating } =

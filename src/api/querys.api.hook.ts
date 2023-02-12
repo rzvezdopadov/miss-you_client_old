@@ -1,11 +1,11 @@
 import { useState } from "react";
-import axios from "../../node_modules/axios/index";
+import axios from "axios";
 import { logout } from "../helpers/logout";
 import {
 	modalLoadingOnHide,
 	modalLoadingOnShow,
 } from "../components/modal/ModalLoading";
-import { IQueryAnswer } from "../interfaces/iqueryanswer";
+import { IQueryAnswer } from "./iquerys.api";
 
 function testOnBadTokenStatus(message: string) {
 	if (

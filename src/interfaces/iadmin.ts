@@ -22,3 +22,8 @@ export interface IAdminFilterUsers {
 	acctype: ACCTYPE;
 	interests: Array<string>;
 }
+
+export interface IAdminChangeRating {
+	userid: string;
+	addrating: number;
+}

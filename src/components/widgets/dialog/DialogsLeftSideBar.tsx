@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { useQueryGetDialogs } from "../../../hooks/api.hook";
 import { IDialog } from "../../../interfaces/iprofiles";
 import { store } from "../../../store/store";
 import { DialogShort } from "./DialogShort";
@@ -11,27 +10,27 @@ import {
 } from "../../../store/redusers/dialog";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { modalDialogOpen } from "../../modal/ModalDialog";
+import { useQueryGetDialogs } from "../../../api/dialog/dialog.api.hook";
 
 export function DialogsLeftSideBar() {
 	const { userMyProfile, dialogs } = store.getState();
 
-	const { data, error, querySendGetDialogs } = useQueryGetDialogs();
+	const { dataGetDialogs, errorGetDialogs, querySendGetDialogs } =
+		useQueryGetDialogs();
 
 	useEffect(() => {
 		if (userMyProfile.userid) querySendGetDialogs();
 	}, [userMyProfile.userid]);
 
 	useEffect(() => {
-		if (data) {
-			data as Array<IDialog>;
-
-			if (data) {
-				store.dispatch(dialogsAction(data));
+		if (dataGetDialogs) {
+			if (dataGetDialogs) {
+				store.dispatch(dialogsAction(dataGetDialogs));
 			}
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorGetDialogs) {
+			modalMessageOpen(errorGetDialogs.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetDialogs, errorGetDialogs]);
 
 	const setDialogOnClick = (userId: string) => {
 		const outDialog = dialogs.filter(

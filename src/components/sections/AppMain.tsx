@@ -3,11 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { store } from "../../store/store";
 import { FormEnter } from "../forms/FormLogin";
 import { FormRegistration } from "../forms/FormRegistration";
-import {
-	useQueryGetProfile,
-	useQueryGetStickerpacks,
-} from "../../hooks/api.hook";
-import { IQueryGetProfile } from "../../interfaces/iquery";
 import { useEffect } from "react";
 import { FormRecoveryPass } from "../forms/FormRecoveryPass";
 import { filtersUserAction } from "../../store/redusers/filterusers";
@@ -26,6 +21,9 @@ import { ACCTYPE } from "../../interfaces/iprofiles";
 import { AdminStatistics } from "../pages/AdminStatistics";
 import { AdminProfiles } from "../pages/AdminProfiles";
 import { modalMessageOpen } from "../modal/ModalMessage";
+import { IQueryGetProfile } from "../../api/profile/iprofile.api";
+import { useQueryGetProfile } from "../../api/profile/profile.api.hook";
+import { useQueryGetStickerpacks } from "../../api/sticker/sticker.api.hook";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = store.getState();

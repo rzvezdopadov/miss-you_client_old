@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { useQueryDeletePhoto } from "../../hooks/api.hook";
-import { IQueryPhoto } from "../../interfaces/iquery";
 import { store } from "../../store/store";
 import { modalPhotoDeleteAction } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { ButtonCancel, ButtonYes } from "../utils/Buttons";
+import { useQueryDeletePhoto } from "../../api/photo/photo.api.hook";
+import { IQueryPhoto } from "../../api/photo/iphoto.api";
 
 export function openModalPhotoDelete(photoPos: number) {
 	store.dispatch(modalPhotoDeleteAction(true, photoPos));
@@ -14,7 +14,8 @@ export function openModalPhotoDelete(photoPos: number) {
 export function ModalPhotoDelete() {
 	const { modalPhotoDelete, userMyProfile } = store.getState();
 	const refModalPhotoDelete = useRef<HTMLDivElement>(null);
-	const { data, error, queryDeletePhoto } = useQueryDeletePhoto();
+	const { dataDeletePhoto, errorDeletePhoto, queryDeletePhoto } =
+		useQueryDeletePhoto();
 
 	useEffect(() => {
 		return () => {
@@ -33,16 +34,16 @@ export function ModalPhotoDelete() {
 	}, [modalPhotoDelete.enabled]);
 
 	useEffect(() => {
-		if (data) {
+		if (dataDeletePhoto) {
 			const newUserMyProfile = { ...userMyProfile };
-			newUserMyProfile.photolink = data.photolink;
-			newUserMyProfile.photomain = data.photomain;
+			newUserMyProfile.photolink = dataDeletePhoto.photolink;
+			newUserMyProfile.photomain = dataDeletePhoto.photomain;
 
 			store.dispatch(userMyProfileAction(newUserMyProfile));
 		}
 
 		store.dispatch(modalPhotoDeleteAction(false, 0));
-	}, [data, error]);
+	}, [dataDeletePhoto, errorDeletePhoto]);
 
 	const closeModalPhotoDeleteHandler = () => {
 		store.dispatch(modalPhotoDeleteAction(false, 0));

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useFormFieldInputString } from "../../hooks/form.hook";
 import { store } from "../../store/store";
-import { useQueryLogin } from "../../hooks/api.hook";
 import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
 import { LabelHeader } from "../utils/Labels";
@@ -12,6 +11,7 @@ import { Link } from "react-router-dom";
 import { jwtAction } from "../../store/redusers/auth";
 import { maxagejwt } from "../../config";
 import { modalMessageOpen } from "../modal/ModalMessage";
+import { useQueryLogin } from "../../api/auth/auth.api.hook";
 
 export function FormEnter() {
 	const { dataLogin, errorLogin, querySendLogin } = useQueryLogin();

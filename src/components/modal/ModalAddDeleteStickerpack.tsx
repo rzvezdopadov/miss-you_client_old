@@ -1,9 +1,5 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import {
-	useQueryAddStickerpack,
-	useQueryDeleteStickerpack,
-} from "../../hooks/api.hook";
 import { store } from "../../store/store";
 import { IStickerpack } from "../../interfaces/istickers";
 import {
@@ -13,6 +9,10 @@ import {
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
 import { ButtonCancel, ButtonYes } from "../utils/Buttons";
+import {
+	useQueryAddStickerpack,
+	useQueryDeleteStickerpack,
+} from "../../api/sticker/sticker.api.hook";
 
 export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(modalAddDeleteStickerpackAction(true, stickerpack));

@@ -1,3 +1,4 @@
+import { IAdminChangeRating } from "./iadmin";
 import { IRate } from "./ishop";
 
 export interface IStateModalMessage {
@@ -18,4 +19,9 @@ export interface IActionReducer {
 export interface IStateBuyRating {
 	enabled: boolean;
 	rate: IRate;
+}
+
+export interface IStateAdminChangeRating {
+	enabled: boolean;
+	rate: IAdminChangeRating;
 }

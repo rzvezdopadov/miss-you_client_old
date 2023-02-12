@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { useQueryGetDialog } from "../../hooks/api.hook";
 import { IProfile } from "../../interfaces/iprofiles";
-import { IQueryDialog } from "../../interfaces/iquery";
 import { store } from "../../store/store";
 import { LabelCash, LabelRating } from "../utils/Labels";
 import { Button, ButtonModalClose } from "../utils/Buttons";
@@ -20,6 +18,8 @@ import { UserProfilePersonal } from "../widgets/userprofile/UserProfilePersonal"
 import { UserProfileQuality } from "../widgets/userprofile/UserProfileQuality";
 import { UserProfileAboutMe } from "../widgets/userprofile/UserProfileAboutMe";
 import { UserProfileNameAge } from "../widgets/userprofile/UserProfileNameAge";
+import { useQueryGetDialog } from "../../api/dialog/dialog.api.hook";
+import { IQueryDialog } from "../../api/dialog/idialog.api";
 
 export function modalAdminUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -30,19 +30,20 @@ function modalAdminUserProfileClose() {
 }
 
 export function ModalAdminUserProfile() {
-	const { data, error, querySendGetDialog } = useQueryGetDialog();
+	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
+		useQueryGetDialog();
 	const { userProfile } = store.getState();
 	const refUserProfile = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (data) {
+		if (dataGetDialog) {
 			modalDialogOpen();
-			store.dispatch(dialogAction(data));
+			store.dispatch(dialogAction(dataGetDialog));
 			store.dispatch(dialogUserIdAction(userProfile.profile.userid));
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		} else if (errorGetDialog) {
+			modalMessageOpen(errorGetDialog.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetDialog, errorGetDialog]);
 
 	useEffect(() => {
 		if (!refUserProfile.current) return;
