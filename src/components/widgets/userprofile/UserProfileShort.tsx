@@ -1,21 +1,31 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { ACCTYPE, IProfileShort } from "../../../interfaces/iprofiles";
-import { useQueryGetProfile } from "../../../hooks/api.hook";
+import {
+	useQueryAdminGetProfile,
+	useQueryGetProfile,
+} from "../../../hooks/api.hook";
 import { IQueryGetProfile } from "../../../interfaces/iquery";
-import { userProfileOpen } from "../../modal/ModalUserProfile";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { Button } from "../../utils/Buttons";
 import { DateTimeVisitShort } from "../../utils/DateTime";
 import { getAgeFromYear, getStrYearFromAge } from "../../../helpers/age";
 import { UserProfileInterest } from "./UserProfileInterest";
 import { store } from "../../../store/store";
+import { modalAdminUserProfileOpen } from "../../modal/ModalAdminUserProfile";
+import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
 
 export function UserProfileShort(params: {
 	key: string;
 	profile: IProfileShort;
 }) {
-	const { data, error, querySendGetProfile } = useQueryGetProfile();
+	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
+		useQueryGetProfile();
+	const {
+		dataAdminGetProfile,
+		errorAdminGetProfile,
+		querySendAdminGetProfile,
+	} = useQueryAdminGetProfile();
 	const { userMyProfile } = store.getState();
 	const { profile } = params;
 
@@ -24,16 +34,28 @@ export function UserProfileShort(params: {
 			userid: String(profile.userid),
 		};
 
-		querySendGetProfile(data);
+		if (userMyProfile.acctype === ACCTYPE.admin) {
+			querySendAdminGetProfile(data);
+		} else {
+			querySendGetProfile(data);
+		}
 	};
 
 	useEffect(() => {
-		if (data) {
-			userProfileOpen(data);
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		if (dataGetProfile) {
+			modalUserProfileOpen(dataGetProfile);
+		} else if (errorGetProfile) {
+			modalMessageOpen(errorGetProfile.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetProfile, errorGetProfile]);
+
+	useEffect(() => {
+		if (dataAdminGetProfile) {
+			modalAdminUserProfileOpen(dataAdminGetProfile);
+		} else if (errorAdminGetProfile) {
+			modalMessageOpen(errorAdminGetProfile.response.data.message);
+		}
+	}, [dataAdminGetProfile, errorAdminGetProfile]);
 
 	return (
 		<div className="flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-row bg-gray-900 text-neutral-50 rounded-xl m-2 px-2 pt-2 pb-2 max-h-52 w-80">
