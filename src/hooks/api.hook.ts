@@ -15,6 +15,7 @@ import {
 import {
 	IQueryDialog,
 	IQueryGetAdminProfiles,
+	IQueryGetProfile,
 	IQueryGetProfiles,
 	IQueryGetProfilesForLikes,
 	IQueryLike,
@@ -25,6 +26,7 @@ import {
 } from "../interfaces/iquery";
 import {
 	IQueryAnswerAddStickerpack,
+	IQueryAnswerAdminGetProfile,
 	IQueryAnswerAdminProfiles,
 	IQueryAnswerBuyRating,
 	IQueryAnswerCaptcha,
@@ -199,7 +201,7 @@ export function useQuerySetProfileShort() {
 export function useQueryGetProfile() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
-	const querySendGetProfile = async (dataQuery: IProfileShort) => {
+	const querySendGetProfile = async (dataQuery: IQueryGetProfile) => {
 		querySend("/api/profile", dataQuery, true);
 	};
 
@@ -207,9 +209,9 @@ export function useQueryGetProfile() {
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetProfile = {
-		data: dataNew,
-		error: errorNew,
-		loaded,
+		dataGetProfile: dataNew,
+		errorGetProfile: errorNew,
+		loadedGetProfile: loaded,
 		querySendGetProfile,
 	};
 
@@ -582,6 +584,29 @@ export function useQueryGetAdminProfiles() {
 		error: errorNew,
 		loaded,
 		querySendGetAdminProfiles,
+	};
+
+	return queryAnswer;
+}
+
+/* Get profile for admin
+    - id = * - profile 
+*/
+export function useQueryAdminGetProfile() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendAdminGetProfile = async (dataQuery: IQueryGetProfile) => {
+		querySend("/api/admin/profile", dataQuery, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerAdminGetProfile = {
+		dataAdminGetProfile: dataNew,
+		errorAdminGetProfile: errorNew,
+		loadedAdminGetProfile: loaded,
+		querySendAdminGetProfile,
 	};
 
 	return queryAnswer;
