@@ -5,7 +5,6 @@ import {
 	data_genderVapor,
 	data_growth,
 	data_location,
-	data_signZodiac,
 } from "../../data/profiles";
 import { IAdminFilterUsers } from "../../interfaces/iadmin";
 import { ACCTYPE } from "../../interfaces/iprofiles";
