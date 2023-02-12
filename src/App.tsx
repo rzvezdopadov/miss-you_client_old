@@ -26,7 +26,7 @@ function App() {
 		<div
 			className="App"
 			onClick={(e) => {
-				if (e.clientX > 100 && mobileMenu.enabled) closeMobileMenu(e);
+				if (mobileMenu.enabled && e.clientX > 100) closeMobileMenu(e);
 			}}
 		>
 			<AppHeader />
