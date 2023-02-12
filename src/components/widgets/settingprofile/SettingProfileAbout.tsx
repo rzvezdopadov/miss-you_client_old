@@ -1,6 +1,6 @@
 import * as React from "react";
 import { store } from "../../../store/store";
-import { Cash, Rating } from "../../utils/Labels";
+import { LabelCash, LabelRating } from "../../utils/Labels";
 import { onChangeValueProfile } from "../../../helpers/profile";
 
 export function SettingProfileAbout() {
@@ -17,8 +17,8 @@ export function SettingProfileAbout() {
 
 	return (
 		<>
-			<Cash value={userMyProfile.cash} />
-			<Rating value={userMyProfile.rating} />
+			<LabelCash value={userMyProfile.cash} />
+			<LabelRating value={userMyProfile.rating} />
 			<div className="flex flex-col my-1">
 				<input
 					value={userMyProfile.name}

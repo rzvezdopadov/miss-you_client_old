@@ -5,7 +5,7 @@ import { useQueryGetRatingTariffs } from "../../../hooks/api.hook";
 import { IRate } from "../../../interfaces/ishop";
 import { store } from "../../../store/store";
 import { ModalBuyRating } from "../../modal/ModalBuyRating";
-import { LabelHeaderLG, Rating } from "../../utils/Labels";
+import { LabelHeaderLG, LabelRating } from "../../utils/Labels";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 
 export function ShopRating() {
@@ -32,7 +32,7 @@ export function ShopRating() {
 		>
 			<LabelHeaderLG value={"Приобрести рейтинг"} />
 			<div className="w-48">
-				<Rating value={userMyProfile?.rating} />
+				<LabelRating value={userMyProfile?.rating} />
 			</div>
 			<div className="flex justify-center flex-wrap m-4 w-full">
 				{ratingTariffs.length ? (
