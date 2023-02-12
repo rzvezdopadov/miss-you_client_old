@@ -5,6 +5,7 @@ import { IQueryPhoto } from "../../interfaces/iquery";
 import { store } from "../../store/store";
 import { modalPhotoDeleteAction } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
+import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 
 export function openModalPhotoDelete(photoPos: number) {
 	store.dispatch(modalPhotoDeleteAction(true, photoPos));
@@ -64,20 +65,8 @@ export function ModalPhotoDelete() {
 				modalPhotoDelete.photoPos + 1
 			}-е фото?`}</div>
 			<div className="flex justify-center h-6 w-full">
-				<button
-					className="bg-green-500 hover:bg-green-700 text-white font-bold m-2 w-20 h-7 rounded"
-					type="button"
-					onClick={yesModalPhotoDeleteHandler}
-				>
-					Да
-				</button>
-				<button
-					className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold m-2 w-20 h-7 rounded"
-					type="button"
-					onClick={closeModalPhotoDeleteHandler}
-				>
-					Отмена
-				</button>
+				<ButtonYes onClick={yesModalPhotoDeleteHandler} />
+				<ButtonCancel onClick={closeModalPhotoDeleteHandler} />
 			</div>
 		</div>
 	);
