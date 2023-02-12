@@ -21,6 +21,7 @@ import { ButtonScrollToTop } from "../utils/Buttons";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { ModalUserProfile } from "../modal/ModalUserProfile";
 import { AdminUserProfileFilters } from "../widgets/admin/AdminUserProfileFilters";
+import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 
 export function AdminProfiles() {
 	const { adminFiltersUser, userMyProfile, usersProfiles, userProfile } =
@@ -116,7 +117,7 @@ export function AdminProfiles() {
 				<div className="flex flex-row flex-wrap justify-center">
 					<UserProfileShortWrapper />
 				</div>
-				<ModalUserProfile />
+				<ModalUserProfileWrapper />
 				<ModalDialog />
 			</div>
 		</div>

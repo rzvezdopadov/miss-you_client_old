@@ -4,7 +4,6 @@ import { useQueryGetProfiles } from "../../hooks/api.hook";
 import { IQueryGetProfiles } from "../../interfaces/iquery";
 import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { store } from "../../store/store";
-import { ModalUserProfile } from "../modal/ModalUserProfile";
 import { UserProfileFilters } from "../widgets/userprofile/UserProfileFilters";
 import { LabelHeader } from "../utils/Labels";
 import {
@@ -16,6 +15,7 @@ import { ButtonScrollToTop } from "../utils/Buttons";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
+import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 
 export function SearchVapors() {
 	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
@@ -102,7 +102,7 @@ export function SearchVapors() {
 				<div className="flex flex-row flex-wrap justify-center">
 					<UserProfileShortWrapper />
 				</div>
-				<ModalUserProfile />
+				<ModalUserProfileWrapper />
 				<ModalDialog />
 			</div>
 		</div>
