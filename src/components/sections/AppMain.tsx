@@ -25,6 +25,7 @@ import { Logout } from "../pages/Logout";
 import { ACCTYPE } from "../../interfaces/iprofiles";
 import { AdminStatistics } from "../pages/AdminStatistics";
 import { AdminProfiles } from "../pages/AdminProfiles";
+import { modalMessageOpen } from "../modal/ModalMessage";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = store.getState();
@@ -48,7 +49,7 @@ export function AppMain() {
 			store.dispatch(filtersUserAction(data.filters));
 			store.dispatch(userMyProfileAction(data));
 		} else if (error) {
-			openModalMessage(error.response.data.message);
+			modalMessageOpen(error.response.data.message);
 		}
 	}, [data, error]);
 
@@ -56,7 +57,7 @@ export function AppMain() {
 		if (dataStickerpacks) {
 			store.dispatch(stickerpacksAction(dataStickerpacks));
 		} else if (errorStickerpacks) {
-			openModalMessage(errorStickerpacks.response.data.message);
+			modalMessageOpen(errorStickerpacks.response.data.message);
 		}
 	}, [dataStickerpacks, errorStickerpacks]);
 
@@ -119,7 +120,4 @@ export function AppMain() {
 			}
 		</div>
 	);
-}
-function openModalMessage(message: string) {
-	throw new Error("Function not implemented.");
 }
