@@ -6,7 +6,7 @@ import { DialogsRightSideBarAd } from "../widgets/dialog/DialogsRightSideBarAd";
 import { store } from "../../store/store";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { dialogAction, initialStateDialog } from "../../store/redusers/dialog";
-import { ModalUserProfile } from "../modal/ModalUserProfile";
+import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 
 export function Dialogs() {
 	useEffect(() => {
@@ -22,7 +22,6 @@ export function Dialogs() {
 				<div className="flex flex-shrink-0 overflow-y-scroll overflow-hidden justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full md:w-64">
 					<DialogsLeftSideBar />
 				</div>
-
 				<div className="hidden md:flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full">
 					<Dialog />
 				</div>
@@ -33,7 +32,7 @@ export function Dialogs() {
 			<div className="visibility md:hidden">
 				<ModalDialog />
 			</div>
-			<ModalUserProfile />
+			<ModalUserProfileWrapper />
 		</div>
 	);
 }
