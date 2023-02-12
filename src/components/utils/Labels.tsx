@@ -18,24 +18,26 @@ export function LabelHeaderLG(payload: { value: string }) {
 	);
 }
 
-export function Rating(payload: { value: number }) {
+export function LabelRating(payload: { value: number; onClick?: any }) {
 	return (
 		<div
 			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-2 rounded-md"
 			title="Рейтинг пользователя"
 			key={`Rating${payload.value}`}
+			onClick={payload.onClick ? payload.onClick : () => {}}
 		>
 			{`Рейтинг: ${payload.value}`}
 		</div>
 	);
 }
 
-export function Cash(payload: { value: number }) {
+export function LabelCash(payload: { value: number; onClick?: any }) {
 	return (
 		<div
 			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-2 rounded-md"
 			title="MY-Баллы платежная валюта сайта"
 			key={`Cash${payload.value}`}
+			onClick={payload.onClick ? payload.onClick : () => {}}
 		>
 			{`MY-Баллы: ${payload.value}`}
 		</div>
