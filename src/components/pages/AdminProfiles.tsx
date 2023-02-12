@@ -1,8 +1,5 @@
 import { useEffect, useRef } from "react";
-import {
-	useQueryGetAdminProfiles,
-	useQueryGetProfiles,
-} from "../../hooks/api.hook";
+import { useQueryGetAdminProfiles } from "../../hooks/api.hook";
 import { store } from "../../store/store";
 import { LabelHeader } from "../utils/Labels";
 import {
@@ -11,15 +8,11 @@ import {
 } from "../../store/redusers/profile";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
-import {
-	IQueryGetAdminProfiles,
-	IQueryGetProfiles,
-} from "../../interfaces/iquery";
+import { IQueryGetAdminProfiles } from "../../interfaces/iquery";
 import { lazyloadingusercount } from "../../config";
 import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { ButtonScrollToTop } from "../utils/Buttons";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
-import { ModalUserProfile } from "../modal/ModalUserProfile";
 import { AdminUserProfileFilters } from "../widgets/admin/AdminUserProfileFilters";
 import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 
