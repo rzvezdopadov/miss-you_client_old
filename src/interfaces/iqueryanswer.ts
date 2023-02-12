@@ -2,6 +2,7 @@ import { IDialog, IPhoto, IProfile, IProfileShort } from "./iprofiles";
 import { IChangePass } from "./iauth";
 import { IRate } from "./ishop";
 import { IStickerpack } from "./istickers";
+import { IQueryGetProfile } from "./iquery";
 
 export interface IQueryAnswerError {
 	message: "";
@@ -64,10 +65,17 @@ export interface IQueryAnswerSetProfile {
 }
 
 export interface IQueryAnswerGetProfile {
-	data: IProfile;
-	error: IQueryAnswerError;
-	loaded: boolean;
-	querySendGetProfile(data: {}): void;
+	dataGetProfile: IProfile;
+	errorGetProfile: IQueryAnswerError;
+	loadedGetProfile: boolean;
+	querySendGetProfile(data: IQueryGetProfile): void;
+}
+
+export interface IQueryAnswerAdminGetProfile {
+	dataAdminGetProfile: IProfile;
+	errorAdminGetProfile: IQueryAnswerError;
+	loadedAdminGetProfile: boolean;
+	querySendAdminGetProfile(data: IQueryGetProfile): void;
 }
 
 export interface IQueryAnswerProfileShort {
