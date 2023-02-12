@@ -5,14 +5,15 @@ import { getAgeFromYear } from "../../../helpers/age";
 import { useQueryGetProfile } from "../../../hooks/api.hook";
 import { IQueryGetProfile } from "../../../interfaces/iquery";
 import { useEffect } from "react";
-import { userProfileOpen } from "../../modal/ModalUserProfile";
 import { modalMessageOpen } from "../../modal/ModalMessage";
+import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
 
 export function DialogShort(payload: {
 	dialog: IDialog;
 	onClickHandler: React.MouseEventHandler<HTMLDivElement>;
 }) {
-	const { data, error, querySendGetProfile } = useQueryGetProfile();
+	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
+		useQueryGetProfile();
 
 	const { dialog, onClickHandler } = payload;
 
@@ -25,12 +26,12 @@ export function DialogShort(payload: {
 	};
 
 	useEffect(() => {
-		if (data) {
-			userProfileOpen(data);
-		} else if (error) {
-			modalMessageOpen(error.response.data.message);
+		if (dataGetProfile) {
+			modalUserProfileOpen(dataGetProfile);
+		} else if (errorGetProfile) {
+			modalMessageOpen(errorGetProfile.response.data.message);
 		}
-	}, [data, error]);
+	}, [dataGetProfile, errorGetProfile]);
 
 	return (
 		<div className="flex items-center my-1 w-auto h-16 bg-gray-700 rounded-xl shadow-[0px_0px_1px_1px] shadow-lime-300 cursor-pointer">
