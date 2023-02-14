@@ -1,11 +1,13 @@
 import { IProfile } from "../../interfaces/iprofiles";
 import { IQueryAnswerError } from "../iquerys.api";
-import { useQueryGet } from "../querys.api.hook";
+import { useQueryGet, useQueryPut } from "../querys.api.hook";
 import {
 	IQueryGetAdminProfiles,
 	IQueryAnswerGetAdminProfile,
 	IQueryAnswerGetAdminProfiles,
 	IQueryGetAdminProfile,
+	IQuerySetAdminRating,
+	IQueryAnswerSetAdminRating,
 } from "./iadmin.api";
 
 /* API Query to server */
@@ -58,6 +60,26 @@ export function useQueryGetAdminProfile() {
 		errorGetAdminProfile: errorNew,
 		loadedGetAdminProfile: loaded,
 		querySendGetAdminProfile,
+	};
+
+	return queryAnswer;
+}
+
+export function useQuerySetAdminRating() {
+	const { data, error, loaded, querySend } = useQueryPut();
+
+	const querySendSetAdminRating = async (dataQuery: IQuerySetAdminRating) => {
+		querySend("/api/admin/rating", dataQuery, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerSetAdminRating = {
+		dataSetAdminRating: dataNew,
+		errorSetAdminRating: errorNew,
+		loadedSetAdminRating: loaded,
+		querySendSetAdminRating,
 	};
 
 	return queryAnswer;
