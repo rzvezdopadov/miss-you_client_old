@@ -7,8 +7,9 @@ import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 import { useQueryDeletePhoto } from "../../api/photo/photo.api.hook";
 import { IQueryPhoto } from "../../api/photo/iphoto.api";
 import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
+import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 
-export function openModalPhotoDelete(photoPos: number) {
+export function modalPhotoDeleteOpen(photoPos: number) {
 	store.dispatch(modalPhotoDeleteAction(true, photoPos));
 }
 
@@ -19,7 +20,7 @@ export function ModalPhotoDelete() {
 
 	useEffect(() => {
 		return () => {
-			closeModalPhotoDeleteHandler();
+			modalPhotoDeleteCloseHandler();
 		};
 	}, []);
 
@@ -32,10 +33,10 @@ export function ModalPhotoDelete() {
 			store.dispatch(userMyProfileAction(newUserMyProfile));
 		}
 
-		closeModalPhotoDeleteHandler();
+		modalPhotoDeleteCloseHandler();
 	}, [dataDeletePhoto, errorDeletePhoto]);
 
-	const closeModalPhotoDeleteHandler = () => {
+	const modalPhotoDeleteCloseHandler = () => {
 		store.dispatch(modalPhotoDeleteAction(false, 0));
 	};
 
@@ -53,10 +54,10 @@ export function ModalPhotoDelete() {
 				<div className="flex">{`Вы действительно хотите удалить ${
 					modalPhotoDelete.photoPos + 1
 				}-е фото?`}</div>
-				<div className="flex justify-center h-6 w-full">
-					<ButtonYes onClick={yesModalPhotoDeleteHandler} />
-					<ButtonCancel onClick={closeModalPhotoDeleteHandler} />
-				</div>
+				<ButtonsYesCancelWidget
+					onClickYes={yesModalPhotoDeleteHandler}
+					onClickCancel={modalPhotoDeleteCloseHandler}
+				/>
 			</>
 		</ModalYesCancelWrapper>
 	);

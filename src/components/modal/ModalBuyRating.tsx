@@ -11,8 +11,9 @@ import { modalMessageOpen } from "./ModalMessage";
 import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 import { useQueryBuyRating } from "../../api/rating/rating.api.hook";
 import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
+import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 
-export function openModalBuyRating(rate: IRate) {
+export function modalBuyRatingOpen(rate: IRate) {
 	store.dispatch(modalBuyRatingAction(true, rate));
 }
 
@@ -23,7 +24,7 @@ export function ModalBuyRating() {
 
 	useEffect(() => {
 		return () => {
-			closeModalBuyRatingHandler();
+			modalBuyRatingCloseHandler();
 		};
 	}, []);
 
@@ -35,10 +36,10 @@ export function ModalBuyRating() {
 			modalMessageOpen(errorBuyRating.response.data.message);
 		}
 
-		closeModalBuyRatingHandler();
+		modalBuyRatingCloseHandler();
 	}, [dataBuyRating, errorBuyRating]);
 
-	const closeModalBuyRatingHandler = () => {
+	const modalBuyRatingCloseHandler = () => {
 		store.dispatch(
 			modalBuyRatingAction(false, initialStateModalBuyRating.rate)
 		);
@@ -54,10 +55,10 @@ export function ModalBuyRating() {
 		<ModalYesCancelWrapper enabled={modalBuyRating.enabled}>
 			<>
 				<div className="flex">{`Вы действительно хотите купить ${modalBuyRating.rate.amountRate} баллов рейтинга за ${modalBuyRating.rate.price} MY-баллов?`}</div>
-				<div className="flex justify-center h-6 w-full">
-					<ButtonYes onClick={yesModalBuyRatingHandler} />
-					<ButtonCancel onClick={closeModalBuyRatingHandler} />
-				</div>
+				<ButtonsYesCancelWidget
+					onClickYes={yesModalBuyRatingHandler}
+					onClickCancel={modalBuyRatingCloseHandler}
+				/>
 			</>
 		</ModalYesCancelWrapper>
 	);
