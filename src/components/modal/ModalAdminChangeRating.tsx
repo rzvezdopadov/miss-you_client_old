@@ -1,64 +1,88 @@
 import * as React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { store } from "../../store/store";
-import {
-	initialStateModalBuyRating,
-	modalBuyRatingAction,
-} from "../../store/redusers/modal";
-import { userMyProfileAction } from "../../store/redusers/profile";
+import { userProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
-import { ButtonCancel, ButtonYes } from "../utils/Buttons";
-import { IAdminChangeRating } from "../../interfaces/iadmin";
-import { modalAdminRatingAction } from "../../store/redusers/admin";
-import { useQueryBuyRating } from "../../api/rating/rating.api.hook";
 import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
+import { useQuerySetAdminRating } from "../../api/admin/admin.api.hook";
+import {
+	initialStateModalAdminChangeRating,
+	modalAdminChangeRatingAction,
+} from "../../store/redusers/admin";
+import { Input } from "../utils/Inputs";
+import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 
-export function openModalAdminRating(rate: IAdminChangeRating) {
-	store.dispatch(modalAdminRatingAction(true, rate));
+export function modalAdminChangeRatingOpen(userid: string) {
+	store.dispatch(
+		modalAdminChangeRatingAction(true, {
+			userid: userid,
+			addrating: 0,
+		})
+	);
 }
 
 export function ModalAdminChangeRating() {
-	const { modalBuyRating } = store.getState();
-	const { dataBuyRating, errorBuyRating, querySendBuyRating } =
-		useQueryBuyRating();
+	const { modalAdminChangeRating } = store.getState();
+	const { dataSetAdminRating, errorSetAdminRating, querySendSetAdminRating } =
+		useQuerySetAdminRating();
 
 	useEffect(() => {
 		return () => {
-			closeModalBuyRatingHandler();
+			closeModalAdminChangeRatingHandler();
 		};
 	}, []);
 
 	useEffect(() => {
-		if (dataBuyRating) {
-			store.dispatch(userMyProfileAction(dataBuyRating));
-			modalMessageOpen("Покупка прошла успешно!");
-		} else if (errorBuyRating) {
-			modalMessageOpen(errorBuyRating.response.data.message);
-		}
+		if (!dataSetAdminRating) return;
 
-		closeModalBuyRatingHandler();
-	}, [dataBuyRating, errorBuyRating]);
+		store.dispatch(userProfileAction(true, dataSetAdminRating));
+		modalMessageOpen("Успешно выполненно!");
+		closeModalAdminChangeRatingHandler();
+	}, [dataSetAdminRating]);
 
-	const closeModalBuyRatingHandler = () => {
+	useEffect(() => {
+		if (!errorSetAdminRating) return;
+
+		modalMessageOpen(errorSetAdminRating.response.data.message);
+		closeModalAdminChangeRatingHandler();
+	}, [errorSetAdminRating]);
+
+	const closeModalAdminChangeRatingHandler = () => {
 		store.dispatch(
-			modalBuyRatingAction(false, initialStateModalBuyRating.rate)
+			modalAdminChangeRatingAction(
+				false,
+				initialStateModalAdminChangeRating.rate
+			)
 		);
 	};
 
-	const yesModalBuyRatingHandler = () => {
-		if (!modalBuyRating.rate.idRate) return;
+	const yesModalAdminChangeRatingHandler = () => {
+		if (!modalAdminChangeRating.rate.userid) return;
 
-		querySendBuyRating(modalBuyRating.rate.idRate);
+		querySendSetAdminRating(modalAdminChangeRating.rate);
 	};
 
 	return (
-		<ModalYesCancelWrapper enabled={modalBuyRating.enabled}>
+		<ModalYesCancelWrapper enabled={modalAdminChangeRating.enabled}>
 			<>
-				<div className="flex">{`Вы действительно хотите купить ${modalBuyRating.rate.amountRate} баллов рейтинга за ${modalBuyRating.rate.price} MY-баллов?`}</div>
-				<div className="flex justify-center h-6 w-full">
-					<ButtonYes onClick={yesModalBuyRatingHandler} />
-					<ButtonCancel onClick={closeModalBuyRatingHandler} />
-				</div>
+				<div className="flex">{`На сколько баллов изменить рейтинг пользователя c userid = "${modalAdminChangeRating.rate.userid}"?`}</div>
+				<Input
+					value={modalAdminChangeRating.rate.addrating}
+					onChange={(e) => {
+						store.dispatch(
+							modalAdminChangeRatingAction(true, {
+								userid: modalAdminChangeRating.rate.userid,
+								addrating: Number(e.target.value),
+							})
+						);
+					}}
+					type={""}
+					placeholder={""}
+				/>
+				<ButtonsYesCancelWidget
+					onClickYes={yesModalAdminChangeRatingHandler}
+					onClickCancel={closeModalAdminChangeRatingHandler}
+				/>
 			</>
 		</ModalYesCancelWrapper>
 	);
