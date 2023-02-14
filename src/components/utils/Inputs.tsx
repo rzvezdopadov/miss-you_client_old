@@ -1,8 +1,9 @@
+import { ChangeEventHandler } from "react";
 import { IFilterParamInput } from "../../interfaces/iprofiles";
 
 export function Input(payload: {
 	value: string | number;
-	onChange: any;
+	onChange: ChangeEventHandler<HTMLInputElement>;
 	type: string;
 	placeholder: string;
 }) {

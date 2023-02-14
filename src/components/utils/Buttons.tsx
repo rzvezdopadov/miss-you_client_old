@@ -1,8 +1,14 @@
-import { Ref, forwardRef } from "react";
+import { MouseEventHandler, Ref, forwardRef } from "react";
 import { scrollToTop } from "../../helpers/pagescroll";
 
 export const Button = forwardRef(
-	(payload: { value: string; onClick: any }, ref: Ref<HTMLButtonElement>) => {
+	(
+		payload: {
+			value: string;
+			onClick: MouseEventHandler<HTMLButtonElement>;
+		},
+		ref: Ref<HTMLButtonElement>
+	) => {
 		return (
 			<div className="flex items-center justify-center m-1">
 				<button
@@ -35,7 +41,9 @@ export function ButtonScrollToTop(payload: {
 	);
 }
 
-export function ButtonModalClose(payload: { onClick: any }) {
+export function ButtonModalClose(payload: {
+	onClick: MouseEventHandler<HTMLDivElement>;
+}) {
 	return (
 		<div className="flex justify-center h-6 w-full">
 			<div
@@ -51,7 +59,7 @@ export function ButtonModalClose(payload: { onClick: any }) {
 function ButtonYesCancel(payload: {
 	value: string;
 	color: string;
-	onClick: any;
+	onClick: MouseEventHandler<HTMLButtonElement>;
 }) {
 	return (
 		<button
@@ -64,7 +72,9 @@ function ButtonYesCancel(payload: {
 	);
 }
 
-export function ButtonYes(payload: { onClick: any }) {
+export function ButtonYes(payload: {
+	onClick: MouseEventHandler<HTMLButtonElement>;
+}) {
 	return (
 		<ButtonYesCancel
 			value={"Да"}
@@ -74,7 +84,9 @@ export function ButtonYes(payload: { onClick: any }) {
 	);
 }
 
-export function ButtonCancel(payload: { onClick: any }) {
+export function ButtonCancel(payload: {
+	onClick: MouseEventHandler<HTMLButtonElement>;
+}) {
 	return (
 		<ButtonYesCancel
 			value={"Отмена"}

@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 export function LabelHeader(payload: { value: string }) {
 	return (
 		<div className="flex justify-center items-center select-none">
@@ -18,7 +20,10 @@ export function LabelHeaderLG(payload: { value: string }) {
 	);
 }
 
-export function LabelRating(payload: { value: number; onClick?: any }) {
+export function LabelRating(payload: {
+	value: number;
+	onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
 	return (
 		<div
 			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-2 rounded-md"
@@ -31,7 +36,10 @@ export function LabelRating(payload: { value: number; onClick?: any }) {
 	);
 }
 
-export function LabelCash(payload: { value: number; onClick?: any }) {
+export function LabelCash(payload: {
+	value: number;
+	onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
 	return (
 		<div
 			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-2 rounded-md"
