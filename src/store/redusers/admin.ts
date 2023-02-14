@@ -52,28 +52,31 @@ export const adminFiltersUserReducer = createReducer(
 	}
 );
 ////////////////////////////////////////////////////////////////////////
-export const MODAL_ADMIN_RATING = "MODAL_ADMIN_RATING";
+export const MODAL_ADMIN_CHANGE_RATING = "MODAL_ADMIN_CHANGE_RATING";
 
-export const modalAdminRatingAction = (
+export const modalAdminChangeRatingAction = (
 	enabled: boolean,
 	rate: IAdminChangeRating
 ) => ({
-	type: MODAL_ADMIN_RATING,
+	type: MODAL_ADMIN_CHANGE_RATING,
 	payload: {
 		enabled,
 		rate,
 	},
 });
 
-export const initialStateModalAdminRating: IStateAdminChangeRating = {
+export const initialStateModalAdminChangeRating: IStateAdminChangeRating = {
 	enabled: false,
 	rate: { userid: "", addrating: 0 },
 };
 
-export const modalAdminRatingReducer = createReducer(
-	initialStateModalAdminRating,
+export const modalAdminChangeRatingReducer = createReducer(
+	initialStateModalAdminChangeRating,
 	{
-		[MODAL_ADMIN_RATING]: (state: IStateAdminChangeRating, action: any) => {
+		[MODAL_ADMIN_CHANGE_RATING]: (
+			state: IStateAdminChangeRating,
+			action: any
+		) => {
 			let { enabled, rate } = action.payload;
 
 			if (!enabled) rate = state.rate;
