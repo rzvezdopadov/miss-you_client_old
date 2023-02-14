@@ -13,11 +13,11 @@ import {
 } from "../../data/profiles";
 import { Button, ButtonModalClose } from "../utils/Buttons";
 
-export function openModalSettingProfileCharacters() {
+export function modalSettingProfileCharactersOpen() {
 	store.dispatch(settingProfileCharactersAction(true));
 }
 
-function closeModalSettingProfileCharacters(profile: IProfile) {
+function modalSettingProfileCharactersClose(profile: IProfile) {
 	store.dispatch(settingProfileCharactersAction(false));
 	store.dispatch(userMyProfileAction(profile));
 }
@@ -29,7 +29,7 @@ export function ModalSettingProfileCharacters() {
 	const refSettingProfileCharacters = useRef<HTMLDivElement>(null);
 
 	const closeUserProfileHandler = () => {
-		closeModalSettingProfileCharacters(profile);
+		modalSettingProfileCharactersClose(profile);
 	};
 
 	const invertCharacter = (arr: Array<number>, id: number) => {

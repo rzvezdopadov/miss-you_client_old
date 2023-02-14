@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { store } from "../../../store/store";
-import { openModalPhotoDelete } from "../../modal/ModalPhotoDelete";
-import { openModalPhotoEditor } from "../../modal/ModalPhotoEditor";
 import {
 	SliderPhotoBtnAdd,
 	SliderPhotoBtnLeft,
@@ -12,6 +10,8 @@ import { userMyProfileAction } from "../../../store/redusers/profile";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { useQueryCheckPhoto } from "../../../api/photo/photo.api.hook";
 import { IQueryPhoto } from "../../../api/photo/iphoto.api";
+import { modalPhotoDeleteOpen } from "../../modal/ModalPhotoDelete";
+import { modalPhotoEditorOpen } from "../../modal/ModalPhotoEditor";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
@@ -120,7 +120,7 @@ export function SettingProfileSlider() {
 							className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 select-none h-6 w-6"
 							title="Удалить фото"
 							onClick={() => {
-								openModalPhotoDelete(photoPosition);
+								modalPhotoDeleteOpen(photoPosition);
 							}}
 						>
 							X
@@ -138,7 +138,7 @@ export function SettingProfileSlider() {
 				/>
 				<SliderPhotoBtnAdd
 					photolink={userMyProfile.photolink}
-					onClick={openModalPhotoEditor}
+					onClick={modalPhotoEditorOpen}
 				/>
 				<SliderPhotoBtnRight
 					photolink={userMyProfile.photolink}

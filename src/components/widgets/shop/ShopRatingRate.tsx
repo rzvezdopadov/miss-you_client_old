@@ -1,5 +1,5 @@
 import { IRate } from "../../../interfaces/ishop";
-import { openModalBuyRating } from "../../modal/ModalBuyRating";
+import { modalBuyRatingOpen } from "../../modal/ModalBuyRating";
 import { Button } from "../../utils/Buttons";
 
 export function ShopRatingRate(payload: IRate) {
@@ -11,7 +11,7 @@ export function ShopRatingRate(payload: IRate) {
 			<Button
 				value="Приобрести"
 				onClick={() => {
-					openModalBuyRating(payload);
+					modalBuyRatingOpen(payload);
 				}}
 			/>
 		</div>

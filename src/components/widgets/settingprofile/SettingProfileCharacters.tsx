@@ -1,10 +1,10 @@
 import * as React from "react";
 import { store } from "../../../store/store";
-import { openModalSettingProfileCharacters } from "../../modal/ModalSettingProfileCharacters";
 import {
 	data_iDontLikeСharacter,
 	data_iLikeСharacter,
 } from "../../../data/profiles";
+import { modalSettingProfileCharactersOpen } from "../../modal/ModalSettingProfileCharacters";
 
 export function SettingProfileCharacters() {
 	const { userMyProfile } = store.getState();
@@ -75,7 +75,7 @@ export function SettingProfileCharacters() {
 			<div className="flex m-1">
 				<div
 					className="flex items-center shadow-[0px_0px_3px_3px] shadow-yellow-300 rounded-xl p-1 m-1 cursor-pointer select-none"
-					onClick={openModalSettingProfileCharacters}
+					onClick={modalSettingProfileCharactersOpen}
 				>
 					Изменить параметры
 				</div>
