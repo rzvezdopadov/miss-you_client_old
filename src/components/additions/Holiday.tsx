@@ -63,6 +63,9 @@ export function Holiday() {
 						holidaysObjNew[i].posY = -100;
 						holidaysObjNew[i].size = 10 + getRandNum(20);
 					}
+
+					holidaysObjNew[i].deg += getRandNum(100) / 200;
+					if (holidaysObjNew[i].deg > 360) holidaysObjNew[i].deg = 0;
 				}
 			}
 
@@ -90,6 +93,7 @@ export function Holiday() {
 								fontSize: `${value.size}px`,
 								left: value.posX,
 								top: value.posY,
+								transform: `rotate(${value.deg}deg)`,
 							}}
 						>
 							{convertTextToSign(snowflakes_type_arr[value.type])}
