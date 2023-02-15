@@ -34,8 +34,6 @@ export interface IProfile {
 	userid: string;
 	timecode: number;
 	name: string;
-	latitude: number;
-	longitude: number;
 	location: string;
 	likes: Array<string>;
 	birthday: number;
