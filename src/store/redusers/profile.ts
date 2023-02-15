@@ -1,11 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { ACCTYPE, IProfile, IProfileShort } from "../../interfaces/iprofiles";
-import {
-	data_age,
-	data_genderVapor,
-	data_growth,
-	data_signZodiac,
-} from "../../data/profiles";
+import { data_age, data_genderVapor, data_growth } from "../../data/profiles";
 
 ////////////////////////////////////////////////////////////////////////
 export const USERS_PROFILES = "USERS_PROFILES";
