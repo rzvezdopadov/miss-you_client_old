@@ -27,3 +27,8 @@ export interface IAdminChangeRating {
 	userid: string;
 	addrating: number;
 }
+
+export interface IAdminChangeCash {
+	userid: string;
+	addcash: number;
+}
