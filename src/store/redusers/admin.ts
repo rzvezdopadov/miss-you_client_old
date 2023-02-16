@@ -7,12 +7,14 @@ import {
 	data_location,
 } from "../../data/profiles";
 import {
+	IAdminBanned,
 	IAdminChangeCash,
 	IAdminChangeRating,
 	IAdminFilterUsers,
 } from "../../interfaces/iadmin";
 import { ACCTYPE } from "../../interfaces/iprofiles";
 import {
+	IStateAdminBanned,
 	IStateAdminChangeCash,
 	IStateAdminChangeRating,
 } from "../../interfaces/iredusers";
@@ -124,6 +126,38 @@ export const modalAdminChangeCashReducer = createReducer(
 			if (!enabled) cash = state.cash;
 
 			return { enabled, cash };
+		},
+	}
+);
+
+////////////////////////////////////////////////////////////////////////
+const MODAL_ADMIN_BANNED = "MODAL_ADMIN_BANNED";
+
+export const modalAdminBannedAction = (
+	enabled: boolean,
+	banned: IAdminBanned
+) => ({
+	type: MODAL_ADMIN_BANNED,
+	payload: {
+		enabled,
+		banned,
+	},
+});
+
+export const initialStateModalAdminBanned: IStateAdminBanned = {
+	enabled: false,
+	banned: { userid: "", discription: "", minute: 0, hour: 0, month: 0 },
+};
+
+export const modalAdminBannedReducer = createReducer(
+	initialStateModalAdminBanned,
+	{
+		[MODAL_ADMIN_BANNED]: (state: IStateAdminBanned, action: any) => {
+			let { enabled, banned } = action.payload;
+
+			if (!enabled) banned = state.banned;
+
+			return { enabled, banned };
 		},
 	}
 );

@@ -29,6 +29,7 @@ import {
 import { socketReducer } from "./redusers/socket";
 import {
 	adminFiltersUserReducer,
+	modalAdminBannedReducer,
 	modalAdminChangeCashReducer,
 	modalAdminChangeRatingReducer,
 } from "./redusers/admin";
@@ -61,5 +62,6 @@ export const store = configureStore({
 		adminFiltersUser: adminFiltersUserReducer,
 		modalAdminChangeRating: modalAdminChangeRatingReducer,
 		modalAdminChangeCash: modalAdminChangeCashReducer,
+		modalAdminBanned: modalAdminBannedReducer,
 	},
 });
