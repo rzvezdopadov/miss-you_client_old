@@ -28,6 +28,7 @@ import {
 	ModalAdminChangeCash,
 	modalAdminChangeCashOpen,
 } from "./ModalAdminChangeCash";
+import { ModalAdminBanned, modalAdminBannedOpen } from "./ModalAdminBanned";
 
 export function modalAdminUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -106,6 +107,13 @@ export function ModalAdminUserProfile() {
 						value={"Написать сообщение"}
 						onClick={modalDialogOpenHandler}
 					/>
+
+					<Button
+						value={"Забанить/разбанить"}
+						onClick={() => {
+							modalAdminBannedOpen(userProfile.profile.userid);
+						}}
+					/>
 				</div>
 
 				<div className="flex items-center flex-col">
@@ -122,6 +130,7 @@ export function ModalAdminUserProfile() {
 			</div>
 			<ModalAdminChangeRating />
 			<ModalAdminChangeCash />
+			<ModalAdminBanned />
 		</div>
 	);
 }
