@@ -8,6 +8,8 @@ import {
 	IQueryGetAdminProfile,
 	IQuerySetAdminRating,
 	IQueryAnswerSetAdminRating,
+	IQuerySetAdminCash,
+	IQueryAnswerSetAdminCash,
 } from "./iadmin.api";
 
 /* API Query to server */
@@ -80,6 +82,26 @@ export function useQuerySetAdminRating() {
 		errorSetAdminRating: errorNew,
 		loadedSetAdminRating: loaded,
 		querySendSetAdminRating,
+	};
+
+	return queryAnswer;
+}
+
+export function useQuerySetAdminCash() {
+	const { data, error, loaded, querySend } = useQueryPut();
+
+	const querySendSetAdminCash = async (dataQuery: IQuerySetAdminCash) => {
+		querySend("/api/admin/cash", dataQuery, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerSetAdminCash = {
+		dataSetAdminCash: dataNew,
+		errorSetAdminCash: errorNew,
+		loadedSetAdminCash: loaded,
+		querySendSetAdminCash,
 	};
 
 	return queryAnswer;

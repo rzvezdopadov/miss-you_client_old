@@ -12,11 +12,6 @@ export interface IQueryGetAdminProfiles {
 	filters: IAdminFilterUsers;
 }
 
-export interface IQuerySetAdminRating {
-	userid: string;
-	addrating: number;
-}
-
 export interface IQueryAnswerGetAdminProfiles {
 	dataGetAdminProfiles: Array<IProfileShort>;
 	errorGetAdminProfiles: IQueryAnswerError;
@@ -31,9 +26,26 @@ export interface IQueryAnswerGetAdminProfile {
 	querySendGetAdminProfile(data: IQueryGetAdminProfile): void;
 }
 
+export interface IQuerySetAdminRating {
+	userid: string;
+	addrating: number;
+}
+
 export interface IQueryAnswerSetAdminRating {
 	dataSetAdminRating: IProfile;
 	errorSetAdminRating: IQueryAnswerError;
 	loadedSetAdminRating: boolean;
 	querySendSetAdminRating(data: IQuerySetAdminRating): void;
+}
+
+export interface IQuerySetAdminCash {
+	userid: string;
+	addcash: number;
+}
+
+export interface IQueryAnswerSetAdminCash {
+	dataSetAdminCash: IProfile;
+	errorSetAdminCash: IQueryAnswerError;
+	loadedSetAdminCash: boolean;
+	querySendSetAdminCash(data: IQuerySetAdminCash): void;
 }
