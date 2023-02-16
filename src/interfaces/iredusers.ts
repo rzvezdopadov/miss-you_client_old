@@ -1,4 +1,4 @@
-import { IAdminChangeCash, IAdminChangeRating } from "./iadmin";
+import { IAdminBanned, IAdminChangeCash, IAdminChangeRating } from "./iadmin";
 import { IRate } from "./ishop";
 
 export interface IStateModalMessage {
@@ -29,4 +29,9 @@ export interface IStateAdminChangeRating {
 export interface IStateAdminChangeCash {
 	enabled: boolean;
 	cash: IAdminChangeCash;
+}
+
+export interface IStateAdminBanned {
+	enabled: boolean;
+	banned: IAdminBanned;
 }

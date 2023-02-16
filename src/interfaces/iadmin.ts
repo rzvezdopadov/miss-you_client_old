@@ -32,3 +32,11 @@ export interface IAdminChangeCash {
 	userid: string;
 	addcash: number;
 }
+
+export interface IAdminBanned {
+	userid: string;
+	minute: number;
+	hour: number;
+	month: number;
+	discription: string;
+}
