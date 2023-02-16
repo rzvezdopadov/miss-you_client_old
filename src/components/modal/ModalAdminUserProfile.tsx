@@ -24,6 +24,10 @@ import {
 	ModalAdminChangeRating,
 	modalAdminChangeRatingOpen,
 } from "./ModalAdminChangeRating";
+import {
+	ModalAdminChangeCash,
+	modalAdminChangeCashOpen,
+} from "./ModalAdminChangeCash";
 
 export function modalAdminUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -90,7 +94,14 @@ export function ModalAdminUserProfile() {
 							);
 						}}
 					/>
-					<LabelCash value={userProfile.profile.cash} />
+					<LabelCash
+						value={userProfile.profile.cash}
+						onClick={() => {
+							modalAdminChangeCashOpen(
+								userProfile.profile.userid
+							);
+						}}
+					/>
 					<Button
 						value={"Написать сообщение"}
 						onClick={modalDialogOpenHandler}
@@ -110,6 +121,7 @@ export function ModalAdminUserProfile() {
 				</div>
 			</div>
 			<ModalAdminChangeRating />
+			<ModalAdminChangeCash />
 		</div>
 	);
 }
