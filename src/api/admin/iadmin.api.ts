@@ -1,4 +1,4 @@
-import { IAdminFilterUsers } from "../../interfaces/iadmin";
+import { IAdminBanned, IAdminFilterUsers } from "../../interfaces/iadmin";
 import { IProfileShort, IProfile } from "../../interfaces/iprofiles";
 import { IQueryAnswerError, IQueryAnswerMessageData } from "../iquerys.api";
 
@@ -48,4 +48,11 @@ export interface IQueryAnswerSetAdminCash {
 	errorSetAdminCash: IQueryAnswerError;
 	loadedSetAdminCash: boolean;
 	querySendSetAdminCash(data: IQuerySetAdminCash): void;
+}
+
+export interface IQueryAnswerBanned {
+	dataSetAdminBanned: IQueryAnswerMessageData;
+	errorSetAdminBanned: IQueryAnswerError;
+	loadedSetAdminBanned: boolean;
+	querySendSetAdminBanned(data: IAdminBanned): void;
 }

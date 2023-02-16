@@ -1,5 +1,6 @@
-import { IProfile } from "../../interfaces/iprofiles";
-import { IQueryAnswerError } from "../iquerys.api";
+import { IAdminBanned } from "../../interfaces/iadmin";
+import { IMessage, IProfile } from "../../interfaces/iprofiles";
+import { IQueryAnswerError, IQueryAnswerMessageData } from "../iquerys.api";
 import { useQueryGet, useQueryPut } from "../querys.api.hook";
 import {
 	IQueryGetAdminProfiles,
@@ -10,6 +11,7 @@ import {
 	IQueryAnswerSetAdminRating,
 	IQuerySetAdminCash,
 	IQueryAnswerSetAdminCash,
+	IQueryAnswerBanned,
 } from "./iadmin.api";
 
 /* API Query to server */
@@ -102,6 +104,26 @@ export function useQuerySetAdminCash() {
 		errorSetAdminCash: errorNew,
 		loadedSetAdminCash: loaded,
 		querySendSetAdminCash,
+	};
+
+	return queryAnswer;
+}
+
+export function useQuerySetAdminBanned() {
+	const { data, error, loaded, querySend } = useQueryPut();
+
+	const querySendSetAdminBanned = async (dataQuery: IAdminBanned) => {
+		querySend("/api/admin/banned", dataQuery, true);
+	};
+
+	const dataNew = data as IQueryAnswerMessageData;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerBanned = {
+		dataSetAdminBanned: dataNew,
+		errorSetAdminBanned: errorNew,
+		loadedSetAdminBanned: loaded,
+		querySendSetAdminBanned,
 	};
 
 	return queryAnswer;
