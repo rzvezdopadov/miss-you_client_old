@@ -6,9 +6,16 @@ import {
 	data_growth,
 	data_location,
 } from "../../data/profiles";
-import { IAdminChangeRating, IAdminFilterUsers } from "../../interfaces/iadmin";
+import {
+	IAdminChangeCash,
+	IAdminChangeRating,
+	IAdminFilterUsers,
+} from "../../interfaces/iadmin";
 import { ACCTYPE } from "../../interfaces/iprofiles";
-import { IStateAdminChangeRating } from "../../interfaces/iredusers";
+import {
+	IStateAdminChangeCash,
+	IStateAdminChangeRating,
+} from "../../interfaces/iredusers";
 
 ////////////////////////////////////////////////////////////////////////
 export const ADMIN_FILTERS_USER = "ADMIN_FILTERS_USER";
@@ -82,6 +89,41 @@ export const modalAdminChangeRatingReducer = createReducer(
 			if (!enabled) rate = state.rate;
 
 			return { enabled, rate };
+		},
+	}
+);
+
+////////////////////////////////////////////////////////////////////////
+const MODAL_ADMIN_CHANGE_CASH = "MODAL_ADMIN_CHANGE_CASH";
+
+export const modalAdminChangeCashAction = (
+	enabled: boolean,
+	cash: IAdminChangeCash
+) => ({
+	type: MODAL_ADMIN_CHANGE_CASH,
+	payload: {
+		enabled,
+		cash,
+	},
+});
+
+export const initialStateModalAdminChangeCash: IStateAdminChangeCash = {
+	enabled: false,
+	cash: { userid: "", addcash: 0 },
+};
+
+export const modalAdminChangeCashReducer = createReducer(
+	initialStateModalAdminChangeCash,
+	{
+		[MODAL_ADMIN_CHANGE_CASH]: (
+			state: IStateAdminChangeCash,
+			action: any
+		) => {
+			let { enabled, cash } = action.payload;
+
+			if (!enabled) cash = state.cash;
+
+			return { enabled, cash };
 		},
 	}
 );
