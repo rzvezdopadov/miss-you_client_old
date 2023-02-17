@@ -77,21 +77,25 @@ export function ModalPhotoEditor() {
 	}, [modalPhotoEditor]);
 
 	useEffect(() => {
-		if (dataUploadPhoto) {
-			const { photolink, photomain } = dataUploadPhoto;
+		if (!dataUploadPhoto) return;
 
-			if (!photolink) return;
+		const { photolink, photomain } = dataUploadPhoto;
 
-			const newUserMyProfile = { ...userMyProfile };
-			newUserMyProfile.photolink = photolink;
-			newUserMyProfile.photomain = photomain;
-			store.dispatch(userMyProfileAction(newUserMyProfile));
-			store.dispatch(modalPhotoEditorAction(false));
-			modalMessageOpen("Успешно загруженно!");
-		} else if (errorUploadPhoto) {
-			modalMessageOpen(errorUploadPhoto.response.data.message);
-		}
-	}, [dataUploadPhoto, errorUploadPhoto]);
+		if (!photolink) return;
+
+		const newUserMyProfile = { ...userMyProfile };
+		newUserMyProfile.photolink = photolink;
+		newUserMyProfile.photomain = photomain;
+		store.dispatch(userMyProfileAction(newUserMyProfile));
+		store.dispatch(modalPhotoEditorAction(false));
+		modalMessageOpen("Успешно загруженно!");
+	}, [dataUploadPhoto]);
+
+	useEffect(() => {
+		if (!errorUploadPhoto) return;
+
+		modalMessageOpen(errorUploadPhoto.response.data.message);
+	}, [errorUploadPhoto]);
 
 	const downloadHandler = async () => {
 		if (userMyProfile.photolink.length > 9) {

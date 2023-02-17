@@ -45,14 +45,18 @@ export function ModalAdminUserProfile() {
 	const refUserProfile = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (dataGetDialog) {
-			modalDialogOpen();
-			store.dispatch(dialogAction(dataGetDialog));
-			store.dispatch(dialogUserIdAction(userProfile.profile.userid));
-		} else if (errorGetDialog) {
-			modalMessageOpen(errorGetDialog.response.data.message);
-		}
-	}, [dataGetDialog, errorGetDialog]);
+		if (!dataGetDialog) return;
+
+		modalDialogOpen();
+		store.dispatch(dialogAction(dataGetDialog));
+		store.dispatch(dialogUserIdAction(userProfile.profile.userid));
+	}, [dataGetDialog]);
+
+	useEffect(() => {
+		if (!errorGetDialog) return;
+
+		modalMessageOpen(errorGetDialog.response.data.message);
+	}, [errorGetDialog]);
 
 	useEffect(() => {
 		if (!refUserProfile.current) return;

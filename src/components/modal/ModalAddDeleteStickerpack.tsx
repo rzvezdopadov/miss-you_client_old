@@ -40,36 +40,34 @@ export function ModalAddDeleteStickerpack() {
 	}, [modalAddDeleteStickerpack.enabled]);
 
 	useEffect(() => {
-		if (dataAddStickerpack) {
-			store.dispatch(userMyProfileAction(dataAddStickerpack));
-			modalMessageOpen("Выполнено успешно!");
-		} else if (errorAddStickerpack) {
-			modalMessageOpen(errorAddStickerpack.response.data.message);
-		}
+		if (!dataAddStickerpack) return;
 
-		store.dispatch(
-			modalAddDeleteStickerpackAction(
-				false,
-				initialStateModalAddDeleteStickerpack.stickerpack
-			)
-		);
-	}, [dataAddStickerpack, errorAddStickerpack]);
+		store.dispatch(userMyProfileAction(dataAddStickerpack));
+		modalMessageOpen("Выполнено успешно!");
+		closeModalAddDeleteStickerpackHandler();
+	}, [dataAddStickerpack]);
 
 	useEffect(() => {
-		if (dataDeleteStickerpack) {
-			store.dispatch(userMyProfileAction(dataDeleteStickerpack));
-			modalMessageOpen("Выполнено успешно!");
-		} else if (errorDeleteStickerpack) {
-			modalMessageOpen(errorDeleteStickerpack.response.data.message);
-		}
+		if (!errorAddStickerpack) return;
 
-		store.dispatch(
-			modalAddDeleteStickerpackAction(
-				false,
-				initialStateModalAddDeleteStickerpack.stickerpack
-			)
-		);
-	}, [dataDeleteStickerpack, errorDeleteStickerpack]);
+		modalMessageOpen(errorAddStickerpack.response.data.message);
+		closeModalAddDeleteStickerpackHandler();
+	}, [errorAddStickerpack]);
+
+	useEffect(() => {
+		if (!dataDeleteStickerpack) return;
+
+		store.dispatch(userMyProfileAction(dataDeleteStickerpack));
+		modalMessageOpen("Выполнено успешно!");
+		closeModalAddDeleteStickerpackHandler();
+	}, [dataDeleteStickerpack]);
+
+	useEffect(() => {
+		if (!errorDeleteStickerpack) return;
+
+		modalMessageOpen(errorDeleteStickerpack.response.data.message);
+		closeModalAddDeleteStickerpackHandler();
+	}, [errorDeleteStickerpack]);
 
 	const closeModalAddDeleteStickerpackHandler = () => {
 		store.dispatch(
