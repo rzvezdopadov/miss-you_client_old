@@ -36,12 +36,16 @@ export function FormRegistration() {
 	}, []);
 
 	useEffect(() => {
-		if (dataRegistration) {
-			modalMessageOpen(dataRegistration.message);
-		} else if (errorRegistration) {
-			modalMessageOpen(errorRegistration.response.data.message);
-		}
-	}, [dataRegistration, errorRegistration]);
+		if (!dataRegistration) return;
+
+		modalMessageOpen(dataRegistration.message);
+	}, [dataRegistration]);
+
+	useEffect(() => {
+		if (!errorRegistration) return;
+
+		modalMessageOpen(errorRegistration.response.data.message);
+	}, [errorRegistration]);
 
 	const btnRegistrationOnClickHandler = () => {
 		if (!checkAgreement.current) return;

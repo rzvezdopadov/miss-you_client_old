@@ -44,21 +44,29 @@ export function AppMain() {
 	}, [jwt]);
 
 	useEffect(() => {
-		if (dataGetProfile) {
-			store.dispatch(filtersUserAction(dataGetProfile.filters));
-			store.dispatch(userMyProfileAction(dataGetProfile));
-		} else if (errorGetProfile) {
-			modalMessageOpen(errorGetProfile.response.data.message);
-		}
-	}, [dataGetProfile, errorGetProfile]);
+		if (!dataGetProfile) return;
+
+		store.dispatch(filtersUserAction(dataGetProfile.filters));
+		store.dispatch(userMyProfileAction(dataGetProfile));
+	}, [dataGetProfile]);
 
 	useEffect(() => {
-		if (dataStickerpacks) {
-			store.dispatch(stickerpacksAction(dataStickerpacks));
-		} else if (errorStickerpacks) {
-			modalMessageOpen(errorStickerpacks.response.data.message);
-		}
-	}, [dataStickerpacks, errorStickerpacks]);
+		if (!errorGetProfile) return;
+
+		modalMessageOpen(errorGetProfile.response.data.message);
+	}, [errorGetProfile]);
+
+	useEffect(() => {
+		if (!dataStickerpacks) return;
+
+		store.dispatch(stickerpacksAction(dataStickerpacks));
+	}, [dataStickerpacks]);
+
+	useEffect(() => {
+		if (!errorStickerpacks) return;
+
+		modalMessageOpen(errorStickerpacks.response.data.message);
+	}, [errorStickerpacks]);
 
 	return (
 		<div className="flex flex-grow overflow-hidden my-2 justify-center items-center">

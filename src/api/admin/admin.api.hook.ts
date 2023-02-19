@@ -1,5 +1,5 @@
 import { IAdminBanned } from "../../interfaces/iadmin";
-import { IMessage, IProfile } from "../../interfaces/iprofiles";
+import { IProfile } from "../../interfaces/iprofiles";
 import { IQueryAnswerError, IQueryAnswerMessageData } from "../iquerys.api";
 import { useQueryGet, useQueryPut } from "../querys.api.hook";
 import {

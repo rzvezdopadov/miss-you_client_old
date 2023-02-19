@@ -50,18 +50,19 @@ export function Vapors() {
 	}, [likes]);
 
 	useEffect(() => {
-		if (dataGetProfilesForLikes) {
-			let newUsersProfiles = [
-				...usersProfiles,
-				...dataGetProfilesForLikes,
-			];
+		if (!dataGetProfilesForLikes) return;
 
-			store.dispatch(usersProfilesAction(newUsersProfiles));
-			setDataLoader(false);
-		} else if (errorGetProfilesForLikes) {
-			modalMessageOpen(errorGetProfilesForLikes.response.data.message);
-		}
-	}, [dataGetProfilesForLikes, errorGetProfilesForLikes]);
+		let newUsersProfiles = [...usersProfiles, ...dataGetProfilesForLikes];
+
+		store.dispatch(usersProfilesAction(newUsersProfiles));
+		setDataLoader(false);
+	}, [dataGetProfilesForLikes]);
+
+	useEffect(() => {
+		if (!errorGetProfilesForLikes) return;
+
+		modalMessageOpen(errorGetProfilesForLikes.response.data.message);
+	}, [errorGetProfilesForLikes]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
 		const data: IQueryGetProfilesForLikes = {

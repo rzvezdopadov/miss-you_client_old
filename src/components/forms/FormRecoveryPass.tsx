@@ -33,12 +33,16 @@ export function FormRecoveryPass() {
 	};
 
 	useEffect(() => {
-		if (dataRecoveryPass) {
-			modalMessageOpen(dataRecoveryPass.message);
-		} else if (errorRecoveryPass) {
-			modalMessageOpen(errorRecoveryPass.response.data.message);
-		}
-	}, [dataRecoveryPass, errorRecoveryPass]);
+		if (!dataRecoveryPass) return;
+
+		modalMessageOpen(dataRecoveryPass.message);
+	}, [dataRecoveryPass]);
+
+	useEffect(() => {
+		if (!errorRecoveryPass) return;
+
+		modalMessageOpen(errorRecoveryPass.response.data.message);
+	}, [errorRecoveryPass]);
 
 	return (
 		<div className="flex h-fit w-full justify-center min-w-xs">

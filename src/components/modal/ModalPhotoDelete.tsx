@@ -34,7 +34,11 @@ export function ModalPhotoDelete() {
 		}
 
 		modalPhotoDeleteCloseHandler();
-	}, [dataDeletePhoto, errorDeletePhoto]);
+	}, [dataDeletePhoto]);
+
+	useEffect(() => {
+		modalPhotoDeleteCloseHandler();
+	}, [errorDeletePhoto]);
 
 	const modalPhotoDeleteCloseHandler = () => {
 		store.dispatch(modalPhotoDeleteAction(false, 0));

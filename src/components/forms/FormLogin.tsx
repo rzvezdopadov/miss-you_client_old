@@ -42,20 +42,24 @@ export function FormEnter() {
 	};
 
 	useEffect(() => {
-		if (dataLogin) {
-			const { jwt } = dataLogin;
+		if (!dataLogin) return;
 
-			modalMessageOpen(dataLogin.message);
+		const { jwt } = dataLogin;
 
-			document.cookie = `jwt=${jwt}; max-age=${maxagejwt}`;
+		modalMessageOpen(dataLogin.message);
 
-			setTimeout(() => {
-				store.dispatch(jwtAction(jwt));
-			}, 1500);
-		} else if (errorLogin) {
-			modalMessageOpen(errorLogin.response.data.message);
-		}
-	}, [dataLogin, errorLogin]);
+		document.cookie = `jwt=${jwt}; max-age=${maxagejwt}`;
+
+		setTimeout(() => {
+			store.dispatch(jwtAction(jwt));
+		}, 1500);
+	}, [dataLogin]);
+
+	useEffect(() => {
+		if (!errorLogin) return;
+
+		modalMessageOpen(errorLogin.response.data.message);
+	}, [errorLogin]);
 
 	return (
 		<div className="flex h-fit w-full justify-center min-w-xs">

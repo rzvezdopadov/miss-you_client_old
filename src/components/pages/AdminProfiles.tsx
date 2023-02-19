@@ -43,14 +43,18 @@ export function AdminProfiles() {
 	}, [adminFiltersUser]);
 
 	useEffect(() => {
-		if (dataGetAdminProfiles) {
-			let newUsersProfiles = [...usersProfiles, ...dataGetAdminProfiles];
+		if (!dataGetAdminProfiles) return;
 
-			store.dispatch(usersProfilesAction(newUsersProfiles));
-		} else if (errorGetAdminProfiles) {
-			modalMessageOpen(errorGetAdminProfiles.response.data.message);
-		}
-	}, [dataGetAdminProfiles, errorGetAdminProfiles]);
+		let newUsersProfiles = [...usersProfiles, ...dataGetAdminProfiles];
+
+		store.dispatch(usersProfilesAction(newUsersProfiles));
+	}, [dataGetAdminProfiles]);
+
+	useEffect(() => {
+		if (!errorGetAdminProfiles) return;
+
+		modalMessageOpen(errorGetAdminProfiles.response.data.message);
+	}, [errorGetAdminProfiles]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
 		const data: IQueryGetAdminProfiles = {

@@ -41,14 +41,18 @@ export function SearchVapors() {
 	}, [filtersUser]);
 
 	useEffect(() => {
-		if (dataGetProfiles) {
-			let newUsersProfiles = [...usersProfiles, ...dataGetProfiles];
+		if (!dataGetProfiles) return;
 
-			store.dispatch(usersProfilesAction(newUsersProfiles));
-		} else if (errorGetProfiles) {
-			modalMessageOpen(errorGetProfiles.response.data.message);
-		}
-	}, [dataGetProfiles, errorGetProfiles]);
+		let newUsersProfiles = [...usersProfiles, ...dataGetProfiles];
+
+		store.dispatch(usersProfilesAction(newUsersProfiles));
+	}, [dataGetProfiles]);
+
+	useEffect(() => {
+		if (!errorGetProfiles) return;
+
+		modalMessageOpen(errorGetProfiles.response.data.message);
+	}, [errorGetProfiles]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
 		const data: IQueryGetProfiles = {

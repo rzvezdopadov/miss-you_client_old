@@ -8,7 +8,6 @@ import {
 } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
-import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 import { useQueryBuyRating } from "../../api/rating/rating.api.hook";
 import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
@@ -29,15 +28,19 @@ export function ModalBuyRating() {
 	}, []);
 
 	useEffect(() => {
-		if (dataBuyRating) {
-			store.dispatch(userMyProfileAction(dataBuyRating));
-			modalMessageOpen("Покупка прошла успешно!");
-		} else if (errorBuyRating) {
-			modalMessageOpen(errorBuyRating.response.data.message);
-		}
+		if (!dataBuyRating) return;
 
+		store.dispatch(userMyProfileAction(dataBuyRating));
+		modalMessageOpen("Покупка прошла успешно!");
 		modalBuyRatingCloseHandler();
-	}, [dataBuyRating, errorBuyRating]);
+	}, [dataBuyRating]);
+
+	useEffect(() => {
+		if (!errorBuyRating) return;
+
+		modalMessageOpen(errorBuyRating.response.data.message);
+		modalBuyRatingCloseHandler();
+	}, [errorBuyRating]);
 
 	const modalBuyRatingCloseHandler = () => {
 		store.dispatch(
