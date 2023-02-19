@@ -11,7 +11,7 @@ import {
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 import { Input } from "../utils/Inputs";
 import { SelectFromArr } from "../utils/Selects";
-import { data_hour, data_month } from "../../data/admin";
+import { data_hour, data_minute, data_month } from "../../data/admin";
 
 export function modalAdminBannedOpen(userid: string) {
 	store.dispatch(
@@ -109,7 +109,7 @@ export function ModalAdminBanned() {
 						banned.minute = Number(e.target.value);
 						store.dispatch(modalAdminBannedAction(true, banned));
 					}}
-					arr={data_hour}
+					arr={data_minute}
 					title={"Минут"}
 				/>
 
