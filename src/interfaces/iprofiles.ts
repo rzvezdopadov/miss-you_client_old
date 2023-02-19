@@ -24,9 +24,14 @@ export interface IFilterUsers {
 	weight: number;
 	signzodiac: number;
 	gendervapor: number;
+	education: number;
+	fieldofactivity: number;
+	maritalstatus: number;
+	children: number;
 	religion: number;
 	smoke: number;
 	alcohol: number;
+	profit: number;
 	interests: Array<string>;
 }
 

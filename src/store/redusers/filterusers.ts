@@ -24,8 +24,13 @@ const initialStateFiltersUser: IFilterUsers = {
 	weight: 0,
 	signzodiac: data_signZodiac.length - 1,
 	gendervapor: data_genderVapor.length - 1,
+	education: 0,
+	fieldofactivity: 0,
+	maritalstatus: 0,
+	children: 0,
 	religion: 0,
 	smoke: 0,
+	profit: 0,
 	alcohol: 0,
 	interests: [],
 };
