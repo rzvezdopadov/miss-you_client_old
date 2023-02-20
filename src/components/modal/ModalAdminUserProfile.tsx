@@ -12,7 +12,6 @@ import { dialogAction, dialogUserIdAction } from "../../store/redusers/dialog";
 import { modalDialogClose, modalDialogOpen } from "./ModalDialog";
 import { modalMessageOpen } from "./ModalMessage";
 import { DateTimeVisit } from "../utils/DateTime";
-import { UserProfileSlider } from "../widgets/userprofile/UserProfileSlider";
 import { UserProfileInterests } from "../widgets/userprofile/UserProfileInterests";
 import { UserProfilePersonal } from "../widgets/userprofile/UserProfilePersonal";
 import { UserProfileQuality } from "../widgets/userprofile/UserProfileQuality";
@@ -22,13 +21,22 @@ import { useQueryGetDialog } from "../../api/dialog/dialog.api.hook";
 import { IQueryDialog } from "../../api/dialog/idialog.api";
 import {
 	ModalAdminChangeRating,
+	modalAdminChangeRatingClose,
 	modalAdminChangeRatingOpen,
 } from "./ModalAdminChangeRating";
 import {
 	ModalAdminChangeCash,
+	modalAdminChangeCashClose,
 	modalAdminChangeCashOpen,
 } from "./ModalAdminChangeCash";
-import { ModalAdminBanned, modalAdminBannedOpen } from "./ModalAdminBanned";
+import {
+	ModalAdminBanned,
+	modalAdminBannedClose,
+	modalAdminBannedOpen,
+} from "./ModalAdminBanned";
+import { AdminUserProfileSlider } from "../widgets/admin/AdminUserProfileSlider";
+import { UserProfileInterest } from "../widgets/userprofile/UserProfileInterest";
+import { ModalAdminPhotoDelete } from "./ModalAdminPhotoDelete";
 
 export function modalAdminUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -78,6 +86,9 @@ export function ModalAdminUserProfile() {
 
 	const closeUserProfileHandler = () => {
 		modalDialogClose();
+		modalAdminChangeRatingClose();
+		modalAdminChangeCashClose();
+		modalAdminBannedClose();
 		modalAdminUserProfileClose();
 	};
 
@@ -90,7 +101,11 @@ export function ModalAdminUserProfile() {
 
 			<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 				<div className="flex flex-col">
-					<UserProfileSlider />
+					<AdminUserProfileSlider />
+					<UserProfileInterest
+						value={`userid = "${userProfile.profile.userid}"`}
+						title={`userid = "${userProfile.profile.userid}"`}
+					/>
 					<LabelRating
 						value={userProfile.profile.rating}
 						onClick={() => {
@@ -135,6 +150,7 @@ export function ModalAdminUserProfile() {
 			<ModalAdminChangeRating />
 			<ModalAdminChangeCash />
 			<ModalAdminBanned />
+			<ModalAdminPhotoDelete />
 		</div>
 	);
 }
