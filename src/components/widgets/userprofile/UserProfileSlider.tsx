@@ -46,12 +46,6 @@ export function UserProfileSlider() {
 		setPositionPhoto(posPhoto);
 	};
 
-	let colorHeart = "bg-red-500";
-
-	if (userProfile.profile.likes.length === 0) {
-		colorHeart = "bg-white";
-	}
-
 	return (
 		<>
 			<div

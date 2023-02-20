@@ -48,12 +48,6 @@ export function AdminUserProfileSlider() {
 		setPositionPhoto(posPhoto);
 	};
 
-	let colorHeart = "bg-red-500";
-
-	if (userProfile.profile.likes.length === 0) {
-		colorHeart = "bg-white";
-	}
-
 	return (
 		<>
 			<div className="flex relative justify-center m-1">
