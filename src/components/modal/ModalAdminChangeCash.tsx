@@ -21,6 +21,12 @@ export function modalAdminChangeCashOpen(userid: string) {
 	);
 }
 
+export function modalAdminChangeCashClose() {
+	store.dispatch(
+		modalAdminChangeCashAction(false, initialStateModalAdminChangeCash.cash)
+	);
+}
+
 export function ModalAdminChangeCash() {
 	const { modalAdminChangeCash } = store.getState();
 	const { dataSetAdminCash, errorSetAdminCash, querySendSetAdminCash } =
@@ -28,7 +34,7 @@ export function ModalAdminChangeCash() {
 
 	useEffect(() => {
 		return () => {
-			closeModalAdminChangeCashHandler();
+			modalAdminChangeCashClose();
 		};
 	}, []);
 
@@ -37,24 +43,15 @@ export function ModalAdminChangeCash() {
 
 		store.dispatch(userProfileAction(true, dataSetAdminCash));
 		modalMessageOpen("Успешно выполненно!");
-		closeModalAdminChangeCashHandler();
+		modalAdminChangeCashClose();
 	}, [dataSetAdminCash]);
 
 	useEffect(() => {
 		if (!errorSetAdminCash) return;
 
 		modalMessageOpen(errorSetAdminCash.response.data.message);
-		closeModalAdminChangeCashHandler();
+		modalAdminChangeCashClose();
 	}, [errorSetAdminCash]);
-
-	const closeModalAdminChangeCashHandler = () => {
-		store.dispatch(
-			modalAdminChangeCashAction(
-				false,
-				initialStateModalAdminChangeCash.cash
-			)
-		);
-	};
 
 	const yesModalAdminChangeCashHandler = () => {
 		if (!modalAdminChangeCash.cash.userid) return;
@@ -81,7 +78,7 @@ export function ModalAdminChangeCash() {
 				/>
 				<ButtonsYesCancelWidget
 					onClickYes={yesModalAdminChangeCashHandler}
-					onClickCancel={closeModalAdminChangeCashHandler}
+					onClickCancel={modalAdminChangeCashClose}
 				/>
 			</>
 		</ModalYesCancelWrapper>

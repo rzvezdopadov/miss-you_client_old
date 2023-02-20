@@ -21,6 +21,15 @@ export function modalAdminChangeRatingOpen(userid: string) {
 	);
 }
 
+export function modalAdminChangeRatingClose() {
+	store.dispatch(
+		modalAdminChangeRatingAction(
+			false,
+			initialStateModalAdminChangeRating.rate
+		)
+	);
+}
+
 export function ModalAdminChangeRating() {
 	const { modalAdminChangeRating } = store.getState();
 	const { dataSetAdminRating, errorSetAdminRating, querySendSetAdminRating } =
@@ -28,7 +37,7 @@ export function ModalAdminChangeRating() {
 
 	useEffect(() => {
 		return () => {
-			closeModalAdminChangeRatingHandler();
+			modalAdminChangeRatingClose();
 		};
 	}, []);
 
@@ -37,24 +46,15 @@ export function ModalAdminChangeRating() {
 
 		store.dispatch(userProfileAction(true, dataSetAdminRating));
 		modalMessageOpen("Успешно выполненно!");
-		closeModalAdminChangeRatingHandler();
+		modalAdminChangeRatingClose();
 	}, [dataSetAdminRating]);
 
 	useEffect(() => {
 		if (!errorSetAdminRating) return;
 
 		modalMessageOpen(errorSetAdminRating.response.data.message);
-		closeModalAdminChangeRatingHandler();
+		modalAdminChangeRatingClose();
 	}, [errorSetAdminRating]);
-
-	const closeModalAdminChangeRatingHandler = () => {
-		store.dispatch(
-			modalAdminChangeRatingAction(
-				false,
-				initialStateModalAdminChangeRating.rate
-			)
-		);
-	};
 
 	const yesModalAdminChangeRatingHandler = () => {
 		if (!modalAdminChangeRating.rate.userid) return;
@@ -81,7 +81,7 @@ export function ModalAdminChangeRating() {
 				/>
 				<ButtonsYesCancelWidget
 					onClickYes={yesModalAdminChangeRatingHandler}
-					onClickCancel={closeModalAdminChangeRatingHandler}
+					onClickCancel={modalAdminChangeRatingClose}
 				/>
 			</>
 		</ModalYesCancelWrapper>

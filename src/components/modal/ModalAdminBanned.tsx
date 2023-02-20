@@ -25,6 +25,12 @@ export function modalAdminBannedOpen(userid: string) {
 	);
 }
 
+export function modalAdminBannedClose() {
+	store.dispatch(
+		modalAdminBannedAction(false, initialStateModalAdminBanned.banned)
+	);
+}
+
 export function ModalAdminBanned() {
 	const { modalAdminBanned } = store.getState();
 	const { dataSetAdminBanned, errorSetAdminBanned, querySendSetAdminBanned } =
@@ -32,7 +38,7 @@ export function ModalAdminBanned() {
 
 	useEffect(() => {
 		return () => {
-			closeModalAdminBannedHandler();
+			modalAdminBannedClose();
 		};
 	}, []);
 
@@ -40,21 +46,15 @@ export function ModalAdminBanned() {
 		if (!dataSetAdminBanned) return;
 
 		modalMessageOpen(dataSetAdminBanned.message);
-		closeModalAdminBannedHandler();
+		modalAdminBannedClose();
 	}, [dataSetAdminBanned]);
 
 	useEffect(() => {
 		if (!errorSetAdminBanned) return;
 
 		modalMessageOpen(errorSetAdminBanned.response.data.message);
-		closeModalAdminBannedHandler();
+		modalAdminBannedClose();
 	}, [errorSetAdminBanned]);
-
-	const closeModalAdminBannedHandler = () => {
-		store.dispatch(
-			modalAdminBannedAction(false, initialStateModalAdminBanned.banned)
-		);
-	};
 
 	const yesModalAdminBannedHandler = () => {
 		if (!modalAdminBanned.banned.userid) return;
@@ -115,7 +115,7 @@ export function ModalAdminBanned() {
 
 				<ButtonsYesCancelWidget
 					onClickYes={yesModalAdminBannedHandler}
-					onClickCancel={closeModalAdminBannedHandler}
+					onClickCancel={modalAdminBannedClose}
 				/>
 			</>
 		</ModalYesCancelWrapper>
