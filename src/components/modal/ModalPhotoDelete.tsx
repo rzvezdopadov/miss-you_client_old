@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { store } from "../../store/store";
 import { modalPhotoDeleteAction } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
-import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 import { useQueryDeletePhoto } from "../../api/photo/photo.api.hook";
 import { IQueryPhoto } from "../../api/photo/iphoto.api";
 import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
