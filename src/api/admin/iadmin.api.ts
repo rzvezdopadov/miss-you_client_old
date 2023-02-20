@@ -1,5 +1,5 @@
 import { IAdminBanned, IAdminFilterUsers } from "../../interfaces/iadmin";
-import { IProfileShort, IProfile } from "../../interfaces/iprofiles";
+import { IProfileShort, IProfile, IPhoto } from "../../interfaces/iprofiles";
 import { IQueryAnswerError, IQueryAnswerMessageData } from "../iquerys.api";
 
 export interface IQueryGetAdminProfile {
@@ -55,4 +55,16 @@ export interface IQueryAnswerBanned {
 	errorSetAdminBanned: IQueryAnswerError;
 	loadedSetAdminBanned: boolean;
 	querySendSetAdminBanned(data: IAdminBanned): void;
+}
+
+export interface IQueryDeleteAdminPhoto {
+	userid: string;
+	photoPos: number;
+}
+
+export interface IQueryAnswerDeleteAdminPhoto {
+	dataDeleteAdminPhoto: IPhoto;
+	errorDeleteAdminPhoto: IQueryAnswerError;
+	loadedDeleteAdminPhoto: boolean;
+	queryDeleteAdminPhoto(data: IQueryDeleteAdminPhoto): void;
 }

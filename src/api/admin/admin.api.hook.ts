@@ -1,7 +1,7 @@
 import { IAdminBanned } from "../../interfaces/iadmin";
-import { IProfile } from "../../interfaces/iprofiles";
+import { IPhoto, IProfile } from "../../interfaces/iprofiles";
 import { IQueryAnswerError, IQueryAnswerMessageData } from "../iquerys.api";
-import { useQueryGet, useQueryPut } from "../querys.api.hook";
+import { useQueryDelete, useQueryGet, useQueryPut } from "../querys.api.hook";
 import {
 	IQueryGetAdminProfiles,
 	IQueryAnswerGetAdminProfile,
@@ -12,6 +12,8 @@ import {
 	IQuerySetAdminCash,
 	IQueryAnswerSetAdminCash,
 	IQueryAnswerBanned,
+	IQueryDeleteAdminPhoto,
+	IQueryAnswerDeleteAdminPhoto,
 } from "./iadmin.api";
 
 /* API Query to server */
@@ -124,6 +126,29 @@ export function useQuerySetAdminBanned() {
 		errorSetAdminBanned: errorNew,
 		loadedSetAdminBanned: loaded,
 		querySendSetAdminBanned,
+	};
+
+	return queryAnswer;
+}
+
+/* Delete photo
+    - * - photoPos
+*/
+export function useQueryDeleteAdminPhoto() {
+	const { data, error, loaded, querySend } = useQueryDelete();
+
+	const queryDeleteAdminPhoto = async (dataQuery: IQueryDeleteAdminPhoto) => {
+		querySend("/api/admin/photo", dataQuery, true);
+	};
+
+	const dataNew = data as IPhoto;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerDeleteAdminPhoto = {
+		dataDeleteAdminPhoto: dataNew,
+		errorDeleteAdminPhoto: errorNew,
+		loadedDeleteAdminPhoto: loaded,
+		queryDeleteAdminPhoto,
 	};
 
 	return queryAnswer;
