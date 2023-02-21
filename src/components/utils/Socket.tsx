@@ -208,6 +208,7 @@ export function Socket() {
 			socketClient.off("set_like");
 			socketClient.off("message");
 			socketClient.off("dialog");
+			socketClient.close();
 		};
 	}, []);
 

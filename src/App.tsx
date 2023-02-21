@@ -35,7 +35,7 @@ function App() {
 			<ModalLoading />
 			<ModalMessage />
 			<Holiday />
-			<Socket />
+			{jwt ? <Socket /> : <></>}
 		</div>
 	);
 }
