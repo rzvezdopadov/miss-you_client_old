@@ -12,6 +12,7 @@ import { useQueryCheckPhoto } from "../../../api/photo/photo.api.hook";
 import { IQueryPhoto } from "../../../api/photo/iphoto.api";
 import { modalPhotoDeleteOpen } from "../../modal/ModalPhotoDelete";
 import { modalPhotoEditorOpen } from "../../modal/ModalPhotoEditor";
+import { getWayPhoto } from "../../../helpers/server";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
@@ -96,10 +97,9 @@ export function SettingProfileSlider() {
 			<div className="flex justify-center m-1">
 				<div
 					style={{
-						backgroundImage:
-							"URL(" +
-							userMyProfile.photolink[photoPosition] +
-							")",
+						backgroundImage: `URL(${getWayPhoto(
+							userMyProfile.photolink[photoPosition]
+						)})`,
 					}}
 					className="flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
 				>
@@ -151,7 +151,7 @@ export function SettingProfileSlider() {
 					return (
 						<div
 							style={{
-								backgroundImage: "URL(" + value + ")",
+								backgroundImage: `URL(${getWayPhoto(value)})`,
 							}}
 							key={"slide" + index}
 							onClick={() => {

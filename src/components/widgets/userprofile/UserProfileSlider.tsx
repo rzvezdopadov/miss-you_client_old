@@ -7,6 +7,7 @@ import {
 	SliderPhotoBtnRight,
 } from "../../utils/Sliders";
 import { setLike } from "../../utils/Socket";
+import { getWayPhoto } from "../../../helpers/server";
 
 export function UserProfileSlider() {
 	const { userProfile } = store.getState();
@@ -50,10 +51,9 @@ export function UserProfileSlider() {
 		<>
 			<div
 				style={{
-					backgroundImage:
-						"URL(" +
-						userProfile.profile.photolink[positionPhoto] +
-						")",
+					backgroundImage: `URL(${getWayPhoto(
+						userProfile.profile.photolink[positionPhoto]
+					)})`,
 				}}
 				className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
 				onClick={rightBtnSlideHandler}

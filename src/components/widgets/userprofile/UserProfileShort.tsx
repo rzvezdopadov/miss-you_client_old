@@ -12,6 +12,7 @@ import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
 import { IQueryGetProfile } from "../../../api/profile/iprofile.api";
 import { useQueryGetProfile } from "../../../api/profile/profile.api.hook";
 import { useQueryGetAdminProfile } from "../../../api/admin/admin.api.hook";
+import { getWayPhoto } from "../../../helpers/server";
 
 export function UserProfileShort(params: {
 	key: string;
@@ -60,8 +61,9 @@ export function UserProfileShort(params: {
 			<div className="flex flex-col justify-center">
 				<div
 					style={{
-						backgroundImage:
-							"URL(" + profile.photolink[profile.photomain] + ")",
+						backgroundImage: `URL(${getWayPhoto(
+							profile.photolink[profile.photomain]
+						)})`,
 					}}
 					className="flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-3xl m-1 h-32 w-32"
 				></div>
