@@ -8,8 +8,8 @@ import { Input } from "../utils/Inputs";
 import { LabelHeader } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import {
-	data_gender,
-	data_genderVapor,
+	data_genderVapor_for_reg,
+	data_gender_for_reg,
 	data_growth,
 	data_location,
 } from "../../data/profiles";
@@ -55,56 +55,64 @@ export function FormRegistration() {
 			);
 			return;
 		}
+
+		const newRegistration: IRegistration = JSON.parse(
+			JSON.stringify(registration)
+		);
+
+		newRegistration.gender -= 1;
+		newRegistration.gendervapor -= 1;
+
 		if (
-			registration.gender < 0 ||
-			registration.gender > data_gender.length
+			newRegistration.gender < 0 ||
+			newRegistration.gender > data_gender_for_reg.length - 1
 		) {
 			modalMessageOpen("Неверно задано поле 'Кто я?'!");
 			return;
 		}
 		if (
-			registration.gendervapor < 0 ||
-			registration.gendervapor > data_genderVapor.length
+			newRegistration.gendervapor < 0 ||
+			newRegistration.gendervapor > data_genderVapor_for_reg.length - 1
 		) {
 			modalMessageOpen("Неверно задано поле 'Кого ищу?'!");
 			return;
 		}
-		if (!data_location.includes(registration.location)) {
+		if (!data_location.includes(newRegistration.location)) {
 			modalMessageOpen("Неверно задано поле 'Локация'!");
 			return;
 		}
 		if (
-			registration.growth < data_growth[0] ||
-			registration.growth > data_growth[data_growth.length - 1]
+			newRegistration.growth < data_growth[0] ||
+			newRegistration.growth > data_growth[data_growth.length - 1]
 		) {
 			modalMessageOpen("Неверно задано поле 'Рост'!");
 			return;
 		}
-		if (!registration.name) {
+		if (!newRegistration.name) {
 			modalMessageOpen(
 				"Имя пользователя должно быть обязательно указанно!"
 			);
 			return;
 		}
-		if (!registration.email) {
+		if (!newRegistration.email) {
 			modalMessageOpen("E-mail должен быть обязательно указан!");
 			return;
 		}
 		if (
-			registration.password.length < 8 ||
-			registration.password.length > 30
+			newRegistration.password.length < 8 ||
+			newRegistration.password.length > 30
 		) {
 			modalMessageOpen(
 				"Пароль должен быть обязательно указан, от 8 до 30 символов!"
 			);
 			return;
 		}
-		if (!registration.captcha) {
+		if (!newRegistration.captcha) {
 			modalMessageOpen("Код с картинки должен быть обязательно указан!");
 			return;
 		}
 
-		querySendRegistration(registration);
+		querySendRegistration(newRegistration);
 	};
 
 	const checkboxAgreementCheck = (
@@ -200,7 +208,7 @@ export function FormRegistration() {
 					keyOpt={"gender"}
 					value={registration.gender}
 					onChangeHandler={genderOnChangeHandler}
-					arr={data_gender}
+					arr={data_gender_for_reg}
 					title={"Кто я?"}
 				/>
 
@@ -208,7 +216,7 @@ export function FormRegistration() {
 					keyOpt={"gendervapor"}
 					value={registration.gendervapor}
 					onChangeHandler={genderVaporOnChangeHandler}
-					arr={data_genderVapor}
+					arr={data_genderVapor_for_reg}
 					title={"Кого ищу?"}
 				/>
 
