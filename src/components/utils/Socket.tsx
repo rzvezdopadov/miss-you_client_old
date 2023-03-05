@@ -17,7 +17,7 @@ import { IQuerySendMessage } from "../../api/dialog/idialog.api";
 import { IQuerySendSticker } from "../../api/sticker/isticker.api";
 import { IQueryLike } from "../../api/like/ilike.api";
 
-const socketClient = socketIO("http://192.168.1.11:8000/", {
+const socketClient = socketIO(`${window.location.hostname}:8000/`, {
 	reconnection: true,
 	timeout: 5000,
 	transports: ["websocket"],
