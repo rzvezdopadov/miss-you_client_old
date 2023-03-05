@@ -4,6 +4,7 @@ import { getLinkSticker } from "../../../helpers/stickers";
 import { store } from "../../../store/store";
 import { useEffect, useState } from "react";
 import { getDateTimeFromTimeCode } from "../../../helpers/datetime";
+import { getWayPhoto } from "../../../helpers/server";
 
 export function DialogMessage(payload: {
 	keyopt: string;
@@ -50,7 +51,9 @@ export function DialogMessage(payload: {
 			<div className="flex m-1">
 				<div
 					style={{
-						backgroundImage: `URL(${payload.photolink})`,
+						backgroundImage: `URL(${getWayPhoto(
+							payload.photolink
+						)})`,
 					}}
 					className="flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-full m-1 h-10 w-10"
 				></div>
