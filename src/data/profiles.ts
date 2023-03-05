@@ -38,6 +38,15 @@ export const data_monthOfBirth = [
 	"Декабря",
 ];
 
+export const data_gender_for_reg = ["Не выбрано", "Я мужчина", "Я женщина"];
+
+export const data_genderVapor_for_reg = [
+	"Не выбрано",
+	"Ищу мужчин",
+	"Ищу женщин",
+	"Ищу друзей",
+];
+
 export const data_gender = ["Я мужчина", "Я женщина"];
 
 export const data_genderVapor = ["Ищу мужчин", "Ищу женщин", "Ищу друзей"];
