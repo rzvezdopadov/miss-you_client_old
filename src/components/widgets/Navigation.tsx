@@ -50,7 +50,7 @@ export function Navigation(payload: { naviKey: string }) {
 			<Link to={link.to} key={payload.naviKey + link.to}>
 				<div className="flex h-10 w-fit m-1 justify-center items-center bg-gray-900 rounded-lg">
 					{link.imgSrc ? (
-						<div className="flex h-10 w-10 justify-center items-center">
+						<div className="flex h-10 w-10 justify-center items-center cursor-pointer">
 							<img
 								className="flex h-5 w-6 rounded-sm"
 								src={String(link.imgSrc)}
@@ -59,8 +59,8 @@ export function Navigation(payload: { naviKey: string }) {
 							/>
 						</div>
 					) : (
-						<div className="flex h-10 w-fit px-2 justify-center items-center">
-							<label className="flex text-white w-fit">
+						<div className="flex h-10 w-fit px-2 justify-center items-center cursor-pointer">
+							<label className="flex text-white w-fit cursor-pointer">
 								{link.title}
 							</label>
 						</div>
