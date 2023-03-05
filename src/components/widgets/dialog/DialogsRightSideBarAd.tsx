@@ -1,18 +1,18 @@
 import * as React from "react";
 
 export function DialogsRightSideBarAd() {
-	const obj = {
+	const objAd = {
 		href: "https://alitems.co/g/568bdkww5g1a0445aa4216525dc3e8/?i=4",
 		src: "https://inlnk.ru/DB5RKM",
 		title: "",
 		discription: "",
 	};
 
-	const ad = [];
+	const ad: typeof objAd[] = [];
 
-	for (let i = 0; i < 5; i++) {
-		ad.push(obj);
-	}
+	// for (let i = 0; i < 5; i++) {
+	// 	ad.push(obj);
+	// }
 
 	return (
 		<>

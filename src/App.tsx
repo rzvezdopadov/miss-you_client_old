@@ -34,7 +34,7 @@ function App() {
 			<MobileMenu />
 			<ModalLoading />
 			<ModalMessage />
-			<Holiday />
+			{/* <Holiday /> */}
 			{jwt ? <Socket /> : <></>}
 		</div>
 	);
