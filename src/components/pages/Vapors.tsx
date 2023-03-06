@@ -25,7 +25,6 @@ export function Vapors() {
 		loadedGetProfilesForLikes,
 		querySendGetProfilesForLikes,
 	} = useQueryGetProfilesForLikes();
-	const [dataLoader, setDataLoader] = useState(true);
 	const [likes, setLikes] = useState(userMyProfile.likes);
 	const scrollTopDiv = useRef(null);
 	const scrollToTopBtn = useRef(null);
@@ -62,7 +61,6 @@ export function Vapors() {
 		let newUsersProfiles = [...usersProfiles, ...dataGetProfilesForLikes];
 
 		store.dispatch(usersProfilesAction(newUsersProfiles));
-		setDataLoader(false);
 	}, [dataGetProfilesForLikes]);
 
 	useEffect(() => {
@@ -106,7 +104,7 @@ export function Vapors() {
 				<LabelHeader value={`Кто меня лайкнул`} />
 
 				<div className="flex flex-row flex-wrap justify-center">
-					{dataLoader ? (
+					{loadedGetProfilesForLikes ? (
 						<UserProfileShortLoader />
 					) : (
 						<UserProfileShortWrapper />
