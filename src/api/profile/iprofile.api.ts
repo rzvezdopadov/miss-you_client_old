@@ -34,7 +34,7 @@ export interface IQueryAnswerGetProfile {
 }
 
 export interface IQueryAnswerGetProfiles {
-	dataGetProfiles: [IProfileShort];
+	dataGetProfiles: IProfileShort[];
 	errorGetProfiles: IQueryAnswerError;
 	loadedGetProfiles: boolean;
 	querySendGetProfiles(data: {}): void;
@@ -46,7 +46,7 @@ export interface IQueryGetProfilesForLikes {
 }
 
 export interface IQueryAnswerGetProfilesForLikes {
-	dataGetProfilesForLikes: [IProfileShort];
+	dataGetProfilesForLikes: IProfileShort[];
 	errorGetProfilesForLikes: IQueryAnswerError;
 	loadedGetProfilesForLikes: boolean;
 	querySendGetProfilesForLikes(data: {}): void;
