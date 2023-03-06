@@ -22,6 +22,7 @@ export function Vapors() {
 	const {
 		dataGetProfilesForLikes,
 		errorGetProfilesForLikes,
+		loadedGetProfilesForLikes,
 		querySendGetProfilesForLikes,
 	} = useQueryGetProfilesForLikes();
 	const [dataLoader, setDataLoader] = useState(true);
@@ -51,6 +52,12 @@ export function Vapors() {
 
 	useEffect(() => {
 		if (!dataGetProfilesForLikes) return;
+		if (dataGetProfilesForLikes.length === 0) return;
+
+		const index = usersProfiles.findIndex(
+			(value) => value.userid === dataGetProfilesForLikes[0].userid
+		);
+		if (index !== -1) return;
 
 		let newUsersProfiles = [...usersProfiles, ...dataGetProfilesForLikes];
 
@@ -75,10 +82,10 @@ export function Vapors() {
 
 	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollBottom =
-			e.currentTarget.scrollTop + e.currentTarget.offsetHeight ===
-			e.currentTarget.scrollHeight;
+			e.currentTarget.scrollTop + e.currentTarget.offsetHeight >
+			e.currentTarget.scrollHeight - 100;
 
-		if (scrollBottom) {
+		if (scrollBottom && !loadedGetProfilesForLikes) {
 			querySendGetProfilesLocal(usersProfiles.length);
 		}
 

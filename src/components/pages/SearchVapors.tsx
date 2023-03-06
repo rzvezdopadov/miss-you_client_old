@@ -20,8 +20,12 @@ import { IQueryGetProfiles } from "../../api/profile/iprofile.api";
 export function SearchVapors() {
 	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
 		store.getState();
-	const { dataGetProfiles, errorGetProfiles, querySendGetProfiles } =
-		useQueryGetProfiles();
+	const {
+		dataGetProfiles,
+		errorGetProfiles,
+		loadedGetProfiles,
+		querySendGetProfiles,
+	} = useQueryGetProfiles();
 	const scrollTopDiv = useRef(null);
 	const scrollToTopBtn = useRef(null);
 
@@ -42,6 +46,12 @@ export function SearchVapors() {
 
 	useEffect(() => {
 		if (!dataGetProfiles) return;
+		if (dataGetProfiles.length === 0) return;
+
+		const index = usersProfiles.findIndex(
+			(value) => value.userid === dataGetProfiles[0].userid
+		);
+		if (index !== -1) return;
 
 		let newUsersProfiles = [...usersProfiles, ...dataGetProfiles];
 
@@ -84,10 +94,10 @@ export function SearchVapors() {
 
 	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollBottom =
-			e.currentTarget.scrollTop + e.currentTarget.offsetHeight ===
-			e.currentTarget.scrollHeight;
+			e.currentTarget.scrollTop + e.currentTarget.offsetHeight >
+			e.currentTarget.scrollHeight - 100;
 
-		if (scrollBottom) {
+		if (scrollBottom && !loadedGetProfiles) {
 			querySendGetProfilesLocal(usersProfiles.length);
 		}
 
