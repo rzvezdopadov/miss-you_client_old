@@ -157,7 +157,7 @@ export function SettingProfileGeneral() {
 				title={"Рост:"}
 			/>
 
-			<SelectFromArrValue
+			<SelectFromArr
 				keyOpt={"weight"}
 				value={userMyProfile.weight}
 				onChangeHandler={weightOnChangeHandler}
