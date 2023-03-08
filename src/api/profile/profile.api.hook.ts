@@ -73,7 +73,7 @@ export function useQueryGetProfiles() {
 		querySend("/api/profiles", dataQuery, true);
 	};
 
-	const dataNew = data as [IProfile];
+	const dataNew = data as IProfile[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetProfiles = {
@@ -99,7 +99,7 @@ export function useQueryGetProfilesForLikes() {
 		querySend("/api/profilesforlikes", dataQuery, true);
 	};
 
-	const dataNew = data as [IProfile];
+	const dataNew = data as IProfile[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetProfilesForLikes = {

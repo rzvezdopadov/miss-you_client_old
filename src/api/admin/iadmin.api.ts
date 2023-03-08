@@ -13,7 +13,7 @@ export interface IQueryGetAdminProfiles {
 }
 
 export interface IQueryAnswerGetAdminProfiles {
-	dataGetAdminProfiles: Array<IProfileShort>;
+	dataGetAdminProfiles: IProfileShort[];
 	errorGetAdminProfiles: IQueryAnswerError;
 	loadedGetAdminProfiles: boolean;
 	querySendGetAdminProfiles(data: {}): void;

@@ -33,7 +33,7 @@ export function useQueryGetAdminProfiles() {
 		querySend("/api/admin/profiles", dataQuery, true);
 	};
 
-	const dataNew = data as Array<IProfile>;
+	const dataNew = data as IProfile[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetAdminProfiles = {

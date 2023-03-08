@@ -3,7 +3,7 @@ import { IRate } from "../../interfaces/ishop";
 import { IQueryAnswerError } from "../iquerys.api";
 
 export interface IQueryAnswerRatingTariffs {
-	dataRatingTariffs: Array<IRate>;
+	dataRatingTariffs: IRate[];
 	errorRatingTariffs: IQueryAnswerError;
 	loadedRatingTariffs: boolean;
 	querySendGetRatingTariffs(): void;

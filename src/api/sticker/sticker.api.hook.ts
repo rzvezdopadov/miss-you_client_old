@@ -19,7 +19,7 @@ export function useQueryGetStickerpacks() {
 		querySend("/api/stickerpacks", {}, true);
 	};
 
-	const dataNew = data as Array<IStickerpack>;
+	const dataNew = data as IStickerpack[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerStickerpacks = {

@@ -11,7 +11,7 @@ export interface IQuerySendMessage {
 }
 
 export interface IQueryAnswerGetDialogs {
-	dataGetDialogs: Array<IDialog>;
+	dataGetDialogs: IDialog[];
 	errorGetDialogs: IQueryAnswerError;
 	loadedGetDialogs: boolean;
 	querySendGetDialogs(): void;

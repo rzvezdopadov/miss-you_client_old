@@ -18,7 +18,7 @@ export function useQueryGetRatingTariffs() {
 		querySend("/api/ratingtariffs", {}, true);
 	};
 
-	const dataNew = data as Array<IRate>;
+	const dataNew = data as IRate[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerRatingTariffs = {

@@ -9,7 +9,7 @@ export interface IQuerySendSticker {
 }
 
 export interface IQueryAnswerStickerpacks {
-	dataStickerpacks: Array<IStickerpack>;
+	dataStickerpacks: IStickerpack[];
 	errorStickerpacks: IQueryAnswerError;
 	loadedStickerpacks: boolean;
 	querySendGetStickerpacks(): void;

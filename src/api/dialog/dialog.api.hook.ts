@@ -18,7 +18,7 @@ export function useQueryGetDialogs() {
 		querySend("/api/dialogs", {}, true);
 	};
 
-	const dataNew = data as Array<IDialog>;
+	const dataNew = data as IDialog[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetDialogs = {
