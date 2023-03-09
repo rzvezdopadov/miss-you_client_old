@@ -104,11 +104,7 @@ export function Vapors() {
 				<LabelHeader value={`Кто меня лайкнул`} />
 
 				<div className="flex flex-row flex-wrap justify-center">
-					{loadedGetProfilesForLikes ? (
-						<UserProfileShortLoader />
-					) : (
-						<UserProfileShortWrapper />
-					)}
+					<UserProfileShortWrapper />
 				</div>
 
 				<ModalUserProfile />
