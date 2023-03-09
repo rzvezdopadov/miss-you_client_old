@@ -10,7 +10,7 @@ import { useQueryGetRatingTariffs } from "../../../api/rating/rating.api.hook";
 
 export function ShopRating() {
 	const { userMyProfile } = store.getState();
-	const [ratingTariffs, setRatingTariffs] = useState<Array<IRate>>([]);
+	const [ratingTariffs, setRatingTariffs] = useState<IRate[]>([]);
 	const { dataRatingTariffs, errorRatingTariffs, querySendGetRatingTariffs } =
 		useQueryGetRatingTariffs();
 
