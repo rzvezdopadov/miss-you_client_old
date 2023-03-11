@@ -1,6 +1,6 @@
 /* API Query to server */
 
-import { IProfile } from "../../interfaces/iprofiles";
+import { IProfile, IProfileShort } from "../../interfaces/iprofiles";
 import { IQueryAnswerError } from "../iquerys.api";
 import { useQueryPut, useQueryGet } from "../querys.api.hook";
 import {
@@ -70,10 +70,10 @@ export function useQueryGetProfiles() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetProfiles = async (dataQuery: IQueryGetProfiles) => {
-		querySend("/api/profiles", dataQuery, true);
+		querySend("/api/profilesshort", dataQuery, true);
 	};
 
-	const dataNew = data as IProfile[];
+	const dataNew = data as IProfileShort[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetProfiles = {
@@ -99,7 +99,7 @@ export function useQueryGetProfilesForLikes() {
 		querySend("/api/profilesforlikes", dataQuery, true);
 	};
 
-	const dataNew = data as IProfile[];
+	const dataNew = data as IProfileShort[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetProfilesForLikes = {

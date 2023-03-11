@@ -62,7 +62,7 @@ export function UserProfileShort(params: {
 				<div
 					style={{
 						backgroundImage: `URL(${getWayPhoto(
-							profile.photolink[profile.photomain]
+							profile.photolink
 						)})`,
 					}}
 					className="flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-3xl m-1 h-32 w-32"

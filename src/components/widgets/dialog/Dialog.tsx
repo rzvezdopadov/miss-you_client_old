@@ -89,7 +89,7 @@ export function Dialog() {
 
 						if (userMyProfile.userid !== value.userid) {
 							name = dialog.name;
-							photolink = dialog.photolink[dialog.photomain];
+							photolink = dialog.photolink;
 						}
 
 						return (

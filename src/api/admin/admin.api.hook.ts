@@ -1,5 +1,5 @@
 import { IAdminBanned } from "../../interfaces/iadmin";
-import { IPhoto, IProfile } from "../../interfaces/iprofiles";
+import { IPhoto, IProfile, IProfileShort } from "../../interfaces/iprofiles";
 import { IQueryAnswerError, IQueryAnswerMessageData } from "../iquerys.api";
 import { useQueryDelete, useQueryGet, useQueryPut } from "../querys.api.hook";
 import {
@@ -33,7 +33,7 @@ export function useQueryGetAdminProfiles() {
 		querySend("/api/admin/profiles", dataQuery, true);
 	};
 
-	const dataNew = data as IProfile[];
+	const dataNew = data as IProfileShort[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetAdminProfiles = {

@@ -38,8 +38,7 @@ export const initialStateDialog: IDialog = {
 	birthday: 0,
 	monthofbirth: 0,
 	yearofbirth: 0,
-	photomain: 0,
-	photolink: [],
+	photolink: "",
 	messages: [],
 };
 

@@ -32,7 +32,7 @@ export interface IFilterUsers {
 	smoke: number;
 	alcohol: number;
 	profit: number;
-	interests: Array<string>;
+	interests: string[];
 }
 
 export interface IProfile {
@@ -40,7 +40,7 @@ export interface IProfile {
 	timecode: number;
 	name: string;
 	location: string;
-	likes: Array<string>;
+	likes: string[];
 	birthday: number;
 	monthofbirth: number;
 	yearofbirth: number;
@@ -49,7 +49,7 @@ export interface IProfile {
 	gender: number;
 	gendervapor: number;
 	photomain: number;
-	photolink: Array<string>;
+	photolink: string[];
 	signzodiac: number;
 	education: number;
 	fieldofactivity: number;
@@ -60,11 +60,11 @@ export interface IProfile {
 	alcohol: number;
 	discription: string;
 	profit: number;
-	interests: Array<string>;
-	ilikecharacter: Array<number>;
-	idontlikecharacter: Array<number>;
+	interests: string[];
+	ilikecharacter: number[];
+	idontlikecharacter: number[];
 	rating: number;
-	stickerpacks: Array<string>;
+	stickerpacks: string[];
 	cash: number;
 	acctype: ACCTYPE;
 	filters: IFilterUsers;
@@ -78,9 +78,8 @@ export interface IProfileShort {
 	monthofbirth: number;
 	yearofbirth: number;
 	gender: number;
-	photomain: number;
-	photolink: Array<string>;
-	interests: Array<string>;
+	photolink: string;
+	interests: string[];
 	rating: number;
 }
 
@@ -100,12 +99,11 @@ export interface IDialog {
 	birthday: number;
 	monthofbirth: number;
 	yearofbirth: number;
-	photomain: number;
-	photolink: Array<string>;
-	messages: Array<IMessage>;
+	photolink: string;
+	messages: IMessage[];
 }
 
 export interface IPhoto {
 	photomain: number;
-	photolink: Array<string>;
+	photolink: string[];
 }
