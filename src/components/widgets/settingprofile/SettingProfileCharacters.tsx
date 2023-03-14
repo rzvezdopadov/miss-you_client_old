@@ -5,12 +5,13 @@ import {
 	data_iLikeСharacter,
 } from "../../../data/profiles";
 import { modalSettingProfileCharactersOpen } from "../../modal/ModalSettingProfileCharacters";
+import { Button } from "../../utils/Buttons";
 
 export function SettingProfileCharacters() {
 	const { userMyProfile } = store.getState();
 
 	return (
-		<div className="flex flex-wrap flex-col shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center p-1 my-2">
+		<div className="flex flex-wrap flex-col bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center p-1 my-2">
 			<div className="flex flex-col">
 				<div className="flex flex-wrap">
 					<div className="flex m-2">
@@ -22,7 +23,7 @@ export function SettingProfileCharacters() {
 							return (
 								<div
 									key={"ilikecharacter" + index}
-									className="flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+									className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 									title={data_iLikeСharacter[value][1]}
 								>
 									{data_iLikeСharacter[value][0]}
@@ -32,7 +33,7 @@ export function SettingProfileCharacters() {
 					) : (
 						<div
 							key="ilikecharacter"
-							className="flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+							className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 							title={"Отсутствуют"}
 						>
 							Отсутствуют
@@ -53,7 +54,7 @@ export function SettingProfileCharacters() {
 							return (
 								<div
 									key={"idontlikecharacter" + index}
-									className="flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+									className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 									title={data_iDontLikeСharacter[value][1]}
 								>
 									{data_iDontLikeСharacter[value][0]}
@@ -63,7 +64,7 @@ export function SettingProfileCharacters() {
 					) : (
 						<div
 							key="idontlikecharacter"
-							className="flex items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+							className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 							title={"Отсутствуют"}
 						>
 							Отсутствуют
@@ -73,12 +74,10 @@ export function SettingProfileCharacters() {
 			</div>
 
 			<div className="flex m-1">
-				<div
-					className="flex items-center shadow-[0px_0px_3px_3px] shadow-yellow-300 rounded-xl p-1 m-1 cursor-pointer select-none"
+				<Button
 					onClick={modalSettingProfileCharactersOpen}
-				>
-					Изменить параметры
-				</div>
+					value={`Изменить параметры`}
+				/>
 			</div>
 		</div>
 	);
