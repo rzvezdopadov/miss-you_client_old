@@ -26,7 +26,7 @@ export function LabelRating(payload: {
 }) {
 	return (
 		<div
-			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-2 rounded-md"
+			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 mx-1 rounded-md"
 			title="Рейтинг пользователя"
 			key={`Rating${payload.value}`}
 			onClick={payload.onClick ? payload.onClick : () => {}}
@@ -42,7 +42,7 @@ export function LabelCash(payload: {
 }) {
 	return (
 		<div
-			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center m-2 rounded-md"
+			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 mx-1 rounded-md"
 			title="MY-Баллы платежная валюта сайта"
 			key={`Cash${payload.value}`}
 			onClick={payload.onClick ? payload.onClick : () => {}}

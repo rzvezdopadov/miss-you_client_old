@@ -5,7 +5,7 @@ import { Button } from "../../../utils/Buttons";
 
 export function StickerpackCard(payload: IStickerpack) {
 	return (
-		<div className="flex justify-between rounded-2xl bg-slate-800 shadow-[0px_0px_2px_2px] shadow-lime-300 m-2 p-1 w-96">
+		<div className="flex justify-between rounded-2xl bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 m-2 p-1 w-96">
 			<div className="flex flex-col items-center p-0">
 				<div
 					style={{

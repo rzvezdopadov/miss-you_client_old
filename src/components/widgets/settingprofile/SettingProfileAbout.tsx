@@ -16,7 +16,7 @@ export function SettingProfileAbout() {
 	};
 
 	return (
-		<>
+		<div className="flex flex-col w-full">
 			<LabelCash value={userMyProfile.cash} />
 			<LabelRating value={userMyProfile.rating} />
 			<div className="flex flex-col my-1">
@@ -38,6 +38,6 @@ export function SettingProfileAbout() {
 					placeholder="О себе"
 				></textarea>
 			</div>
-		</>
+		</div>
 	);
 }

@@ -40,7 +40,7 @@ export function SettingProfileInterests() {
 	};
 
 	return (
-		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 select-none w-full">
+		<div className="flex flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 select-none w-full">
 			<div className="flex m-2">
 				<span> {"Интересы:"} </span>
 			</div>
@@ -49,7 +49,7 @@ export function SettingProfileInterests() {
 				return (
 					<div
 						key={"interest" + index}
-						className="flex select-none items-center shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2"
+						className="flex select-none items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2"
 					>
 						{value}
 						<div
@@ -65,9 +65,9 @@ export function SettingProfileInterests() {
 				);
 			})}
 
-			<div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center m-2">
+			<div className="flex bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center m-2">
 				<input
-					className="flex bg-gray-300 w-full text-center text-black m-1 px-1 rounded-lg"
+					className="flex  bg-gray-300 w-full text-center text-black m-1 px-1 rounded-lg"
 					value={interest}
 					onChange={interestOnChangeHandler}
 					onKeyDown={interestAddOnKeyPressHandler}

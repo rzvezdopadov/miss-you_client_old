@@ -81,7 +81,7 @@ export function SettingProfileFilters() {
 	};
 
 	return (
-		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center justify-center p-1 my-2">
+		<div className="flex flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center justify-center p-1 my-2">
 			<div className="flex m-2">
 				<span className="select-none"> Фильтры по умолчанию: </span>
 			</div>

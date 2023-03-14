@@ -61,7 +61,7 @@ export function SettingProfileChangePass() {
 	};
 
 	return (
-		<div className="flex flex-col shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
+		<div className="flex flex-col bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
 			<LabelHeader value={"Сменить пароль"} />
 			<Input
 				{...passwordNow}

@@ -98,7 +98,7 @@ export function SettingProfileGeneral() {
 	};
 
 	return (
-		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
+		<div className="flex flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
 			<SelectFromArrValue
 				keyOpt={"location"}
 				value={userMyProfile.location}
@@ -123,7 +123,7 @@ export function SettingProfileGeneral() {
 				title={"Кого ищу?"}
 			/>
 
-			<div className="flex shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-0.5 py-2 px-1 m-1.5 ">
+			<div className="flex bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-0.5 py-2 px-1 m-1.5 ">
 				<label htmlFor="date" className="text-white">
 					{`Дата рождения: `}
 				</label>
