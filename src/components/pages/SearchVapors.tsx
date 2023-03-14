@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useEffect, useRef } from "react";
-import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { store } from "../../store/store";
 import { UserProfileFilters } from "../widgets/userprofile/UserProfileFilters";
 import { LabelHeader } from "../utils/Labels";
@@ -16,6 +15,7 @@ import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShort
 import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 import { useQueryGetProfiles } from "../../api/profile/profile.api.hook";
 import { IQueryGetProfiles } from "../../api/profile/iprofile.api";
+import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
 
 export function SearchVapors() {
 	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
@@ -92,25 +92,14 @@ export function SearchVapors() {
 		if (userMyProfile.userid) querySendGetProfiles(data);
 	};
 
-	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
-		const scrollBottom =
-			e.currentTarget.scrollTop + e.currentTarget.offsetHeight >
-			e.currentTarget.scrollHeight - 100;
-
-		if (scrollBottom && !loadedGetProfiles) {
-			querySendGetProfilesLocal(usersProfiles.length);
-		}
-
-		invisibleOnScrollToTop(e, scrollToTopBtn);
-	};
-
 	return (
-		<div className="flex h-full w-full justify-center">
-			<div
-				className="flex overflow-y-scroll relative bg-gray-700 text-neutral-50 flex-col shadow-md rounded-3xl px-8 pt-2 pb-2 w-full"
-				onScroll={onScrollHandler}
-				ref={scrollTopDiv}
-			>
+		<MainScrollWrapper
+			clbkScrollBottom={() =>
+				querySendGetProfilesLocal(usersProfiles.length)
+			}
+			loader={loadedGetProfiles}
+		>
+			<>
 				<ButtonScrollToTop
 					scrollTopDiv={scrollTopDiv}
 					scrollToTopBtn={scrollToTopBtn}
@@ -124,7 +113,7 @@ export function SearchVapors() {
 				</div>
 				<ModalUserProfileWrapper />
 				<ModalDialog />
-			</div>
-		</div>
+			</>
+		</MainScrollWrapper>
 	);
 }
