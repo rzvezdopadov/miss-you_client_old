@@ -69,7 +69,7 @@ export function AppMain() {
 	}, [errorStickerpacks]);
 
 	return (
-		<div className="flex flex-grow overflow-hidden my-2 justify-center items-center">
+		<div className="flex flex-grow fixed top-20 bottom-4 shadow-[0px_0px_5px_5px] shadow-lime-300 rounded-xl overflow-hidden justify-center items-center">
 			{
 				<Routes>
 					<Route path="/agreement" element={<Agreement />} />
@@ -95,6 +95,10 @@ export function AppMain() {
 										/>
 
 										<Route
+											path="/statistics"
+											element={<AdminStatistics />}
+										/>
+										<Route
 											path="/*"
 											element={<AdminStatistics />}
 										/>
@@ -106,6 +110,10 @@ export function AppMain() {
 											element={<SearchVapors />}
 										/>
 
+										<Route
+											path="/vapors"
+											element={<Vapors />}
+										/>
 										<Route path="/*" element={<Vapors />} />
 									</>
 								)}
