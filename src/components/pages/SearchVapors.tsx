@@ -99,21 +99,19 @@ export function SearchVapors() {
 			}
 			loader={loadedGetProfiles}
 		>
-			<>
-				<ButtonScrollToTop
-					scrollTopDiv={scrollTopDiv}
-					scrollToTopBtn={scrollToTopBtn}
-				/>
-				<LabelHeader value={`Поиск пары`} />
-				<div className="flex justify-center">
-					<UserProfileFilters />
-				</div>
-				<div className="flex flex-row flex-wrap justify-center">
-					<UserProfileShortWrapper />
-				</div>
-				<ModalUserProfileWrapper />
-				<ModalDialog />
-			</>
+			<ButtonScrollToTop
+				scrollTopDiv={scrollTopDiv}
+				scrollToTopBtn={scrollToTopBtn}
+			/>
+			<LabelHeader value={`Поиск пары`} />
+			<div className="flex justify-center">
+				<UserProfileFilters />
+			</div>
+			<div className="flex flex-row flex-wrap justify-center">
+				<UserProfileShortWrapper />
+			</div>
+			<ModalUserProfileWrapper />
+			<ModalDialog />
 		</MainScrollWrapper>
 	);
 }

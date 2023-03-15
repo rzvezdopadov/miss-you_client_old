@@ -81,16 +81,12 @@ export function Vapors() {
 			}
 			loader={loadedGetProfilesForLikes}
 		>
-			<>
-				<LabelHeader value={`Кто меня лайкнул`} />
-
-				<div className="flex flex-row flex-wrap justify-center">
-					<UserProfileShortWrapper />
-				</div>
-
-				<ModalUserProfile />
-				<ModalDialog />
-			</>
+			<LabelHeader value={`Кто меня лайкнул`} />
+			<div className="flex flex-row flex-wrap justify-center">
+				<UserProfileShortWrapper />
+			</div>
+			<ModalUserProfile />
+			<ModalDialog />
 		</MainScrollWrapper>
 	);
 }

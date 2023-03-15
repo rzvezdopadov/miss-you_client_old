@@ -19,34 +19,32 @@ export function Shop() {
 
 	return (
 		<MainScrollWrapper>
-			<>
-				<LabelHeader value={`Магазин`} />
-				<div className="w-48">
-					<LabelCash value={userMyProfile.cash} />
-				</div>
+			<LabelHeader value={`Магазин`} />
+			<div className="w-48">
+				<LabelCash value={userMyProfile.cash} />
+			</div>
 
-				<div className="flex justify-center flex-wrap">
-					<Button
-						value={"Рейтинг"}
-						onClick={() => setShop(shopPage.rating)}
-					/>
-					<Button
-						value={"Стикеры"}
-						onClick={() => setShop(shopPage.stickers)}
-					/>
-					<Button
-						value={"Пополнить MY-баллы"}
-						onClick={() => setShop(shopPage.buyballs)}
-					/>
-				</div>
-				{shop === shopPage.rating ? (
-					<ShopRating />
-				) : shop === shopPage.stickers ? (
-					<ShopStickers />
-				) : (
-					<ShopBuyMYPoints />
-				)}
-			</>
+			<div className="flex justify-center flex-wrap">
+				<Button
+					value={"Рейтинг"}
+					onClick={() => setShop(shopPage.rating)}
+				/>
+				<Button
+					value={"Стикеры"}
+					onClick={() => setShop(shopPage.stickers)}
+				/>
+				<Button
+					value={"Пополнить MY-баллы"}
+					onClick={() => setShop(shopPage.buyballs)}
+				/>
+			</div>
+			{shop === shopPage.rating ? (
+				<ShopRating />
+			) : shop === shopPage.stickers ? (
+				<ShopStickers />
+			) : (
+				<ShopBuyMYPoints />
+			)}
 		</MainScrollWrapper>
 	);
 }

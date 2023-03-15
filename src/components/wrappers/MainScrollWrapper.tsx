@@ -3,7 +3,7 @@ import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { ButtonScrollToTop } from "../utils/Buttons";
 
 export function MainScrollWrapper(payload: {
-	children: React.ReactElement;
+	children: React.ReactNode;
 	clbkScrollBottom?: any;
 	loader?: boolean;
 }) {

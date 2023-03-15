@@ -19,23 +19,21 @@ export function Dialogs() {
 
 	return (
 		<MainScrollWrapper>
-			<>
-				<div className="flex bg-gray-700 text-neutral-50 flex-row shadow-md rounded-3xl p-1 w-full h-full">
-					<div className="flex flex-shrink-0 overflow-y-scroll overflow-hidden justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full md:w-64">
-						<DialogsLeftSideBar />
-					</div>
-					<div className="hidden md:flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full">
-						<Dialog />
-					</div>
-					<div className="hidden lg:flex flex-shrink-0 items-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl h-auto w-60">
-						<DialogsRightSideBarAd />
-					</div>
+			<div className="flex bg-gray-700 text-neutral-50 flex-row shadow-md rounded-3xl p-1 w-full h-full">
+				<div className="flex flex-shrink-0 overflow-y-scroll overflow-hidden justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full md:w-64">
+					<DialogsLeftSideBar />
 				</div>
-				<div className="visibility md:hidden">
-					<ModalDialog />
+				<div className="hidden md:flex justify-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full">
+					<Dialog />
 				</div>
-				<ModalUserProfileWrapper />
-			</>
+				<div className="hidden lg:flex flex-shrink-0 items-center shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl h-auto w-60">
+					<DialogsRightSideBarAd />
+				</div>
+			</div>
+			<div className="visibility md:hidden">
+				<ModalDialog />
+			</div>
+			<ModalUserProfileWrapper />
 		</MainScrollWrapper>
 	);
 }

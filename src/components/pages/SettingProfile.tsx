@@ -47,22 +47,18 @@ export function SettingProfile() {
 
 	return (
 		<MainScrollWrapper>
-			<>
-				<LabelHeader value={`Настройки профиля`} />
-
-				<SettingProfileSlider />
-				<SettingProfileAbout />
-				<SettingProfileGeneral />
-				<SettingProfileInterests />
-				<SettingProfileCharacters />
-				<SettingProfileFilters />
-				<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
-				<SettingProfileChangePass />
-
-				<ModalSettingProfileCharacters />
-				<ModalPhotoDelete />
-				<ModalPhotoEditor />
-			</>
+			<LabelHeader value={`Настройки профиля`} />
+			<SettingProfileSlider />
+			<SettingProfileAbout />
+			<SettingProfileGeneral />
+			<SettingProfileInterests />
+			<SettingProfileCharacters />
+			<SettingProfileFilters />
+			<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
+			<SettingProfileChangePass />
+			<ModalSettingProfileCharacters />
+			<ModalPhotoDelete />
+			<ModalPhotoEditor />
 		</MainScrollWrapper>
 	);
 }
