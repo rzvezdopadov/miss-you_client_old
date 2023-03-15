@@ -123,10 +123,14 @@ export function AppMain() {
 						)
 					) : (
 						<>
-							<Route path="/enter" element={<Login />} />
+							<Route path="/login" element={<Login />} />
 							<Route
 								path="/recoverypass"
 								element={<RecoveryPass />}
+							/>
+							<Route
+								path="/registration"
+								element={<Registration />}
 							/>
 							<Route path="/*" element={<Registration />} />
 						</>
