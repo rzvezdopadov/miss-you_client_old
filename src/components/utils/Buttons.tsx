@@ -34,9 +34,9 @@ export function ButtonScrollToTop(payload: {
 			onClick={() => {
 				scrollToTop(payload.scrollTopDiv);
 			}}
-			className="flex fixed invisible right-0 m-4 bg-slate-900 rotate-[270deg] shadow-[0px_0px_3px_3px] shadow-lime-300 justify-center items-center flex-shrink-0 h-12 w-12 text-3xl rounded-full cursor-pointer"
+			className="flex fixed invisible right-0 m-4 bg-slate-900 rotate-[270deg] shadow-[0px_0px_3px_3px] shadow-lime-300 justify-center items-center flex-shrink-0 h-12 w-12 text-3xl rounded-full cursor-pointer z-50"
 		>
-			&#10148;
+			<div className="mb-0.5 ml-0.5">&#10148;</div>
 		</div>
 	);
 }

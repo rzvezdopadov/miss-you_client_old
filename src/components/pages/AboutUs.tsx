@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { LabelHeaderLG } from "../utils/Labels";
 
 export function AboutUs() {
 	const [strAbout, setStrAbout] = useState("");
@@ -12,16 +14,15 @@ export function AboutUs() {
 		strAboutLocal += `Вы можете написать сообщение любому пользователю совершенно бесплатно, но если `;
 		strAboutLocal += `вы хотите поддержать развитие проекта, добро пожаловать в магазин, там можно `;
 		strAboutLocal += `приобрести рейтинг, который используется при сортировке профилей, а также приобрести `;
-		strAboutLocal += `наборы стикеров =) `;
+		strAboutLocal += `наборы стикеров или другие продвинутые функции =) `;
 
 		setStrAbout(strAboutLocal);
 	}, []);
 
 	return (
-		<div className="flex w-full justify-center ">
-			<div className="bg-gray-700 text-neutral-50 shadow-md rounded-3xl px-8 pt-2 pb-2 w-80">
-				{strAbout}
-			</div>
-		</div>
+		<MainScrollWrapper shadow={true} color={true}>
+			<LabelHeaderLG value={"О нас"} />
+			{strAbout}
+		</MainScrollWrapper>
 	);
 }

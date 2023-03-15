@@ -80,6 +80,8 @@ export function Vapors() {
 				querySendGetProfilesLocal(usersProfiles.length)
 			}
 			loader={loadedGetProfilesForLikes}
+			shadow={true}
+			color={true}
 		>
 			<LabelHeader value={`Кто меня лайкнул`} />
 			<div className="flex flex-row flex-wrap justify-center">

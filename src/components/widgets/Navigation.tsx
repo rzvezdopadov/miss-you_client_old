@@ -39,7 +39,7 @@ export const linkNoAuth: ILink[] = [
 	{ to: "/", imgSrc: "", title: "Главная" },
 	{ to: "/about", imgSrc: "", title: "О нас" },
 	{ to: "/partners", imgSrc: "", title: "Партнерство" },
-	{ to: "/enter", imgSrc: "", title: "Войти" },
+	{ to: "/login", imgSrc: "", title: "Войти" },
 ];
 
 export function Navigation(payload: { naviKey: string }) {

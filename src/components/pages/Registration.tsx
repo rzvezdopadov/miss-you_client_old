@@ -17,8 +17,9 @@ import { registrationAction } from "../../store/redusers/auth";
 import { minage } from "../../config";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { useQueryRegistration } from "../../api/auth/auth.api.hook";
+import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
 
-export function FormRegistration() {
+export function Registration() {
 	const { registration } = store.getState();
 	const { dataRegistration, errorRegistration, querySendRegistration } =
 		useQueryRegistration();
@@ -200,7 +201,7 @@ export function FormRegistration() {
 	};
 
 	return (
-		<div className="flex justify-center min-h-80 h-fit max-h-[80%] w-full">
+		<MainScrollWrapper center={true}>
 			<div className="flex flex-col bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80 overflow-scroll">
 				<LabelHeader value={`Регистрация`} />
 
@@ -228,7 +229,7 @@ export function FormRegistration() {
 					title={"Локация:"}
 				/>
 
-				<div className="flex justify-around shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative  p-0.5 m-1.5 mx-3">
+				<div className="flex justify-around bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-1.5 m-1.5">
 					<label htmlFor="date" className="text-white">
 						{"Дата рождения:"}
 					</label>
@@ -316,6 +317,6 @@ export function FormRegistration() {
 					value={`Найти себе пару`}
 				/>
 			</div>
-		</div>
+		</MainScrollWrapper>
 	);
 }

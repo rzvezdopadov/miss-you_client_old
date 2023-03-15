@@ -1,9 +1,9 @@
-import { FormEnter } from "./components/forms/FormLogin";
-import { FormRecoveryPass } from "./components/forms/FormRecoveryPass";
-import { FormRegistration } from "./components/forms/FormRegistration";
 import { Agreement } from "./components/pages/Agreement";
 import { Dialogs } from "./components/pages/Dialogs";
+import { Login } from "./components/pages/Login";
 import { Partners } from "./components/pages/Partners";
+import { RecoveryPass } from "./components/pages/RecoveryPass";
+import { Registration } from "./components/pages/Registration";
 import { SearchVapors } from "./components/pages/SearchVapors";
 import { SettingProfile } from "./components/pages/SettingProfile";
 import { Shop } from "./components/pages/Shop";
@@ -27,16 +27,20 @@ export const routesAll: IRoute[] = [
 
 export const routesNoAuth: IRoute[] = [
 	{
-		path: "/enter",
-		element: FormEnter,
+		path: "/login",
+		element: Login,
 	},
 	{
 		path: "/recoverypass",
-		element: FormRecoveryPass,
+		element: RecoveryPass,
+	},
+	{
+		path: "/registration",
+		element: Registration,
 	},
 	{
 		path: "/*",
-		element: FormRegistration,
+		element: Registration,
 	},
 ];
 
@@ -56,6 +60,10 @@ export const routesAuthUser: IRoute[] = [
 	{
 		path: "/shop",
 		element: Shop,
+	},
+	{
+		path: "/vapors",
+		element: Vapors,
 	},
 	{
 		path: "/*",

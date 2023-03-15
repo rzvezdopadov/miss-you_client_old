@@ -15,6 +15,7 @@ import { AdminUserProfileFilters } from "../widgets/admin/AdminUserProfileFilter
 import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 import { useQueryGetAdminProfiles } from "../../api/admin/admin.api.hook";
 import { IQueryGetAdminProfiles } from "../../api/admin/iadmin.api";
+import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
 
 export function AdminProfiles() {
 	const { adminFiltersUser, userMyProfile, usersProfiles, userProfile } =
@@ -24,8 +25,6 @@ export function AdminProfiles() {
 		errorGetAdminProfiles,
 		querySendGetAdminProfiles,
 	} = useQueryGetAdminProfiles();
-	const scrollTopDiv = useRef(null);
-	const scrollToTopBtn = useRef(null);
 
 	useEffect(() => {
 		return () => {
@@ -87,39 +86,23 @@ export function AdminProfiles() {
 		if (userMyProfile.userid) querySendGetAdminProfiles(data);
 	};
 
-	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
-		const scrollBottom =
-			e.currentTarget.scrollTop + e.currentTarget.offsetHeight ===
-			e.currentTarget.scrollHeight;
-
-		if (scrollBottom) {
-			querySendGetProfilesLocal(usersProfiles.length);
-		}
-
-		invisibleOnScrollToTop(e, scrollToTopBtn);
-	};
-
 	return (
-		<div className="flex h-full w-full justify-center">
-			<div
-				className="flex overflow-y-scroll relative bg-gray-700 text-neutral-50 flex-col shadow-md rounded-3xl px-8 pt-2 pb-2 w-full"
-				onScroll={onScrollHandler}
-				ref={scrollTopDiv}
-			>
-				<ButtonScrollToTop
-					scrollTopDiv={scrollTopDiv}
-					scrollToTopBtn={scrollToTopBtn}
-				/>
-				<LabelHeader value={`Пользователи`} />
-				<div className="flex justify-center">
-					<AdminUserProfileFilters />
-				</div>
-				<div className="flex flex-row flex-wrap justify-center">
-					<UserProfileShortWrapper />
-				</div>
-				<ModalUserProfileWrapper />
-				<ModalDialog />
+		<MainScrollWrapper
+			clbkScrollBottom={() =>
+				querySendGetProfilesLocal(usersProfiles.length)
+			}
+			shadow={true}
+			color={true}
+		>
+			<LabelHeader value={`Пользователи`} />
+			<div className="flex justify-center">
+				<AdminUserProfileFilters />
 			</div>
-		</div>
+			<div className="flex flex-row flex-wrap justify-center">
+				<UserProfileShortWrapper />
+			</div>
+			<ModalUserProfileWrapper />
+			<ModalDialog />
+		</MainScrollWrapper>
 	);
 }

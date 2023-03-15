@@ -18,7 +18,7 @@ export function Shop() {
 	const [shop, setShop] = useState<shopPage>(shopPage.rating);
 
 	return (
-		<MainScrollWrapper>
+		<MainScrollWrapper shadow={true} color={true}>
 			<LabelHeader value={`Магазин`} />
 			<div className="w-48">
 				<LabelCash value={userMyProfile.cash} />

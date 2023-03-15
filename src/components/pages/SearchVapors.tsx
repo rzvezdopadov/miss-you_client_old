@@ -98,6 +98,8 @@ export function SearchVapors() {
 				querySendGetProfilesLocal(usersProfiles.length)
 			}
 			loader={loadedGetProfiles}
+			shadow={true}
+			color={true}
 		>
 			<ButtonScrollToTop
 				scrollTopDiv={scrollTopDiv}

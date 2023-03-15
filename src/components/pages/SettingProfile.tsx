@@ -46,7 +46,7 @@ export function SettingProfile() {
 	};
 
 	return (
-		<MainScrollWrapper>
+		<MainScrollWrapper shadow={true} color={true}>
 			<LabelHeader value={`Настройки профиля`} />
 			<SettingProfileSlider />
 			<SettingProfileAbout />

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 import { store } from "../../store/store";
-import { FormEnter } from "../forms/FormLogin";
-import { FormRegistration } from "../forms/FormRegistration";
+import { Login } from "../pages/Login";
+import { Registration } from "../pages/Registration";
 import { useEffect } from "react";
-import { FormRecoveryPass } from "../forms/FormRecoveryPass";
+import { RecoveryPass } from "../pages/RecoveryPass";
 import { filtersUserAction } from "../../store/redusers/filterusers";
 import { userMyProfileAction } from "../../store/redusers/profile";
 import { stickerpacksAction } from "../../store/redusers/dialog";
@@ -123,12 +123,12 @@ export function AppMain() {
 						)
 					) : (
 						<>
-							<Route path="/enter" element={<FormEnter />} />
+							<Route path="/enter" element={<Login />} />
 							<Route
 								path="/recoverypass"
-								element={<FormRecoveryPass />}
+								element={<RecoveryPass />}
 							/>
-							<Route path="/*" element={<FormRegistration />} />
+							<Route path="/*" element={<Registration />} />
 						</>
 					)}
 				</Routes>

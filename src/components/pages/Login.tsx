@@ -12,8 +12,9 @@ import { jwtAction } from "../../store/redusers/auth";
 import { maxagejwt } from "../../config";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { useQueryLogin } from "../../api/auth/auth.api.hook";
+import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
 
-export function FormEnter() {
+export function Login() {
 	const { dataLogin, errorLogin, querySendLogin } = useQueryLogin();
 	const email = useFormFieldInputString();
 	const password = useFormFieldInputString();
@@ -62,8 +63,8 @@ export function FormEnter() {
 	}, [errorLogin]);
 
 	return (
-		<div className="flex h-fit w-full justify-center min-w-xs">
-			<div className="flex flex-col bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80 overflow-scroll">
+		<MainScrollWrapper center={true}>
+			<div className="flex flex-col bg-gray-700 shadow-[0px_0px_5px_5px] shadow-lime-300 rounded-xl px-2 pt-2 pb-2 w-80 overflow-scroll">
 				<LabelHeader value={`Вход`} />
 				<Input {...email} type="email" placeholder="E-mail" />
 				<Input {...password} type="password" placeholder="Пароль" />
@@ -78,6 +79,6 @@ export function FormEnter() {
 				</Link>
 				<Button onClick={btnLoginClickHandler} value={`Войти`} />
 			</div>
-		</div>
+		</MainScrollWrapper>
 	);
 }

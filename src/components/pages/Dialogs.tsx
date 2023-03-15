@@ -18,7 +18,7 @@ export function Dialogs() {
 	}, []);
 
 	return (
-		<MainScrollWrapper>
+		<MainScrollWrapper shadow={true} color={true}>
 			<div className="flex bg-gray-700 text-neutral-50 flex-row shadow-md rounded-3xl p-1 w-full h-full">
 				<div className="flex flex-shrink-0 overflow-y-scroll overflow-hidden justify-start shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl p-2 h-auto w-full md:w-64">
 					<DialogsLeftSideBar />
