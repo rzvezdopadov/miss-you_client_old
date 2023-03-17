@@ -134,7 +134,10 @@ export function Socket() {
 
 			switch (socket.command) {
 				case "add":
-					if (socket.userid === dialog.userid) {
+					if (
+						socket.userid1 === dialog.userid ||
+						socket.userid2 === dialog.userid
+					) {
 						const newDialog = { ...dialog };
 						const newMessages = [...newDialog.messages];
 
@@ -146,7 +149,9 @@ export function Socket() {
 
 					const newDialogs = [...dialogs];
 					const dialogPos = newDialogs.findIndex(
-						(value) => value.userid === socket.userid
+						(value) =>
+							value.userid === socket.userid1 ||
+							value.userid === socket.userid2
 					);
 
 					if (dialogPos !== -1) {
