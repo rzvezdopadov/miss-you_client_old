@@ -7,7 +7,7 @@ import { Navigation } from "../widgets/Navigation";
 
 export function AppHeader() {
 	return (
-		<div className="flex flex-shrink-0 items-center justify-around shadow-[0px_0px_5px_5px] shadow-lime-300 rounded-b-xl bg-gray-700 h-16">
+		<div className="flex fixed flex-shrink-0 items-center justify-around shadow-[0px_0px_5px_5px] shadow-lime-300 rounded-b-xl bg-gray-700 h-16 w-full z-0">
 			<div className="flex items-center">
 				<a href="https://miss-you.ru">
 					<img

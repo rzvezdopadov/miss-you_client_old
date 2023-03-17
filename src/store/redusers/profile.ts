@@ -5,15 +5,15 @@ import { data_age, data_genderVapor, data_growth } from "../../data/profiles";
 ////////////////////////////////////////////////////////////////////////
 export const USERS_PROFILES = "USERS_PROFILES";
 
-export const usersProfilesAction = (profiles: Array<IProfileShort>) => ({
+export const usersProfilesAction = (profiles: IProfileShort[]) => ({
 	type: USERS_PROFILES,
 	payload: profiles,
 });
 
-const initialStateUsersProfiles: Array<IProfileShort> = [];
+const initialStateUsersProfiles: IProfileShort[] = [];
 
 export const usersProfilesReducer = createReducer(initialStateUsersProfiles, {
-	[USERS_PROFILES]: (state: Array<IProfileShort>, action: any) => {
+	[USERS_PROFILES]: (state: IProfileShort[], action: any) => {
 		const dataayProfileShort = [...action.payload];
 
 		return dataayProfileShort;

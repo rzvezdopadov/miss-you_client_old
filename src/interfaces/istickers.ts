@@ -10,5 +10,5 @@ export interface IStickerpack {
 	discription: string;
 	price: number;
 	author: string;
-	stickers: Array<ISticker>;
+	stickers: ISticker[];
 }

@@ -87,8 +87,8 @@ export function Vapors() {
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
-			<ModalUserProfile />
 			<ModalDialog />
+			<ModalUserProfile />
 		</MainScrollWrapper>
 	);
 }

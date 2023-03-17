@@ -5,17 +5,17 @@ import { IStickerpack } from "../../interfaces/istickers";
 ////////////////////////////////////////////////////////////////////////
 export const DIALOGS = "DIALOGS";
 
-export const dialogsAction = (dialogs: Array<IDialog>) => ({
+export const dialogsAction = (dialogs: IDialog[]) => ({
 	type: DIALOGS,
 	payload: {
 		dialogs,
 	},
 });
 
-export const initialStateDialogs: Array<IDialog> = [];
+export const initialStateDialogs: IDialog[] = [];
 
 export const dialogsReducer = createReducer(initialStateDialogs, {
-	[DIALOGS]: (state: Array<IDialog>, action: any) => {
+	[DIALOGS]: (state: IDialog[], action: any) => {
 		const { dialogs } = action.payload;
 
 		return dialogs;
@@ -84,15 +84,15 @@ export const messageForUserReducer = createReducer(initialStateMessageForUser, {
 ////////////////////////////////////////////////////////////////////////
 export const STICKERPACKS = "STICKERPACKS";
 
-export const stickerpacksAction = (stickerpacks: Array<IStickerpack>) => ({
+export const stickerpacksAction = (stickerpacks: IStickerpack[]) => ({
 	type: STICKERPACKS,
 	payload: stickerpacks,
 });
 
-const initialStateStickerpacks: Array<IStickerpack> = [];
+const initialStateStickerpacks: IStickerpack[] = [];
 
 export const stickerpacksReducer = createReducer(initialStateStickerpacks, {
-	[STICKERPACKS]: (state: Array<IStickerpack>, action: any) => {
+	[STICKERPACKS]: (state: IStickerpack[], action: any) => {
 		const dataayStickerpacks = [...action.payload];
 
 		return dataayStickerpacks;

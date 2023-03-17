@@ -20,7 +20,7 @@ export interface IAdminFilterUsers {
 	alcohol: number;
 	profit: number;
 	acctype: ACCTYPE;
-	interests: Array<string>;
+	interests: string[];
 }
 
 export interface IAdminChangeRating {

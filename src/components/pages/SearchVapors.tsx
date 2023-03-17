@@ -112,8 +112,8 @@ export function SearchVapors() {
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
-			<ModalUserProfileWrapper />
 			<ModalDialog />
+			<ModalUserProfileWrapper />
 		</MainScrollWrapper>
 	);
 }
