@@ -36,3 +36,19 @@ export const useFormFieldSelectString = (initialValue: string = "") => {
 	);
 	return { value, onChange };
 };
+
+export const useRefDivVisible = (value: boolean) => {
+	const refDivVisible = React.useRef<HTMLDivElement>(null);
+
+	React.useEffect(() => {
+		if (!refDivVisible.current) return;
+
+		if (value) {
+			refDivVisible.current.classList.remove("invisible");
+		} else {
+			refDivVisible.current.classList.add("invisible");
+		}
+	}, [value]);
+
+	return refDivVisible;
+};
