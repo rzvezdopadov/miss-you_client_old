@@ -36,3 +36,39 @@ export function PhotoProfileLittle(payload: {
 		</div>
 	);
 }
+
+export function PhotoDialogShort(payload: {
+	src: string;
+	onClick?: ReactEventHandler;
+	children?: ReactNode;
+}) {
+	return (
+		<div
+			style={{
+				backgroundImage: `URL(${getWayPhoto(payload.src)})`,
+			}}
+			className="flex flex-shrink-0 bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-full m-1 h-14 w-14"
+			onClick={payload.onClick ? payload.onClick : () => {}}
+		>
+			{payload.children ? payload.children : <></>}
+		</div>
+	);
+}
+
+export function PhotoMessage(payload: {
+	src: string;
+	onClick?: ReactEventHandler;
+	children?: ReactNode;
+}) {
+	return (
+		<div
+			style={{
+				backgroundImage: `URL(${getWayPhoto(payload.src)})`,
+			}}
+			className="flex bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-full m-1 h-10 w-10"
+			onClick={payload.onClick ? payload.onClick : () => {}}
+		>
+			{payload.children ? payload.children : <></>}
+		</div>
+	);
+}
