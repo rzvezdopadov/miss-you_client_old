@@ -7,7 +7,7 @@ import { modalMessageOpen } from "../../modal/ModalMessage";
 import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
 import { useQueryGetProfile } from "../../../api/profile/profile.api.hook";
 import { IQueryGetProfile } from "../../../api/profile/iprofile.api";
-import { getWayPhoto } from "../../../helpers/server";
+import { PhotoDialogShort } from "../utils/Photo";
 
 export function DialogShort(payload: {
 	dialog: IDialog;
@@ -36,13 +36,11 @@ export function DialogShort(payload: {
 
 	return (
 		<div className="flex items-center my-1 w-auto h-16 bg-gray-700 rounded-xl shadow-[0px_0px_1px_1px] shadow-lime-300 cursor-pointer">
-			<div
-				style={{
-					backgroundImage: `URL(${getWayPhoto(dialog.photolink)})`,
-				}}
-				className="flex flex-shrink-0 bg-center bg-cover bg-no-repeat justify-center shadow-[0px_0px_2px_2px] shadow-lime-300 text-neutral-50 rounded-full m-1 h-14 w-14"
+			<PhotoDialogShort
+				src={dialog.photolink}
 				onClick={openProfileHandler}
-			></div>
+			/>
+
 			<div
 				className="flex flex-col md:w-40 h-full w-full m-1 overflow-hidden"
 				onClick={onClickHandler}
