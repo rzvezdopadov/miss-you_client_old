@@ -11,6 +11,7 @@ import {
 } from "../../store/redusers/admin";
 import { Input } from "../utils/Inputs";
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
+import { Label } from "../utils/Labels";
 
 export function modalAdminChangeRatingOpen(userid: string) {
 	store.dispatch(
@@ -64,26 +65,26 @@ export function ModalAdminChangeRating() {
 
 	return (
 		<ModalYesCancelWrapper enabled={modalAdminChangeRating.enabled}>
-			<>
-				<div className="flex">{`На сколько баллов изменить рейтинг пользователя c userid = "${modalAdminChangeRating.rate.userid}"?`}</div>
-				<Input
-					value={modalAdminChangeRating.rate.addrating}
-					onChange={(e) => {
-						store.dispatch(
-							modalAdminChangeRatingAction(true, {
-								userid: modalAdminChangeRating.rate.userid,
-								addrating: Number(e.target.value),
-							})
-						);
-					}}
-					type={""}
-					placeholder={""}
-				/>
-				<ButtonsYesCancelWidget
-					onClickYes={yesModalAdminChangeRatingHandler}
-					onClickCancel={modalAdminChangeRatingClose}
-				/>
-			</>
+			<Label
+				value={`На сколько баллов изменить рейтинг пользователя c userid = "${modalAdminChangeRating.rate.userid}"?`}
+			></Label>
+			<Input
+				value={modalAdminChangeRating.rate.addrating}
+				onChange={(e) => {
+					store.dispatch(
+						modalAdminChangeRatingAction(true, {
+							userid: modalAdminChangeRating.rate.userid,
+							addrating: Number(e.target.value),
+						})
+					);
+				}}
+				type={""}
+				placeholder={""}
+			/>
+			<ButtonsYesCancelWidget
+				onClickYes={yesModalAdminChangeRatingHandler}
+				onClickCancel={modalAdminChangeRatingClose}
+			/>
 		</ModalYesCancelWrapper>
 	);
 }

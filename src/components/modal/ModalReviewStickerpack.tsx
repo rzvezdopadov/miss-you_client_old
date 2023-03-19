@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { IStickerpack } from "../../interfaces/istickers";
 import { store } from "../../store/store";
-import { LabelHeader } from "../utils/Labels";
+import { LabelWidget } from "../utils/Labels";
 import { getLinkSticker } from "../../helpers/stickers";
-import { Button, ButtonModalClose } from "../utils/Buttons";
+import { Button, ButtonClose } from "../utils/Buttons";
 import {
 	initialStateModalReviewStickerpack,
 	modalReviewStickerpackAction,
@@ -46,12 +46,12 @@ export function ModalReviewStickerpack() {
 			ref={refModalReviewStickerpack}
 			className="flex flex-col invisible fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-2/3 lg:max-w-5xl"
 		>
-			<ButtonModalClose onClick={modalReviewStickerpackClose} />
+			<ButtonClose onClick={modalReviewStickerpackClose} />
 
 			{modalReviewStickerpack.stickerpack.price ? (
-				<LabelHeader value={"Купить стикерпак"} />
+				<LabelWidget value={"Купить стикерпак"} />
 			) : (
-				<LabelHeader value={"Добавить стикерпак"} />
+				<LabelWidget value={"Добавить стикерпак"} />
 			)}
 			<div className="flex text-lg font-bold top-0 justify-center text-lime-500 select-none">
 				{modalReviewStickerpack.stickerpack.name}

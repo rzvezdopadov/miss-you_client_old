@@ -1,22 +1,42 @@
 import { MouseEventHandler } from "react";
+import { LabelWrapper } from "../wrappers/LabelWrapper";
+import { FONT_SIZE } from "../styles/enum";
 
-export function LabelHeader(payload: { value: string }) {
+export function Label(payload: {
+	value: string;
+	fontsize?: FONT_SIZE;
+	bold?: boolean;
+}) {
 	return (
-		<div className="flex justify-center items-center select-none">
-			<label className="flex text-white text-xl font-bold m-1">
+		<LabelWrapper>
+			<label
+				className={`flex text-white${
+					payload.bold ? " font-bold" : ""
+				} m-1${payload.fontsize}`}
+			>
 				{payload.value}
 			</label>
-		</div>
+		</LabelWrapper>
 	);
 }
 
-export function LabelHeaderLG(payload: { value: string }) {
+export function LabelPageName(payload: { value: string }) {
 	return (
-		<div className="flex justify-center items-center select-none">
-			<label className="flex text-white text-lg font-bold m-1">
-				{payload.value}
-			</label>
-		</div>
+		<Label
+			value={payload.value}
+			fontsize={FONT_SIZE.lg}
+			bold={true}
+		></Label>
+	);
+}
+
+export function LabelWidget(payload: { value: string }) {
+	return (
+		<Label
+			value={payload.value}
+			fontsize={FONT_SIZE.base}
+			bold={true}
+		></Label>
 	);
 }
 

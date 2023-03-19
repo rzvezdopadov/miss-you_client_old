@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LabelHeaderLG } from "../../utils/Labels";
+import { LabelWidget } from "../../utils/Labels";
 import { Button } from "../../utils/Buttons";
 import { ModalReviewStickerpack } from "../../modal/ModalReviewStickerpack";
 import { StickersMy } from "./stickers/StickersMy";
@@ -19,7 +19,7 @@ export function ShopStickers() {
 
 	return (
 		<div className="flex flex-col items-center w-full h-full">
-			<LabelHeaderLG value={"Cтикеры"} />
+			<LabelWidget value={"Cтикеры"} />
 			<div className="flex justify-center flex-row flex-wrap w-full">
 				<div className="flex">
 					<Button

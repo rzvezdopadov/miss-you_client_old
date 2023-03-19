@@ -7,6 +7,7 @@ import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 import { useQueryDeleteAdminPhoto } from "../../api/admin/admin.api.hook";
 import { IQueryDeleteAdminPhoto } from "../../api/admin/iadmin.api";
+import { Label } from "../utils/Labels";
 
 export function modalAdminPhotoDeleteOpen(photoPos: number) {
 	store.dispatch(modalPhotoDeleteAction(true, photoPos));
@@ -58,15 +59,15 @@ export function ModalAdminPhotoDelete() {
 
 	return (
 		<ModalYesCancelWrapper enabled={modalPhotoDelete.enabled}>
-			<>
-				<div className="flex">{`Вы действительно хотите удалить ${
+			<Label
+				value={`Вы действительно хотите удалить ${
 					modalPhotoDelete.photoPos + 1
-				}-е фото?`}</div>
-				<ButtonsYesCancelWidget
-					onClickYes={yesModalPhotoDeleteHandler}
-					onClickCancel={modalPhotoDeleteClose}
-				/>
-			</>
+				}-е фото?`}
+			/>
+			<ButtonsYesCancelWidget
+				onClickYes={yesModalPhotoDeleteHandler}
+				onClickCancel={modalPhotoDeleteClose}
+			/>
 		</ModalYesCancelWrapper>
 	);
 }

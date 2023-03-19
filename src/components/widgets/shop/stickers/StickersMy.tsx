@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IStickerpack } from "../../../../interfaces/istickers";
 import { store } from "../../../../store/store";
-import { LabelHeaderLG } from "../../../utils/Labels";
+import { LabelWidget } from "../../../utils/Labels";
 import { convertTextToSign } from "../../../../helpers/convert";
 import { StickerpackCard } from "./StickerpackCard";
 
@@ -19,7 +19,7 @@ export function StickersMy() {
 
 	return (
 		<div className="flex flex-col justify-start items-center w-full">
-			<LabelHeaderLG value={"Мои"} />
+			<LabelWidget value={"Мои"} />
 			<div className="flex flex-wrap justify-center w-full">
 				{myStickerPacks.length ? (
 					myStickerPacks.map((stickerpack) => (

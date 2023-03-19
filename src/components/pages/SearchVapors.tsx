@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useRef } from "react";
 import { store } from "../../store/store";
 import { UserProfileFilters } from "../widgets/userprofile/UserProfileFilters";
-import { LabelHeader } from "../utils/Labels";
+import { LabelPageName } from "../utils/Labels";
 import {
 	userProfileAction,
 	usersProfilesAction,
@@ -12,7 +12,6 @@ import { ButtonScrollToTop } from "../utils/Buttons";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
-import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
 import { useQueryGetProfiles } from "../../api/profile/profile.api.hook";
 import { IQueryGetProfiles } from "../../api/profile/iprofile.api";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
@@ -105,15 +104,12 @@ export function SearchVapors() {
 				scrollTopDiv={scrollTopDiv}
 				scrollToTopBtn={scrollToTopBtn}
 			/>
-			<LabelHeader value={`Поиск пары`} />
-			<div className="flex justify-center">
-				<UserProfileFilters />
-			</div>
+			<LabelPageName value={`Поиск пары`} />
+			<UserProfileFilters />
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
 			<ModalDialog />
-			<ModalUserProfileWrapper />
 		</MainScrollWrapper>
 	);
 }

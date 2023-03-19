@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LabelCash, LabelHeader } from "../utils/Labels";
+import { LabelCash, LabelPageName } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import { ShopRating } from "../widgets/shop/ShopRating";
 import { ShopStickers } from "../widgets/shop/ShopStickers";
@@ -19,7 +19,7 @@ export function Shop() {
 
 	return (
 		<MainScrollWrapper shadow={true} color={true}>
-			<LabelHeader value={`Магазин`} />
+			<LabelPageName value={`Магазин`} />
 			<div className="w-48">
 				<LabelCash value={userMyProfile.cash} />
 			</div>

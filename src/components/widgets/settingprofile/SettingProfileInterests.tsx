@@ -2,6 +2,8 @@ import * as React from "react";
 import { useState } from "react";
 import { store } from "../../../store/store";
 import { userMyProfileAction } from "../../../store/redusers/profile";
+import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
+import { LabelWidget } from "../../utils/Labels";
 
 export function SettingProfileInterests() {
 	const { userMyProfile } = store.getState();
@@ -40,10 +42,8 @@ export function SettingProfileInterests() {
 	};
 
 	return (
-		<div className="flex flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 select-none w-full">
-			<div className="flex m-2">
-				<span> {"Интересы:"} </span>
-			</div>
+		<WidgetWrapper wrap={true}>
+			<LabelWidget value={"Интересы:"} />
 
 			{userMyProfile.interests.map((value, index) => {
 				return (
@@ -79,6 +79,6 @@ export function SettingProfileInterests() {
 					+
 				</div>
 			</div>
-		</div>
+		</WidgetWrapper>
 	);
 }

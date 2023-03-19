@@ -12,7 +12,7 @@ export const Button = forwardRef(
 		return (
 			<div className="flex items-center justify-center m-1">
 				<button
-					className="flex items-center bg-lime-600 hover:bg-lime-800 select-none cursor-pointer text-white shadow-[0px_0px_2px_2px] shadow-lime-300 m-1 py-2 px-4 h-6 rounded-xl"
+					className="flex items-center bg-lime-600 hover:bg-lime-800 select-none cursor-pointer text-white shadow-[0px_0px_2px_2px] shadow-lime-300 m-1 py-2 px-4 h-6 rounded-md"
 					type="button"
 					ref={ref}
 					onClick={payload.onClick}
@@ -41,14 +41,16 @@ export function ButtonScrollToTop(payload: {
 	);
 }
 
-export function ButtonModalClose(payload: {
+export function ButtonClose(payload: {
+	title?: string;
 	onClick: MouseEventHandler<HTMLDivElement>;
 }) {
 	return (
 		<div className="flex justify-center h-6 w-full">
 			<div
 				onClick={payload.onClick}
-				className="flex justify-center absolute right-2 cursor-pointer rounded-full select-none bg-red-400 h-6 w-6"
+				className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full select-none bg-red-500  shadow-[0px_0px_3px_3px] shadow-lime-300 h-6 w-6"
+				title={payload.title ? payload.title : ""}
 			>
 				X
 			</div>

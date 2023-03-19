@@ -11,6 +11,7 @@ import { modalMessageOpen } from "./ModalMessage";
 import { useQueryBuyRating } from "../../api/rating/rating.api.hook";
 import { ModalYesCancelWrapper } from "../wrappers/ModalYesCancelWrapper";
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
+import { Label } from "../utils/Labels";
 
 export function modalBuyRatingOpen(rate: IRate) {
 	store.dispatch(modalBuyRatingAction(true, rate));
@@ -56,13 +57,13 @@ export function ModalBuyRating() {
 
 	return (
 		<ModalYesCancelWrapper enabled={modalBuyRating.enabled}>
-			<>
-				<div className="flex">{`Вы действительно хотите купить ${modalBuyRating.rate.amountRate} баллов рейтинга за ${modalBuyRating.rate.price} MY-баллов?`}</div>
-				<ButtonsYesCancelWidget
-					onClickYes={yesModalBuyRatingHandler}
-					onClickCancel={modalBuyRatingCloseHandler}
-				/>
-			</>
+			<Label
+				value={`Вы действительно хотите купить ${modalBuyRating.rate.amountRate} баллов рейтинга за ${modalBuyRating.rate.price} MY-баллов?`}
+			/>
+			<ButtonsYesCancelWidget
+				onClickYes={yesModalBuyRatingHandler}
+				onClickCancel={modalBuyRatingCloseHandler}
+			/>
 		</ModalYesCancelWrapper>
 	);
 }

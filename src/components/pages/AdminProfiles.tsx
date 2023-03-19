@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { store } from "../../store/store";
-import { LabelHeader } from "../utils/Labels";
+import { LabelPageName } from "../utils/Labels";
 import {
 	userProfileAction,
 	usersProfilesAction,
@@ -8,8 +8,6 @@ import {
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { lazyloadingusercount } from "../../config";
-import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
-import { ButtonScrollToTop } from "../utils/Buttons";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { AdminUserProfileFilters } from "../widgets/admin/AdminUserProfileFilters";
 import { ModalUserProfileWrapper } from "../wrappers/ModalUserProfileWrapper";
@@ -94,7 +92,7 @@ export function AdminProfiles() {
 			shadow={true}
 			color={true}
 		>
-			<LabelHeader value={`Пользователи`} />
+			<LabelPageName value={`Пользователи`} />
 			<div className="flex justify-center">
 				<AdminUserProfileFilters />
 			</div>

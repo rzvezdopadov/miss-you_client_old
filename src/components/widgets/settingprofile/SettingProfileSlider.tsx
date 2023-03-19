@@ -12,7 +12,8 @@ import { useQueryCheckPhoto } from "../../../api/photo/photo.api.hook";
 import { IQueryPhoto } from "../../../api/photo/iphoto.api";
 import { modalPhotoDeleteOpen } from "../../modal/ModalPhotoDelete";
 import { modalPhotoEditorOpen } from "../../modal/ModalPhotoEditor";
-import { getWayPhoto } from "../../../helpers/server";
+import { PhotoProfile, PhotoProfileLittle } from "../utils/Photo";
+import { ButtonClose } from "../../utils/Buttons";
 
 export function SettingProfileSlider() {
 	const { userMyProfile } = store.getState();
@@ -95,14 +96,7 @@ export function SettingProfileSlider() {
 	return (
 		<div className="flex flex-col">
 			<div className="flex justify-center m-1">
-				<div
-					style={{
-						backgroundImage: `URL(${getWayPhoto(
-							userMyProfile.photolink[photoPosition]
-						)})`,
-					}}
-					className="flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
-				>
+				<PhotoProfile src={userMyProfile.photolink[photoPosition]}>
 					{userMyProfile.photolink.length ? (
 						<div
 							className="flex justify-center absolute left-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 text-black bg-lime-400 select-none h-6 w-6"
@@ -116,19 +110,16 @@ export function SettingProfileSlider() {
 						<></>
 					)}
 					{userMyProfile.photolink.length ? (
-						<div
-							className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 select-none h-6 w-6"
+						<ButtonClose
 							title="Удалить фото"
 							onClick={() => {
 								modalPhotoDeleteOpen(photoPosition);
 							}}
-						>
-							X
-						</div>
+						></ButtonClose>
 					) : (
 						<></>
 					)}
-				</div>
+				</PhotoProfile>
 			</div>
 
 			<div className="flex justify-center m-1 rounded-md">
@@ -149,16 +140,13 @@ export function SettingProfileSlider() {
 			<div className="flex flex-wrap justify-center m-1">
 				{userMyProfile.photolink.map((value, index) => {
 					return (
-						<div
-							style={{
-								backgroundImage: `URL(${getWayPhoto(value)})`,
-							}}
-							key={"slide" + index}
+						<PhotoProfileLittle
+							src={value}
+							key={"slide" + value}
 							onClick={() => {
 								setPhotoPosition(index);
 							}}
-							className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl cursor-pointer justify-center ml-2 mr-2 h-16 w-16 m-1"
-						></div>
+						/>
 					);
 				})}
 			</div>

@@ -11,7 +11,7 @@ import {
 	data_iDontLikeСharacter,
 	data_iLikeСharacter,
 } from "../../data/profiles";
-import { Button, ButtonModalClose } from "../utils/Buttons";
+import { Button, ButtonClose } from "../utils/Buttons";
 
 export function modalSettingProfileCharactersOpen() {
 	store.dispatch(settingProfileCharactersAction(true));
@@ -82,7 +82,7 @@ export function ModalSettingProfileCharacters() {
 			ref={refSettingProfileCharacters}
 			className="flex flex-col fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-20 bottom-6 left-0 right-0 m-auto px-2 pt-2 pb-2 lg:h-2/3 lg:max-w-5xl"
 		>
-			<ButtonModalClose onClick={closeUserProfileHandler} />
+			<ButtonClose onClick={closeUserProfileHandler} />
 
 			<div className="flex flex-col select-none font-bold">
 				Настройки качеств

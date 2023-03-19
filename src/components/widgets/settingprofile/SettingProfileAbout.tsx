@@ -2,6 +2,7 @@ import * as React from "react";
 import { store } from "../../../store/store";
 import { LabelCash, LabelRating } from "../../utils/Labels";
 import { onChangeValueProfile } from "../../../helpers/profile";
+import { Input } from "../../utils/Inputs";
 
 export function SettingProfileAbout() {
 	const { userMyProfile } = store.getState();
@@ -19,15 +20,12 @@ export function SettingProfileAbout() {
 		<div className="flex flex-col w-full">
 			<LabelCash value={userMyProfile.cash} />
 			<LabelRating value={userMyProfile.rating} />
-			<div className="flex flex-col my-1">
-				<input
-					value={userMyProfile.name}
-					onChange={nameOnChangeHandler}
-					title="Ваше имя"
-					className="flex text-center rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-1"
-					placeholder="Ваше имя"
-				/>
-			</div>
+			<Input
+				value={userMyProfile.name}
+				onChange={nameOnChangeHandler}
+				type={"name"}
+				placeholder={"Ваше имя"}
+			/>
 
 			<div className="flex flex-col my-1">
 				<textarea

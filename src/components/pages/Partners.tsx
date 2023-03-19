@@ -1,11 +1,11 @@
 import * as React from "react";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
-import { LabelHeaderLG } from "../utils/Labels";
+import { LabelPageName } from "../utils/Labels";
 
 export function Partners() {
 	return (
 		<MainScrollWrapper shadow={true} color={true}>
-			<LabelHeaderLG value={"Сотрудничество с нами"} />
+			<LabelPageName value={"Сотрудничество с нами"} />
 		</MainScrollWrapper>
 	);
 }

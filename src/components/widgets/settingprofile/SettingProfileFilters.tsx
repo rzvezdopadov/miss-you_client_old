@@ -3,6 +3,8 @@ import { IFilterUsers } from "../../../interfaces/iprofiles";
 import { store } from "../../../store/store";
 import { Filters } from "../../filters/Filters";
 import { userMyProfileAction } from "../../../store/redusers/profile";
+import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
+import { LabelWidget } from "../../utils/Labels";
 
 export function SettingProfileFilters() {
 	const { userMyProfile } = store.getState();
@@ -81,10 +83,8 @@ export function SettingProfileFilters() {
 	};
 
 	return (
-		<div className="flex flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center justify-center p-1 my-2">
-			<div className="flex m-2">
-				<span className="select-none"> Фильтры по умолчанию: </span>
-			</div>
+		<WidgetWrapper wrap={true}>
+			<LabelWidget value={"Фильтры по умолчанию:"} />
 
 			<div className="flex flex-wrap justify-center m-2">
 				<Filters
@@ -134,6 +134,6 @@ export function SettingProfileFilters() {
 					}}
 				/>
 			</div>
-		</div>
+		</WidgetWrapper>
 	);
 }

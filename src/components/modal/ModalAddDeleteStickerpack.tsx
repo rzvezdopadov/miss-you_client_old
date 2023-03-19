@@ -13,6 +13,9 @@ import {
 	useQueryAddStickerpack,
 	useQueryDeleteStickerpack,
 } from "../../api/sticker/sticker.api.hook";
+import { Label } from "../utils/Labels";
+import { ButtonsYesCancelWrapper } from "../wrappers/ButtonsWrapper";
+import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 
 export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(modalAddDeleteStickerpackAction(true, stickerpack));
@@ -104,16 +107,22 @@ export function ModalAddDeleteStickerpack() {
 			{userMyProfile.stickerpacks.includes(
 				modalAddDeleteStickerpack.stickerpack.idstickerpack
 			) ? (
-				<div className="flex">{`Вы действительно хотите удалить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}" из своих стикеров?`}</div>
+				<Label
+					value={`Вы действительно хотите удалить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}" из своих стикеров?`}
+				/>
 			) : modalAddDeleteStickerpack.stickerpack.price ? (
-				<div className="flex">{`Вы действительно хотите купить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}" за ${modalAddDeleteStickerpack.stickerpack.price} MY-баллов?`}</div>
+				<Label
+					value={`Вы действительно хотите купить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}" за ${modalAddDeleteStickerpack.stickerpack.price} MY-баллов?`}
+				/>
 			) : (
-				<div className="flex">{`Вы действительно хотите добавить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}"?`}</div>
+				<Label
+					value={`Вы действительно хотите добавить стикерпак "${modalAddDeleteStickerpack.stickerpack.name}"?`}
+				/>
 			)}
-			<div className="flex justify-center h-6 w-full">
-				<ButtonYes onClick={yesModalAddDeleteStickerpackHandler} />
-				<ButtonCancel onClick={closeModalAddDeleteStickerpackHandler} />
-			</div>
+			<ButtonsYesCancelWidget
+				onClickYes={yesModalAddDeleteStickerpackHandler}
+				onClickCancel={closeModalAddDeleteStickerpackHandler}
+			/>
 		</div>
 	);
 }

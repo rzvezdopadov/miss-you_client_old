@@ -10,6 +10,7 @@ import exit from "../../assets/img/exit.png";
 import { Link } from "react-router-dom";
 import { useMemo } from "react";
 import { ACCTYPE } from "../../interfaces/iprofiles";
+import { ButtonNaviWrapper } from "../wrappers/ButtonsWrapper";
 
 export interface ILink {
 	to: string;
@@ -48,7 +49,7 @@ export function Navigation(payload: { naviKey: string }) {
 	const NavigationLink = (link: ILink) => {
 		return (
 			<Link to={link.to} key={payload.naviKey + link.to}>
-				<div className="flex h-10 w-fit m-1 justify-center items-center bg-gray-900 rounded-lg">
+				<ButtonNaviWrapper>
 					{link.imgSrc ? (
 						<div className="flex h-10 w-10 justify-center items-center cursor-pointer">
 							<img
@@ -65,7 +66,7 @@ export function Navigation(payload: { naviKey: string }) {
 							</label>
 						</div>
 					)}
-				</div>
+				</ButtonNaviWrapper>
 			</Link>
 		);
 	};

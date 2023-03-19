@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { store } from "../../store/store";
-import { ModalUserProfile } from "../modal/ModalUserProfile";
-import { LabelHeader } from "../utils/Labels";
+import { LabelPageName } from "../utils/Labels";
 import {
 	userProfileAction,
 	usersProfilesAction,
@@ -83,12 +82,11 @@ export function Vapors() {
 			shadow={true}
 			color={true}
 		>
-			<LabelHeader value={`Кто меня лайкнул`} />
+			<LabelPageName value={`Кто меня лайкнул`} />
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
 			<ModalDialog />
-			<ModalUserProfile />
 		</MainScrollWrapper>
 	);
 }

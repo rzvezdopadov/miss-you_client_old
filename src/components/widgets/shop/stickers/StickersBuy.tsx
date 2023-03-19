@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IStickerpack } from "../../../../interfaces/istickers";
 import { store } from "../../../../store/store";
-import { LabelHeaderLG } from "../../../utils/Labels";
+import { LabelWidget } from "../../../utils/Labels";
 import { StickerpackCard } from "./StickerpackCard";
 
 export function StickersBuy() {
@@ -22,7 +22,7 @@ export function StickersBuy() {
 
 	return (
 		<div className="flex flex-col justify-start items-center w-full">
-			<LabelHeaderLG value={"Платные"} />
+			<LabelWidget value={"Платные"} />
 			<div className="flex flex-wrap justify-center w-full">
 				{buyStickerPacks.map((stickerpack) => (
 					<StickerpackCard

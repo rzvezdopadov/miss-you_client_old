@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
-import { LabelHeaderLG } from "../utils/Labels";
+import { LabelPageName } from "../utils/Labels";
 
 export function AboutUs() {
 	const [strAbout, setStrAbout] = useState("");
@@ -21,7 +21,7 @@ export function AboutUs() {
 
 	return (
 		<MainScrollWrapper shadow={true} color={true}>
-			<LabelHeaderLG value={"О нас"} />
+			<LabelPageName value={"О нас"} />
 			{strAbout}
 		</MainScrollWrapper>
 	);

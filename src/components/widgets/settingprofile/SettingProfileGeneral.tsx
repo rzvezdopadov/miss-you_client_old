@@ -18,6 +18,7 @@ import {
 	data_smoke,
 	data_weight,
 } from "../../../data/profiles";
+import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
 
 export function SettingProfileGeneral() {
 	const { userMyProfile } = store.getState();
@@ -98,7 +99,7 @@ export function SettingProfileGeneral() {
 	};
 
 	return (
-		<div className="flex flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
+		<WidgetWrapper wrap={true}>
 			<SelectFromArrValue
 				keyOpt={"location"}
 				value={userMyProfile.location}
@@ -228,6 +229,6 @@ export function SettingProfileGeneral() {
 				arr={data_profit}
 				title={"Заработок в месяц:"}
 			/>
-		</div>
+		</WidgetWrapper>
 	);
 }

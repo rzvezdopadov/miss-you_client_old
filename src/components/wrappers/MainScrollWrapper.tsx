@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React from "react";
 import { invisibleOnScrollToTop } from "../../helpers/pagescroll";
 import { ButtonScrollToTop } from "../utils/Buttons";
 
@@ -10,8 +10,8 @@ export function MainScrollWrapper(payload: {
 	color?: boolean;
 	center?: boolean;
 }) {
-	const scrollTopDiv = useRef(null);
-	const scrollToTopBtn = useRef(null);
+	const scrollTopDiv = React.useRef(null);
+	const scrollToTopBtn = React.useRef(null);
 
 	const onScrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollBottom =

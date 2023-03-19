@@ -3,6 +3,7 @@ import { IFilterUsers } from "../../../interfaces/iprofiles";
 import { store } from "../../../store/store";
 import { Filters } from "../../filters/Filters";
 import { filtersUserAction } from "../../../store/redusers/filterusers";
+import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
 
 export function UserProfileFilters() {
 	const { filtersUser } = store.getState();
@@ -18,7 +19,7 @@ export function UserProfileFilters() {
 	};
 
 	return (
-		<div className="flex flex-wrap shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center justify-center p-1 my-2">
+		<WidgetWrapper wrap={true}>
 			<Filters
 				location={{
 					value: filtersUser.location,
@@ -68,6 +69,6 @@ export function UserProfileFilters() {
 					onChange: (e) => onChangeValueProfileFilter(e, "alcohol"),
 				}}
 			/>
-		</div>
+		</WidgetWrapper>
 	);
 }

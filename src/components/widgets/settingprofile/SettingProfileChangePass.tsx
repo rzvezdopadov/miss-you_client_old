@@ -3,9 +3,10 @@ import { useFormFieldInputString } from "../../../hooks/form.hook";
 import { Captcha } from "../../utils/Captcha";
 import { Button } from "../../utils/Buttons";
 import { Input } from "../../utils/Inputs";
-import { LabelHeader } from "../../utils/Labels";
+import { LabelWidget } from "../../utils/Labels";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { useQueryChangePass } from "../../../api/auth/auth.api.hook";
+import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
 
 export function SettingProfileChangePass() {
 	const { dataChangePass, errorChangePass, querySendChangePass } =
@@ -61,8 +62,8 @@ export function SettingProfileChangePass() {
 	};
 
 	return (
-		<div className="flex flex-col bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative items-center justify-center p-1 my-2 w-full">
-			<LabelHeader value={"Сменить пароль"} />
+		<WidgetWrapper col={true}>
+			<LabelWidget value={"Сменить пароль"} />
 			<Input
 				{...passwordNow}
 				type={"password"}
@@ -82,6 +83,6 @@ export function SettingProfileChangePass() {
 			<Captcha />
 
 			<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
-		</div>
+		</WidgetWrapper>
 	);
 }

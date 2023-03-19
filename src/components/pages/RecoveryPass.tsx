@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { useFormFieldInputString } from "../../hooks/form.hook";
 import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
-import { LabelHeader } from "../utils/Labels";
+import { LabelWidget } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import { IRecoveryPassword } from "../../interfaces/iauth";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { useQueryRecoveryPass } from "../../api/auth/auth.api.hook";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { FormWrapper } from "../wrappers/FormWrapper";
 
 export function RecoveryPass() {
 	const { dataRecoveryPass, errorRecoveryPass, querySendRecoveryPass } =
@@ -47,8 +48,8 @@ export function RecoveryPass() {
 
 	return (
 		<MainScrollWrapper center={true}>
-			<div className="flex flex-col bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80 overflow-scroll">
-				<LabelHeader value={`Восстановление пароля`} />
+			<FormWrapper>
+				<LabelWidget value={`Восстановление пароля`} />
 				<Input {...email} type="email" placeholder="E-mail" />
 				<Input
 					{...captcha}
@@ -57,7 +58,7 @@ export function RecoveryPass() {
 				/>
 				<Captcha />
 				<Button onClick={btnLoginClickHandler} value={`Напомнить`} />
-			</div>
+			</FormWrapper>
 		</MainScrollWrapper>
 	);
 }

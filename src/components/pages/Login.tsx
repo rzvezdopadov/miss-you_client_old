@@ -4,7 +4,7 @@ import { useFormFieldInputString } from "../../hooks/form.hook";
 import { store } from "../../store/store";
 import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
-import { LabelHeader } from "../utils/Labels";
+import { LabelWidget } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import { ILogin } from "../../interfaces/iauth";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ import { maxagejwt } from "../../config";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { useQueryLogin } from "../../api/auth/auth.api.hook";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { FormWrapper } from "../wrappers/FormWrapper";
 
 export function Login() {
 	const { dataLogin, errorLogin, querySendLogin } = useQueryLogin();
@@ -64,8 +65,8 @@ export function Login() {
 
 	return (
 		<MainScrollWrapper center={true}>
-			<div className="flex flex-col bg-gray-700 shadow-[0px_0px_5px_5px] shadow-lime-300 rounded-xl px-2 pt-2 pb-2 w-80 overflow-scroll">
-				<LabelHeader value={`Вход`} />
+			<FormWrapper>
+				<LabelWidget value={`Вход`} />
 				<Input {...email} type="email" placeholder="E-mail" />
 				<Input {...password} type="password" placeholder="Пароль" />
 				<Input
@@ -78,7 +79,7 @@ export function Login() {
 					<u>{"Забыли пароль?"}</u>
 				</Link>
 				<Button onClick={btnLoginClickHandler} value={`Войти`} />
-			</div>
+			</FormWrapper>
 		</MainScrollWrapper>
 	);
 }

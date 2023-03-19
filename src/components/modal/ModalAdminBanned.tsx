@@ -12,6 +12,7 @@ import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
 import { Input } from "../utils/Inputs";
 import { SelectFromArr } from "../utils/Selects";
 import { data_hour, data_minute, data_month } from "../../data/admin";
+import { Label } from "../utils/Labels";
 
 export function modalAdminBannedOpen(userid: string) {
 	store.dispatch(
@@ -64,60 +65,60 @@ export function ModalAdminBanned() {
 
 	return (
 		<ModalYesCancelWrapper enabled={modalAdminBanned.enabled}>
-			<>
-				<div className="flex">{`На сколько забанить пользователя c userid = "${modalAdminBanned.banned.userid}"?`}</div>
-				<Input
-					value={modalAdminBanned.banned.discription}
-					onChange={(e) => {
-						const banned = { ...modalAdminBanned.banned };
-						banned.discription = e.target.value;
-						store.dispatch(modalAdminBannedAction(true, banned));
-					}}
-					type={"text"}
-					placeholder={"За что банить?"}
-				></Input>
+			<Label
+				value={`На сколько забанить пользователя c userid = "${modalAdminBanned.banned.userid}"?`}
+			/>
+			<Input
+				value={modalAdminBanned.banned.discription}
+				onChange={(e) => {
+					const banned = { ...modalAdminBanned.banned };
+					banned.discription = e.target.value;
+					store.dispatch(modalAdminBannedAction(true, banned));
+				}}
+				type={"text"}
+				placeholder={"За что банить?"}
+			></Input>
 
-				<SelectFromArr
-					value={modalAdminBanned.banned.month}
-					keyOpt={"banned.month"}
-					onChangeHandler={(e) => {
-						const banned = { ...modalAdminBanned.banned };
-						banned.month = Number(e.target.value);
-						store.dispatch(modalAdminBannedAction(true, banned));
-					}}
-					arr={data_month}
-					title={"Месяцев"}
-				/>
+			<SelectFromArr
+				value={modalAdminBanned.banned.month}
+				keyOpt={"banned.month"}
+				onChangeHandler={(e) => {
+					const banned = { ...modalAdminBanned.banned };
+					banned.month = Number(e.target.value);
+					store.dispatch(modalAdminBannedAction(true, banned));
+				}}
+				arr={data_month}
+				title={"Месяцев"}
+			/>
 
-				<SelectFromArr
-					value={modalAdminBanned.banned.hour}
-					keyOpt={"banned.hour"}
-					onChangeHandler={(e) => {
-						const banned = { ...modalAdminBanned.banned };
-						banned.hour = Number(e.target.value);
-						store.dispatch(modalAdminBannedAction(true, banned));
-					}}
-					arr={data_hour}
-					title={"Часов"}
-				/>
+			<SelectFromArr
+				value={modalAdminBanned.banned.hour}
+				keyOpt={"banned.hour"}
+				onChangeHandler={(e) => {
+					const banned = { ...modalAdminBanned.banned };
+					banned.hour = Number(e.target.value);
+					store.dispatch(modalAdminBannedAction(true, banned));
+				}}
+				arr={data_hour}
+				title={"Часов"}
+			/>
 
-				<SelectFromArr
-					value={modalAdminBanned.banned.minute}
-					keyOpt={"banned.minute"}
-					onChangeHandler={(e) => {
-						const banned = { ...modalAdminBanned.banned };
-						banned.minute = Number(e.target.value);
-						store.dispatch(modalAdminBannedAction(true, banned));
-					}}
-					arr={data_minute}
-					title={"Минут"}
-				/>
+			<SelectFromArr
+				value={modalAdminBanned.banned.minute}
+				keyOpt={"banned.minute"}
+				onChangeHandler={(e) => {
+					const banned = { ...modalAdminBanned.banned };
+					banned.minute = Number(e.target.value);
+					store.dispatch(modalAdminBannedAction(true, banned));
+				}}
+				arr={data_minute}
+				title={"Минут"}
+			/>
 
-				<ButtonsYesCancelWidget
-					onClickYes={yesModalAdminBannedHandler}
-					onClickCancel={modalAdminBannedClose}
-				/>
-			</>
+			<ButtonsYesCancelWidget
+				onClickYes={yesModalAdminBannedHandler}
+				onClickCancel={modalAdminBannedClose}
+			/>
 		</ModalYesCancelWrapper>
 	);
 }

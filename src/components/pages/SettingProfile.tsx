@@ -10,7 +10,7 @@ import { SettingProfileGeneral } from "../widgets/settingprofile/SettingProfileG
 import { SettingProfileInterests } from "../widgets/settingprofile/SettingProfileInterests";
 import { SettingProfileSlider } from "../widgets/settingprofile/SettingProfileSlider";
 import { ModalPhotoEditor } from "../modal/ModalPhotoEditor";
-import { LabelHeader } from "../utils/Labels";
+import { LabelPageName } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import { SettingProfileChangePass } from "../widgets/settingprofile/SettingProfileChangePass";
 import { modalMessageOpen } from "../modal/ModalMessage";
@@ -19,6 +19,7 @@ import { filtersUserAction } from "../../store/redusers/filterusers";
 import { useQuerySetProfile } from "../../api/profile/profile.api.hook";
 import { IQuerySetProfile } from "../../api/profile/iprofile.api";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { WidgetWrapper } from "../wrappers/WidgetWrapper";
 
 export function SettingProfile() {
 	const { userMyProfile } = store.getState();
@@ -47,14 +48,16 @@ export function SettingProfile() {
 
 	return (
 		<MainScrollWrapper shadow={true} color={true}>
-			<LabelHeader value={`Настройки профиля`} />
-			<SettingProfileSlider />
-			<SettingProfileAbout />
-			<SettingProfileGeneral />
-			<SettingProfileInterests />
-			<SettingProfileCharacters />
-			<SettingProfileFilters />
-			<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
+			<WidgetWrapper col={true}>
+				<LabelPageName value={`Настройки профиля`} />
+				<SettingProfileSlider />
+				<SettingProfileAbout />
+				<SettingProfileGeneral />
+				<SettingProfileInterests />
+				<SettingProfileCharacters />
+				<SettingProfileFilters />
+				<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
+			</WidgetWrapper>
 			<SettingProfileChangePass />
 			<ModalSettingProfileCharacters />
 			<ModalPhotoDelete />

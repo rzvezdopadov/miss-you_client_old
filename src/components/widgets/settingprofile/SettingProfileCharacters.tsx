@@ -6,12 +6,13 @@ import {
 } from "../../../data/profiles";
 import { modalSettingProfileCharactersOpen } from "../../modal/ModalSettingProfileCharacters";
 import { Button } from "../../utils/Buttons";
+import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
 
 export function SettingProfileCharacters() {
 	const { userMyProfile } = store.getState();
 
 	return (
-		<div className="flex flex-wrap flex-col bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl relative w-full items-center p-1 my-2">
+		<WidgetWrapper col={true}>
 			<div className="flex flex-col">
 				<div className="flex flex-wrap">
 					<div className="flex m-2">
@@ -79,6 +80,6 @@ export function SettingProfileCharacters() {
 					value={`Изменить параметры`}
 				/>
 			</div>
-		</div>
+		</WidgetWrapper>
 	);
 }

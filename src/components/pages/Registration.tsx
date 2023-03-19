@@ -5,7 +5,7 @@ import { IRegistration } from "../../interfaces/iauth";
 import { useEffect, useRef } from "react";
 import { Captcha } from "../utils/Captcha";
 import { Input } from "../utils/Inputs";
-import { LabelHeader } from "../utils/Labels";
+import { LabelWidget } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
 import {
 	data_genderVapor_for_reg,
@@ -18,6 +18,7 @@ import { minage } from "../../config";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { useQueryRegistration } from "../../api/auth/auth.api.hook";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { FormWrapper } from "../wrappers/FormWrapper";
 
 export function Registration() {
 	const { registration } = store.getState();
@@ -202,8 +203,8 @@ export function Registration() {
 
 	return (
 		<MainScrollWrapper center={true}>
-			<div className="flex flex-col bg-gray-700 shadow-md rounded-3xl px-2 pt-2 pb-2 w-80 overflow-scroll">
-				<LabelHeader value={`Регистрация`} />
+			<FormWrapper>
+				<LabelWidget value={`Регистрация`} />
 
 				<SelectFromArr
 					keyOpt={"gender"}
@@ -316,7 +317,7 @@ export function Registration() {
 					ref={btnRegistration}
 					value={`Найти себе пару`}
 				/>
-			</div>
+			</FormWrapper>
 		</MainScrollWrapper>
 	);
 }

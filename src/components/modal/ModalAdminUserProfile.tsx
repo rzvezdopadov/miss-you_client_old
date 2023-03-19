@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { IProfile } from "../../interfaces/iprofiles";
 import { store } from "../../store/store";
 import { LabelCash, LabelRating } from "../utils/Labels";
-import { Button, ButtonModalClose } from "../utils/Buttons";
+import { Button, ButtonClose } from "../utils/Buttons";
 import {
 	initialStateUserProfile,
 	userProfileAction,
@@ -97,7 +97,7 @@ export function ModalAdminUserProfile() {
 			ref={refUserProfile}
 			className="flex flex-col invisible fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-2/3 lg:max-w-5xl"
 		>
-			<ButtonModalClose onClick={closeUserProfileHandler} />
+			<ButtonClose onClick={closeUserProfileHandler} />
 
 			<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 				<div className="flex flex-col">

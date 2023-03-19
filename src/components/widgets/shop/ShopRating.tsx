@@ -4,7 +4,7 @@ import stars from "../../../assets/img/stars.png";
 import { IRate } from "../../../interfaces/ishop";
 import { store } from "../../../store/store";
 import { ModalBuyRating } from "../../modal/ModalBuyRating";
-import { LabelHeaderLG, LabelRating } from "../../utils/Labels";
+import { LabelWidget, LabelRating } from "../../utils/Labels";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { useQueryGetRatingTariffs } from "../../../api/rating/rating.api.hook";
 
@@ -30,7 +30,7 @@ export function ShopRating() {
 		<div
 			className={`flex flex-col justify-start items-center w-full h-full`}
 		>
-			<LabelHeaderLG value={"Приобрести рейтинг"} />
+			<LabelWidget value={"Приобрести рейтинг"} />
 			<div className="w-48">
 				<LabelRating value={userMyProfile?.rating} />
 			</div>

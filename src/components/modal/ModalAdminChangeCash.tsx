@@ -11,6 +11,7 @@ import {
 } from "../../store/redusers/admin";
 import { Input } from "../utils/Inputs";
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";
+import { Label } from "../utils/Labels";
 
 export function modalAdminChangeCashOpen(userid: string) {
 	store.dispatch(
@@ -61,26 +62,26 @@ export function ModalAdminChangeCash() {
 
 	return (
 		<ModalYesCancelWrapper enabled={modalAdminChangeCash.enabled}>
-			<>
-				<div className="flex">{`На сколько баллов изменить MY-баллы пользователя c userid = "${modalAdminChangeCash.cash.userid}"?`}</div>
-				<Input
-					value={modalAdminChangeCash.cash.addcash}
-					onChange={(e) => {
-						store.dispatch(
-							modalAdminChangeCashAction(true, {
-								userid: modalAdminChangeCash.cash.userid,
-								addcash: Number(e.target.value),
-							})
-						);
-					}}
-					type={""}
-					placeholder={""}
-				/>
-				<ButtonsYesCancelWidget
-					onClickYes={yesModalAdminChangeCashHandler}
-					onClickCancel={modalAdminChangeCashClose}
-				/>
-			</>
+			<Label
+				value={`На сколько баллов изменить MY-баллы пользователя c userid = "${modalAdminChangeCash.cash.userid}"?`}
+			/>
+			<Input
+				value={modalAdminChangeCash.cash.addcash}
+				onChange={(e) => {
+					store.dispatch(
+						modalAdminChangeCashAction(true, {
+							userid: modalAdminChangeCash.cash.userid,
+							addcash: Number(e.target.value),
+						})
+					);
+				}}
+				type={""}
+				placeholder={""}
+			/>
+			<ButtonsYesCancelWidget
+				onClickYes={yesModalAdminChangeCashHandler}
+				onClickCancel={modalAdminChangeCashClose}
+			/>
 		</ModalYesCancelWrapper>
 	);
 }

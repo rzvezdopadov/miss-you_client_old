@@ -6,10 +6,10 @@ import { AppHeader } from "./components/sections/AppHeader";
 import { AppMain } from "./components/sections/AppMain";
 import { closeMobileMenu, MobileMenu } from "./components/sections/MobileMenu";
 import { ModalLoading } from "./components/modal/ModalLoading";
-import { ModalMessage } from "./components/modal/ModalMessage";
 import { store } from "./store/store";
 import { getJWT, Socket } from "./components/utils/Socket";
-import { Holiday } from "./components/additions/Holiday";
+import { ModalUserProfileWrapper } from "./components/wrappers/ModalUserProfileWrapper";
+import { ModalDialog } from "./components/modal/ModalDialog";
 
 function App() {
 	const { jwt, mobileMenu } = store.getState();
@@ -33,7 +33,8 @@ function App() {
 			<AppMain />
 			<MobileMenu />
 			<ModalLoading />
-			<ModalMessage />
+			<ModalUserProfileWrapper />
+			<ModalDialog />
 			{/* <Holiday /> */}
 			{jwt ? <Socket /> : <></>}
 		</div>

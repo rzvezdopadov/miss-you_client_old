@@ -1,12 +1,12 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import React from "react";
 
 export function ModalYesCancelWrapper(payload: {
-	children: ReactElement;
+	children: React.ReactNode;
 	enabled: boolean;
 }) {
-	const refModalYesCancel = useRef<HTMLDivElement>(null);
+	const refModalYesCancel = React.useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (!refModalYesCancel.current) return;
 
 		if (payload.enabled) {
