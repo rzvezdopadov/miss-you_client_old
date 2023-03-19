@@ -8,6 +8,7 @@ import {
 	messageForUserAction,
 } from "../../store/redusers/dialog";
 import { ButtonClose } from "../utils/Buttons";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function modalDialogOpen() {
 	store.dispatch(modalDialogAction(true));
@@ -21,17 +22,7 @@ export function modalDialogClose() {
 
 export function ModalDialog() {
 	const { modalDialog } = store.getState();
-	const refModalDialog = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!refModalDialog.current) return;
-
-		if (modalDialog) {
-			refModalDialog.current.classList.remove("invisible");
-		} else {
-			refModalDialog.current.classList.add("invisible");
-		}
-	}, [modalDialog]);
+	const refModalDialog = useRefDivVisible(modalDialog);
 
 	return (
 		<div

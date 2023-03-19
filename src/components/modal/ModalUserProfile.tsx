@@ -20,6 +20,7 @@ import { UserProfileQuality } from "../widgets/userprofile/UserProfileQuality";
 import { UserProfileNameAge } from "../widgets/userprofile/UserProfileNameAge";
 import { useQueryGetDialog } from "../../api/dialog/dialog.api.hook";
 import { IQueryDialog } from "../../api/dialog/idialog.api";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function modalUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -33,7 +34,7 @@ export function ModalUserProfile() {
 	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
 		useQueryGetDialog();
 	const { userProfile } = store.getState();
-	const refUserProfile = useRef<HTMLDivElement>(null);
+	const refUserProfile = useRefDivVisible(userProfile.enabled);
 
 	useEffect(() => {
 		if (!dataGetDialog) return;
@@ -48,16 +49,6 @@ export function ModalUserProfile() {
 
 		modalMessageOpen(errorGetDialog.response.data.message);
 	}, [errorGetDialog]);
-
-	useEffect(() => {
-		if (!refUserProfile.current) return;
-
-		if (userProfile.enabled) {
-			refUserProfile.current.classList.remove("invisible");
-		} else {
-			refUserProfile.current.classList.add("invisible");
-		}
-	}, [userProfile.enabled]);
 
 	const openDialogModalHandler = () => {
 		const data: IQueryDialog = {

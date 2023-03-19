@@ -2,6 +2,7 @@ import * as React from "react";
 import { useEffect, useRef } from "react";
 import { store } from "../../store/store";
 import { modalLoadingAction } from "../../store/redusers/modal";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function modalLoadingOnShow(text: string = "Загрузка...") {
 	store.dispatch(modalLoadingAction(true, text));
@@ -13,17 +14,7 @@ export function modalLoadingOnHide() {
 
 export function ModalLoading() {
 	const { modalLoading } = store.getState();
-	const refModalLoading = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (refModalLoading.current) {
-			if (modalLoading.enabled) {
-				refModalLoading.current.classList.remove("invisible");
-			} else {
-				refModalLoading.current.classList.add("invisible");
-			}
-		}
-	}, [modalLoading.enabled]);
+	const refModalLoading = useRefDivVisible(modalLoading.enabled);
 
 	return (
 		<div

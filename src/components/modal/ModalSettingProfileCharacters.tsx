@@ -12,6 +12,7 @@ import {
 	data_iLikeСharacter,
 } from "../../data/profiles";
 import { Button, ButtonClose } from "../utils/Buttons";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function modalSettingProfileCharactersOpen() {
 	store.dispatch(settingProfileCharactersAction(true));
@@ -26,7 +27,9 @@ export function ModalSettingProfileCharacters() {
 	const { settingProfileCharacters, userMyProfile } = store.getState();
 	const myProfile: IProfile = userMyProfile;
 	const [profile, setProfile] = useState(myProfile);
-	const refSettingProfileCharacters = useRef<HTMLDivElement>(null);
+	const refSettingProfileCharacters = useRefDivVisible(
+		settingProfileCharacters.enabled
+	);
 
 	const closeUserProfileHandler = () => {
 		modalSettingProfileCharactersClose(profile);
@@ -56,16 +59,6 @@ export function ModalSettingProfileCharacters() {
 		newProfile.idontlikecharacter = newArr as any;
 		setProfile(newProfile);
 	};
-
-	useEffect(() => {
-		if (!refSettingProfileCharacters.current) return;
-
-		if (settingProfileCharacters.enabled) {
-			refSettingProfileCharacters.current.classList.remove("invisible");
-		} else {
-			refSettingProfileCharacters.current.classList.add("invisible");
-		}
-	}, [settingProfileCharacters.enabled]);
 
 	useEffect(() => {
 		return () => {

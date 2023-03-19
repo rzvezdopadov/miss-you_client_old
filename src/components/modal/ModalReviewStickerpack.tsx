@@ -12,6 +12,7 @@ import {
 	ModalAddDeleteStickerpack,
 	modalAddDeleteStickerpackOpen,
 } from "./ModalAddDeleteStickerpack";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function modalReviewStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(modalReviewStickerpackAction(true, stickerpack));
@@ -29,17 +30,9 @@ function modalReviewStickerpackClose() {
 export function ModalReviewStickerpack() {
 	const { modalReviewStickerpack, userMyProfile } = store.getState();
 
-	const refModalReviewStickerpack = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!refModalReviewStickerpack.current) return;
-
-		if (modalReviewStickerpack.enabled) {
-			refModalReviewStickerpack.current.classList.remove("invisible");
-		} else {
-			refModalReviewStickerpack.current.classList.add("invisible");
-		}
-	}, [modalReviewStickerpack.enabled]);
+	const refModalReviewStickerpack = useRefDivVisible(
+		modalReviewStickerpack.enabled
+	);
 
 	return (
 		<div

@@ -6,6 +6,7 @@ import { userMyProfileAction } from "../../store/redusers/profile";
 import { modalMessageOpen } from "./ModalMessage";
 import { Button, ButtonClose } from "../utils/Buttons";
 import { useQueryUploadPhoto } from "../../api/photo/photo.api.hook";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 const baseBiasConst = { x: 160, y: 160 };
 
@@ -19,7 +20,7 @@ export function modalPhotoEditorClose() {
 
 export function ModalPhotoEditor() {
 	const { modalPhotoEditor, userMyProfile } = store.getState();
-	const refModalPhotoEditor = useRef<HTMLDivElement>(null);
+	const refModalPhotoEditor = useRefDivVisible(modalPhotoEditor);
 	const mulImgMax = 10;
 	const [imgData, setImgData] = useState<ArrayBuffer>();
 	const [img, setImg] = useState<any>(undefined);
@@ -65,16 +66,6 @@ export function ModalPhotoEditor() {
 
 		loadCanvas();
 	}, [img, mulImg, biasImg]);
-
-	useEffect(() => {
-		if (!refModalPhotoEditor.current) return;
-
-		if (modalPhotoEditor) {
-			refModalPhotoEditor.current.classList.remove("invisible");
-		} else {
-			refModalPhotoEditor.current.classList.add("invisible");
-		}
-	}, [modalPhotoEditor]);
 
 	useEffect(() => {
 		if (!dataUploadPhoto) return;

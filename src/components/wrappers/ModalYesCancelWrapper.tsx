@@ -1,20 +1,11 @@
 import React from "react";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function ModalYesCancelWrapper(payload: {
 	children: React.ReactNode;
 	enabled: boolean;
 }) {
-	const refModalYesCancel = React.useRef<HTMLDivElement>(null);
-
-	React.useEffect(() => {
-		if (!refModalYesCancel.current) return;
-
-		if (payload.enabled) {
-			refModalYesCancel.current.classList.remove("invisible");
-		} else {
-			refModalYesCancel.current.classList.add("invisible");
-		}
-	}, [payload.enabled]);
+	const refModalYesCancel = useRefDivVisible(payload.enabled);
 
 	return (
 		<div

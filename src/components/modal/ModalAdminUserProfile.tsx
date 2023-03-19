@@ -37,6 +37,7 @@ import {
 import { AdminUserProfileSlider } from "../widgets/admin/AdminUserProfileSlider";
 import { UserProfileInterest } from "../widgets/userprofile/UserProfileInterest";
 import { ModalAdminPhotoDelete } from "./ModalAdminPhotoDelete";
+import { useRefDivVisible } from "../../hooks/form.hook";
 
 export function modalAdminUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -50,7 +51,7 @@ export function ModalAdminUserProfile() {
 	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
 		useQueryGetDialog();
 	const { userProfile } = store.getState();
-	const refUserProfile = useRef<HTMLDivElement>(null);
+	const refUserProfile = useRefDivVisible(userProfile.enabled);
 
 	useEffect(() => {
 		if (!dataGetDialog) return;
@@ -65,16 +66,6 @@ export function ModalAdminUserProfile() {
 
 		modalMessageOpen(errorGetDialog.response.data.message);
 	}, [errorGetDialog]);
-
-	useEffect(() => {
-		if (!refUserProfile.current) return;
-
-		if (userProfile.enabled) {
-			refUserProfile.current.classList.remove("invisible");
-		} else {
-			refUserProfile.current.classList.add("invisible");
-		}
-	}, [userProfile.enabled]);
 
 	const modalDialogOpenHandler = () => {
 		const data: IQueryDialog = {
