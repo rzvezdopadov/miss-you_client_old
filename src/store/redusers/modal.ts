@@ -6,6 +6,8 @@ import {
 } from "../../interfaces/iredusers";
 import { IStickerpack } from "../../interfaces/istickers";
 import { IRate } from "../../interfaces/ishop";
+import { IModalDialog } from "../../interfaces/iprofiles";
+import { initialStateDialog } from "./dialog";
 
 ////////////////////////////////////////////////////////////////////////
 export const MODAL_LOADING = "MODAL_LOADING";
@@ -86,16 +88,22 @@ export const modalPhotoDeleteReducer = createReducer(
 ////////////////////////////////////////////////////////////////////////
 export const MODAL_DIALOG = "MODAL_DIALOG";
 
-export const modalDialogAction = (enabled: boolean) => ({
+const initialStateModalDialog: IModalDialog = {
+	enabled: false,
+	dialog: initialStateDialog,
+};
+
+export const modalDialogAction = (payload: IModalDialog) => ({
 	type: MODAL_DIALOG,
 	payload: {
-		enabled,
+		enabled: payload.enabled,
+		dialog: payload.dialog,
 	},
 });
 
-export const modalDialogReducer = createReducer(false, {
-	[MODAL_DIALOG]: (state: boolean, action: any) => {
-		const modalDialog = action.payload.enabled;
+export const modalDialogReducer = createReducer(initialStateModalDialog, {
+	[MODAL_DIALOG]: (state: IModalDialog, action: any) => {
+		const modalDialog = { ...action.payload };
 
 		return modalDialog;
 	},

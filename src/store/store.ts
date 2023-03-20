@@ -2,9 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { jwtReducer, registrationReducer } from "./redusers/auth";
 import {
 	dialogReducer,
-	dialogUserIdReducer,
 	dialogsReducer,
-	messageForUserReducer,
 	stickerpacksReducer,
 } from "./redusers/dialog";
 import { mobileMenuReducer } from "./redusers/menu";
@@ -55,8 +53,6 @@ export const store = configureStore({
 		settingProfileCharacters: settingProfileCharactersReducer,
 		dialogs: dialogsReducer,
 		dialog: dialogReducer,
-		dialogUserId: dialogUserIdReducer,
-		messageForUser: messageForUserReducer,
 		stickerpacks: stickerpacksReducer,
 		socket: socketReducer,
 		adminFiltersUser: adminFiltersUserReducer,

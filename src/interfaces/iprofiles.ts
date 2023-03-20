@@ -103,6 +103,11 @@ export interface IDialog {
 	messages: IMessage[];
 }
 
+export interface IModalDialog {
+	enabled: boolean;
+	dialog: IDialog;
+}
+
 export interface IPhoto {
 	photomain: number;
 	photolink: string[];

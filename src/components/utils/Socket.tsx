@@ -16,6 +16,10 @@ import { modalMessageOpen } from "../modal/ModalMessage";
 import { IQuerySendMessage } from "../../api/dialog/idialog.api";
 import { IQuerySendSticker } from "../../api/sticker/isticker.api";
 import { IQueryLike } from "../../api/like/ilike.api";
+import {
+	modalDialogAction,
+	modalMessageAction,
+} from "../../store/redusers/modal";
 
 const socketClient = socketIO(`${window.location.hostname}:8000/`, {
 	reconnection: true,
@@ -28,11 +32,21 @@ setInterval(() => {
 	if (jwt && socket) socketClient.emit("ping");
 }, 5000);
 
+const notMessageID = `Чтобы отправить сообщение выберите пользователя!`;
+
 export const sendMessage = (message: string) => {
-	const { dialogUserId } = store.getState();
+	const { modalDialog, dialog } = store.getState();
+
+	const userid = modalDialog.dialog.userid || dialog.userid || "";
+
+	if (!userid) {
+		store.dispatch(modalMessageAction(true, notMessageID));
+
+		return;
+	}
 
 	const data: IQuerySendMessage = {
-		userid: dialogUserId,
+		userid: userid,
 		message: message,
 	};
 
@@ -40,10 +54,18 @@ export const sendMessage = (message: string) => {
 };
 
 export const sendSticker = (stickerpackid: string, stickerpos: number) => {
-	const { dialogUserId } = store.getState();
+	const { modalDialog, dialog } = store.getState();
+
+	const userid = modalDialog.dialog.userid || dialog.userid || "";
+
+	if (!userid) {
+		store.dispatch(modalMessageAction(true, notMessageID));
+
+		return;
+	}
 
 	const data: IQuerySendSticker = {
-		userid: dialogUserId,
+		userid: userid,
 		stickerpackid,
 		stickerpos,
 	};
@@ -96,7 +118,6 @@ export function Socket() {
 
 		socketClient.on("get_like", (socket: IGetLike) => {
 			const { userMyProfile } = store.getState();
-
 			const userMyProfileNew = { ...userMyProfile };
 			const likesNew = [...userMyProfile.likes];
 
@@ -130,7 +151,7 @@ export function Socket() {
 			logout();
 		});
 		socketClient.on("message", (socket: IGetMessage) => {
-			const { dialogs, dialog, dialogUserId } = store.getState();
+			const { dialogs, dialog, modalDialog } = store.getState();
 
 			switch (socket.command) {
 				case "add":
@@ -145,6 +166,24 @@ export function Socket() {
 						newDialog.messages = newMessages;
 
 						store.dispatch(dialogAction(newDialog));
+					}
+
+					if (
+						socket.userid1 === modalDialog.dialog.userid ||
+						socket.userid2 === modalDialog.dialog.userid
+					) {
+						const newModalDialog = { ...modalDialog.dialog };
+						const newMessages = [...newModalDialog.messages];
+
+						newMessages.push(socket.message);
+						newModalDialog.messages = newMessages;
+
+						store.dispatch(
+							modalDialogAction({
+								enabled: true,
+								dialog: newModalDialog,
+							})
+						);
 					}
 
 					const newDialogs = [...dialogs];
@@ -176,7 +215,9 @@ export function Socket() {
 					break;
 			}
 
-			if (!dialogUserId) modalMessageOpen("У вас новое сообщение =)");
+			const { userMyProfile } = store.getState();
+			if (socket.message.userid !== userMyProfile.userid)
+				modalMessageOpen("У вас новое сообщение =)");
 		});
 		socketClient.on("dialog", (socket: IDialog) => {
 			const { dialogs, dialog } = store.getState();

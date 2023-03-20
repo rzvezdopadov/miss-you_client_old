@@ -3,17 +3,13 @@ import { useEffect } from "react";
 import { IDialog } from "../../../interfaces/iprofiles";
 import { store } from "../../../store/store";
 import { DialogShort } from "./DialogShort";
-import {
-	dialogAction,
-	dialogUserIdAction,
-	dialogsAction,
-} from "../../../store/redusers/dialog";
+import { dialogAction, dialogsAction } from "../../../store/redusers/dialog";
 import { modalMessageOpen } from "../../modal/ModalMessage";
-import { modalDialogOpen } from "../../modal/ModalDialog";
 import { useQueryGetDialogs } from "../../../api/dialog/dialog.api.hook";
+import { modalDialogOpen } from "../../modal/ModalDialog";
 
 export function DialogsLeftSideBar() {
-	const { userMyProfile, dialogs } = store.getState();
+	const { userMyProfile, dialogs, userProfile } = store.getState();
 
 	const { dataGetDialogs, errorGetDialogs, querySendGetDialogs } =
 		useQueryGetDialogs();
@@ -38,8 +34,8 @@ export function DialogsLeftSideBar() {
 		);
 
 		store.dispatch(dialogAction(outDialog[0]));
-		store.dispatch(dialogUserIdAction(userId));
-		modalDialogOpen();
+		if (userProfile.enabled || document.body.clientWidth < 768)
+			modalDialogOpen(outDialog[0]);
 	};
 
 	return (

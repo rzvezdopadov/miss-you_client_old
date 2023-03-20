@@ -9,7 +9,7 @@ import {
 } from "../../store/redusers/profile";
 import { lazyloadingusercount } from "../../config";
 import { ButtonScrollToTop } from "../utils/Buttons";
-import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
+import { modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { useQueryGetProfiles } from "../../api/profile/profile.api.hook";
@@ -109,7 +109,6 @@ export function SearchVapors() {
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
-			<ModalDialog />
 		</MainScrollWrapper>
 	);
 }

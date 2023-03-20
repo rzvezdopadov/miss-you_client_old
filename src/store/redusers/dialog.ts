@@ -49,38 +49,6 @@ export const dialogReducer = createReducer(initialStateDialog, {
 		return dialog;
 	},
 });
-
-////////////////////////////////////////////////////////////////////////
-export const DIALOG_USER_ID = "DIALOG_USER_ID";
-
-export const dialogUserIdAction = (dialogUserId: string) => ({
-	type: DIALOG_USER_ID,
-	payload: dialogUserId,
-});
-
-export const dialogUserIdReducer = createReducer("", {
-	[DIALOG_USER_ID]: (state: string, action: any) => {
-		const dialogUserId = action.payload;
-
-		return dialogUserId;
-	},
-});
-////////////////////////////////////////////////////////////////////////
-export const MESSAGE_FOR_USER = "MESSAGE_FOR_USER";
-
-export const messageForUserAction = (value: string) => ({
-	type: MESSAGE_FOR_USER,
-	payload: { value },
-});
-
-const initialStateMessageForUser: string = "";
-
-export const messageForUserReducer = createReducer(initialStateMessageForUser, {
-	[MESSAGE_FOR_USER]: (state: string, action: any) => {
-		return (state = action.payload.value);
-	},
-});
-
 ////////////////////////////////////////////////////////////////////////
 export const STICKERPACKS = "STICKERPACKS";
 

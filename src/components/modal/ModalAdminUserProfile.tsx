@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { IProfile } from "../../interfaces/iprofiles";
 import { store } from "../../store/store";
 import { LabelCash, LabelRating } from "../utils/Labels";
@@ -8,8 +8,8 @@ import {
 	initialStateUserProfile,
 	userProfileAction,
 } from "../../store/redusers/profile";
-import { dialogAction, dialogUserIdAction } from "../../store/redusers/dialog";
-import { modalDialogClose, modalDialogOpen } from "./ModalDialog";
+import { dialogAction } from "../../store/redusers/dialog";
+import { modalDialogClose } from "./ModalDialog";
 import { modalMessageOpen } from "./ModalMessage";
 import { DateTimeVisit } from "../utils/DateTime";
 import { UserProfileInterests } from "../widgets/userprofile/UserProfileInterests";
@@ -56,9 +56,8 @@ export function ModalAdminUserProfile() {
 	useEffect(() => {
 		if (!dataGetDialog) return;
 
-		modalDialogOpen();
+		// modalDialogOpen();
 		store.dispatch(dialogAction(dataGetDialog));
-		store.dispatch(dialogUserIdAction(userProfile.profile.userid));
 	}, [dataGetDialog]);
 
 	useEffect(() => {

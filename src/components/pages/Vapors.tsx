@@ -7,7 +7,7 @@ import {
 	usersProfilesAction,
 } from "../../store/redusers/profile";
 import { lazyloadingusercount } from "../../config";
-import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
+import { modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { useQueryGetProfilesForLikes } from "../../api/profile/profile.api.hook";
@@ -86,7 +86,6 @@ export function Vapors() {
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
-			<ModalDialog />
 		</MainScrollWrapper>
 	);
 }

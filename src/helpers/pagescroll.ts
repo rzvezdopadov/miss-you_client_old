@@ -1,10 +1,8 @@
 export const scrollToBottom = (bottomRef: React.RefObject<HTMLDivElement>) => {
 	if (!bottomRef.current) return;
 
-	bottomRef.current.scrollIntoView({
-		behavior: "smooth",
-		block: "start",
-	});
+	bottomRef.current.scrollTo(0, bottomRef.current.scrollHeight);
+	bottomRef.current.focus();
 };
 
 export const scrollToTop = (bottomRef: React.RefObject<HTMLDivElement>) => {
