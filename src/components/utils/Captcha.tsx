@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import { getRandomString } from "../../helpers/random";
+import { apilinkcaptcha } from "../../config";
+import { getWayCaptcha } from "../../helpers/server";
 
 export function Captcha() {
 	const canvasCaptcha = useRef<HTMLCanvasElement>(null);
 
 	const handlerBtnCaptchaClick = () => {
 		const img = new Image();
-		img.src = `api/captcha/${getRandomString(20)}`;
+		img.src = `${getWayCaptcha(getRandomString(20))}`;
 		img.onload = function () {
 			if (!canvasCaptcha.current) return;
 

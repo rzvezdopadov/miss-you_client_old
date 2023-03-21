@@ -1,5 +1,5 @@
+import { getWaySticker } from "../../../../helpers/server";
 import { IStickerpack } from "../../../../interfaces/istickers";
-import { getLinkSticker } from "../../../../helpers/stickers";
 import { modalReviewStickerpackOpen } from "../../../modal/ModalReviewStickerpack";
 import { Button } from "../../../utils/Buttons";
 
@@ -9,7 +9,7 @@ export function StickerpackCard(payload: IStickerpack) {
 			<div className="flex flex-col items-center p-0">
 				<div
 					style={{
-						backgroundImage: `URL(${getLinkSticker(
+						backgroundImage: `URL(${getWaySticker(
 							payload.stickers[0].link
 						)})`,
 					}}

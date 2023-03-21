@@ -1,10 +1,10 @@
 import * as React from "react";
 import { messageType } from "../../../interfaces/ishop";
-import { getLinkSticker } from "../../../helpers/stickers";
 import { store } from "../../../store/store";
 import { useEffect, useState } from "react";
 import { getDateTimeFromTimeCode } from "../../../helpers/datetime";
 import { PhotoMessage } from "../utils/Photo";
+import { getWaySticker } from "../../../helpers/server";
 
 export function DialogMessage(payload: {
 	keyopt: string;
@@ -39,7 +39,7 @@ export function DialogMessage(payload: {
 			const stickerLink =
 				stickerpacks[stickerpackIndex].stickers[stickerIndex].link;
 
-			setLinkSticker(getLinkSticker(stickerLink));
+			setLinkSticker(getWaySticker(stickerLink));
 		}
 	}, []);
 

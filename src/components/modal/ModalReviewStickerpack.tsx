@@ -1,8 +1,6 @@
-import { useEffect, useRef } from "react";
 import { IStickerpack } from "../../interfaces/istickers";
 import { store } from "../../store/store";
 import { LabelWidget } from "../utils/Labels";
-import { getLinkSticker } from "../../helpers/stickers";
 import { Button, ButtonClose } from "../utils/Buttons";
 import {
 	initialStateModalReviewStickerpack,
@@ -13,6 +11,7 @@ import {
 	modalAddDeleteStickerpackOpen,
 } from "./ModalAddDeleteStickerpack";
 import { useRefDivVisible } from "../../hooks/form.hook";
+import { getWaySticker } from "../../helpers/server";
 
 export function modalReviewStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(modalReviewStickerpackAction(true, stickerpack));
@@ -85,7 +84,7 @@ export function ModalReviewStickerpack() {
 						<div
 							key={sticker.link}
 							style={{
-								backgroundImage: `URL(${getLinkSticker(
+								backgroundImage: `URL(${getWaySticker(
 									sticker.link
 								)})`,
 							}}
