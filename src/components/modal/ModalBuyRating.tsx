@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { store } from "../../store/store";
 import { IRate } from "../../interfaces/ishop";
 import {
@@ -50,9 +50,9 @@ export function ModalBuyRating() {
 	};
 
 	const yesModalBuyRatingHandler = () => {
-		if (!modalBuyRating.rate.idRate) return;
+		if (!modalBuyRating.rate.idTariff) return;
 
-		querySendBuyRating(modalBuyRating.rate.idRate);
+		querySendBuyRating(modalBuyRating.rate.idTariff);
 	};
 
 	return (

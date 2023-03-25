@@ -4,7 +4,7 @@ export enum messageType {
 }
 
 export interface IRate {
-	idRate: string;
+	idTariff: string;
 	amountRate: number;
 	price: number;
 	discount: number;

@@ -138,7 +138,7 @@ export const modalBuyRatingAction = (enabled: boolean, rate: IRate) => ({
 
 export const initialStateModalBuyRating: IStateBuyRating = {
 	enabled: false,
-	rate: { idRate: "", amountRate: 0, discount: 0, price: 0 },
+	rate: { idTariff: "", amountRate: 0, discount: 0, price: 0 },
 };
 
 export const modalBuyRatingReducer = createReducer(initialStateModalBuyRating, {

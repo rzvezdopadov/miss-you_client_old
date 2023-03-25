@@ -39,8 +39,8 @@ export function ShopRating() {
 					ratingTariffs.map((value) => {
 						return (
 							<ShopRatingRate
-								key={value.idRate}
-								idRate={value.idRate}
+								key={value.idTariff}
+								idTariff={value.idTariff}
 								amountRate={value.amountRate}
 								price={value.price}
 								discount={value.discount}
