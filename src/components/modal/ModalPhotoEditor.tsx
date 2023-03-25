@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { store } from "../../store/store";
 import { modalPhotoEditorAction } from "../../store/redusers/modal";
 import { userMyProfileAction } from "../../store/redusers/profile";
@@ -89,12 +89,6 @@ export function ModalPhotoEditor() {
 	}, [errorUploadPhoto]);
 
 	const downloadHandler = async () => {
-		if (userMyProfile.photolink.length > 9) {
-			modalMessageOpen("Нельзя загрузить больше 10 фото!");
-
-			return;
-		}
-
 		const canvas = document.getElementById(
 			"photoeditor"
 		) as HTMLCanvasElement;
