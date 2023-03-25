@@ -16,7 +16,7 @@ export function useQueryGetStickerpacks() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetStickerpacks = async () => {
-		querySend("/api/stickerpacks", {}, true);
+		querySend("/api/shop/stickerpacks", {}, true);
 	};
 
 	const dataNew = data as IStickerpack[];
@@ -38,7 +38,7 @@ export function useQueryAddStickerpack() {
 	const { data, error, loaded, querySend } = useQueryPost();
 
 	const querySendAddStickerpack = async (idstickerpack: string) => {
-		querySend("/api/stickerpack", { idstickerpack }, true);
+		querySend("/api/shop/stickerpack", { idstickerpack }, true);
 	};
 
 	const dataNew = data as IProfile;
@@ -60,7 +60,7 @@ export function useQueryDeleteStickerpack() {
 	const { data, error, loaded, querySend } = useQueryDelete();
 
 	const querySendDeleteStickerpack = async (idstickerpack: string) => {
-		querySend("/api/stickerpack", { idstickerpack }, true);
+		querySend("/api/shop/stickerpack", { idstickerpack }, true);
 	};
 
 	const dataNew = data as IProfile;

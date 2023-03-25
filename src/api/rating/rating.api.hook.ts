@@ -15,7 +15,7 @@ export function useQueryGetRatingTariffs() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetRatingTariffs = async () => {
-		querySend("/api/ratingtariffs", {}, true);
+		querySend("/api/shop/ratingtariffs", {}, true);
 	};
 
 	const dataNew = data as IRate[];
@@ -36,8 +36,8 @@ export function useQueryGetRatingTariffs() {
 export function useQueryBuyRating() {
 	const { data, error, loaded, querySend } = useQueryPost();
 
-	const querySendBuyRating = async (idrate: string) => {
-		querySend("/api/buyrating", { idrate }, true);
+	const querySendBuyRating = async (idtariff: string) => {
+		querySend("/api/shop/buyrating", { idtariff }, true);
 	};
 
 	const dataNew = data as IProfile;
