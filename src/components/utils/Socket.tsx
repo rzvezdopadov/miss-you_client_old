@@ -20,6 +20,7 @@ import {
 	modalDialogAction,
 	modalMessageAction,
 } from "../../store/redusers/modal";
+import { IQueryAnswerMessageData } from "../../api/iquerys.api";
 
 const socketClient = socketIO(`${window.location.hostname}:8000/`, {
 	reconnection: true,
@@ -150,6 +151,9 @@ export function Socket() {
 			console.log("logout");
 			logout();
 		});
+		socketClient.on("modalmessage", (socket: IQueryAnswerMessageData) => {
+			modalMessageOpen(socket.message);
+		});
 		socketClient.on("message", (socket: IGetMessage) => {
 			const { dialogs, dialog, modalDialog } = store.getState();
 
@@ -163,6 +167,7 @@ export function Socket() {
 						const newMessages = [...newDialog.messages];
 
 						newMessages.push(socket.message);
+						newMessages.sort((a, b) => a.timecode - b.timecode);
 						newDialog.messages = newMessages;
 
 						store.dispatch(dialogAction(newDialog));
@@ -176,6 +181,7 @@ export function Socket() {
 						const newMessages = [...newModalDialog.messages];
 
 						newMessages.push(socket.message);
+						newMessages.sort((a, b) => a.timecode - b.timecode);
 						newModalDialog.messages = newMessages;
 
 						store.dispatch(
@@ -198,6 +204,7 @@ export function Socket() {
 						const newMessages = [...newDialogs[dialogPos].messages];
 
 						newMessages.push(socket.message);
+						newMessages.sort((a, b) => a.timecode - b.timecode);
 						newDialog.messages = newMessages;
 						newDialogs[dialogPos] = newDialog;
 
@@ -254,6 +261,7 @@ export function Socket() {
 			socketClient.off("set_like");
 			socketClient.off("message");
 			socketClient.off("dialog");
+			socketClient.off("modalmessage");
 			socketClient.close();
 		};
 	}, []);
