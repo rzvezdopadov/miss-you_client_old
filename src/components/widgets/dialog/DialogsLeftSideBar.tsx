@@ -21,6 +21,9 @@ export function DialogsLeftSideBar() {
 	useEffect(() => {
 		if (dataGetDialogs) {
 			if (dataGetDialogs) {
+				dataGetDialogs.sort(
+					(a, b) => b.messages[0].timecode - a.messages[0].timecode
+				);
 				dataGetDialogs.forEach((dialog) =>
 					dialog.messages.sort((a, b) => a.timecode - b.timecode)
 				);
