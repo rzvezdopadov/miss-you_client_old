@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { LabelWidget } from "../../utils/Labels";
-import { Button } from "../../utils/Buttons";
-import { ModalReviewStickerpack } from "../../modal/ModalReviewStickerpack";
-import { StickersMy } from "./stickers/StickersMy";
-import { StickersFree } from "./stickers/StickersFree";
-import { StickersBuy } from "./stickers/StickersBuy";
+import { LabelWidget } from "../../../utils/Labels";
+import { Button } from "../../../utils/Buttons";
+import { ModalReviewStickerpack } from "../../../modal/ModalReviewStickerpack";
+import { StickersMy } from "./StickersMy";
+import { StickersFree } from "./StickersFree";
+import { StickersBuy } from "./StickersBuy";
 
 enum shopStickersPages {
 	my,
@@ -12,7 +12,7 @@ enum shopStickersPages {
 	buy,
 }
 
-export function ShopStickers() {
+export function Stickers() {
 	const [shopStickersPage, setShopStickersPage] = useState<shopStickersPages>(
 		shopStickersPages.my
 	);
