@@ -1,7 +1,7 @@
-import { IProfile } from "../../interfaces/iprofiles";
-import { IRate } from "../../interfaces/ishop";
-import { IQueryAnswerError } from "../iquerys.api";
-import { useQueryGet, useQueryPost } from "../querys.api.hook";
+import { IProfile } from "../../../interfaces/iprofiles";
+import { IRate } from "../../../interfaces/ishop";
+import { IQueryAnswerError } from "../../iquerys.api";
+import { useQueryGet, useQueryPost } from "../../querys.api.hook";
 import {
 	IQueryAnswerBuyRating,
 	IQueryAnswerRatingTariffs,

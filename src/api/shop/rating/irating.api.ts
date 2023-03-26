@@ -1,6 +1,6 @@
-import { IProfile } from "../../interfaces/iprofiles";
-import { IRate } from "../../interfaces/ishop";
-import { IQueryAnswerError } from "../iquerys.api";
+import { IProfile } from "../../../interfaces/iprofiles";
+import { IRate } from "../../../interfaces/ishop";
+import { IQueryAnswerError } from "../../iquerys.api";
 
 export interface IQueryAnswerRatingTariffs {
 	dataRatingTariffs: IRate[];

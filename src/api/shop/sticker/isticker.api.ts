@@ -1,6 +1,6 @@
-import { IProfile } from "../../interfaces/iprofiles";
-import { IStickerpack } from "../../interfaces/istickers";
-import { IQueryAnswerError } from "../iquerys.api";
+import { IProfile } from "../../../interfaces/iprofiles";
+import { IStickerpack } from "../../../interfaces/istickers";
+import { IQueryAnswerError } from "../../iquerys.api";
 
 export interface IQuerySendSticker {
 	userid: string;

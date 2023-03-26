@@ -1,7 +1,11 @@
-import { IProfile } from "../../interfaces/iprofiles";
-import { IStickerpack } from "../../interfaces/istickers";
-import { IQueryAnswerError } from "../iquerys.api";
-import { useQueryDelete, useQueryGet, useQueryPost } from "../querys.api.hook";
+import { IProfile } from "../../../interfaces/iprofiles";
+import { IStickerpack } from "../../../interfaces/istickers";
+import { IQueryAnswerError } from "../../iquerys.api";
+import {
+	useQueryDelete,
+	useQueryGet,
+	useQueryPost,
+} from "../../querys.api.hook";
 import {
 	IQueryAnswerAddStickerpack,
 	IQueryAnswerDeleteStickerpack,
