@@ -12,7 +12,7 @@ import { ButtonCancel, ButtonYes } from "../utils/Buttons";
 import {
 	useQueryAddStickerpack,
 	useQueryDeleteStickerpack,
-} from "../../api/sticker/sticker.api.hook";
+} from "../../api/shop/sticker/sticker.api.hook";
 import { Label } from "../utils/Labels";
 import { ButtonsYesCancelWrapper } from "../wrappers/ButtonsWrapper";
 import { ButtonsYesCancelWidget } from "../widgets/utils/Buttons";

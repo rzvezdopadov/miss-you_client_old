@@ -23,7 +23,7 @@ import { AdminProfiles } from "../pages/AdminProfiles";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { IQueryGetProfile } from "../../api/profile/iprofile.api";
 import { useQueryGetProfile } from "../../api/profile/profile.api.hook";
-import { useQueryGetStickerpacks } from "../../api/sticker/sticker.api.hook";
+import { useQueryGetStickerpacks } from "../../api/shop/sticker/sticker.api.hook";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = store.getState();

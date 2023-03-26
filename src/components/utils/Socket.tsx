@@ -14,7 +14,7 @@ import {
 import { dialogAction, dialogsAction } from "../../store/redusers/dialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { IQuerySendMessage } from "../../api/dialog/idialog.api";
-import { IQuerySendSticker } from "../../api/sticker/isticker.api";
+import { IQuerySendSticker } from "../../api/shop/sticker/isticker.api";
 import { IQueryLike } from "../../api/like/ilike.api";
 import {
 	modalDialogAction,
