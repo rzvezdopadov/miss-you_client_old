@@ -1,11 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
-	IStateBuyRating,
 	IStateModalMessage,
 	IStatePhotoDelete,
 } from "../../interfaces/iredusers";
 import { IStickerpack } from "../../interfaces/istickers";
-import { IRate } from "../../interfaces/ishop";
 import { IModalDialog } from "../../interfaces/iprofiles";
 import { initialStateDialog } from "./dialog";
 
@@ -123,31 +121,6 @@ export const modalPhotoEditorReducer = createReducer(false, {
 		const modalPhotoEditor = action.payload.enabled;
 
 		return modalPhotoEditor;
-	},
-});
-////////////////////////////////////////////////////////////////////////
-export const MODAL_BUY_RATTING = "MODAL_BUY_RATING";
-
-export const modalBuyRatingAction = (enabled: boolean, rate: IRate) => ({
-	type: MODAL_BUY_RATTING,
-	payload: {
-		enabled,
-		rate,
-	},
-});
-
-export const initialStateModalBuyRating: IStateBuyRating = {
-	enabled: false,
-	rate: { idTariff: "", amountRate: 0, discount: 0, price: 0 },
-};
-
-export const modalBuyRatingReducer = createReducer(initialStateModalBuyRating, {
-	[MODAL_BUY_RATTING]: (state: IStateBuyRating, action: any) => {
-		let { enabled, rate } = action.payload;
-
-		if (!enabled) rate = state.rate;
-
-		return { enabled, rate };
 	},
 });
 ////////////////////////////////////////////////////////////////////////

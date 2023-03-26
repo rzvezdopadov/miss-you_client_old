@@ -8,7 +8,6 @@ import {
 import { mobileMenuReducer } from "./redusers/menu";
 import {
 	modalAddDeleteStickerpackReducer,
-	modalBuyRatingReducer,
 	modalDialogReducer,
 	modalLoadingReducer,
 	modalMessageReducer,
@@ -40,7 +39,6 @@ export const store = configureStore({
 		modalLoading: modalLoadingReducer,
 		modalMessage: modalMessageReducer,
 		modalPhotoDelete: modalPhotoDeleteReducer,
-		modalBuyRating: modalBuyRatingReducer,
 		modalDialog: modalDialogReducer,
 		modalPhotoEditor: modalPhotoEditorReducer,
 		modalReviewStickerpack: modalReviewStickerpackReducer,
