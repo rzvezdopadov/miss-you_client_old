@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { LabelCash, LabelPageName } from "../utils/Labels";
 import { Button } from "../utils/Buttons";
-import { ShopRating } from "../widgets/shop/ShopRating";
-import { ShopStickers } from "../widgets/shop/ShopStickers";
+import { Rating } from "../widgets/shop/rating/Rating";
 import { store } from "../../store/store";
-import { ShopBuyMYPoints } from "../widgets/shop/ShopBuyMYPoints";
+import { BuyMYPoints } from "../widgets/shop/bymypoint/BuyMYPoints";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { Stickers } from "../widgets/shop/stickers/Stickers";
+import { Options } from "../widgets/shop/paid/Options";
 
-enum shopPage {
+enum Page {
 	rating,
 	stickers,
+	options,
 	buyballs,
 }
 
 export function Shop() {
 	const { userMyProfile } = store.getState();
-	const [shop, setShop] = useState<shopPage>(shopPage.rating);
+	const [page, setPage] = useState<Page>(Page.rating);
 
 	return (
 		<MainScrollWrapper shadow={true} color={true}>
@@ -27,23 +29,26 @@ export function Shop() {
 			<div className="flex justify-center flex-wrap">
 				<Button
 					value={"Рейтинг"}
-					onClick={() => setShop(shopPage.rating)}
+					onClick={() => setPage(Page.rating)}
 				/>
 				<Button
 					value={"Стикеры"}
-					onClick={() => setShop(shopPage.stickers)}
+					onClick={() => setPage(Page.stickers)}
 				/>
+				<Button value={"Опции"} onClick={() => setPage(Page.options)} />
 				<Button
 					value={"Пополнить MY-баллы"}
-					onClick={() => setShop(shopPage.buyballs)}
+					onClick={() => setPage(Page.buyballs)}
 				/>
 			</div>
-			{shop === shopPage.rating ? (
-				<ShopRating />
-			) : shop === shopPage.stickers ? (
-				<ShopStickers />
+			{page === Page.rating ? (
+				<Rating />
+			) : page === Page.stickers ? (
+				<Stickers />
+			) : page === Page.options ? (
+				<Options />
 			) : (
-				<ShopBuyMYPoints />
+				<BuyMYPoints />
 			)}
 		</MainScrollWrapper>
 	);
