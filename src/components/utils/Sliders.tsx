@@ -70,19 +70,13 @@ export function SliderPhotoBtnAdd(payload: {
 	onClick: any;
 }) {
 	return (
-		<>
-			{payload.photolink.length < 10 ? (
-				<div
-					onClick={payload.onClick}
-					className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-xl"
-					title="Добавить фото"
-				>
-					+
-				</div>
-			) : (
-				<></>
-			)}
-		</>
+		<div
+			onClick={payload.onClick}
+			className="flex select-none bg-gray-300 text-black text-xl border-yellow-300 border-2 font-bold justify-center cursor-pointer m-1 w-24 rounded-xl"
+			title="Добавить фото"
+		>
+			+
+		</div>
 	);
 }
 
