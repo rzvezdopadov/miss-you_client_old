@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 import { LabelWrapper } from "../wrappers/LabelWrapper";
-import { FONT_SIZE } from "../styles/enum";
+import { FONT_SIZE } from "../../assets/styles/enum";
 
 export function Label(payload: {
 	value: string;
