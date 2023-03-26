@@ -1,5 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { ACCTYPE, IProfile, IProfileShort } from "../../interfaces/iprofiles";
+import {
+	ACCTYPE,
+	IFilterUsers,
+	IPaid,
+	IProfile,
+	IProfileShort,
+} from "../../interfaces/iprofiles";
 import { data_age, data_genderVapor, data_growth } from "../../data/profiles";
 
 ////////////////////////////////////////////////////////////////////////
@@ -35,6 +41,117 @@ interface IUserProfile {
 	profile: IProfile;
 }
 
+const initFilterUsers: IFilterUsers = {
+	location: "",
+	agestart: data_age[data_age.length - 1],
+	ageend: data_age[0],
+	growthstart: data_growth[0],
+	growthend: data_growth[data_growth.length - 1],
+	weight: 0,
+	signzodiac: 0,
+	gendervapor: data_genderVapor.length - 1,
+	education: 0,
+	fieldofactivity: 0,
+	maritalstatus: 0,
+	children: 0,
+	religion: 0,
+	smoke: 0,
+	profit: 0,
+	alcohol: 0,
+	interests: [],
+};
+
+const initPaidProfile: IPaid = {
+	messageswrite: {
+		enabled: false,
+		timecode: 0,
+	},
+	messagesread: {
+		enabled: false,
+		timecode: 0,
+	},
+	longfilters: {
+		enabled: false,
+		timecode: 0,
+	},
+	filtersvapors: {
+		enabled: false,
+		timecode: 0,
+	},
+	longfiltersvapors: {
+		enabled: false,
+		timecode: 0,
+	},
+	filtersfavoriteusers: {
+		enabled: false,
+		timecode: 0,
+	},
+	longfiltersfavoriteusers: {
+		enabled: false,
+		timecode: 0,
+	},
+	photofull: {
+		enabled: false,
+		timecode: 0,
+	},
+	photoload10: {
+		enabled: false,
+		timecode: 0,
+	},
+	photoload15: {
+		enabled: false,
+		timecode: 0,
+	},
+	photoload20: {
+		enabled: false,
+		timecode: 0,
+	},
+	photoload25: {
+		enabled: false,
+		timecode: 0,
+	},
+	photoload30: {
+		enabled: false,
+		timecode: 0,
+	},
+	interests20: {
+		enabled: false,
+		timecode: 0,
+	},
+	interests30: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages20: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages40: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages60: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages80: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages100: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages200: {
+		enabled: false,
+		timecode: 0,
+	},
+	historymessages300: {
+		enabled: false,
+		timecode: 0,
+	},
+};
+
 export const initialStateUserProfile: IUserProfile = {
 	enabled: false,
 	profile: {
@@ -43,6 +160,7 @@ export const initialStateUserProfile: IUserProfile = {
 		name: "",
 		location: "",
 		likes: [],
+		favoriteusers: [],
 		birthday: 0,
 		monthofbirth: 0,
 		yearofbirth: 0,
@@ -69,25 +187,8 @@ export const initialStateUserProfile: IUserProfile = {
 		stickerpacks: [],
 		cash: 0,
 		acctype: ACCTYPE.user,
-		filters: {
-			location: "",
-			agestart: data_age[data_age.length - 1],
-			ageend: data_age[0],
-			growthstart: data_growth[0],
-			growthend: data_growth[data_growth.length - 1],
-			weight: 0,
-			signzodiac: 0,
-			gendervapor: data_genderVapor.length - 1,
-			education: 0,
-			fieldofactivity: 0,
-			maritalstatus: 0,
-			children: 0,
-			religion: 0,
-			smoke: 0,
-			alcohol: 0,
-			profit: 0,
-			interests: [],
-		},
+		filters: initFilterUsers,
+		paid: initPaidProfile,
 	},
 };
 
@@ -115,6 +216,7 @@ export const initialStateUserMyProfile: IProfile = {
 	name: "",
 	location: "",
 	likes: [],
+	favoriteusers: [],
 	birthday: 1,
 	monthofbirth: 1,
 	yearofbirth: 1970,
@@ -141,25 +243,8 @@ export const initialStateUserMyProfile: IProfile = {
 	stickerpacks: [],
 	cash: 0,
 	acctype: ACCTYPE.user,
-	filters: {
-		location: "",
-		agestart: data_age[data_age.length - 1],
-		ageend: data_age[0],
-		growthstart: data_growth[0],
-		growthend: data_growth[data_growth.length - 1],
-		weight: 0,
-		signzodiac: 0,
-		gendervapor: data_genderVapor.length - 1,
-		education: 0,
-		fieldofactivity: 0,
-		maritalstatus: 0,
-		children: 0,
-		religion: 0,
-		smoke: 0,
-		profit: 0,
-		alcohol: 0,
-		interests: [],
-	},
+	filters: initFilterUsers,
+	paid: initPaidProfile,
 };
 
 export const userMyProfileReducer = createReducer(initialStateUserMyProfile, {
