@@ -6,7 +6,7 @@ import { filtersUserAction } from "../../../store/redusers/filterusers";
 import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
 
 export function UserProfileFilters() {
-	const { filtersUser } = store.getState();
+	const { filtersUser, userMyProfile } = store.getState();
 
 	const onChangeValueProfileFilter = (
 		e: React.ChangeEvent<HTMLSelectElement>,
@@ -21,24 +21,25 @@ export function UserProfileFilters() {
 	return (
 		<WidgetWrapper wrap={true}>
 			<Filters
+				longfilters={userMyProfile.paid.longfilters.enabled}
 				location={{
 					value: filtersUser.location,
 					onChange: (e) => onChangeValueProfileFilter(e, "location"),
 				}}
-				ageStart={{
+				agestart={{
 					value: filtersUser.agestart,
 					onChange: (e) => onChangeValueProfileFilter(e, "agestart"),
 				}}
-				ageEnd={{
+				ageend={{
 					value: filtersUser.ageend,
 					onChange: (e) => onChangeValueProfileFilter(e, "ageend"),
 				}}
-				growthStart={{
+				growthstart={{
 					value: filtersUser.growthstart,
 					onChange: (e) =>
 						onChangeValueProfileFilter(e, "growthstart"),
 				}}
-				growthEnd={{
+				growthend={{
 					value: filtersUser.growthend,
 					onChange: (e) => onChangeValueProfileFilter(e, "growthend"),
 				}}
@@ -46,15 +47,33 @@ export function UserProfileFilters() {
 					value: filtersUser.weight,
 					onChange: (e) => onChangeValueProfileFilter(e, "weight"),
 				}}
-				signZodiac={{
+				signzodiac={{
 					value: filtersUser.signzodiac,
 					onChange: (e) =>
 						onChangeValueProfileFilter(e, "signzodiac"),
 				}}
-				genderVapor={{
+				gendervapor={{
 					value: filtersUser.gendervapor,
 					onChange: (e) =>
 						onChangeValueProfileFilter(e, "gendervapor"),
+				}}
+				education={{
+					value: filtersUser.gendervapor,
+					onChange: (e) => onChangeValueProfileFilter(e, "education"),
+				}}
+				fieldofactivity={{
+					value: filtersUser.fieldofactivity,
+					onChange: (e) =>
+						onChangeValueProfileFilter(e, "fieldofactivity"),
+				}}
+				maritalstatus={{
+					value: filtersUser.maritalstatus,
+					onChange: (e) =>
+						onChangeValueProfileFilter(e, "maritalstatus"),
+				}}
+				children={{
+					value: filtersUser.children,
+					onChange: (e) => onChangeValueProfileFilter(e, "children"),
 				}}
 				religion={{
 					value: filtersUser.religion,
@@ -68,6 +87,11 @@ export function UserProfileFilters() {
 					value: filtersUser.alcohol,
 					onChange: (e) => onChangeValueProfileFilter(e, "alcohol"),
 				}}
+				profit={{
+					value: filtersUser.profit,
+					onChange: (e) => onChangeValueProfileFilter(e, "profit"),
+				}}
+				interests={[]}
 			/>
 		</WidgetWrapper>
 	);

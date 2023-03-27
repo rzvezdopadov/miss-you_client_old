@@ -2,9 +2,14 @@ import * as React from "react";
 import {
 	data_age,
 	data_alcohol,
+	data_children,
+	data_education,
+	data_fieldOfActivity,
 	data_genderVapor,
 	data_growth,
 	data_location,
+	data_maritalStatus,
+	data_profit,
 	data_religion,
 	data_signZodiac,
 	data_smoke,
@@ -14,17 +19,24 @@ import { IFilterParamSelect } from "../../interfaces/iprofiles";
 import { FiltersOptionAtArr } from "../utils/Selects";
 
 export function Filters(payload: {
+	longfilters: boolean;
 	location: IFilterParamSelect;
-	ageStart: IFilterParamSelect;
-	ageEnd: IFilterParamSelect;
-	growthStart: IFilterParamSelect;
-	growthEnd: IFilterParamSelect;
+	agestart: IFilterParamSelect;
+	ageend: IFilterParamSelect;
+	growthstart: IFilterParamSelect;
+	growthend: IFilterParamSelect;
 	weight: IFilterParamSelect;
-	signZodiac: IFilterParamSelect;
-	genderVapor: IFilterParamSelect;
+	signzodiac: IFilterParamSelect;
+	gendervapor: IFilterParamSelect;
+	education: IFilterParamSelect;
+	fieldofactivity: IFilterParamSelect;
+	maritalstatus: IFilterParamSelect;
+	children: IFilterParamSelect;
 	religion: IFilterParamSelect;
 	smoke: IFilterParamSelect;
 	alcohol: IFilterParamSelect;
+	profit: IFilterParamSelect;
+	interests: string[];
 }) {
 	return (
 		<>
@@ -42,8 +54,8 @@ export function Filters(payload: {
 			<FiltersOptionAtArr
 				headName={"Возраст:"}
 				arrArgs={[
-					{ data: data_age, filterParam: { ...payload.ageStart } },
-					{ data: data_age, filterParam: { ...payload.ageEnd } },
+					{ data: data_age, filterParam: { ...payload.agestart } },
+					{ data: data_age, filterParam: { ...payload.ageend } },
 				]}
 			/>
 			<FiltersOptionAtArr
@@ -51,14 +63,15 @@ export function Filters(payload: {
 				arrArgs={[
 					{
 						data: data_growth,
-						filterParam: { ...payload.growthStart },
+						filterParam: { ...payload.growthstart },
 					},
 					{
 						data: data_growth,
-						filterParam: { ...payload.growthEnd },
+						filterParam: { ...payload.growthend },
 					},
 				]}
 			/>
+
 			<FiltersOptionAtArr
 				headName={"Телосложение:"}
 				arrArgs={[
@@ -68,33 +81,85 @@ export function Filters(payload: {
 					},
 				]}
 			/>
-			<FiltersOptionAtArr
-				headName={"Знак зодиака:"}
-				arrArgs={[
-					{
-						data: data_signZodiac,
-						filterParam: { ...payload.signZodiac },
-					},
-				]}
-			/>
+			{payload.longfilters ? (
+				<>
+					<FiltersOptionAtArr
+						headName={"Знак зодиака:"}
+						arrArgs={[
+							{
+								data: data_signZodiac,
+								filterParam: { ...payload.signzodiac },
+							},
+						]}
+					/>
+				</>
+			) : (
+				<></>
+			)}
 			<FiltersOptionAtArr
 				headName={"Ищу:"}
 				arrArgs={[
 					{
 						data: data_genderVapor,
-						filterParam: { ...payload.genderVapor },
+						filterParam: { ...payload.gendervapor },
 					},
 				]}
 			/>
-			<FiltersOptionAtArr
-				headName={"Религия:"}
-				arrArgs={[
-					{
-						data: data_religion,
-						filterParam: { ...payload.religion },
-					},
-				]}
-			/>
+			{payload.longfilters ? (
+				<>
+					<FiltersOptionAtArr
+						headName={"Образование:"}
+						arrArgs={[
+							{
+								data: data_education,
+								filterParam: { ...payload.education },
+							},
+						]}
+					/>
+
+					<FiltersOptionAtArr
+						headName={"Сфера деятельности:"}
+						arrArgs={[
+							{
+								data: data_fieldOfActivity,
+								filterParam: { ...payload.fieldofactivity },
+							},
+						]}
+					/>
+
+					<FiltersOptionAtArr
+						headName={"Семейное положение:"}
+						arrArgs={[
+							{
+								data: data_maritalStatus,
+								filterParam: { ...payload.maritalstatus },
+							},
+						]}
+					/>
+
+					<FiltersOptionAtArr
+						headName={"Дети:"}
+						arrArgs={[
+							{
+								data: data_children,
+								filterParam: { ...payload.children },
+							},
+						]}
+					/>
+
+					<FiltersOptionAtArr
+						headName={"Религия:"}
+						arrArgs={[
+							{
+								data: data_religion,
+								filterParam: { ...payload.religion },
+							},
+						]}
+					/>
+				</>
+			) : (
+				<></>
+			)}
 			<FiltersOptionAtArr
 				headName={"Курение:"}
 				arrArgs={[
@@ -107,6 +172,19 @@ export function Filters(payload: {
 					{ data: data_alcohol, filterParam: { ...payload.alcohol } },
 				]}
 			/>
+			{payload.longfilters ? (
+				<FiltersOptionAtArr
+					headName={"Заработок в месяц:"}
+					arrArgs={[
+						{
+							data: data_profit,
+							filterParam: { ...payload.profit },
+						},
+					]}
+				/>
+			) : (
+				<></>
+			)}
 		</>
 	);
 }

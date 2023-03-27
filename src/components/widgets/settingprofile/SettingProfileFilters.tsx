@@ -26,112 +26,93 @@ export function SettingProfileFilters() {
 		store.dispatch(userMyProfileAction(newProfile));
 	};
 
-	const filtersLocationOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "location");
-	};
-	const filtersAgeStartOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "agestart");
-	};
-	const filtersAgeEndOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "ageend");
-	};
-	const filtersGrowthStartOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "growthstart");
-	};
-	const filtersGrowthEndOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "growthend");
-	};
-	const filtersWeightOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "weight");
-	};
-	const filtersSignZodiacOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "signzodiac");
-	};
-	const filtersGenderVaporOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "gendervapor");
-	};
-	const filtersReligionOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "religion");
-	};
-	const filtersSmokeOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "smoke");
-	};
-	const filtersAlcoholOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueProfileFilter(e, "alcohol");
-	};
-
 	return (
 		<WidgetWrapper wrap={true}>
 			<LabelWidget value={"Фильтры по умолчанию:"} />
 
 			<div className="flex flex-wrap justify-center m-2">
 				<Filters
+					longfilters={true}
 					location={{
 						value: userMyProfile.filters.location,
-						onChange: filtersLocationOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "location"),
 					}}
-					ageStart={{
+					agestart={{
 						value: userMyProfile.filters.agestart,
-						onChange: filtersAgeStartOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "agestart"),
 					}}
-					ageEnd={{
+					ageend={{
 						value: userMyProfile.filters.ageend,
-						onChange: filtersAgeEndOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "ageend"),
 					}}
-					growthStart={{
+					growthstart={{
 						value: userMyProfile.filters.growthstart,
-						onChange: filtersGrowthStartOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "growthstart"),
 					}}
-					growthEnd={{
+					growthend={{
 						value: userMyProfile.filters.growthend,
-						onChange: filtersGrowthEndOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "growthend"),
 					}}
 					weight={{
 						value: userMyProfile.filters.weight,
-						onChange: filtersWeightOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "weight"),
 					}}
-					signZodiac={{
+					signzodiac={{
 						value: userMyProfile.filters.signzodiac,
-						onChange: filtersSignZodiacOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "signzodiac"),
 					}}
-					genderVapor={{
+					gendervapor={{
 						value: userMyProfile.filters.gendervapor,
-						onChange: filtersGenderVaporOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "gendervapor"),
+					}}
+					education={{
+						value: userMyProfile.filters.education,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "education"),
+					}}
+					fieldofactivity={{
+						value: userMyProfile.filters.fieldofactivity,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "fieldofactivity"),
+					}}
+					maritalstatus={{
+						value: userMyProfile.filters.maritalstatus,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "maritalstatus"),
+					}}
+					children={{
+						value: userMyProfile.filters.children,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "children"),
 					}}
 					religion={{
 						value: userMyProfile.filters.religion,
-						onChange: filtersReligionOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "religion"),
 					}}
 					smoke={{
 						value: userMyProfile.filters.smoke,
-						onChange: filtersSmokeOnChangeHandler,
+						onChange: (e) => onChangeValueProfileFilter(e, "smoke"),
 					}}
 					alcohol={{
 						value: userMyProfile.filters.alcohol,
-						onChange: filtersAlcoholOnChangeHandler,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "alcohol"),
 					}}
+					profit={{
+						value: userMyProfile.filters.profit,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "profit"),
+					}}
+					interests={[]}
 				/>
 			</div>
 		</WidgetWrapper>
