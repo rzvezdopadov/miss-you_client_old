@@ -16,9 +16,9 @@ interface IHolidayObj {
 }
 
 export function Holiday() {
-	const [holidaysObj, setHolidaysObj] = useState<Array<IHolidayObj>>([]);
+	const [holidaysObj, setHolidaysObj] = useState<IHolidayObj[]>([]);
 
-	function holidaysObjTimerHandler(holidayObj: Array<IHolidayObj>) {
+	function holidaysObjTimerHandler(holidayObj: IHolidayObj[]) {
 		setTimeout(() => {
 			const holidaysObjNew = [...holidayObj];
 
