@@ -58,7 +58,7 @@ export function UserProfileFilters() {
 						onChangeValueProfileFilter(e, "gendervapor"),
 				}}
 				education={{
-					value: filtersUser.gendervapor,
+					value: filtersUser.education,
 					onChange: (e) => onChangeValueProfileFilter(e, "education"),
 				}}
 				fieldofactivity={{
