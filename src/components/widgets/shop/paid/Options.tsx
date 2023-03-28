@@ -25,10 +25,10 @@ export function Options() {
 					value={"Сообщения"}
 					onClick={() => setPage(Page.message)}
 				/>
-				{/* <Button
+				<Button
 					value={"Фильтры"}
 					onClick={() => setPage(Page.filter)}
-				/> */}
+				/>
 				<Button
 					value={"Фотографии"}
 					onClick={() => setPage(Page.photo)}
@@ -41,7 +41,7 @@ export function Options() {
 			{page === Page.message ? (
 				<Messages />
 			) : page === Page.filter ? (
-				<></> // <Filters />
+				<Filters />
 			) : page === Page.photo ? (
 				<Photos />
 			) : page === Page.history ? (
