@@ -13,7 +13,7 @@ enum Page {
 	filtersvapors,
 	longfiltersvapors,
 	filtersfavoriteusers,
-	longfilterfavoriteusers,
+	longfiltersfavoriteusers,
 }
 
 export function Filters() {
@@ -42,11 +42,12 @@ export function Filters() {
 				/>
 				<Button
 					value={"В избранных расширенные"}
-					onClick={() => setPage(Page.longfilterfavoriteusers)}
+					onClick={() => setPage(Page.longfiltersfavoriteusers)}
 				/>
 			</div>
 			{page === Page.longfilters ? (
 				<Paid
+					key={PAID_PROPERTY.longfilters}
 					paidProperty={PAID_PROPERTY.longfilters}
 					linkAPITariffs={PAID_API_TARIFFS.longfilterstariffs}
 					linkAPITariffsBuy={PAID_API_TARIFFS_BUY.buylongfilters}
@@ -57,6 +58,7 @@ export function Filters() {
 				/>
 			) : page === Page.filtersvapors ? (
 				<Paid
+					key={PAID_PROPERTY.filtersvapors}
 					paidProperty={PAID_PROPERTY.filtersvapors}
 					linkAPITariffs={PAID_API_TARIFFS.filtersvaporstariffs}
 					linkAPITariffsBuy={PAID_API_TARIFFS_BUY.buyfiltersvapors}
@@ -67,6 +69,7 @@ export function Filters() {
 				/>
 			) : page === Page.longfiltersvapors ? (
 				<Paid
+					key={PAID_PROPERTY.longfiltersvapors}
 					paidProperty={PAID_PROPERTY.longfiltersvapors}
 					linkAPITariffs={PAID_API_TARIFFS.longfiltersvaporstariffs}
 					linkAPITariffsBuy={
@@ -79,6 +82,7 @@ export function Filters() {
 				/>
 			) : page === Page.filtersfavoriteusers ? (
 				<Paid
+					key={PAID_PROPERTY.filtersfavoriteusers}
 					paidProperty={PAID_PROPERTY.filtersfavoriteusers}
 					linkAPITariffs={
 						PAID_API_TARIFFS.filtersfavoriteuserstariffs
@@ -91,8 +95,9 @@ export function Filters() {
 						"Позволяет в разделе 'Избранные' использовать обычные фильтры"
 					}
 				/>
-			) : page === Page.longfilterfavoriteusers ? (
+			) : page === Page.longfiltersfavoriteusers ? (
 				<Paid
+					key={PAID_PROPERTY.longfiltersfavoriteusers}
 					paidProperty={PAID_PROPERTY.longfiltersfavoriteusers}
 					linkAPITariffs={
 						PAID_API_TARIFFS.longfiltersfavoriteuserstariffs
