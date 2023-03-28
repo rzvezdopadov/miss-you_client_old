@@ -28,21 +28,10 @@ export enum PAID_PROPERTY {
 	historymessages300 = `historymessages300`,
 }
 
-export interface IRate {
-	idTariff: string;
-	amountRate: number;
-	price: number;
-	discount: number;
-}
-
-export interface IRateModal {
-	enabled: boolean;
-	rate: IRate;
-}
-
 export interface ITariff {
 	idTariff: string;
-	amountDay: number;
+	amountDay?: number;
+	amountRate?: number;
 	price: number;
 	discount: number;
 }

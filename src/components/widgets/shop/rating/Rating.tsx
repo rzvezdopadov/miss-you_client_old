@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { RatingRate } from "./RatingRate";
 import stars from "../../../../assets/img/stars.png";
-import { IRate, IRateModal } from "../../../../interfaces/ishop";
 import { store } from "../../../../store/store";
 import { LabelWidget, LabelRating, Label } from "../../../utils/Labels";
 
@@ -13,19 +12,20 @@ import { ModalYesCancelWrapper } from "../../../wrappers/ModalYesCancelWrapper";
 import { ButtonsYesCancelWidget } from "../../utils/Buttons";
 import { userMyProfileAction } from "../../../../store/redusers/profile";
 import { modalMessageOpen } from "../../../modal/ModalMessage";
+import { ITariff, ITariffModal } from "../../../../interfaces/ishop";
 
 export function Rating() {
 	const { userMyProfile } = store.getState();
-	const [ratingTariffs, setRatingTariffs] = useState<IRate[]>([]);
+	const [ratingTariffs, setRatingTariffs] = useState<ITariff[]>([]);
 	const { dataRatingTariffs, errorRatingTariffs, querySendGetRatingTariffs } =
 		useQueryGetRatingTariffs();
 
 	const initRate = { idTariff: "", amountRate: 0, discount: 0, price: 0 };
 	const { dataBuyRating, errorBuyRating, querySendBuyRating } =
 		useQueryBuyRating();
-	const [modalRatingTariff, setModalRatingTariff] = useState<IRateModal>({
+	const [modalRatingTariff, setModalRatingTariff] = useState<ITariffModal>({
 		enabled: false,
-		rate: initRate,
+		tariff: initRate,
 	});
 
 	useEffect(() => {
@@ -62,7 +62,7 @@ export function Rating() {
 	}, [errorBuyRating]);
 
 	const modalBuyRatingCloseHandler = () =>
-		setModalRatingTariff({ enabled: false, rate: initRate });
+		setModalRatingTariff({ enabled: false, tariff: initRate });
 
 	return (
 		<div
@@ -75,15 +75,15 @@ export function Rating() {
 			</div>
 			<div className="flex justify-center flex-wrap m-4 w-full">
 				{ratingTariffs.length ? (
-					ratingTariffs.map((rate, i) => {
+					ratingTariffs.map((tariff, i) => {
 						return (
 							<RatingRate
-								key={rate.idTariff}
-								rate={ratingTariffs[i]}
+								key={tariff.idTariff}
+								tariff={ratingTariffs[i]}
 								openModalClbk={() =>
 									setModalRatingTariff({
 										enabled: true,
-										rate: rate,
+										tariff: tariff,
 									})
 								}
 							/>
@@ -104,11 +104,11 @@ export function Rating() {
 
 			<ModalYesCancelWrapper enabled={modalRatingTariff.enabled}>
 				<Label
-					value={`Вы действительно хотите купить ${modalRatingTariff.rate.amountRate} баллов рейтинга за ${modalRatingTariff.rate.price} MY-баллов?`}
+					value={`Вы действительно хотите купить ${modalRatingTariff.tariff.amountRate} баллов рейтинга за ${modalRatingTariff.tariff.price} MY-баллов?`}
 				/>
 				<ButtonsYesCancelWidget
 					onClickYes={() => {
-						querySendBuyRating(modalRatingTariff.rate.idTariff);
+						querySendBuyRating(modalRatingTariff.tariff.idTariff);
 					}}
 					onClickCancel={modalBuyRatingCloseHandler}
 				/>

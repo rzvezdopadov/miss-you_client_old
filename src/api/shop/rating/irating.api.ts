@@ -1,9 +1,9 @@
 import { IProfile } from "../../../interfaces/iprofiles";
-import { IRate } from "../../../interfaces/ishop";
+import { ITariff } from "../../../interfaces/ishop";
 import { IQueryAnswerError } from "../../iquerys.api";
 
 export interface IQueryAnswerRatingTariffs {
-	dataRatingTariffs: IRate[];
+	dataRatingTariffs: ITariff[];
 	errorRatingTariffs: IQueryAnswerError;
 	loadedRatingTariffs: boolean;
 	querySendGetRatingTariffs(): void;

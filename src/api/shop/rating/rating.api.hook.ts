@@ -1,5 +1,5 @@
 import { IProfile } from "../../../interfaces/iprofiles";
-import { IRate } from "../../../interfaces/ishop";
+import { ITariff } from "../../../interfaces/ishop";
 import { IQueryAnswerError } from "../../iquerys.api";
 import { useQueryGet, useQueryPost } from "../../querys.api.hook";
 import {
@@ -18,7 +18,7 @@ export function useQueryGetRatingTariffs() {
 		querySend("/api/shop/ratingtariffs", {}, true);
 	};
 
-	const dataNew = data as IRate[];
+	const dataNew = data as ITariff[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerRatingTariffs = {

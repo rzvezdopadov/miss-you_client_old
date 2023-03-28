@@ -1,5 +1,5 @@
 import { IAdminBanned, IAdminChangeCash, IAdminChangeRating } from "./iadmin";
-import { IRate } from "./ishop";
+import { ITariff } from "./ishop";
 
 export interface IStateModalMessage {
 	enabled: boolean;
@@ -18,7 +18,7 @@ export interface IActionReducer {
 
 export interface IStateBuyRating {
 	enabled: boolean;
-	rate: IRate;
+	rate: ITariff;
 }
 
 export interface IStateAdminChangeRating {

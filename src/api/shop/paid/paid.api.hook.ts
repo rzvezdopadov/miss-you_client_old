@@ -1,5 +1,5 @@
 import { IProfile } from "../../../interfaces/iprofiles";
-import { IRate, ITariff } from "../../../interfaces/ishop";
+import { ITariff } from "../../../interfaces/ishop";
 import { IQueryAnswerError } from "../../iquerys.api";
 import { useQueryGet, useQueryPost } from "../../querys.api.hook";
 import {
