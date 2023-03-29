@@ -24,6 +24,7 @@ import { modalMessageOpen } from "../modal/ModalMessage";
 import { IQueryGetProfile } from "../../api/profile/iprofile.api";
 import { useQueryGetProfile } from "../../api/profile/profile.api.hook";
 import { useQueryGetStickerpacks } from "../../api/shop/sticker/sticker.api.hook";
+import { FavoriteUsers } from "../pages/FavoriteUsers";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = store.getState();
@@ -106,14 +107,18 @@ export function AppMain() {
 								) : (
 									<>
 										<Route
+											path="/vapors"
+											element={<Vapors />}
+										/>
+										<Route
+											path="/favoriteusers"
+											element={<FavoriteUsers />}
+										/>
+										<Route
 											path="/searchvapors"
 											element={<SearchVapors />}
 										/>
 
-										<Route
-											path="/vapors"
-											element={<Vapors />}
-										/>
 										<Route path="/*" element={<Vapors />} />
 									</>
 								)}
