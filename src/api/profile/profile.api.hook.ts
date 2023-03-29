@@ -12,6 +12,8 @@ import {
 	IQueryGetProfilesForLikes,
 	IQueryAnswerGetProfilesForLikes,
 	IQueryGetProfiles,
+	IQueryGetProfilesForFavorite,
+	IQueryAnswerGetProfilesForFavorite,
 } from "./iprofile.api";
 
 /* Set profile 
@@ -107,6 +109,32 @@ export function useQueryGetProfilesForLikes() {
 		errorGetProfilesForLikes: errorNew,
 		loadedGetProfilesForLikes: loaded,
 		querySendGetProfilesForLikes,
+	};
+
+	return queryAnswer;
+}
+
+/* Get profiles for likes
+    - startCount - user position to start;
+    - amount - number of users in response;
+*/
+export function useQueryGetProfilesForFavorite() {
+	const { data, error, loaded, querySend } = useQueryGet();
+
+	const querySendGetProfilesForFavorite = async (
+		dataQuery: IQueryGetProfilesForFavorite
+	) => {
+		querySend("/api/profilesforfavoriteusers", dataQuery, true);
+	};
+
+	const dataNew = data as IProfileShort[];
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerGetProfilesForFavorite = {
+		dataGetProfilesForFavorite: dataNew,
+		errorGetProfilesForFavorite: errorNew,
+		loadedGetProfilesForFavorite: loaded,
+		querySendGetProfilesForFavorite,
 	};
 
 	return queryAnswer;
