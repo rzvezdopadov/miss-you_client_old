@@ -51,3 +51,15 @@ export interface IQueryAnswerGetProfilesForLikes {
 	loadedGetProfilesForLikes: boolean;
 	querySendGetProfilesForLikes(data: {}): void;
 }
+
+export interface IQueryGetProfilesForFavorite {
+	startcount: number;
+	amount: number;
+}
+
+export interface IQueryAnswerGetProfilesForFavorite {
+	dataGetProfilesForFavorite: IProfileShort[];
+	errorGetProfilesForFavorite: IQueryAnswerError;
+	loadedGetProfilesForFavorite: boolean;
+	querySendGetProfilesForFavorite(data: {}): void;
+}
