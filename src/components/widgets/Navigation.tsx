@@ -1,6 +1,7 @@
 import { store } from "../../store/store";
 import message from "../../assets/img/message.png";
 import heart from "../../assets/img/heart.png";
+import star from "../../assets/img/star.png";
 import glass from "../../assets/img/glass.png";
 import gear from "../../assets/img/gear.png";
 import chart from "../../assets/img/chart.png";
@@ -20,6 +21,7 @@ export interface ILink {
 
 export const linkAuthUser: ILink[] = [
 	{ to: "/vapors", imgSrc: heart, title: "Кто лайкнул" },
+	{ to: "/favoriteusers", imgSrc: star, title: "Кто лайкнул" },
 	{ to: "/dialogs", imgSrc: message, title: "Сообщения" },
 	{ to: "/searchvapors", imgSrc: glass, title: "Поиск людей" },
 	{ to: "/settings", imgSrc: gear, title: "Настройки" },
