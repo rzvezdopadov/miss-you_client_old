@@ -2,15 +2,16 @@ import * as React from "react";
 import { useState } from "react";
 import { store } from "../../../store/store";
 import {
+	SliderPhotoBtnFavoriteUser,
 	SliderPhotoBtnLeft,
 	SliderPhotoBtnLike,
 	SliderPhotoBtnRight,
 } from "../../utils/Sliders";
-import { setLike } from "../../utils/Socket";
+import { setFavoriteUser, setLike } from "../../utils/Socket";
 import { PhotoProfile } from "../utils/Photo";
 
 export function UserProfileSlider() {
-	const { userProfile } = store.getState();
+	const { userMyProfile, userProfile } = store.getState();
 	const [positionPhoto, setPositionPhoto] = useState(0);
 
 	if (positionPhoto > userProfile.profile.photolink.length - 1) {
@@ -66,6 +67,12 @@ export function UserProfileSlider() {
 				<SliderPhotoBtnLike
 					likes={userProfile.profile.likes}
 					onClick={setLike}
+				/>
+				<SliderPhotoBtnFavoriteUser
+					favoriteuser={userMyProfile.favoriteusers.includes(
+						userProfile.profile.userid
+					)}
+					onClick={setFavoriteUser}
 				/>
 				<SliderPhotoBtnRight
 					photolink={userProfile.profile.photolink}
