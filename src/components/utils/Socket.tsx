@@ -21,6 +21,7 @@ import {
 	modalMessageAction,
 } from "../../store/redusers/modal";
 import { IQueryAnswerMessageData } from "../../api/iquerys.api";
+import { IQueryFavotiteUsers } from "../../api/favoriteusers/ifavoriteusers.api";
 
 const socketClient = socketIO(`${window.location.hostname}:8000/`, {
 	reconnection: true,
@@ -84,6 +85,16 @@ export const setLike = () => {
 	socketClient.emit("set_like", data);
 };
 
+export const setFavoriteUser = () => {
+	const { userProfile } = store.getState();
+
+	const data: IQueryFavotiteUsers = {
+		userid: userProfile.profile.userid,
+	};
+
+	socketClient.emit("set_favoriteusers", data);
+};
+
 export const getJWT = () => {
 	const { jwt } = store.getState();
 
@@ -145,6 +156,16 @@ export function Socket() {
 			userMyProfileNew.likes = likesNew;
 
 			store.dispatch(userMyProfileAction(userMyProfileNew));
+		});
+
+		socketClient.on("set_favoriteusers", (socket: string[]) => {
+			const { userMyProfile } = store.getState();
+
+			const newMyProfile = { ...userMyProfile };
+
+			newMyProfile.favoriteusers = socket;
+
+			store.dispatch(userMyProfileAction(newMyProfile));
 		});
 
 		socketClient.on("delete_jwt", () => {
