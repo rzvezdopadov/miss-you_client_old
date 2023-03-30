@@ -9,10 +9,8 @@ import {
 	IQueryGetProfile,
 	IQueryAnswerGetProfile,
 	IQueryAnswerGetProfiles,
-	IQueryGetProfilesForLikes,
 	IQueryAnswerGetProfilesForLikes,
 	IQueryGetProfiles,
-	IQueryGetProfilesForFavorite,
 	IQueryAnswerGetProfilesForFavorite,
 } from "./iprofile.api";
 
@@ -96,7 +94,7 @@ export function useQueryGetProfilesForLikes() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetProfilesForLikes = async (
-		dataQuery: IQueryGetProfilesForLikes
+		dataQuery: IQueryGetProfiles
 	) => {
 		querySend("/api/profilesforlikes", dataQuery, true);
 	};
@@ -122,7 +120,7 @@ export function useQueryGetProfilesForFavorite() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetProfilesForFavorite = async (
-		dataQuery: IQueryGetProfilesForFavorite
+		dataQuery: IQueryGetProfiles
 	) => {
 		querySend("/api/profilesforfavoriteusers", dataQuery, true);
 	};
