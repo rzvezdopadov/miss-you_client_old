@@ -12,19 +12,18 @@ import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
 import { useQueryGetProfilesForFavorite } from "../../api/profile/profile.api.hook";
-import { IQueryGetProfilesForFavorite } from "../../api/profile/iprofile.api";
+import { UserProfileFilters } from "../widgets/userprofile/UserProfileFilters";
+import { IQueryGetProfiles } from "../../api/profile/iprofile.api";
 
 export function FavoriteUsers() {
-	const { userMyProfile, usersProfiles, userProfile } = store.getState();
+	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
+		store.getState();
 	const {
 		dataGetProfilesForFavorite,
 		errorGetProfilesForFavorite,
 		loadedGetProfilesForFavorite,
 		querySendGetProfilesForFavorite,
 	} = useQueryGetProfilesForFavorite();
-	const [favoriteUsers, setFavoriteUsers] = useState(
-		userMyProfile.favoriteusers
-	);
 
 	useEffect(() => {
 		return () => {
@@ -37,14 +36,9 @@ export function FavoriteUsers() {
 	}, []);
 
 	useEffect(() => {
-		if (userMyProfile.userid !== "") {
-			setFavoriteUsers(userMyProfile.favoriteusers);
-		}
-	}, [userMyProfile.userid]);
-
-	useEffect(() => {
+		store.dispatch(usersProfilesAction([]));
 		querySendGetProfilesLocal(0);
-	}, [favoriteUsers]);
+	}, [filtersUser]);
 
 	useEffect(() => {
 		if (!dataGetProfilesForFavorite) return;
@@ -70,9 +64,28 @@ export function FavoriteUsers() {
 	}, [errorGetProfilesForFavorite]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
-		const data: IQueryGetProfilesForFavorite = {
+		const data: IQueryGetProfiles = {
 			startcount: startcount,
 			amount: lazyloadingusercount,
+			filters: {
+				location: filtersUser.location,
+				agestart: Number(filtersUser.agestart),
+				ageend: Number(filtersUser.ageend),
+				growthstart: Number(filtersUser.growthstart),
+				growthend: Number(filtersUser.growthend),
+				weight: Number(filtersUser.weight),
+				signzodiac: Number(filtersUser.signzodiac),
+				gendervapor: Number(filtersUser.gendervapor),
+				education: Number(filtersUser.education),
+				fieldofactivity: Number(filtersUser.fieldofactivity),
+				maritalstatus: Number(filtersUser.maritalstatus),
+				children: Number(filtersUser.children),
+				religion: Number(filtersUser.religion),
+				smoke: Number(filtersUser.smoke),
+				alcohol: Number(filtersUser.alcohol),
+				profit: Number(filtersUser.profit),
+				interests: [],
+			},
 		};
 
 		if (userMyProfile.userid) querySendGetProfilesForFavorite(data);
@@ -88,6 +101,12 @@ export function FavoriteUsers() {
 			color={true}
 		>
 			<LabelPageName value={`Избранные пользователи`} />
+			<UserProfileFilters
+				basefilters={userMyProfile.paid.filtersfavoriteusers.enabled}
+				longfilters={
+					userMyProfile.paid.longfiltersfavoriteusers.enabled
+				}
+			/>
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>

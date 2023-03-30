@@ -11,18 +11,19 @@ import { modalDialogClose } from "../modal/ModalDialog";
 import { modalMessageOpen } from "../modal/ModalMessage";
 import { UserProfileShortWrapper } from "../widgets/userprofile/UserProfileShortWrapper";
 import { useQueryGetProfilesForLikes } from "../../api/profile/profile.api.hook";
-import { IQueryGetProfilesForLikes } from "../../api/profile/iprofile.api";
+import { IQueryGetProfiles } from "../../api/profile/iprofile.api";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
+import { UserProfileFilters } from "../widgets/userprofile/UserProfileFilters";
 
 export function Vapors() {
-	const { userMyProfile, usersProfiles, userProfile } = store.getState();
+	const { filtersUser, userMyProfile, usersProfiles, userProfile } =
+		store.getState();
 	const {
 		dataGetProfilesForLikes,
 		errorGetProfilesForLikes,
 		loadedGetProfilesForLikes,
 		querySendGetProfilesForLikes,
 	} = useQueryGetProfilesForLikes();
-	const [likes, setLikes] = useState(userMyProfile.likes);
 
 	useEffect(() => {
 		return () => {
@@ -35,14 +36,9 @@ export function Vapors() {
 	}, []);
 
 	useEffect(() => {
-		if (userMyProfile.userid !== "") {
-			setLikes(userMyProfile.likes);
-		}
-	}, [userMyProfile.userid]);
-
-	useEffect(() => {
+		store.dispatch(usersProfilesAction([]));
 		querySendGetProfilesLocal(0);
-	}, [likes]);
+	}, [filtersUser]);
 
 	useEffect(() => {
 		if (!dataGetProfilesForLikes) return;
@@ -65,9 +61,28 @@ export function Vapors() {
 	}, [errorGetProfilesForLikes]);
 
 	const querySendGetProfilesLocal = (startcount: number) => {
-		const data: IQueryGetProfilesForLikes = {
+		const data: IQueryGetProfiles = {
 			startcount: startcount,
 			amount: lazyloadingusercount,
+			filters: {
+				location: filtersUser.location,
+				agestart: Number(filtersUser.agestart),
+				ageend: Number(filtersUser.ageend),
+				growthstart: Number(filtersUser.growthstart),
+				growthend: Number(filtersUser.growthend),
+				weight: Number(filtersUser.weight),
+				signzodiac: Number(filtersUser.signzodiac),
+				gendervapor: Number(filtersUser.gendervapor),
+				education: Number(filtersUser.education),
+				fieldofactivity: Number(filtersUser.fieldofactivity),
+				maritalstatus: Number(filtersUser.maritalstatus),
+				children: Number(filtersUser.children),
+				religion: Number(filtersUser.religion),
+				smoke: Number(filtersUser.smoke),
+				alcohol: Number(filtersUser.alcohol),
+				profit: Number(filtersUser.profit),
+				interests: [],
+			},
 		};
 
 		if (userMyProfile.userid) querySendGetProfilesForLikes(data);
@@ -83,6 +98,10 @@ export function Vapors() {
 			color={true}
 		>
 			<LabelPageName value={`Кто меня лайкнул`} />
+			<UserProfileFilters
+				basefilters={userMyProfile.paid.filtersvapors.enabled}
+				longfilters={userMyProfile.paid.longfiltersvapors.enabled}
+			/>
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>

@@ -105,7 +105,10 @@ export function SearchVapors() {
 				scrollToTopBtn={scrollToTopBtn}
 			/>
 			<LabelPageName value={`Поиск пары`} />
-			<UserProfileFilters />
+			<UserProfileFilters
+				basefilters={true}
+				longfilters={userMyProfile.paid.longfilters.enabled}
+			/>
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfileShortWrapper />
 			</div>
