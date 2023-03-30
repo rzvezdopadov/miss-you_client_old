@@ -5,8 +5,11 @@ import { Filters } from "../../filters/Filters";
 import { filtersUserAction } from "../../../store/redusers/filterusers";
 import { WidgetWrapper } from "../../wrappers/WidgetWrapper";
 
-export function UserProfileFilters() {
-	const { filtersUser, userMyProfile } = store.getState();
+export function UserProfileFilters(payload: {
+	basefilters: boolean;
+	longfilters: boolean;
+}) {
+	const { filtersUser } = store.getState();
 
 	const onChangeValueProfileFilter = (
 		e: React.ChangeEvent<HTMLSelectElement>,
@@ -21,7 +24,8 @@ export function UserProfileFilters() {
 	return (
 		<WidgetWrapper wrap={true}>
 			<Filters
-				longfilters={userMyProfile.paid.longfilters.enabled}
+				basefilters={payload.basefilters}
+				longfilters={payload.longfilters}
 				location={{
 					value: filtersUser.location,
 					onChange: (e) => onChangeValueProfileFilter(e, "location"),
