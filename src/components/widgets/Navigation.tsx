@@ -21,7 +21,7 @@ export interface ILink {
 
 export const linkAuthUser: ILink[] = [
 	{ to: "/vapors", imgSrc: heart, title: "Кто лайкнул" },
-	{ to: "/favoriteusers", imgSrc: star, title: "Кто лайкнул" },
+	{ to: "/favoriteusers", imgSrc: star, title: "Избранные пользователи" },
 	{ to: "/dialogs", imgSrc: message, title: "Сообщения" },
 	{ to: "/searchvapors", imgSrc: glass, title: "Поиск людей" },
 	{ to: "/settings", imgSrc: gear, title: "Настройки" },
