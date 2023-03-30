@@ -32,6 +32,7 @@ export function SettingProfileFilters() {
 
 			<div className="flex flex-wrap justify-center m-2">
 				<Filters
+					basefilters={true}
 					longfilters={true}
 					location={{
 						value: userMyProfile.filters.location,
