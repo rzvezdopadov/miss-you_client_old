@@ -40,21 +40,11 @@ export interface IQueryAnswerGetProfiles {
 	querySendGetProfiles(data: {}): void;
 }
 
-export interface IQueryGetProfilesForLikes {
-	startcount: number;
-	amount: number;
-}
-
 export interface IQueryAnswerGetProfilesForLikes {
 	dataGetProfilesForLikes: IProfileShort[];
 	errorGetProfilesForLikes: IQueryAnswerError;
 	loadedGetProfilesForLikes: boolean;
 	querySendGetProfilesForLikes(data: {}): void;
-}
-
-export interface IQueryGetProfilesForFavorite {
-	startcount: number;
-	amount: number;
 }
 
 export interface IQueryAnswerGetProfilesForFavorite {
