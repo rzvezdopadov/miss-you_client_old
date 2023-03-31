@@ -100,6 +100,7 @@ export interface IProfile {
 	acctype: ACCTYPE;
 	filters: IFilterUsers;
 	paid: IPaid;
+	deleteacc: number;
 }
 
 export interface IProfileShort {
