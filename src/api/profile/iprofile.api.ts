@@ -53,3 +53,17 @@ export interface IQueryAnswerGetProfilesForFavorite {
 	loadedGetProfilesForFavorite: boolean;
 	querySendGetProfilesForFavorite(data: {}): void;
 }
+
+export interface IQueryAnswerDeleteAcc {
+	dataDeleteAcc: IProfile;
+	errorDeleteAcc: IQueryAnswerError;
+	loadedDeleteAcc: boolean;
+	querySendDeleteAcc(): void;
+}
+
+export interface IQueryAnswerDeleteAccCancel {
+	dataDeleteAccCancel: IProfile;
+	errorDeleteAccCancel: IQueryAnswerError;
+	loadedDeleteAccCancel: boolean;
+	querySendDeleteAccCancel(): void;
+}

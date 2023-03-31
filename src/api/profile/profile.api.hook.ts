@@ -2,7 +2,7 @@
 
 import { IProfile, IProfileShort } from "../../interfaces/iprofiles";
 import { IQueryAnswerError } from "../iquerys.api";
-import { useQueryPut, useQueryGet } from "../querys.api.hook";
+import { useQueryPut, useQueryGet, useQueryDelete } from "../querys.api.hook";
 import {
 	IQuerySetProfile,
 	IQueryAnswerSetProfile,
@@ -12,6 +12,8 @@ import {
 	IQueryAnswerGetProfilesForLikes,
 	IQueryGetProfiles,
 	IQueryAnswerGetProfilesForFavorite,
+	IQueryAnswerDeleteAcc,
+	IQueryAnswerDeleteAccCancel,
 } from "./iprofile.api";
 
 /* Set profile 
@@ -61,8 +63,7 @@ export function useQueryGetProfile() {
 }
 
 /* Get profiles
-    - filters - filters by which to search in the database, 
-    if this field is left blank, then all users will be sent; 
+    - filters - filters by which to search in the database;
     - startCount - user position to start;
     - amount - number of users in response;
 */
@@ -87,6 +88,7 @@ export function useQueryGetProfiles() {
 }
 
 /* Get profiles for likes
+    - filters - filters by which to search in the database;
     - startCount - user position to start;
     - amount - number of users in response;
 */
@@ -112,7 +114,8 @@ export function useQueryGetProfilesForLikes() {
 	return queryAnswer;
 }
 
-/* Get profiles for likes
+/* Get profiles for favorite users
+    - filters - filters by which to search in the database;
     - startCount - user position to start;
     - amount - number of users in response;
 */
@@ -133,6 +136,50 @@ export function useQueryGetProfilesForFavorite() {
 		errorGetProfilesForFavorite: errorNew,
 		loadedGetProfilesForFavorite: loaded,
 		querySendGetProfilesForFavorite,
+	};
+
+	return queryAnswer;
+}
+
+/* Query for delete profile
+ */
+export function useQuerySetDeleteAcc() {
+	const { data, error, loaded, querySend } = useQueryDelete();
+
+	const querySendDeleteAcc = async () => {
+		querySend("/api/deleteacc", {}, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerDeleteAcc = {
+		dataDeleteAcc: dataNew,
+		errorDeleteAcc: errorNew,
+		loadedDeleteAcc: loaded,
+		querySendDeleteAcc,
+	};
+
+	return queryAnswer;
+}
+
+/* Query for cancel delete profile
+ */
+export function useQuerySetDeleteAccCancel() {
+	const { data, error, loaded, querySend } = useQueryPut();
+
+	const querySendDeleteAccCancel = async () => {
+		querySend("/api/deleteacc", {}, true);
+	};
+
+	const dataNew = data as IProfile;
+	const errorNew = error as IQueryAnswerError;
+
+	const queryAnswer: IQueryAnswerDeleteAccCancel = {
+		dataDeleteAccCancel: dataNew,
+		errorDeleteAccCancel: errorNew,
+		loadedDeleteAccCancel: loaded,
+		querySendDeleteAccCancel,
 	};
 
 	return queryAnswer;
