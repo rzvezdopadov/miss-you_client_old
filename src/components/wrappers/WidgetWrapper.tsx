@@ -1,5 +1,5 @@
 export function WidgetWrapper(payload: {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	wrap?: boolean;
 	col?: boolean;
 }) {
