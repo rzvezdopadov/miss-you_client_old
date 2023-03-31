@@ -189,6 +189,7 @@ export const initialStateUserProfile: IUserProfile = {
 		acctype: ACCTYPE.user,
 		filters: initFilterUsers,
 		paid: initPaidProfile,
+		deleteacc: 0,
 	},
 };
 
@@ -245,6 +246,7 @@ export const initialStateUserMyProfile: IProfile = {
 	acctype: ACCTYPE.user,
 	filters: initFilterUsers,
 	paid: initPaidProfile,
+	deleteacc: 0,
 };
 
 export const userMyProfileReducer = createReducer(initialStateUserMyProfile, {
