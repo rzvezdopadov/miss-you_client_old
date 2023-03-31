@@ -20,6 +20,7 @@ import { useQuerySetProfile } from "../../api/profile/profile.api.hook";
 import { IQuerySetProfile } from "../../api/profile/iprofile.api";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
 import { WidgetWrapper } from "../wrappers/WidgetWrapper";
+import { SettingProfileDeleteAcc } from "../widgets/settingprofile/SettingProfileDeleteAcc";
 
 export function SettingProfile() {
 	const { userMyProfile } = store.getState();
@@ -59,6 +60,7 @@ export function SettingProfile() {
 				<Button onClick={btnSaveOnClickHandler} value={`Сохранить`} />
 			</WidgetWrapper>
 			<SettingProfileChangePass />
+			<SettingProfileDeleteAcc />
 			<ModalSettingProfileCharacters />
 			<ModalPhotoDelete />
 			<ModalPhotoEditor />
