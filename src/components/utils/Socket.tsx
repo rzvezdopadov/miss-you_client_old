@@ -22,6 +22,7 @@ import {
 } from "../../store/redusers/modal";
 import { IQueryAnswerMessageData } from "../../api/iquerys.api";
 import { IQueryFavotiteUsers } from "../../api/favoriteusers/ifavoriteusers.api";
+import { IQueryBannedUsers } from "../../api/bannedusers/ibannedusers.api";
 
 const socketClient = socketIO(`${window.location.hostname}:8000/`, {
 	reconnection: true,
@@ -95,6 +96,16 @@ export const setFavoriteUser = () => {
 	socketClient.emit("set_favoriteusers", data);
 };
 
+export const setBannedUser = () => {
+	const { userProfile } = store.getState();
+
+	const data: IQueryBannedUsers = {
+		userid: userProfile.profile.userid,
+	};
+
+	socketClient.emit("set_bannedusers", data);
+};
+
 export const getJWT = () => {
 	const { jwt } = store.getState();
 
@@ -164,6 +175,16 @@ export function Socket() {
 			const newMyProfile = { ...userMyProfile };
 
 			newMyProfile.favoriteusers = socket;
+
+			store.dispatch(userMyProfileAction(newMyProfile));
+		});
+
+		socketClient.on("set_bannedusers", (socket: string[]) => {
+			const { userMyProfile } = store.getState();
+
+			const newMyProfile = { ...userMyProfile };
+
+			newMyProfile.bannedusers = socket;
 
 			store.dispatch(userMyProfileAction(newMyProfile));
 		});
