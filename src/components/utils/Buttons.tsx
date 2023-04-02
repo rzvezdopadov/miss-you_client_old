@@ -43,17 +43,17 @@ export function ButtonScrollToTop(payload: {
 
 export function ButtonClose(payload: {
 	title?: string;
-	onClick: MouseEventHandler<HTMLDivElement>;
+	onClick: MouseEventHandler<HTMLButtonElement>;
 }) {
 	return (
 		<div className="flex justify-center h-6 w-full">
-			<div
+			<button
 				onClick={payload.onClick}
 				className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full select-none bg-red-500  shadow-[0px_0px_3px_3px] shadow-lime-300 h-6 w-6"
 				title={payload.title ? payload.title : ""}
 			>
 				X
-			</div>
+			</button>
 		</div>
 	);
 }
