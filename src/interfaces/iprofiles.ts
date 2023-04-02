@@ -72,6 +72,7 @@ export interface IProfile {
 	location: string;
 	likes: string[];
 	favoriteusers: string[];
+	bannedusers: string[];
 	birthday: number;
 	monthofbirth: number;
 	yearofbirth: number;
