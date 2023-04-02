@@ -1,15 +1,13 @@
 import * as React from "react";
-import { useEffect, useRef } from "react";
 import { IProfile } from "../../interfaces/iprofiles";
 import { store } from "../../store/store";
 import { LabelRating } from "../utils/Labels";
-import { Button, ButtonClose } from "../utils/Buttons";
+import { ButtonClose } from "../utils/Buttons";
 import {
 	initialStateUserProfile,
 	userProfileAction,
 } from "../../store/redusers/profile";
-import { ModalDialog, modalDialogClose, modalDialogOpen } from "./ModalDialog";
-import { modalMessageOpen } from "./ModalMessage";
+import { ModalDialog, modalDialogClose } from "./ModalDialog";
 import { DateTimeVisit } from "../utils/DateTime";
 import { UserProfileSlider } from "../widgets/userprofile/UserProfileSlider";
 import { UserProfileInterests } from "../widgets/userprofile/UserProfileInterests";
@@ -17,9 +15,9 @@ import { UserProfileAboutMe } from "../widgets/userprofile/UserProfileAboutMe";
 import { UserProfilePersonal } from "../widgets/userprofile/UserProfilePersonal";
 import { UserProfileQuality } from "../widgets/userprofile/UserProfileQuality";
 import { UserProfileNameAge } from "../widgets/userprofile/UserProfileNameAge";
-import { useQueryGetDialog } from "../../api/dialog/dialog.api.hook";
-import { IQueryDialog } from "../../api/dialog/idialog.api";
 import { useRefDivVisible } from "../../hooks/form.hook";
+import { UserProfileBunned } from "../widgets/userprofile/UserProfileBunned";
+import { UserProfileSendMessage } from "../widgets/userprofile/UserProfileSendMessage";
 
 export function modalUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -30,34 +28,12 @@ function modalUserProfileClose() {
 }
 
 export function ModalUserProfile() {
-	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
-		useQueryGetDialog();
 	const { userProfile } = store.getState();
 	const refUserProfile = useRefDivVisible(userProfile.enabled);
 
-	useEffect(() => {
-		if (!dataGetDialog) return;
-
-		modalDialogOpen(dataGetDialog);
-	}, [dataGetDialog]);
-
-	useEffect(() => {
-		if (!errorGetDialog) return;
-
-		modalMessageOpen(errorGetDialog.response.data.message);
-	}, [errorGetDialog]);
-
-	const openDialogModalHandler = () => {
-		const data: IQueryDialog = {
-			userid: userProfile.profile.userid,
-		};
-
-		querySendGetDialog(data);
-	};
-
 	const closeUserProfileHandler = () => {
-		modalDialogClose();
 		modalUserProfileClose();
+		modalDialogClose();
 	};
 
 	return (
@@ -71,10 +47,8 @@ export function ModalUserProfile() {
 				<div className="flex flex-col">
 					<UserProfileSlider />
 					<LabelRating value={userProfile.profile.rating} />
-					<Button
-						value={"Написать сообщение"}
-						onClick={openDialogModalHandler}
-					/>
+					<UserProfileSendMessage />
+					<UserProfileBunned />
 				</div>
 
 				<div className="flex items-center flex-col">
