@@ -17,12 +17,14 @@ import { IQuerySendMessage } from "../../api/dialog/idialog.api";
 import { IQuerySendSticker } from "../../api/shop/sticker/isticker.api";
 import { IQueryLike } from "../../api/like/ilike.api";
 import {
+	modalComplaintAction,
 	modalDialogAction,
 	modalMessageAction,
 } from "../../store/redusers/modal";
 import { IQueryAnswerMessageData } from "../../api/iquerys.api";
 import { IQueryFavotiteUsers } from "../../api/favoriteusers/ifavoriteusers.api";
 import { IQueryBannedUsers } from "../../api/bannedusers/ibannedusers.api";
+import { initialStateComplaint } from "../../store/redusers/complaints";
 
 const socketClient = socketIO(`${window.location.hostname}:8000/`, {
 	reconnection: true,
@@ -34,6 +36,37 @@ setInterval(() => {
 	const { jwt, socket } = store.getState();
 	if (jwt && socket) socketClient.emit("ping");
 }, 5000);
+
+export const sendComplaint = () => {
+	const { modalComplaint } = store.getState();
+
+	if (
+		!modalComplaint.complaint.subject ||
+		!modalComplaint.complaint.discription
+	) {
+		store.dispatch(
+			modalMessageAction(
+				true,
+				"Тема и описание должны быть обязательно написанны"
+			)
+		);
+
+		return;
+	}
+
+	if (
+		!modalComplaint.complaint.userto ||
+		!modalComplaint.complaint.userfrom
+	) {
+		store.dispatch(modalMessageAction(true, "Пользователь не выбран!"));
+
+		return;
+	}
+
+	socketClient.emit("set_complaint", modalComplaint.complaint);
+
+	store.dispatch(modalComplaintAction(false, initialStateComplaint));
+};
 
 const notMessageID = `Чтобы отправить сообщение выберите пользователя!`;
 

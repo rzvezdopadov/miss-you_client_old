@@ -1,5 +1,3 @@
-import { messageType } from "./ishop";
-
 export enum ACCTYPE {
 	user = "user",
 	admin = "admin",
@@ -65,6 +63,20 @@ export interface IPaid {
 	historymessages300: IPaidContent;
 }
 
+export interface IPresent {
+	fromuserid: string;
+	fromname: string;
+	presentid: string;
+	link: string;
+}
+
+export interface IAchivment {
+	id: string;
+	title: string;
+	discription: string;
+	link: string;
+}
+
 export interface IProfile {
 	userid: string;
 	timecode: number;
@@ -73,6 +85,8 @@ export interface IProfile {
 	likes: string[];
 	favoriteusers: string[];
 	bannedusers: string[];
+	presents: IPresent[];
+	achivments: IAchivment[];
 	birthday: number;
 	monthofbirth: number;
 	yearofbirth: number;
@@ -117,9 +131,14 @@ export interface IProfileShort {
 	rating: number;
 }
 
+export enum MESSAGETYPE {
+	message,
+	sticker,
+}
+
 export interface IMessage {
 	timecode: number;
-	type: messageType;
+	type: MESSAGETYPE;
 	userid: string;
 	message: string;
 	stickerpackid: string;
@@ -135,6 +154,30 @@ export interface IDialog {
 	yearofbirth: number;
 	photolink: string;
 	messages: IMessage[];
+}
+
+export enum COMPLAINTTYPE {
+	message = "message",
+	profile = "profile",
+}
+
+export enum COMPLAINTSTATUS {
+	open = "open",
+	inwork = "inwork",
+	close = "close",
+}
+
+export interface IComplaint {
+	userfrom: string;
+	userto: string;
+	timecode: number;
+	type: COMPLAINTTYPE;
+	subject: string;
+	discription: string;
+	dck: string;
+	cash: number;
+	status: COMPLAINTSTATUS;
+	complmessage: IMessage;
 }
 
 export interface IModalDialog {

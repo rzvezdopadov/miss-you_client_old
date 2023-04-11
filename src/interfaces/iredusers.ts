@@ -1,4 +1,5 @@
 import { IAdminBanned, IAdminChangeCash, IAdminChangeRating } from "./iadmin";
+import { IComplaint } from "./iprofiles";
 import { ITariff } from "./ishop";
 
 export interface IStateModalMessage {
@@ -34,4 +35,9 @@ export interface IStateAdminChangeCash {
 export interface IStateAdminBanned {
 	enabled: boolean;
 	banned: IAdminBanned;
+}
+
+export interface IStateModalComplaint {
+	enabled: boolean;
+	complaint: IComplaint;
 }

@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { IDialog } from "../../interfaces/iprofiles";
-import { IStickerpack } from "../../interfaces/istickers";
 
 ////////////////////////////////////////////////////////////////////////
 export const DIALOGS = "DIALOGS";
@@ -47,22 +46,5 @@ export const dialogReducer = createReducer(initialStateDialog, {
 		const { dialog } = action.payload;
 
 		return dialog;
-	},
-});
-////////////////////////////////////////////////////////////////////////
-export const STICKERPACKS = "STICKERPACKS";
-
-export const stickerpacksAction = (stickerpacks: IStickerpack[]) => ({
-	type: STICKERPACKS,
-	payload: stickerpacks,
-});
-
-const initialStateStickerpacks: IStickerpack[] = [];
-
-export const stickerpacksReducer = createReducer(initialStateStickerpacks, {
-	[STICKERPACKS]: (state: IStickerpack[], action: any) => {
-		const dataayStickerpacks = [...action.payload];
-
-		return dataayStickerpacks;
 	},
 });

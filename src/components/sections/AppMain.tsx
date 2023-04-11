@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { RecoveryPass } from "../pages/RecoveryPass";
 import { filtersUserAction } from "../../store/redusers/filterusers";
 import { userMyProfileAction } from "../../store/redusers/profile";
-import { stickerpacksAction } from "../../store/redusers/dialog";
 import { Agreement } from "../pages/Agreement";
 import { AboutUs } from "../pages/AboutUs";
 import { Partners } from "../pages/Partners";
@@ -25,6 +24,7 @@ import { IQueryGetProfile } from "../../api/profile/iprofile.api";
 import { useQueryGetProfile } from "../../api/profile/profile.api.hook";
 import { useQueryGetStickerpacks } from "../../api/shop/sticker/sticker.api.hook";
 import { FavoriteUsers } from "../pages/FavoriteUsers";
+import { stickerpacksAction } from "../../store/redusers/stickerpacks";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = store.getState();

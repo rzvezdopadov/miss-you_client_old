@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
-import { data_emojis } from "../../../data/emojis";
-import { convertTextToSign } from "../../../helpers/convert";
+import { data_emojis } from "../../../../data/emojis";
+import { convertTextToSign } from "../../../../helpers/convert";
 
 export function DialogEmojis(payload: {
 	onAddStrInMsgClbk: React.MouseEventHandler<HTMLDivElement>;

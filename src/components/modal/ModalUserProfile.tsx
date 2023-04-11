@@ -1,8 +1,13 @@
 import * as React from "react";
-import { IProfile } from "../../interfaces/iprofiles";
+import {
+	COMPLAINTSTATUS,
+	COMPLAINTTYPE,
+	IProfile,
+	MESSAGETYPE,
+} from "../../interfaces/iprofiles";
 import { store } from "../../store/store";
 import { LabelRating } from "../utils/Labels";
-import { ButtonClose } from "../utils/Buttons";
+import { Button, ButtonClose } from "../utils/Buttons";
 import {
 	initialStateUserProfile,
 	userProfileAction,
@@ -18,6 +23,11 @@ import { UserProfileNameAge } from "../widgets/userprofile/UserProfileNameAge";
 import { useRefDivVisible } from "../../hooks/form.hook";
 import { UserProfileBunned } from "../widgets/userprofile/UserProfileBunned";
 import { UserProfileSendMessage } from "../widgets/userprofile/UserProfileSendMessage";
+import {
+	ModalComplaint,
+	modalComplaintClose,
+	modalComplaintOpen,
+} from "./ModalComplaint";
 
 export function modalUserProfileOpen(profile: IProfile) {
 	store.dispatch(userProfileAction(true, profile));
@@ -28,12 +38,13 @@ function modalUserProfileClose() {
 }
 
 export function ModalUserProfile() {
-	const { userProfile } = store.getState();
+	const { userProfile, userMyProfile } = store.getState();
 	const refUserProfile = useRefDivVisible(userProfile.enabled);
 
 	const closeUserProfileHandler = () => {
 		modalUserProfileClose();
 		modalDialogClose();
+		modalComplaintClose();
 	};
 
 	return (
@@ -44,11 +55,35 @@ export function ModalUserProfile() {
 			<ButtonClose onClick={closeUserProfileHandler} />
 
 			<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
-				<div className="flex flex-col">
+				<div className="flex  flex-col">
 					<UserProfileSlider />
 					<LabelRating value={userProfile.profile.rating} />
 					<UserProfileSendMessage />
 					<UserProfileBunned />
+					<Button
+						value={"Пожаловаться на профиль"}
+						onClick={() =>
+							modalComplaintOpen({
+								userfrom: userMyProfile.userid,
+								userto: userProfile.profile.userid,
+								timecode: 0,
+								type: COMPLAINTTYPE.profile,
+								subject: "",
+								discription: "",
+								dck: "",
+								cash: 0,
+								status: COMPLAINTSTATUS.open,
+								complmessage: {
+									timecode: 0,
+									type: MESSAGETYPE.message,
+									userid: userProfile.profile.userid,
+									message: "",
+									stickerpackid: "",
+									stickerpos: 0,
+								},
+							})
+						}
+					></Button>
 				</div>
 
 				<div className="flex items-center flex-col">
@@ -62,7 +97,9 @@ export function ModalUserProfile() {
 					<UserProfileQuality profile={userProfile.profile} />
 				</div>
 			</div>
+
 			<ModalDialog />
+			<ModalComplaint />
 		</div>
 	);
 }

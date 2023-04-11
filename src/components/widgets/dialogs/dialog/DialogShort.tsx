@@ -1,13 +1,12 @@
 import * as React from "react";
-import { IDialog } from "../../../interfaces/iprofiles";
-import { messageType } from "../../../interfaces/ishop";
-import { getAgeFromYear } from "../../../helpers/age";
+import { IDialog, MESSAGETYPE } from "../../../../interfaces/iprofiles";
+import { getAgeFromYear } from "../../../../helpers/age";
 import { useEffect } from "react";
-import { modalMessageOpen } from "../../modal/ModalMessage";
-import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
-import { useQueryGetProfile } from "../../../api/profile/profile.api.hook";
-import { IQueryGetProfile } from "../../../api/profile/iprofile.api";
-import { PhotoDialogShort } from "../utils/Photo";
+import { modalMessageOpen } from "../../../modal/ModalMessage";
+import { modalUserProfileOpen } from "../../../modal/ModalUserProfile";
+import { useQueryGetProfile } from "../../../../api/profile/profile.api.hook";
+import { IQueryGetProfile } from "../../../../api/profile/iprofile.api";
+import { PhotoDialogShort } from "../../utils/Photo";
 
 export function DialogShort(payload: {
 	dialog: IDialog;
@@ -29,10 +28,14 @@ export function DialogShort(payload: {
 	useEffect(() => {
 		if (dataGetProfile) {
 			modalUserProfileOpen(dataGetProfile);
-		} else if (errorGetProfile) {
+		}
+	}, [dataGetProfile]);
+
+	useEffect(() => {
+		if (errorGetProfile) {
 			modalMessageOpen(errorGetProfile.response.data.message);
 		}
-	}, [dataGetProfile, errorGetProfile]);
+	}, [errorGetProfile]);
 
 	return (
 		<div className="flex items-center my-1 w-auto h-16 bg-gray-700 rounded-xl shadow-[0px_0px_1px_1px] shadow-lime-300 cursor-pointer">
@@ -50,7 +53,7 @@ export function DialogShort(payload: {
 				</div>
 				<div className="flex justify-start md:justify-center text-zinc-400 text-sm overflow-hidden select-none">
 					{dialog.messages[dialog.messages.length - 1].type ===
-					messageType.sticker
+					MESSAGETYPE.sticker
 						? "Cтикер"
 						: dialog.messages[dialog.messages.length - 1].message}
 				</div>

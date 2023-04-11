@@ -1,5 +1,5 @@
 import * as React from "react";
-import { store } from "../../../store/store";
+import { store } from "../../../../store/store";
 import { DialogContent } from "./DialogContent";
 
 export function Dialog() {

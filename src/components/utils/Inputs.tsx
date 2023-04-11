@@ -21,6 +21,25 @@ export function Input(payload: {
 	);
 }
 
+export function TextArea(payload: {
+	value: string | number;
+	onChange: ChangeEventHandler<HTMLTextAreaElement>;
+	placeholder: string;
+}) {
+	return (
+		<div key={payload.placeholder} className="flex m-1">
+			<textarea
+				value={payload.value}
+				onChange={payload.onChange}
+				title={payload.placeholder}
+				maxLength={50}
+				className="flex text-center resize-none rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black w-full"
+				placeholder={payload.placeholder}
+			></textarea>
+		</div>
+	);
+}
+
 export function FiltersInput(payload: {
 	headName: string;
 	filterParam: IFilterParamInput;

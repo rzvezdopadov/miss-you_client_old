@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { Dialog } from "../widgets/dialog/Dialog";
-import { DialogsLeftSideBar } from "../widgets/dialog/DialogsLeftSideBar";
-import { DialogsRightSideBarAd } from "../widgets/dialog/DialogsRightSideBarAd";
+import { Dialog } from "../widgets/dialogs/dialog/Dialog";
+import { DialogsLeftSideBar } from "../widgets/dialogs/DialogsLeftSideBar";
+import { DialogsRightSideBarAd } from "../widgets/dialogs/DialogsRightSideBarAd";
 import { store } from "../../store/store";
 import { ModalDialog, modalDialogClose } from "../modal/ModalDialog";
 import { dialogAction, initialStateDialog } from "../../store/redusers/dialog";

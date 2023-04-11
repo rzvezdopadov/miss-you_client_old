@@ -1,13 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { jwtReducer, registrationReducer } from "./redusers/auth";
-import {
-	dialogReducer,
-	dialogsReducer,
-	stickerpacksReducer,
-} from "./redusers/dialog";
+import { dialogReducer, dialogsReducer } from "./redusers/dialog";
 import { mobileMenuReducer } from "./redusers/menu";
 import {
 	modalAddDeleteStickerpackReducer,
+	modalComplaintReducer,
 	modalDialogReducer,
 	modalLoadingReducer,
 	modalMessageReducer,
@@ -30,6 +27,8 @@ import {
 	modalAdminChangeCashReducer,
 	modalAdminChangeRatingReducer,
 } from "./redusers/admin";
+import { stickerpacksReducer } from "./redusers/stickerpacks";
+import { complaintReducer, complaintsReducer } from "./redusers/complaints";
 
 export const store = configureStore({
 	reducer: {
@@ -51,11 +50,14 @@ export const store = configureStore({
 		settingProfileCharacters: settingProfileCharactersReducer,
 		dialogs: dialogsReducer,
 		dialog: dialogReducer,
+		complaints: complaintsReducer,
+		complaint: complaintReducer,
 		stickerpacks: stickerpacksReducer,
 		socket: socketReducer,
 		adminFiltersUser: adminFiltersUserReducer,
 		modalAdminChangeRating: modalAdminChangeRatingReducer,
 		modalAdminChangeCash: modalAdminChangeCashReducer,
 		modalAdminBanned: modalAdminBannedReducer,
+		modalComplaint: modalComplaintReducer,
 	},
 });

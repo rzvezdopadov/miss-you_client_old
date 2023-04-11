@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { store } from "../../../store/store";
-import { convertTextToSign } from "../../../helpers/convert";
-import { IStickerpack } from "../../../interfaces/istickers";
-import { sendSticker } from "../../utils/Socket";
-import { getWaySticker } from "../../../helpers/server";
+import { store } from "../../../../store/store";
+import { convertTextToSign } from "../../../../helpers/convert";
+import { IStickerpack } from "../../../../interfaces/istickers";
+import { sendSticker } from "../../../utils/Socket";
+import { getWaySticker } from "../../../../helpers/server";
 
 export function DialogStickers(payload: {
 	onAddStrInMsgClbk: React.MouseEventHandler<HTMLDivElement>;

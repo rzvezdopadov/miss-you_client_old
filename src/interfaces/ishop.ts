@@ -1,8 +1,3 @@
-export enum messageType {
-	message,
-	sticker,
-}
-
 export enum PAID_PROPERTY {
 	messageswrite = `messageswrite`,
 	messagesread = `messagesread`,

@@ -1,26 +1,32 @@
 import * as React from "react";
-import { messageType } from "../../../interfaces/ishop";
-import { store } from "../../../store/store";
+import { store } from "../../../../store/store";
 import { useEffect, useState } from "react";
-import { getDateTimeFromTimeCode } from "../../../helpers/datetime";
-import { PhotoMessage } from "../utils/Photo";
-import { getWaySticker } from "../../../helpers/server";
+import { getDateTimeFromTimeCode } from "../../../../helpers/datetime";
+import { PhotoMessage } from "../../utils/Photo";
+import { getWaySticker } from "../../../../helpers/server";
+import {
+	COMPLAINTSTATUS,
+	COMPLAINTTYPE,
+	MESSAGETYPE,
+} from "../../../../interfaces/iprofiles";
+import { modalComplaintOpen } from "../../../modal/ModalComplaint";
 
 export function DialogMessage(payload: {
 	keyopt: string;
+	userid: string;
 	name: string;
 	timecode: number;
-	messageType: messageType;
+	messageType: MESSAGETYPE;
 	message: string;
 	stickerpackid: string;
 	stikerpos: number;
 	photolink: string;
 }) {
-	const { stickerpacks } = store.getState();
+	const { stickerpacks, userMyProfile } = store.getState();
 	const [linkSticker, setLinkSticker] = useState("");
 
 	useEffect(() => {
-		if (payload.messageType === messageType.sticker) {
+		if (payload.messageType === MESSAGETYPE.sticker) {
 			const stickerpackIndex = stickerpacks.findIndex(
 				(stickerpack) =>
 					stickerpack.idstickerpack === payload.stickerpackid
@@ -58,7 +64,7 @@ export function DialogMessage(payload: {
 					)}`}
 				</div>
 				<div className="flex text-left overflow-hidden justify-start items-center w-80 select-none">
-					{payload.messageType === messageType.sticker ? (
+					{payload.messageType === MESSAGETYPE.sticker ? (
 						<div
 							style={{
 								backgroundImage: `URL(${linkSticker})`,
@@ -70,6 +76,37 @@ export function DialogMessage(payload: {
 					)}
 				</div>
 			</div>
+			{userMyProfile.userid === payload.userid ? (
+				<></>
+			) : (
+				<div
+					className="flex opacity-20 cursor-pointer hover:opacity-100 text-xl"
+					title="Пожаловаться на спам"
+					onClick={() =>
+						modalComplaintOpen({
+							userfrom: userMyProfile.userid,
+							userto: payload.userid,
+							timecode: 0,
+							type: COMPLAINTTYPE.message,
+							subject: "",
+							discription: "",
+							dck: "",
+							cash: 0,
+							status: COMPLAINTSTATUS.open,
+							complmessage: {
+								timecode: payload.timecode,
+								type: payload.messageType,
+								userid: payload.userid,
+								message: payload.message,
+								stickerpackid: payload.stickerpackid,
+								stickerpos: payload.stikerpos,
+							},
+						})
+					}
+				>
+					&#128711;
+				</div>
+			)}
 		</div>
 	);
 }

@@ -1,9 +1,9 @@
 import { useRef, useEffect, useState } from "react";
-import stickerimg from "../../../assets/img/sticker.webp";
+import stickerimg from "../../../../assets/img/sticker.webp";
 import { DialogEmojis } from "./DialogEmojis";
 import { DialogStickers } from "./DialogStickers";
-import { convertTextToSign } from "../../../helpers/convert";
-import { data_emojis } from "../../../data/emojis";
+import { convertTextToSign } from "../../../../helpers/convert";
+import { data_emojis } from "../../../../data/emojis";
 
 enum stickers {
 	emojis,

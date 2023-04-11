@@ -1,34 +1,26 @@
 import React from "react";
-import { IDialog, IMessage } from "../../../interfaces/iprofiles";
-import { store } from "../../../store/store";
+import { IDialog } from "../../../../interfaces/iprofiles";
+import { store } from "../../../../store/store";
 import {
 	dialogAction,
 	initialStateDialog,
-} from "../../../store/redusers/dialog";
-import { scrollToBottom } from "../../../helpers/pagescroll";
-import { modalMessageOpen } from "../../modal/ModalMessage";
-import { sendMessage } from "../../utils/Socket";
-import { getAgeFromYear, getStrYearFromAge } from "../../../helpers/age";
-import { DialogMessage } from "./DialogMessage";
+} from "../../../../store/redusers/dialog";
+import { modalMessageOpen } from "../../../modal/ModalMessage";
+import { sendMessage } from "../../../utils/Socket";
 import { DialogSmiles } from "./DialogSmiles";
+import { DialogHead } from "./DialogHead";
+import { DialogMessages } from "./DialogMessages";
+import { ModalComplaint } from "../../../modal/ModalComplaint";
 
 export function DialogContent(payload: { dialog: IDialog }) {
-	const { userMyProfile } = store.getState();
 	const [messageForUser, setMessageForUser] = React.useState("");
 	const [smilesOpen, setSmilesOpen] = React.useState(false);
-
-	const bottomRef = React.useRef<HTMLDivElement>(null);
 
 	React.useEffect(() => {
 		return () => {
 			store.dispatch(dialogAction(initialStateDialog));
 		};
 	}, []);
-
-	React.useEffect(() => {
-		setMessageForUser("");
-		scrollToBottom(bottomRef);
-	}, [payload.dialog]);
 
 	const sendMessageHandler = () => {
 		if (!messageForUser) {
@@ -49,58 +41,9 @@ export function DialogContent(payload: { dialog: IDialog }) {
 
 	return (
 		<>
-			<div className="flex flex-shrink-0 justify-center items-center w-full my-1 text-lime-400 select-none">
-				{payload.dialog &&
-				payload.dialog.yearofbirth &&
-				payload.dialog.userid &&
-				Object.keys(payload.dialog).length ? (
-					`${payload.dialog.name}, ${getAgeFromYear(
-						payload.dialog.yearofbirth
-					)} ${getStrYearFromAge(
-						getAgeFromYear(payload.dialog.yearofbirth)
-					)}`
-				) : (
-					<div className="flex justify-center text-lime-400">
-						Диалог с пользователем
-					</div>
-				)}
-			</div>
+			<DialogHead {...payload.dialog} />
+			<DialogMessages {...payload.dialog} />
 
-			<div
-				ref={bottomRef}
-				className="hover:overflow-y-scroll overflow-hidden justify-end shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl px-2 pt-2 pb-2 h-full w-full"
-			>
-				{payload.dialog &&
-				Object.keys(payload.dialog).length &&
-				payload.dialog.messages.length ? (
-					payload.dialog.messages.map((value: IMessage, index) => {
-						let name = userMyProfile.name;
-						let photolink =
-							userMyProfile.photolink[userMyProfile.photomain];
-
-						if (userMyProfile.userid !== value.userid) {
-							name = payload.dialog.name;
-							photolink = payload.dialog.photolink;
-						}
-
-						return (
-							<DialogMessage
-								key={`DialogMessage${payload.dialog.timecode}${value.timecode}`}
-								keyopt={`${payload.dialog.timecode}${value.timecode}`}
-								name={name}
-								timecode={value.timecode}
-								messageType={value.type}
-								message={value.message}
-								photolink={photolink}
-								stickerpackid={value.stickerpackid}
-								stikerpos={value.stickerpos}
-							/>
-						);
-					})
-				) : (
-					<div>Диалога нет</div>
-				)}
-			</div>
 			<div className="flex flex-shrink-0 justify-center items-end shadow-[0px_0px_1px_1px] shadow-lime-300 w-full mt-2 rounded-xl text-lime-400 select-none">
 				<div className="flex w-full flex-col my-1">
 					<textarea
@@ -152,6 +95,7 @@ export function DialogContent(payload: { dialog: IDialog }) {
 					</div>
 				</div>
 			</div>
+			<ModalComplaint />
 		</>
 	);
 }

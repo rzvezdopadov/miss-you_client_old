@@ -4,7 +4,7 @@ import { modalDialogAction } from "../../store/redusers/modal";
 import { initialStateDialog } from "../../store/redusers/dialog";
 import { ButtonClose } from "../utils/Buttons";
 import { useRefDivVisible } from "../../hooks/form.hook";
-import { DialogContent } from "../widgets/dialog/DialogContent";
+import { DialogContent } from "../widgets/dialogs/dialog/DialogContent";
 import { IDialog } from "../../interfaces/iprofiles";
 
 export function modalDialogOpen(dialog: IDialog) {

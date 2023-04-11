@@ -1,11 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
+	IStateModalComplaint,
 	IStateModalMessage,
 	IStatePhotoDelete,
 } from "../../interfaces/iredusers";
 import { IStickerpack } from "../../interfaces/istickers";
-import { IModalDialog } from "../../interfaces/iprofiles";
+import { IComplaint, IModalDialog } from "../../interfaces/iprofiles";
 import { initialStateDialog } from "./dialog";
+import { initialStateComplaint } from "./complaints";
 
 ////////////////////////////////////////////////////////////////////////
 export const MODAL_LOADING = "MODAL_LOADING";
@@ -204,3 +206,31 @@ export const modalAddDeleteStickerpackReducer = createReducer(
 		},
 	}
 );
+////////////////////////////////////////////////////////////////////////
+export const MODAL_COMPLAINT = "MODAL_COMPLAINT";
+
+export const modalComplaintAction = (
+	enabled: boolean,
+	complaint: IComplaint
+) => ({
+	type: MODAL_COMPLAINT,
+	payload: {
+		enabled,
+		complaint,
+	},
+});
+
+const initialStateModalComplaint: IStateModalComplaint = {
+	enabled: false,
+	complaint: initialStateComplaint,
+};
+
+export const modalComplaintReducer = createReducer(initialStateModalComplaint, {
+	[MODAL_COMPLAINT]: (state: IStateModalComplaint, action: any) => {
+		let { enabled, complaint } = action.payload;
+
+		if (!enabled) complaint = state.complaint;
+
+		return { enabled, complaint };
+	},
+});
