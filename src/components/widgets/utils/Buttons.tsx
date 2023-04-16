@@ -8,10 +8,8 @@ export function ButtonsYesCancelWidget(payload: {
 }) {
 	return (
 		<ButtonsYesCancelWrapper>
-			<>
-				<ButtonYes onClick={payload.onClickYes} />
-				<ButtonCancel onClick={payload.onClickCancel} />
-			</>
+			<ButtonYes onClick={payload.onClickYes} />
+			<ButtonCancel onClick={payload.onClickCancel} />
 		</ButtonsYesCancelWrapper>
 	);
 }
