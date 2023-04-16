@@ -25,7 +25,7 @@ export function Filters() {
 
 			<div className="flex justify-center items-start flex-wrap">
 				<Button
-					value={"В поиске пар"}
+					value={"В поиске пар расширенные"}
 					onClick={() => setPage(Page.longfilters)}
 				/>
 				<Button
