@@ -9,7 +9,7 @@ export function SelectFromArr(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center">
+		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
@@ -41,7 +41,7 @@ export function SelectFromArrValue(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center">
+		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
@@ -74,34 +74,42 @@ export function FiltersOptionAtArr(payload: {
 	}>;
 }) {
 	return (
-		<div className="flex flex-row flex-wrap bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center overflow-hidden">
-			<span className="flex m-1">{payload.headName}</span>
-
-			{payload.arrArgs.map((arg, i: number) => {
-				return (
-					<select
-						className="flex bg-gray-300 text-black text-center cursor-pointer m-1 rounded-lg"
-						key={i + payload.headName}
-						value={arg.filterParam.value}
-						onChange={arg.filterParam.onChange}
-					>
-						{arg.data.map((value, i: number) => {
-							return payload.arrArgs.length < 2 ? (
-								<option
-									key={String(i) + value}
-									value={arg.valen ? value : i}
-								>
-									{value}
-								</option>
-							) : (
-								<option key={String(i) + value} value={value}>
-									{value}
-								</option>
-							);
-						})}
-					</select>
-				);
-			})}
+		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+			<div className="flex mr-0.5">
+				<span className="select-none text-white">
+					{payload.headName}
+				</span>
+			</div>
+			<div className="flex ml-0.5">
+				{payload.arrArgs.map((arg, i: number) => {
+					return (
+						<select
+							className="flex bg-gray-300  text-center w-full text-black cursor-pointer m-1 rounded-lg"
+							key={i + payload.headName}
+							value={arg.filterParam.value}
+							onChange={arg.filterParam.onChange}
+						>
+							{arg.data.map((value, i: number) => {
+								return payload.arrArgs.length < 2 ? (
+									<option
+										key={String(i) + value}
+										value={arg.valen ? value : i}
+									>
+										{value}
+									</option>
+								) : (
+									<option
+										key={String(i) + value}
+										value={value}
+									>
+										{value}
+									</option>
+								);
+							})}
+						</select>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

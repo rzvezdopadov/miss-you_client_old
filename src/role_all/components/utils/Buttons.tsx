@@ -58,7 +58,7 @@ export function ButtonClose(payload: {
 		<div className="flex justify-center h-6 w-full">
 			<button
 				onClick={payload.onClick}
-				className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full select-none bg-red-500  shadow-[0px_0px_3px_3px] shadow-lime-300 h-6 w-6"
+				className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full select-none bg-red-500  shadow-[0px_0px_3px_3px] shadow-lime-300 h-6 w-6 z-10"
 				title={payload.title ? payload.title : ""}
 			>
 				X

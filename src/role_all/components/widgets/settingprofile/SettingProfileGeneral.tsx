@@ -123,7 +123,7 @@ export function SettingProfileGeneral() {
 				title={"Кого ищу?"}
 			/>
 
-			<div className="flex bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-0.5 py-2 px-1 m-1.5 ">
+			<div className="flex justify-around bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-0.5 py-2 px-1 m-1.5 w-full min-[480px]:w-auto">
 				<label htmlFor="date" className="text-white">
 					{`Дата рождения: `}
 				</label>
