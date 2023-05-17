@@ -9,7 +9,7 @@ module.exports = {
   entry: './src/indexUser.tsx',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(__dirname, 'bundle'),
     },
     compress: true,
     port: 3000,
@@ -32,17 +32,18 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg|webp)$/i,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true,
-              disable: true,
-            },
+        
+        loader: 'file-loader',
+        
           
-          },
-       ],
+        options: {
+          bypassOnDebug: true,
+          disable: true,
+          name: '[name].[hash].[ext]',
+          outputPath: 'static/media',
+        },
+          
+      
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -68,15 +69,15 @@ module.exports = {
       template: 'public/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'style-[hash].css',
+      filename: 'css/style-[hash].css',
     }),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    filename: 'bundle-[hash].js',
-    path: path.resolve(__dirname, 'build'),
+    filename: 'static/js/bundle-[hash].js',
+    path: path.resolve(__dirname, 'bundle'),
     publicPath: '/'
   },
 };
