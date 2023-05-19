@@ -13,7 +13,7 @@ export function Input(payload: {
 				value={payload.value}
 				onChange={payload.onChange}
 				title={payload.placeholder}
-				className="flex text-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-0.5 mx-1.5 py-1 px-3"
+				className="flex text-center rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-0.5 py-1 px-3"
 				type={payload.type}
 				placeholder={payload.placeholder}
 			/>
@@ -52,7 +52,7 @@ export function FiltersInput(payload: {
 			<span className="flex m-1">{payload.headName}</span>
 
 			<input
-				className="flex bg-gray-300 text-black text-center m-1 rounded-lg"
+				className="flex bg-gray-300 text-black text-center m-1 rounded-md"
 				value={payload.filterParam.value}
 				onChange={payload.filterParam.onChange}
 			></input>
