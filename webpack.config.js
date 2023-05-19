@@ -32,18 +32,13 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg|webp)$/i,
-        
         loader: 'file-loader',
-        
-          
         options: {
           bypassOnDebug: true,
           disable: true,
           name: '[name].[hash].[ext]',
           outputPath: 'static/media',
-        },
-          
-      
+        },      
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -52,7 +47,9 @@ module.exports = {
     ],
   },
   plugins: [
-     new CleanWebpackPlugin(),
+     new CleanWebpackPlugin({
+      dangerouslyAllowCleanPatternsOutsideProject: true,
+    }),
     // new CopyWebpackPlugin({
     //   patterns: [
     //     {
