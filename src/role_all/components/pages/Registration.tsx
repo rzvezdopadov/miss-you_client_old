@@ -33,6 +33,13 @@ export function Registration() {
 	let minDateBirth = date.toISOString().split("T")[0];
 
 	useEffect(() => {
+		const newRegistration = { ...registration };
+		newRegistration.location = towns[0];
+
+		storeAll.dispatch(registrationAction(newRegistration));
+	}, [towns]);
+
+	useEffect(() => {
 		checkboxAgreementCheck(null as never);
 	}, []);
 
