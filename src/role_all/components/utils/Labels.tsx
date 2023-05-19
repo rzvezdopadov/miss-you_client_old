@@ -1,22 +1,38 @@
 import { MouseEventHandler } from "react";
 import { LabelWrapper } from "../wrappers/LabelWrapper";
-import { FONT_SIZE } from "../../../assets/styles/enum";
+import { BG_COLOR, FONT_SIZE } from "../../../assets/styles/enum";
 
 export function Label(payload: {
-	value: string;
+	value?: string;
 	fontsize?: FONT_SIZE;
 	bold?: boolean;
+	title?: string;
+	bgcolor?: BG_COLOR;
+	shadow?: boolean;
+	selectauto?: boolean;
+	children?: React.ReactNode;
 }) {
 	return (
-		<LabelWrapper>
-			<label
-				className={`flex text-white${
-					payload.bold ? " font-bold" : ""
-				} m-1${payload.fontsize}`}
-			>
-				{payload.value}
-			</label>
-		</LabelWrapper>
+		<label
+			className={`flex justify-center my-2 rounded-md text-white ${
+				payload.bold ? " font-bold" : ""
+			}${payload.fontsize ? ` ${payload.fontsize}` : ""}${
+				payload.bgcolor ? ` ${payload.bgcolor}` : ""
+			}${
+				payload.shadow
+					? " shadow-[0px_0px_3px_3px] shadow-lime-300"
+					: ""
+			}${payload.selectauto ? ` select-auto` : ` select-none`}`}
+			title={payload.title ? payload.title : ""}
+		>
+			{payload.value ? (
+				payload.value
+			) : payload.children ? (
+				payload.children
+			) : (
+				<></>
+			)}
+		</label>
 	);
 }
 
@@ -46,7 +62,7 @@ export function LabelRating(payload: {
 }) {
 	return (
 		<div
-			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 mx-1 rounded-md"
+			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md"
 			title="Рейтинг пользователя"
 			key={`Rating${payload.value}`}
 			onClick={payload.onClick ? payload.onClick : () => {}}
@@ -62,7 +78,7 @@ export function LabelCash(payload: {
 }) {
 	return (
 		<div
-			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 mx-1 rounded-md"
+			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md"
 			title="MY-Баллы платежная валюта сайта"
 			key={`Cash${payload.value}`}
 			onClick={payload.onClick ? payload.onClick : () => {}}

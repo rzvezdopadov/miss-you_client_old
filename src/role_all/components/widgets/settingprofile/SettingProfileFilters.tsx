@@ -30,81 +30,92 @@ export function SettingProfileFilters() {
 		<WidgetWrapper wrap={true}>
 			<LabelWidget value={"Фильтры по умолчанию:"} />
 
-			<FiltersWidget
-				basefilters={true}
-				longfilters={true}
-				location={{
-					value: userMyProfile.filters.location,
-					onChange: (e) =>
-						onChangeValueProfileFilter(e, "location", "string"),
-				}}
-				agestart={{
-					value: userMyProfile.filters.agestart,
-					onChange: (e) => onChangeValueProfileFilter(e, "agestart"),
-				}}
-				ageend={{
-					value: userMyProfile.filters.ageend,
-					onChange: (e) => onChangeValueProfileFilter(e, "ageend"),
-				}}
-				growthstart={{
-					value: userMyProfile.filters.growthstart,
-					onChange: (e) =>
-						onChangeValueProfileFilter(e, "growthstart"),
-				}}
-				growthend={{
-					value: userMyProfile.filters.growthend,
-					onChange: (e) => onChangeValueProfileFilter(e, "growthend"),
-				}}
-				weight={{
-					value: userMyProfile.filters.weight,
-					onChange: (e) => onChangeValueProfileFilter(e, "weight"),
-				}}
-				signzodiac={{
-					value: userMyProfile.filters.signzodiac,
-					onChange: (e) =>
-						onChangeValueProfileFilter(e, "signzodiac"),
-				}}
-				gendervapor={{
-					value: userMyProfile.filters.gendervapor,
-					onChange: (e) =>
-						onChangeValueProfileFilter(e, "gendervapor"),
-				}}
-				education={{
-					value: userMyProfile.filters.education,
-					onChange: (e) => onChangeValueProfileFilter(e, "education"),
-				}}
-				fieldofactivity={{
-					value: userMyProfile.filters.fieldofactivity,
-					onChange: (e) =>
-						onChangeValueProfileFilter(e, "fieldofactivity"),
-				}}
-				maritalstatus={{
-					value: userMyProfile.filters.maritalstatus,
-					onChange: (e) =>
-						onChangeValueProfileFilter(e, "maritalstatus"),
-				}}
-				children={{
-					value: userMyProfile.filters.children,
-					onChange: (e) => onChangeValueProfileFilter(e, "children"),
-				}}
-				religion={{
-					value: userMyProfile.filters.religion,
-					onChange: (e) => onChangeValueProfileFilter(e, "religion"),
-				}}
-				smoke={{
-					value: userMyProfile.filters.smoke,
-					onChange: (e) => onChangeValueProfileFilter(e, "smoke"),
-				}}
-				alcohol={{
-					value: userMyProfile.filters.alcohol,
-					onChange: (e) => onChangeValueProfileFilter(e, "alcohol"),
-				}}
-				profit={{
-					value: userMyProfile.filters.profit,
-					onChange: (e) => onChangeValueProfileFilter(e, "profit"),
-				}}
-				interests={[]}
-			/>
+			<WidgetWrapper wrap={true} shadowDisable={true}>
+				<FiltersWidget
+					basefilters={true}
+					longfilters={true}
+					location={{
+						value: userMyProfile.filters.location,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "location", "string"),
+					}}
+					agestart={{
+						value: userMyProfile.filters.agestart,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "agestart"),
+					}}
+					ageend={{
+						value: userMyProfile.filters.ageend,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "ageend"),
+					}}
+					growthstart={{
+						value: userMyProfile.filters.growthstart,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "growthstart"),
+					}}
+					growthend={{
+						value: userMyProfile.filters.growthend,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "growthend"),
+					}}
+					weight={{
+						value: userMyProfile.filters.weight,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "weight"),
+					}}
+					signzodiac={{
+						value: userMyProfile.filters.signzodiac,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "signzodiac"),
+					}}
+					gendervapor={{
+						value: userMyProfile.filters.gendervapor,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "gendervapor"),
+					}}
+					education={{
+						value: userMyProfile.filters.education,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "education"),
+					}}
+					fieldofactivity={{
+						value: userMyProfile.filters.fieldofactivity,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "fieldofactivity"),
+					}}
+					maritalstatus={{
+						value: userMyProfile.filters.maritalstatus,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "maritalstatus"),
+					}}
+					children={{
+						value: userMyProfile.filters.children,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "children"),
+					}}
+					religion={{
+						value: userMyProfile.filters.religion,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "religion"),
+					}}
+					smoke={{
+						value: userMyProfile.filters.smoke,
+						onChange: (e) => onChangeValueProfileFilter(e, "smoke"),
+					}}
+					alcohol={{
+						value: userMyProfile.filters.alcohol,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "alcohol"),
+					}}
+					profit={{
+						value: userMyProfile.filters.profit,
+						onChange: (e) =>
+							onChangeValueProfileFilter(e, "profit"),
+					}}
+					interests={[]}
+				/>
+			</WidgetWrapper>
 		</WidgetWrapper>
 	);
 }
