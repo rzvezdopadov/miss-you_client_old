@@ -34,9 +34,7 @@ export function SettingProfileAbout() {
 			/>
 
 			<WidgetWrapper wrap={true} col={true} itemsCenterDisable={true}>
-				<Label
-					title={`За каждого приведенного участника сайта, начислим 5% MY-баллов от каждого его пополнения счета!`}
-				>
+				<Label title={refererDiscription}>
 					{`Ваша реферальская ссылка:`} {convertTextToSign("&nbsp")}
 				</Label>
 				<a
