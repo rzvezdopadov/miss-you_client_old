@@ -1,15 +1,16 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
-  entry: './src/indexUser.tsx',
+  entry: {
+    user: './src/indexUser.tsx',
+  },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'bundle'),
+      directory: path.join(__dirname, 'bundleuser'),
     },
     compress: true,
     port: 3000,
@@ -50,20 +51,13 @@ module.exports = {
      new CleanWebpackPlugin({
       dangerouslyAllowCleanPatternsOutsideProject: true,
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: '**/*',
-    //       context: path.resolve(__dirname, 'src', 'assets'),
-    //       to: './assets',
-    //     },
-    //   ],
-    // }),
     new SourceMapDevToolPlugin({
       filename: "[file].map"
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
+      filename: 'index.html',
+      chunks: ['user']
     }),
     new MiniCssExtractPlugin({
       filename: 'css/style-[hash].css',
@@ -73,8 +67,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    filename: 'static/js/bundle-[hash].js',
-    path: path.resolve(__dirname, 'bundle'),
+    filename: 'static/js/[name]-[hash].js',
+    path: path.resolve(__dirname, 'bundleuser'),
     publicPath: '/'
   },
 };
