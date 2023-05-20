@@ -22,13 +22,17 @@ import { UserProfileFiltersWidget } from "../widgets/userprofile/UserProfileFilt
 export function Profiles() {
 	const { userMyProfile, usersProfiles, userProfile } = storeAll.getState();
 	const { userFilters } = store.getState();
-	const { dataGetProfiles, errorGetProfiles, querySendGetProfiles } =
-		useQueryGetProfiles();
+	const {
+		dataGetProfiles,
+		errorGetProfiles,
+		loadedGetProfiles,
+		querySendGetProfiles,
+	} = useQueryGetProfiles();
 
 	useEffect(() => {
 		return () => {
-			store.dispatch(usersProfilesAction([]));
-			store.dispatch(
+			storeAll.dispatch(usersProfilesAction([]));
+			storeAll.dispatch(
 				userProfileAction({
 					enabled: false,
 					profile: { ...userProfile.profile },
@@ -45,10 +49,16 @@ export function Profiles() {
 
 	useEffect(() => {
 		if (!dataGetProfiles) return;
+		if (dataGetProfiles.length === 0) return;
+
+		const index = usersProfiles.findIndex(
+			(value) => value.userid === dataGetProfiles[0].userid
+		);
+		if (index !== -1) return;
 
 		let newUsersProfiles = [...usersProfiles, ...dataGetProfiles];
 
-		store.dispatch(usersProfilesAction(newUsersProfiles));
+		storeAll.dispatch(usersProfilesAction(newUsersProfiles));
 	}, [dataGetProfiles]);
 
 	useEffect(() => {
@@ -93,6 +103,7 @@ export function Profiles() {
 			clbkScrollBottom={() =>
 				querySendGetProfilesLocal(usersProfiles.length)
 			}
+			loader={loadedGetProfiles}
 			shadow={true}
 			color={true}
 		>
@@ -103,8 +114,6 @@ export function Profiles() {
 			<div className="flex flex-row flex-wrap justify-center">
 				<UserProfilesShort />
 			</div>
-			<ModalUserProfile />
-			<ModalDialog />
 		</MainScrollWrapper>
 	);
 }
