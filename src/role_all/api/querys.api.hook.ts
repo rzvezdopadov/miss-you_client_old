@@ -10,6 +10,7 @@ import {
 function testOnBadTokenStatus(message: string) {
 	if (
 		message === "Токен просрочен, повторите вход в систему!" ||
+		message === "У вас нет прав доступа на выполнение данной операции!" ||
 		message === "Токен не валидный!"
 	) {
 		setTimeout(() => {
