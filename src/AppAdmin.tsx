@@ -1,5 +1,3 @@
-//// @ts-nocheck
-import * as React from "react";
 import { useEffect } from "react";
 import "./App.css";
 import { MobileMenu } from "./role_admin/components/selections/MobileMenu";
@@ -12,6 +10,7 @@ import { AppHeader } from "./role_admin/components/selections/AppHeader";
 import { AppMain } from "./role_admin/components/selections/AppMain";
 import { storeAll } from "./role_all/store/storeAll";
 import { getJWT } from "./role_all/socket/auth";
+import relation from "../src/assets/img/relations.jpg";
 
 function App() {
 	const { jwt, mobileMenu } = storeAll.getState();
@@ -26,6 +25,9 @@ function App() {
 
 	return (
 		<div
+			style={{
+				backgroundImage: `url("${relation}")`,
+			}}
 			className="App"
 			onClick={(e) => {
 				if (mobileMenu && e.clientX > 100) closeMobileMenu(e);
