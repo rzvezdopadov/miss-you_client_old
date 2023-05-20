@@ -21,6 +21,7 @@ import {
 	IFilterParamSelect,
 } from "../../../role_all/interfaces/iprofiles";
 import { FiltersInput } from "../../../role_all/components/utils/Inputs";
+import { storeAll } from "../../../role_all/store/storeAll";
 
 export function FiltersWidget(payload: {
 	userid: IFilterParamInput;
@@ -43,20 +44,22 @@ export function FiltersWidget(payload: {
 	profit: IFilterParamSelect;
 	acctype: IFilterParamSelect;
 }) {
+	const { towns } = storeAll.getState();
+
 	return (
 		<>
 			<FiltersInput headName={"userid"} filterParam={payload.userid} />
 
-			{/* <FiltersOptionAtArr
+			<FiltersOptionAtArr
 				headName={"Локация:"}
 				arrArgs={[
 					{
-						data: data_location,
+						data: towns,
 						filterParam: { ...payload.location },
 						valen: true,
 					},
 				]}
-			/> */}
+			/>
 			<FiltersOptionAtArr
 				headName={"Возраст:"}
 				arrArgs={[
