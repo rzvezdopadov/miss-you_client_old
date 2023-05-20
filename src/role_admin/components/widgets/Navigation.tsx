@@ -17,7 +17,6 @@ export const linkAuthAdmin: ILink[] = [
 	{ to: "/dialogs", imgSrc: message, title: "Сообщения" },
 	{ to: "/userprofiles", imgSrc: peoples, title: "Пользователи" },
 	{ to: "/settings", imgSrc: gear, title: "Настройки" },
-	{ to: "/shop", imgSrc: basket, title: "Магазин" },
 	{ to: "/logout", imgSrc: exit, title: "Выход" },
 ];
 
