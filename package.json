@@ -30,8 +30,10 @@
     "@babel/preset-react"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --mode=development --open --hot",
-    "build": "webpack --config webpack.config.js --mode=production"
+    "start": "webpack-dev-server --config webpack.config.user.js --mode=development --open --hot",
+    "build": "webpack --config webpack.config.user.js --mode=production",
+    "startadmin": "webpack-dev-server --config webpack.config.admin.js --mode=development --open --hot",
+    "buildadmin": "webpack --config webpack.config.admin.js --mode=production"
   },
   "jest": {
     "preset": "ts-jest",
