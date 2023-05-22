@@ -3,7 +3,7 @@ import { MainScrollWrapper } from "../../../role_all/components/wrappers/MainScr
 
 export function Statistics() {
 	return (
-		<MainScrollWrapper shadow={true}>
+		<MainScrollWrapper shadow={true} color={true}>
 			<LabelPageName value={`Статистика сайта`} />
 		</MainScrollWrapper>
 	);
