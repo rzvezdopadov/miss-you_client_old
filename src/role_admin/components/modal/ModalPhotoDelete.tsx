@@ -10,11 +10,11 @@ import { IQueryDeletePhoto } from "../../api/photo/iphoto.api";
 import { ModalYesCancelWrapper } from "../../../role_all/components/wrappers/modal/ModalYesCancelWrapper";
 
 export function modalPhotoDeleteOpen(photoPos: number) {
-	store.dispatch(modalPhotoDeleteAction({ enabled: true, photoPos }));
+	storeAll.dispatch(modalPhotoDeleteAction({ enabled: true, photoPos }));
 }
 
 const modalPhotoDeleteClose = () => {
-	store.dispatch(modalPhotoDeleteAction({ enabled: false, photoPos: 0 }));
+	storeAll.dispatch(modalPhotoDeleteAction({ enabled: false, photoPos: 0 }));
 };
 
 export function ModalPhotoDelete() {
@@ -34,7 +34,7 @@ export function ModalPhotoDelete() {
 			newUserProfile.photolink = dataDeletePhoto.photolink;
 			newUserProfile.photomain = dataDeletePhoto.photomain;
 
-			store.dispatch(
+			storeAll.dispatch(
 				userProfileAction({ enabled: true, profile: newUserProfile })
 			);
 		}
@@ -43,7 +43,6 @@ export function ModalPhotoDelete() {
 	}, [dataDeletePhoto]);
 
 	useEffect(() => {
-		console.log(errorDeletePhoto);
 		modalPhotoDeleteClose();
 	}, [errorDeletePhoto]);
 

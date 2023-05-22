@@ -43,7 +43,7 @@ export function Profiles() {
 	}, []);
 
 	useEffect(() => {
-		store.dispatch(usersProfilesAction([]));
+		storeAll.dispatch(usersProfilesAction([]));
 		querySendGetProfilesLocal(0);
 	}, [userFilters]);
 

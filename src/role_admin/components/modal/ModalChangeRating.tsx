@@ -11,6 +11,7 @@ import {
 } from "../../store/redusers/modal";
 import { useQuerySetRating } from "../../api/rating/rating.api.hook";
 import { ModalYesCancelWrapper } from "../../../role_all/components/wrappers/modal/ModalYesCancelWrapper";
+import { storeAll } from "../../../role_all/store/storeAll";
 
 export function modalChangeRatingOpen(userid: string) {
 	store.dispatch(
@@ -47,7 +48,7 @@ export function ModalChangeRating() {
 	useEffect(() => {
 		if (!dataSetRating) return;
 
-		store.dispatch(
+		storeAll.dispatch(
 			userProfileAction({ enabled: true, profile: dataSetRating })
 		);
 		modalMessageOpen("Успешно выполненно!");
