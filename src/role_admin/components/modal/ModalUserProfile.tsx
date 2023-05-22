@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { IProfile } from "../../../role_all/interfaces/iprofiles";
 import {
+	Label,
 	LabelCash,
 	LabelRating,
 } from "../../../role_all/components/utils/Labels";
@@ -13,7 +14,11 @@ import {
 	userProfileAction,
 } from "../../../role_all/store/redusers/profile";
 import { dialogAction } from "../../../role_all/store/redusers/dialog";
-import { modalDialogClose } from "../../../role_all/components/modal/ModalDialog";
+import {
+	ModalDialog,
+	modalDialogClose,
+	modalDialogOpen,
+} from "../../../role_all/components/modal/ModalDialog";
 import { modalMessageOpen } from "../../../role_all/components/modal/ModalMessage";
 import { DateTimeVisit } from "../../../role_all/components/utils/DateTime";
 import { UserProfileInterests } from "../../../role_all/components/widgets/userprofile/UserProfileInterests";
@@ -23,7 +28,6 @@ import { UserProfileAboutMe } from "../../../role_all/components/widgets/userpro
 import { UserProfileNameAge } from "../../../role_all/components/widgets/userprofile/UserProfileNameAge";
 import { useQueryGetDialog } from "../../../role_all/api/dialog/dialog.api.hook";
 import { IQueryDialog } from "../../../role_all/api/dialog/idialog.api";
-import { UserProfileInterest } from "../../../role_all/components/widgets/userprofile/UserProfileInterest";
 import { useRefDivVisible } from "../../../role_all/hooks/form.hook";
 import {
 	ModalChangeRating,
@@ -39,6 +43,7 @@ import { ModalBanned, modalBannedClose, modalBannedOpen } from "./ModalBanned";
 import { ModalPhotoDelete } from "./ModalPhotoDelete";
 import { storeAll } from "../../../role_all/store/storeAll";
 import { UserProfileSlider } from "../widgets/userprofile/UserProfileSlider";
+import { BG_COLOR } from "../../../assets/styles/enum";
 
 export function modalUserProfileOpen(profile: IProfile) {
 	storeAll.dispatch(userProfileAction({ enabled: true, profile }));
@@ -62,7 +67,7 @@ export function ModalUserProfile() {
 	useEffect(() => {
 		if (!dataGetDialog) return;
 
-		// modalDialogOpen();
+		modalDialogOpen(dataGetDialog);
 		storeAll.dispatch(dialogAction(dataGetDialog));
 	}, [dataGetDialog]);
 
@@ -98,9 +103,11 @@ export function ModalUserProfile() {
 			<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 				<div className="flex flex-col">
 					<UserProfileSlider />
-					<UserProfileInterest
+					<Label
 						value={`userid = "${userProfile.profile.userid}"`}
 						title={`userid = "${userProfile.profile.userid}"`}
+						shadow={true}
+						bgcolor={BG_COLOR.Lime700}
 					/>
 					<LabelRating
 						value={userProfile.profile.rating}
@@ -139,6 +146,7 @@ export function ModalUserProfile() {
 					<UserProfileQuality profile={userProfile.profile} />
 				</div>
 			</div>
+			<ModalDialog />
 			<ModalChangeRating />
 			<ModalChangeCash />
 			<ModalBanned />
