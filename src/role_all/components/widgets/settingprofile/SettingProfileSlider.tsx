@@ -18,18 +18,25 @@ export function SettingProfileSlider() {
 	const { userMyProfile } = storeAll.getState();
 	const [photoPosition, setPhotoPosition] = useState(0);
 	const checkMainPhoto = useRef<HTMLDivElement>(null);
-	const { data, error, queryCheckPhoto } = useQueryCheckPhoto();
+	const { dataCheckPhoto, errorCheckPhoto, queryCheckPhoto } =
+		useQueryCheckPhoto();
 
 	useEffect(() => {
-		if (data) {
-			const newUserMyProfile = { ...userMyProfile };
-			newUserMyProfile.photolink = data.photolink;
-			newUserMyProfile.photomain = data.photomain;
+		if (!dataCheckPhoto) return;
 
-			storeAll.dispatch(userMyProfileAction(newUserMyProfile));
-			modalMessageOpen("Успешно сохранено!");
-		}
-	}, [data, error]);
+		const newUserMyProfile = { ...userMyProfile };
+		newUserMyProfile.photolink = dataCheckPhoto.photolink;
+		newUserMyProfile.photomain = dataCheckPhoto.photomain;
+
+		storeAll.dispatch(userMyProfileAction(newUserMyProfile));
+		modalMessageOpen("Успешно сохранено!");
+	}, [dataCheckPhoto]);
+
+	useEffect(() => {
+		if (!errorCheckPhoto) return;
+
+		modalMessageOpen("Произошла ошибка запроса!");
+	}, [errorCheckPhoto]);
 
 	useEffect(() => {
 		setPhotoPosition(userMyProfile.photolink.length - 1);
