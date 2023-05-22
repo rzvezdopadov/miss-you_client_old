@@ -5,6 +5,8 @@ import {
 } from "../../../../role_all/components/utils/Sliders";
 import { PhotoProfile } from "../../../../role_all/components/widgets/utils/Photo";
 import { storeAll } from "../../../../role_all/store/storeAll";
+import { ButtonClose } from "../../../../role_all/components/utils/Buttons";
+import { modalPhotoDeleteOpen } from "../../modal/ModalPhotoDelete";
 
 export function UserProfileSlider() {
 	const { userProfile } = storeAll.getState();
@@ -46,10 +48,18 @@ export function UserProfileSlider() {
 
 	return (
 		<>
-			<PhotoProfile
-				src={userProfile.profile.photolink[positionPhoto]}
-				onClick={rightBtnSlideHandler}
-			></PhotoProfile>
+			<PhotoProfile src={userProfile.profile.photolink[positionPhoto]}>
+				{userProfile.profile.photolink.length ? (
+					<ButtonClose
+						title="Удалить фото"
+						onClick={() => {
+							modalPhotoDeleteOpen(positionPhoto);
+						}}
+					></ButtonClose>
+				) : (
+					<></>
+				)}
+			</PhotoProfile>
 
 			<div className="flex justify-center m-1">
 				{positionPhoto + 1} / {userProfile.profile.photolink.length}
