@@ -22,7 +22,7 @@ import { RecoveryPass } from "../../../role_all/components/pages/RecoveryPass";
 import { Registration } from "../../../role_all/components/pages/Registration";
 
 export function AppMain() {
-	const { jwt, userMyProfile } = storeAll.getState();
+	const { jwt, userMyProfile, stickerpacks } = storeAll.getState();
 	const { userFilters } = store.getState();
 	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
 		useQueryGetProfile();
@@ -43,6 +43,22 @@ export function AppMain() {
 
 		querySendGetTowns();
 	}, [jwt]);
+
+	useEffect(() => {
+		if (
+			userMyProfile &&
+			userMyProfile.userid &&
+			userMyProfile.stickerpacks.length !== stickerpacks.length
+		) {
+			const newStickerpacks = stickerpacks.map(
+				(stickerpack) => stickerpack.idstickerpack
+			);
+			const newUserMyProfile = { ...userMyProfile };
+
+			newUserMyProfile.stickerpacks = newStickerpacks;
+			storeAll.dispatch(userMyProfileAction(newUserMyProfile));
+		}
+	}, [userMyProfile, stickerpacks]);
 
 	useEffect(() => {
 		if (!dataGetProfile) return;
