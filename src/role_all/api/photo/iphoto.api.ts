@@ -13,9 +13,9 @@ export interface IQueryAnswerDeletePhoto {
 }
 
 export interface IQueryAnswerCheckPhoto {
-	data: IPhoto;
-	error: IQueryAnswerError;
-	loaded: boolean;
+	dataCheckPhoto: IPhoto;
+	errorCheckPhoto: IQueryAnswerError;
+	loadedCheckPhoto: boolean;
 	queryCheckPhoto(data: {}): void;
 }
 

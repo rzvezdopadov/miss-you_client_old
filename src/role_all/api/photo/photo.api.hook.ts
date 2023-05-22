@@ -47,9 +47,9 @@ export function useQueryCheckPhoto() {
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerCheckPhoto = {
-		data: dataNew,
-		error: errorNew,
-		loaded,
+		dataCheckPhoto: dataNew,
+		errorCheckPhoto: errorNew,
+		loadedCheckPhoto: loaded,
 		queryCheckPhoto,
 	};
 
