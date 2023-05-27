@@ -4,6 +4,7 @@ import { DialogEmojis } from "./DialogEmojis";
 import { DialogStickers } from "./DialogStickers";
 import { convertTextToSign } from "../../../../helpers/convert";
 import { data_emojis } from "../../../../data/emojis";
+import { useRefDivVisible } from "../../../../hooks/form.hook";
 
 enum stickers {
 	emojis,
@@ -14,18 +15,8 @@ export function DialogSmiles(payload: {
 	onAddStrInMsgClbk: React.MouseEventHandler<HTMLDivElement>;
 	smilesOpen: boolean;
 }) {
-	const refSmiles = useRef<HTMLDivElement>(null);
+	const refSmiles = useRefDivVisible(payload.smilesOpen);
 	const [typeStickers, setTypeStickers] = useState(stickers.emojis);
-
-	useEffect(() => {
-		if (!refSmiles.current) return;
-
-		if (payload.smilesOpen) {
-			refSmiles.current.classList.remove("invisible");
-		} else {
-			refSmiles.current.classList.add("invisible");
-		}
-	}, [payload.smilesOpen]);
 
 	return (
 		<div
