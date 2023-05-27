@@ -14,6 +14,7 @@ import {
 } from "../../store/redusers/modal";
 import { store } from "../../store/store";
 import { storeAll } from "../../../role_all/store/storeAll";
+import { useRefDivVisible } from "../../../role_all/hooks/form.hook";
 
 export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(
@@ -24,7 +25,10 @@ export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 export function ModalAddDeleteStickerpack() {
 	const { userMyProfile } = storeAll.getState();
 	const { modalAddDeleteStickerpack } = store.getState();
-	const refAddDeleteStickerpack = useRef<HTMLDivElement>(null);
+	const refAddDeleteStickerpack = useRefDivVisible(
+		modalAddDeleteStickerpack.enabled
+	);
+
 	const { dataAddStickerpack, errorAddStickerpack, querySendAddStickerpack } =
 		useQueryAddStickerpack();
 	const {
@@ -32,16 +36,6 @@ export function ModalAddDeleteStickerpack() {
 		errorDeleteStickerpack,
 		querySendDeleteStickerpack,
 	} = useQueryDeleteStickerpack();
-
-	useEffect(() => {
-		if (!refAddDeleteStickerpack.current) return;
-
-		if (modalAddDeleteStickerpack.enabled) {
-			refAddDeleteStickerpack.current.classList.remove("invisible");
-		} else {
-			refAddDeleteStickerpack.current.classList.add("invisible");
-		}
-	}, [modalAddDeleteStickerpack.enabled]);
 
 	useEffect(() => {
 		if (!dataAddStickerpack) return;
