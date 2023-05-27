@@ -1,4 +1,6 @@
 import * as React from "react";
+import { storeAll } from "../store/storeAll";
+import { modalMessageAction } from "../store/redusers/modal";
 
 export const useFormFieldInputString = (initialValue: string = "") => {
 	const [value, setValue] = React.useState(initialValue);
@@ -51,4 +53,28 @@ export const useRefDivVisible = (value: boolean) => {
 	}, [value]);
 
 	return refDivVisible;
+};
+
+export const useRefModalMessage = (value: boolean) => {
+	const refModalMessage = React.useRef<HTMLDivElement>(null);
+
+	React.useEffect(() => {
+		if (!refModalMessage.current) return;
+
+		if (value) {
+			refModalMessage.current.classList.remove("bottom-[-250px]");
+			refModalMessage.current.classList.add("bottom-0");
+
+			setTimeout(() => {
+				storeAll.dispatch(
+					modalMessageAction({ enabled: false, text: "" })
+				);
+			}, 5000);
+		} else {
+			refModalMessage.current.classList.remove("bottom-0");
+			refModalMessage.current.classList.add("bottom-[-250px]");
+		}
+	}, [value]);
+
+	return refModalMessage;
 };

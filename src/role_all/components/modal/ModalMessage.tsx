@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
 import { modalMessageAction } from "../../store/redusers/modal";
 import { storeAll } from "../../store/storeAll";
+import { useRefModalMessage } from "../../hooks/form.hook";
 
 export function modalMessageOpen(text: string) {
 	storeAll.dispatch(modalMessageAction({ enabled: true, text }));
@@ -12,25 +12,7 @@ function modalMessageClose() {
 
 export function ModalMessage() {
 	const { modalMessage } = storeAll.getState();
-	const refModalMessage = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!refModalMessage.current) return;
-
-		if (modalMessage.enabled) {
-			refModalMessage.current.classList.remove("bottom-[-250px]");
-			refModalMessage.current.classList.add("bottom-0");
-
-			setTimeout(() => {
-				storeAll.dispatch(
-					modalMessageAction({ enabled: false, text: "" })
-				);
-			}, 5000);
-		} else {
-			refModalMessage.current.classList.remove("bottom-0");
-			refModalMessage.current.classList.add("bottom-[-250px]");
-		}
-	}, [modalMessage.enabled]);
+	const refModalMessage = useRefModalMessage(modalMessage.enabled);
 
 	return (
 		<div
