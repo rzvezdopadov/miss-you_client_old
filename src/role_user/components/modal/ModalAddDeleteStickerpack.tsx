@@ -15,6 +15,7 @@ import {
 import { store } from "../../store/store";
 import { storeAll } from "../../../role_all/store/storeAll";
 import { useRefDivVisible } from "../../../role_all/hooks/form.hook";
+import { ModalUserDataWrapper } from "../../../role_all/components/wrappers/modal/ModalUserDataWrapper";
 
 export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(
@@ -25,9 +26,6 @@ export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 export function ModalAddDeleteStickerpack() {
 	const { userMyProfile } = storeAll.getState();
 	const { modalAddDeleteStickerpack } = store.getState();
-	const refAddDeleteStickerpack = useRefDivVisible(
-		modalAddDeleteStickerpack.enabled
-	);
 
 	const { dataAddStickerpack, errorAddStickerpack, querySendAddStickerpack } =
 		useQueryAddStickerpack();
@@ -95,10 +93,7 @@ export function ModalAddDeleteStickerpack() {
 	};
 
 	return (
-		<div
-			ref={refAddDeleteStickerpack}
-			className="flex flex-col fixed justify-center items-center bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-30 pb-2 h-36 w-80"
-		>
+		<ModalUserDataWrapper enabled={modalAddDeleteStickerpack.enabled}>
 			{userMyProfile.stickerpacks.includes(
 				modalAddDeleteStickerpack.stickerpack.idstickerpack
 			) ? (
@@ -118,6 +113,6 @@ export function ModalAddDeleteStickerpack() {
 				onClickYes={yesModalAddDeleteStickerpackHandler}
 				onClickCancel={closeModalAddDeleteStickerpackHandler}
 			/>
-		</div>
+		</ModalUserDataWrapper>
 	);
 }
