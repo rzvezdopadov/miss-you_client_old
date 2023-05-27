@@ -14,8 +14,7 @@ import {
 } from "../../store/redusers/modal";
 import { store } from "../../store/store";
 import { storeAll } from "../../../role_all/store/storeAll";
-import { useRefDivVisible } from "../../../role_all/hooks/form.hook";
-import { ModalUserDataWrapper } from "../../../role_all/components/wrappers/modal/ModalUserDataWrapper";
+import { ModalYesCancelWrapper } from "../../../role_all/components/wrappers/modal/ModalYesCancelWrapper";
 
 export function modalAddDeleteStickerpackOpen(stickerpack: IStickerpack) {
 	store.dispatch(
@@ -93,7 +92,7 @@ export function ModalAddDeleteStickerpack() {
 	};
 
 	return (
-		<ModalUserDataWrapper enabled={modalAddDeleteStickerpack.enabled}>
+		<ModalYesCancelWrapper enabled={modalAddDeleteStickerpack.enabled}>
 			{userMyProfile.stickerpacks.includes(
 				modalAddDeleteStickerpack.stickerpack.idstickerpack
 			) ? (
@@ -113,6 +112,6 @@ export function ModalAddDeleteStickerpack() {
 				onClickYes={yesModalAddDeleteStickerpackHandler}
 				onClickCancel={closeModalAddDeleteStickerpackHandler}
 			/>
-		</ModalUserDataWrapper>
+		</ModalYesCancelWrapper>
 	);
 }
