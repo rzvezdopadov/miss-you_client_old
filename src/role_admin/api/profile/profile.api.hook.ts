@@ -1,9 +1,5 @@
 /* API Query to server */
-
-import {
-	IProfile,
-	IProfileShort,
-} from "../../../role_all/interfaces/iprofiles";
+import { IProfileShort } from "../../../role_all/interfaces/iprofiles";
 import { IQueryAnswerError } from "../../../role_all/api/iquerys.api";
 import { useQueryGet } from "../../../role_all/api/querys.api.hook";
 import {
@@ -12,6 +8,7 @@ import {
 	IQueryGetProfile,
 	IQueryGetProfiles,
 } from "./iprofile.api";
+import { IAdminProfile } from "../../interfaces/iadmin";
 
 /* Get profiles for admin
     - filters - filters by which to search in the database, 
@@ -49,7 +46,7 @@ export function useQueryGetProfile() {
 		querySend("/api/admin/profile", dataQuery, true);
 	};
 
-	const dataNew = data as IProfile;
+	const dataNew = data as IAdminProfile;
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetProfile = {

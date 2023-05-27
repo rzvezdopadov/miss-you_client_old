@@ -4,12 +4,12 @@ import {
 	SliderPhotoBtnRight,
 } from "../../../../role_all/components/utils/Sliders";
 import { PhotoProfile } from "../../../../role_all/components/widgets/utils/Photo";
-import { storeAll } from "../../../../role_all/store/storeAll";
 import { ButtonClose } from "../../../../role_all/components/utils/Buttons";
 import { modalPhotoDeleteOpen } from "../../modal/ModalPhotoDelete";
+import { store } from "../../../store/store";
 
 export function UserProfileSlider() {
-	const { userProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 	const [positionPhoto, setPositionPhoto] = useState(0);
 
 	if (positionPhoto > userProfile.profile.photolink.length - 1) {
@@ -70,6 +70,7 @@ export function UserProfileSlider() {
 					photolink={userProfile.profile.photolink}
 					onClick={leftBtnSlideHandler}
 				/>
+
 				<SliderPhotoBtnRight
 					photolink={userProfile.profile.photolink}
 					onClick={rightBtnSlideHandler}

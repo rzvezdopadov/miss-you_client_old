@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { LabelPageName } from "../../../role_all/components/utils/Labels";
-import {
-	userProfileAction,
-	usersProfilesAction,
-} from "../../../role_all/store/redusers/profile";
+import { usersProfilesAction } from "../../../role_all/store/redusers/profile";
 import { lazyloadingusercount } from "../../../config";
 import { modalDialogClose } from "../../../role_all/components/modal/ModalDialog";
 import { modalMessageOpen } from "../../../role_all/components/modal/ModalMessage";
@@ -14,10 +11,11 @@ import { UserProfileFilters } from "../../../role_all/components/widgets/userpro
 import { storeAll } from "../../../role_all/store/storeAll";
 import { store } from "../../store/store";
 import { UserProfilesShort } from "../widgets/userprofileshort/UserProfilesShort";
+import { userProfileAction } from "../../store/redusers/profile";
 
 export function Vapors() {
-	const { userMyProfile, usersProfiles, userProfile } = storeAll.getState();
-	const { filtersUser } = store.getState();
+	const { userMyProfile, usersProfiles } = storeAll.getState();
+	const { filtersUser, userProfile } = store.getState();
 	const {
 		dataGetProfilesForLikes,
 		errorGetProfilesForLikes,
@@ -28,7 +26,7 @@ export function Vapors() {
 	useEffect(() => {
 		return () => {
 			storeAll.dispatch(usersProfilesAction([]));
-			storeAll.dispatch(
+			store.dispatch(
 				userProfileAction({
 					enabled: false,
 					profile: { ...userProfile.profile },

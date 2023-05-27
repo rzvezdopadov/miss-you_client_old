@@ -6,12 +6,14 @@ import {
 	SliderPhotoBtnRight,
 } from "../../../../role_all/components/utils/Sliders";
 import { PhotoProfile } from "../../../../role_all/components/widgets/utils/Photo";
-import { storeAll } from "../../../../role_all/store/storeAll";
 import { setLike } from "../../../socket/likes";
 import { setFavoriteUser } from "../../../socket/users";
+import { store } from "../../../store/store";
+import { storeAll } from "../../../../role_all/store/storeAll";
 
 export function UserProfileSlider() {
-	const { userMyProfile, userProfile } = storeAll.getState();
+	const { userMyProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 	const [positionPhoto, setPositionPhoto] = useState(0);
 
 	if (positionPhoto > userProfile.profile.photolink.length - 1) {

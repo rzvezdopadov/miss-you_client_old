@@ -1,22 +1,21 @@
 import { modalMessageOpen } from "../../role_all/components/modal/ModalMessage";
 import { IGetLike } from "../../role_all/interfaces/isocket";
 import { socketClient } from "../../role_all/socket/socket";
-import {
-	userMyProfileAction,
-	userProfileAction,
-} from "../../role_all/store/redusers/profile";
+import { userMyProfileAction } from "../../role_all/store/redusers/profile";
 import { storeAll } from "../../role_all/store/storeAll";
 import { IQueryLike } from "../../role_user/api/like/ilike.api";
+import { userProfileAction } from "../store/redusers/profile";
+import { store } from "../store/store";
 
 export const socketSetLikeCreate = () => {
 	socketClient.on("set_like", (socket: Array<string>) => {
-		const { userProfile } = storeAll.getState();
+		const { userProfile } = store.getState();
 
 		const newProfile = { ...userProfile.profile };
 
 		newProfile.likes = socket;
 
-		storeAll.dispatch(
+		store.dispatch(
 			userProfileAction({ enabled: true, profile: newProfile })
 		);
 	});
@@ -54,7 +53,7 @@ export const socketGetLikeCreate = () => {
 
 		userMyProfileNew.likes = likesNew;
 
-		storeAll.dispatch(userMyProfileAction(userMyProfileNew));
+		store.dispatch(userMyProfileAction(userMyProfileNew));
 	});
 };
 
@@ -63,7 +62,7 @@ export const socketGetLikeDestroy = () => {
 };
 
 export const setLike = () => {
-	const { userProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 
 	const data: IQueryLike = {
 		userid: userProfile.profile.userid,

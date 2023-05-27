@@ -6,9 +6,11 @@ import { dialogAction, dialogsAction } from "../../../store/redusers/dialog";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { IDialog } from "../../../interfaces/iprofiles";
 import { modalDialogOpen } from "../../modal/ModalDialog";
+import { store } from "../../../../role_user/store/store";
 
 export function DialogsLeftSideBar() {
-	const { userMyProfile, dialogs, userProfile } = storeAll.getState();
+	const { userMyProfile, dialogs } = storeAll.getState();
+	const { userProfile } = store.getState();
 	const { dataGetDialogs, errorGetDialogs, querySendGetDialogs } =
 		useQueryGetDialogs();
 

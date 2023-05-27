@@ -1,9 +1,11 @@
 import { Button } from "../../../../role_all/components/utils/Buttons";
 import { storeAll } from "../../../../role_all/store/storeAll";
 import { setBannedUser } from "../../../socket/users";
+import { store } from "../../../store/store";
 
 export function UserProfileBunned() {
-	const { userMyProfile, userProfile } = storeAll.getState();
+	const { userMyProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 
 	return (
 		<Button

@@ -2,9 +2,7 @@ import { getCookiesJWT } from "./cookie";
 import { jwtAction } from "../store/redusers/auth";
 import {
 	initialStateUserMyProfile,
-	initialStateUserProfile,
 	userMyProfileAction,
-	userProfileAction,
 } from "../store/redusers/profile";
 import {
 	dialogAction,
@@ -20,12 +18,6 @@ export function logout() {
 	document.cookie = `jwt=${jwt}; max-age=${-1}`;
 	storeAll.dispatch(jwtAction(""));
 	storeAll.dispatch(userMyProfileAction(initialStateUserMyProfile));
-	storeAll.dispatch(
-		userProfileAction({
-			enabled: false,
-			profile: initialStateUserProfile.profile,
-		})
-	);
 	storeAll.dispatch(dialogAction(initialStateDialog));
 	storeAll.dispatch(dialogsAction(initialStateDialogs));
 }

@@ -1,9 +1,6 @@
-import {
-	IProfile,
-	IProfileShort,
-} from "../../../role_all/interfaces/iprofiles";
+import { IProfileShort } from "../../../role_all/interfaces/iprofiles";
 import { IQueryAnswerError } from "../../../role_all/api/iquerys.api";
-import { IUserFilters } from "../../interfaces/iadmin";
+import { IAdminProfile, IAdminUserFilters } from "../../interfaces/iadmin";
 
 export interface IQueryGetProfile {
 	userid: string;
@@ -12,7 +9,7 @@ export interface IQueryGetProfile {
 export interface IQueryGetProfiles {
 	startcount: number;
 	amount: number;
-	filters: IUserFilters;
+	filters: IAdminUserFilters;
 }
 
 export interface IQueryAnswerGetProfiles {
@@ -23,7 +20,7 @@ export interface IQueryAnswerGetProfiles {
 }
 
 export interface IQueryAnswerGetProfile {
-	dataGetProfile: IProfile;
+	dataGetProfile: IAdminProfile;
 	errorGetProfile: IQueryAnswerError;
 	loadedGetProfile: boolean;
 	querySendGetProfile(data: IQueryGetProfile): void;

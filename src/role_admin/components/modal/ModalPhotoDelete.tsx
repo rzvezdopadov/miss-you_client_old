@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { userProfileAction } from "../../../role_all/store/redusers/profile";
+import { userProfileAction } from "../../../role_admin/store/redusers/profile";
 import { ButtonsYesCancelWidget } from "../../../role_all/components/widgets/utils/Buttons";
 import { Label } from "../../../role_all/components/utils/Labels";
 import { store } from "../../store/store";
@@ -18,7 +18,8 @@ const modalPhotoDeleteClose = () => {
 };
 
 export function ModalPhotoDelete() {
-	const { modalPhotoDelete, userProfile } = storeAll.getState();
+	const { modalPhotoDelete } = storeAll.getState();
+	const { userProfile } = store.getState();
 	const { dataDeletePhoto, errorDeletePhoto, queryDeletePhoto } =
 		useQueryDeletePhoto();
 
@@ -34,7 +35,7 @@ export function ModalPhotoDelete() {
 			newUserProfile.photolink = dataDeletePhoto.photolink;
 			newUserProfile.photomain = dataDeletePhoto.photomain;
 
-			storeAll.dispatch(
+			store.dispatch(
 				userProfileAction({ enabled: true, profile: newUserProfile })
 			);
 		}

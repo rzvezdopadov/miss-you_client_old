@@ -107,6 +107,28 @@ export function ButtonCancel(payload: {
 	);
 }
 
+export function ButtonImage(payload: {
+	imgSrc: string;
+	title: string;
+	onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
+	return (
+		<ButtonNaviWrapper>
+			<div
+				className="flex h-10 w-10 justify-center items-center cursor-pointer"
+				onClick={payload.onClick ? payload.onClick : () => {}}
+			>
+				<img
+					className="flex h-5 w-6 rounded-sm"
+					src={String(payload.imgSrc)}
+					alt={payload.title}
+					title={payload.title}
+				/>
+			</div>
+		</ButtonNaviWrapper>
+	);
+}
+
 export function ButtonNavigationLink(payload: {
 	link: ILink;
 	naviKey: string;

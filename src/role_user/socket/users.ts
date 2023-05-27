@@ -3,6 +3,7 @@ import { userMyProfileAction } from "../../role_all/store/redusers/profile";
 import { IQueryFavotiteUsers } from "../api/favoriteusers/ifavoriteusers.api";
 import { socketClient } from "../../role_all/socket/socket";
 import { IQueryBannedUsers } from "../api/bannedusers/ibannedusers.api";
+import { store } from "../store/store";
 
 export const socketSetFavoriteUsersCreate = () => {
 	socketClient.on("set_favoriteusers", (socket: string[]) => {
@@ -37,7 +38,7 @@ export const socketSetBannedUsersDestroy = () => {
 };
 
 export const setFavoriteUser = () => {
-	const { userProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 
 	const data: IQueryFavotiteUsers = {
 		userid: userProfile.profile.userid,
@@ -47,7 +48,7 @@ export const setFavoriteUser = () => {
 };
 
 export const setBannedUser = () => {
-	const { userProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 
 	const data: IQueryBannedUsers = {
 		userid: userProfile.profile.userid,

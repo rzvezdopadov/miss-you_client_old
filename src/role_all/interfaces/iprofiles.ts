@@ -3,6 +3,20 @@ export enum ACCTYPE {
 	admin = "admin",
 }
 
+export interface IPresent {
+	fromuserid: string;
+	fromname: string;
+	presentid: string;
+	link: string;
+}
+
+export interface IAchivment {
+	id: string;
+	title: string;
+	discription: string;
+	link: string;
+}
+
 export interface IFilterParamSelect {
 	value: string | number;
 	onChange: React.ChangeEventHandler<HTMLSelectElement>;

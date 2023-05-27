@@ -1,5 +1,5 @@
-import { IProfile } from "../../../role_all/interfaces/iprofiles";
 import { IQueryAnswerError } from "../../../role_all/api/iquerys.api";
+import { IAdminProfile } from "../../interfaces/iadmin";
 
 export interface IQuerySetCash {
 	userid: string;
@@ -7,7 +7,7 @@ export interface IQuerySetCash {
 }
 
 export interface IQueryAnswerSetCash {
-	dataSetCash: IProfile;
+	dataSetCash: IAdminProfile;
 	errorSetCash: IQueryAnswerError;
 	loadedSetCash: boolean;
 	querySendSetCash(data: IQuerySetCash): void;

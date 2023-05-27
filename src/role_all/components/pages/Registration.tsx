@@ -11,7 +11,6 @@ import {
 	data_gender_for_reg,
 	data_growth,
 } from "../../data/profiles";
-import { registrationAction } from "../../store/redusers/auth";
 import { minage } from "../../../config";
 import { useQueryRegistration } from "../../api/auth/auth.api.hook";
 import { MainScrollWrapper } from "../wrappers/MainScrollWrapper";
@@ -20,7 +19,20 @@ import { modalMessageOpen } from "../modal/ModalMessage";
 import { storeAll } from "../../store/storeAll";
 
 export function Registration() {
-	const { registration, towns } = storeAll.getState();
+	const { towns } = storeAll.getState();
+	const [registration, setRegistration] = React.useState<IRegistration>({
+		name: "",
+		location: "",
+		birthday: 1,
+		monthofbirth: 1,
+		yearofbirth: 1990,
+		gender: 0,
+		gendervapor: 0,
+		growth: data_growth[0],
+		email: "",
+		password: "",
+		captcha: "",
+	});
 	const { dataRegistration, errorRegistration, querySendRegistration } =
 		useQueryRegistration();
 	const btnRegistration = React.useRef<HTMLButtonElement>(null);
@@ -36,7 +48,7 @@ export function Registration() {
 		const newRegistration = { ...registration };
 		newRegistration.location = towns[0];
 
-		storeAll.dispatch(registrationAction(newRegistration));
+		setRegistration(newRegistration);
 	}, [towns]);
 
 	useEffect(() => {
@@ -149,8 +161,6 @@ export function Registration() {
 		key: keyof IRegistration,
 		type = "number"
 	) => {
-		const { registration } = storeAll.getState();
-
 		const newRegistration = { ...registration };
 		let value: number | string = e.target.value;
 
@@ -159,7 +169,7 @@ export function Registration() {
 		}
 
 		newRegistration[key] = value as never;
-		storeAll.dispatch(registrationAction(newRegistration));
+		setRegistration(newRegistration);
 	};
 
 	const birhdayOnChangeHandler = (e: { target: { value: string } }) => {
@@ -172,38 +182,7 @@ export function Registration() {
 		newRegistration.yearofbirth = Number(dataDate[0]);
 		newRegistration.monthofbirth = Number(dataDate[1]);
 		newRegistration.birthday = Number(dataDate[2]);
-		storeAll.dispatch(registrationAction(newRegistration));
-	};
-
-	const locationOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueRegistration(e, "location", "string");
-	};
-	const growthOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		onChangeValueRegistration(e, "growth");
-	};
-	const genderOnChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		onChangeValueRegistration(e, "gender");
-	};
-	const genderVaporOnChangeHandler = (
-		e: React.ChangeEvent<HTMLSelectElement>
-	) => {
-		onChangeValueRegistration(e, "gendervapor");
-	};
-	const nameOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		onChangeValueRegistration(e, "name", "string");
-	};
-	const emailOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		onChangeValueRegistration(e, "email", "string");
-	};
-	const passwordOnChangeHandler = (
-		e: React.ChangeEvent<HTMLInputElement>
-	) => {
-		onChangeValueRegistration(e, "password", "string");
-	};
-	const captchaOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		onChangeValueRegistration(e, "captcha", "string");
+		setRegistration(newRegistration);
 	};
 
 	return (
@@ -214,7 +193,9 @@ export function Registration() {
 				<SelectFromArr
 					keyOpt={"gender"}
 					value={registration.gender}
-					onChangeHandler={genderOnChangeHandler}
+					onChangeHandler={(e) =>
+						onChangeValueRegistration(e, "gender")
+					}
 					arr={data_gender_for_reg}
 					title={"Кто я?"}
 				/>
@@ -222,7 +203,9 @@ export function Registration() {
 				<SelectFromArr
 					keyOpt={"gendervapor"}
 					value={registration.gendervapor}
-					onChangeHandler={genderVaporOnChangeHandler}
+					onChangeHandler={(e) =>
+						onChangeValueRegistration(e, "gendervapor")
+					}
 					arr={data_genderVapor_for_reg}
 					title={"Кого ищу?"}
 				/>
@@ -230,7 +213,9 @@ export function Registration() {
 				<SelectFromArrValue
 					keyOpt={"location"}
 					value={registration.location}
-					onChangeHandler={locationOnChangeHandler}
+					onChangeHandler={(e) =>
+						onChangeValueRegistration(e, "location", "string")
+					}
 					arr={towns}
 					title={"Локация:"}
 				/>
@@ -264,35 +249,45 @@ export function Registration() {
 				<SelectFromArrValue
 					keyOpt={"growth"}
 					value={registration.growth}
-					onChangeHandler={growthOnChangeHandler}
+					onChangeHandler={(e) =>
+						onChangeValueRegistration(e, "growth")
+					}
 					arr={data_growth}
 					title={"Рост:"}
 				/>
 
 				<Input
 					value={registration.name}
-					onChange={nameOnChangeHandler}
+					onChange={(e) =>
+						onChangeValueRegistration(e, "name", "string")
+					}
 					type="name"
 					placeholder="Ваше имя"
 				/>
 
 				<Input
 					value={registration.email}
-					onChange={emailOnChangeHandler}
+					onChange={(e) =>
+						onChangeValueRegistration(e, "email", "string")
+					}
 					type="email"
 					placeholder="E-mail"
 				/>
 
 				<Input
 					value={registration.password}
-					onChange={passwordOnChangeHandler}
+					onChange={(e) =>
+						onChangeValueRegistration(e, "password", "string")
+					}
 					type="password"
 					placeholder="Пароль"
 				/>
 
 				<Input
 					value={registration.captcha}
-					onChange={captchaOnChangeHandler}
+					onChange={(e) =>
+						onChangeValueRegistration(e, "captcha", "string")
+					}
 					type="captcha"
 					placeholder="Код с картинки"
 				/>

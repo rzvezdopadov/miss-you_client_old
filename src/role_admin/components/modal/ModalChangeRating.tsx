@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { userProfileAction } from "../../../role_all/store/redusers/profile";
 import { Input } from "../../../role_all/components/utils/Inputs";
 import { ButtonsYesCancelWidget } from "../../../role_all/components/widgets/utils/Buttons";
 import { Label } from "../../../role_all/components/utils/Labels";
@@ -11,7 +10,7 @@ import {
 } from "../../store/redusers/modal";
 import { useQuerySetRating } from "../../api/rating/rating.api.hook";
 import { ModalYesCancelWrapper } from "../../../role_all/components/wrappers/modal/ModalYesCancelWrapper";
-import { storeAll } from "../../../role_all/store/storeAll";
+import { userProfileAction } from "../../store/redusers/profile";
 
 export function modalChangeRatingOpen(userid: string) {
 	store.dispatch(
@@ -48,7 +47,7 @@ export function ModalChangeRating() {
 	useEffect(() => {
 		if (!dataSetRating) return;
 
-		storeAll.dispatch(
+		store.dispatch(
 			userProfileAction({ enabled: true, profile: dataSetRating })
 		);
 		modalMessageOpen("Успешно выполненно!");

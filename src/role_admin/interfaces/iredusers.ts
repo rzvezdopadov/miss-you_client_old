@@ -1,4 +1,9 @@
-import { IBanned, IChangeCash, IChangeRating } from "./iadmin";
+import { IAdminProfile, IBanned, IChangeCash, IChangeRating } from "./iadmin";
+
+export interface IAdminUserProfile {
+	enabled: boolean;
+	profile: IAdminProfile;
+}
 
 export interface IStateChangeRating {
 	enabled: boolean;

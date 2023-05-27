@@ -1,5 +1,4 @@
 import { MouseEventHandler } from "react";
-import { LabelWrapper } from "../wrappers/LabelWrapper";
 import { BG_COLOR, FONT_SIZE } from "../../../assets/styles/enum";
 
 export function Label(payload: {
@@ -14,7 +13,7 @@ export function Label(payload: {
 }) {
 	return (
 		<label
-			className={`flex justify-center my-2 rounded-md text-white ${
+			className={`flex justify-center my-2 rounded-md text-white${
 				payload.bold ? " font-bold" : ""
 			}${payload.fontsize ? ` ${payload.fontsize}` : ""}${
 				payload.bgcolor ? ` ${payload.bgcolor}` : ""
@@ -62,7 +61,9 @@ export function LabelRating(payload: {
 }) {
 	return (
 		<div
-			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md"
+			className={`flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md${
+				payload.onClick ? " cursor-pointer" : ""
+			}`}
 			title="Рейтинг пользователя"
 			key={`Rating${payload.value}`}
 			onClick={payload.onClick ? payload.onClick : () => {}}
@@ -78,7 +79,9 @@ export function LabelCash(payload: {
 }) {
 	return (
 		<div
-			className="flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md"
+			className={`flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md${
+				payload.onClick ? " cursor-pointer" : ""
+			}`}
 			title="MY-Баллы платежная валюта сайта"
 			key={`Cash${payload.value}`}
 			onClick={payload.onClick ? payload.onClick : () => {}}

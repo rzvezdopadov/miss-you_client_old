@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { jwtReducer, registrationReducer } from "./redusers/auth";
+import { jwtReducer } from "./redusers/auth";
 import { mobileMenuReducer } from "./redusers/menu";
 import { dialogReducer, dialogsReducer } from "./redusers/dialog";
 import { stickerpacksReducer } from "./redusers/stickerpacks";
 import {
 	settingProfileCharactersReducer,
 	userMyProfileReducer,
-	userProfileReducer,
 	usersProfilesReducer,
 } from "./redusers/profile";
 import {
@@ -22,7 +21,6 @@ import { townsReducer } from "./redusers/towns";
 export const storeAll = configureStore({
 	reducer: {
 		jwt: jwtReducer,
-		registration: registrationReducer,
 		towns: townsReducer,
 		mobileMenu: mobileMenuReducer,
 		modalLoading: modalLoadingReducer,
@@ -31,7 +29,6 @@ export const storeAll = configureStore({
 		modalDialog: modalDialogReducer,
 		modalPhotoEditor: modalPhotoEditorReducer,
 		usersProfiles: usersProfilesReducer,
-		userProfile: userProfileReducer,
 		userMyProfile: userMyProfileReducer,
 		settingProfileCharacters: settingProfileCharactersReducer,
 		dialogs: dialogsReducer,

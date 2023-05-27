@@ -1,10 +1,7 @@
 import { useEffect, useRef } from "react";
 import { UserProfileFilters } from "../../../role_all/components/widgets/userprofile/UserProfileFilters";
 import { LabelPageName } from "../../../role_all/components/utils/Labels";
-import {
-	userProfileAction,
-	usersProfilesAction,
-} from "../../../role_all/store/redusers/profile";
+import { usersProfilesAction } from "../../../role_all/store/redusers/profile";
 import { lazyloadingusercount } from "../../../config";
 import { ButtonScrollToTop } from "../../../role_all/components/utils/Buttons";
 import { modalDialogClose } from "../../../role_all/components/modal/ModalDialog";
@@ -15,10 +12,11 @@ import { MainScrollWrapper } from "../../../role_all/components/wrappers/MainScr
 import { storeAll } from "../../../role_all/store/storeAll";
 import { store } from "../../store/store";
 import { UserProfilesShort } from "../widgets/userprofileshort/UserProfilesShort";
+import { userProfileAction } from "../../store/redusers/profile";
 
 export function Users() {
-	const { userMyProfile, usersProfiles, userProfile } = storeAll.getState();
-	const { filtersUser } = store.getState();
+	const { userMyProfile, usersProfiles } = storeAll.getState();
+	const { filtersUser, userProfile } = store.getState();
 	const {
 		dataGetProfiles,
 		errorGetProfiles,
@@ -31,7 +29,7 @@ export function Users() {
 	useEffect(() => {
 		return () => {
 			storeAll.dispatch(usersProfilesAction([]));
-			storeAll.dispatch(
+			store.dispatch(
 				userProfileAction({
 					enabled: false,
 					profile: { ...userProfile.profile },

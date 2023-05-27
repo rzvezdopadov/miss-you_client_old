@@ -8,9 +8,11 @@ import {
 import { myVaporsReducer } from "./redusers/vapor";
 import { filtersUserReducer } from "./redusers/filters";
 import { complaintReducer, complaintsReducer } from "./redusers/complaints";
+import { userProfileReducer } from "./redusers/profile";
 
 export const store = configureStore({
 	reducer: {
+		userProfile: userProfileReducer,
 		modalReviewStickerpack: modalReviewStickerpackReducer,
 		modalAddDeleteStickerpack: modalAddDeleteStickerpackReducer,
 		myVapors: myVaporsReducer,

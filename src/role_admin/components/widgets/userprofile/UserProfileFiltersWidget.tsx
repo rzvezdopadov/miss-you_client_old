@@ -1,15 +1,15 @@
 import * as React from "react";
-import { IUserFilters } from "../../../interfaces/iadmin";
 import { store } from "../../../store/store";
 import { userFiltersAction } from "../../../store/redusers/filters";
 import { FiltersWidget } from "../FiltersWidget";
+import { IAdminUserFilters } from "../../../interfaces/iadmin";
 
 export function UserProfileFiltersWidget() {
 	const { userFilters } = store.getState();
 
 	const onChangeValueProfileFilter = (
 		e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
-		key: keyof IUserFilters
+		key: keyof IAdminUserFilters
 	) => {
 		const newFilters = { ...userFilters };
 

@@ -5,14 +5,7 @@ import {
 	MESSAGETYPE,
 } from "../../../role_all/interfaces/iprofiles";
 import { LabelRating } from "../../../role_all/components/utils/Labels";
-import {
-	Button,
-	ButtonClose,
-} from "../../../role_all/components/utils/Buttons";
-import {
-	initialStateUserProfile,
-	userProfileAction,
-} from "../../../role_all/store/redusers/profile";
+import { Button } from "../../../role_all/components/utils/Buttons";
 import {
 	ModalDialog,
 	modalDialogClose,
@@ -24,7 +17,6 @@ import { UserProfileAboutMe } from "../../../role_all/components/widgets/userpro
 import { UserProfilePersonal } from "../../../role_all/components/widgets/userprofile/UserProfilePersonal";
 import { UserProfileQuality } from "../../../role_all/components/widgets/userprofile/UserProfileQuality";
 import { UserProfileNameAge } from "../../../role_all/components/widgets/userprofile/UserProfileNameAge";
-import { useRefDivVisible } from "../../../role_all/hooks/form.hook";
 import { UserProfileBunned } from "../widgets/userprofile/UserProfileBunned";
 import { UserProfileSendMessage } from "../../../role_all/components/widgets/userprofile/UserProfileSendMessage";
 import {
@@ -33,23 +25,24 @@ import {
 	modalComplaintOpen,
 } from "./ModalComplaint";
 import { storeAll } from "../../../role_all/store/storeAll";
+import { ModalUserDataWrapper } from "../../../role_all/components/wrappers/modal/ModalUserDataWrapper";
+import { store } from "../../store/store";
+import {
+	initialStateUserProfile,
+	userProfileAction,
+} from "../../store/redusers/profile";
 
 export function modalUserProfileOpen(profile: IProfile) {
-	storeAll.dispatch(userProfileAction({ enabled: true, profile }));
+	store.dispatch(userProfileAction({ enabled: true, profile }));
 }
 
 function modalUserProfileClose() {
-	storeAll.dispatch(
-		userProfileAction({
-			enabled: false,
-			profile: initialStateUserProfile.profile,
-		})
-	);
+	store.dispatch(userProfileAction(initialStateUserProfile));
 }
 
 export function ModalUserProfile() {
-	const { userProfile, userMyProfile } = storeAll.getState();
-	const refUserProfile = useRefDivVisible(userProfile.enabled);
+	const { userMyProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 
 	const closeUserProfileHandler = () => {
 		modalUserProfileClose();
@@ -58,12 +51,10 @@ export function ModalUserProfile() {
 	};
 
 	return (
-		<div
-			ref={refUserProfile}
-			className="flex flex-col invisible fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-2/3 lg:max-w-5xl"
+		<ModalUserDataWrapper
+			enabled={userProfile.enabled}
+			clbkClose={closeUserProfileHandler}
 		>
-			<ButtonClose onClick={closeUserProfileHandler} />
-
 			<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 				<div className="flex  flex-col">
 					<UserProfileSlider />
@@ -110,6 +101,6 @@ export function ModalUserProfile() {
 
 			<ModalDialog />
 			<ModalComplaint />
-		</div>
+		</ModalUserDataWrapper>
 	);
 }

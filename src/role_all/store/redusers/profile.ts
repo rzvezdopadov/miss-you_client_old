@@ -7,7 +7,6 @@ import {
 	IProfileShort,
 } from "../../interfaces/iprofiles";
 import { data_age, data_genderVapor, data_growth } from "../../data/profiles";
-import { IUserProfile } from "../../../role_user/interfaces/iredusers";
 
 ////////////////////////////////////////////////////////////////////////
 export const USERS_PROFILES = "USERS_PROFILES";
@@ -31,11 +30,8 @@ export const usersProfilesReducer = createReducer(
 	}
 );
 ////////////////////////////////////////////////////////////////////////
-export const USER_PROFILE = "USER_PROFILE";
 
-export const userProfileAction = createAction<IUserProfile>(USER_PROFILE);
-
-const initFilterUsers: IUserFilters = {
+export const initFilterUsers: IUserFilters = {
 	location: "",
 	agestart: data_age[data_age.length - 1],
 	ageend: data_age[0],
@@ -55,7 +51,7 @@ const initFilterUsers: IUserFilters = {
 	interests: [],
 };
 
-const initPaidProfile: IPaid = {
+export const initPaidProfile: IPaid = {
 	messageswrite: {
 		enabled: false,
 		timecode: 0,
@@ -146,65 +142,6 @@ const initPaidProfile: IPaid = {
 	},
 };
 
-export const initialStateUserProfile: IUserProfile = {
-	enabled: false,
-	profile: {
-		userid: "",
-		timecode: 0,
-		name: "",
-		location: "",
-		likes: [],
-		favoriteusers: [],
-		bannedusers: [],
-		presents: [],
-		achivments: [],
-		birthday: 0,
-		monthofbirth: 0,
-		yearofbirth: 0,
-		growth: 80,
-		weight: 0,
-		gender: 0,
-		gendervapor: 0,
-		photomain: 0,
-		photolink: [],
-		signzodiac: 0,
-		education: 0,
-		fieldofactivity: 0,
-		maritalstatus: 0,
-		children: 0,
-		religion: 0,
-		smoke: 0,
-		alcohol: 0,
-		discription: "",
-		profit: 0,
-		interests: [],
-		ilikecharacter: [],
-		idontlikecharacter: [],
-		rating: 0,
-		stickerpacks: [],
-		cash: 0,
-		acctype: ACCTYPE.user,
-		filters: initFilterUsers,
-		paid: initPaidProfile,
-		deleteacc: 0,
-	},
-};
-
-export const userProfileReducer = createReducer(
-	initialStateUserProfile,
-	(builder) => {
-		builder.addCase(
-			userProfileAction,
-			(state: IUserProfile, action: any) => {
-				const { enabled, profile } = action.payload;
-
-				return { enabled, profile };
-			}
-		);
-	}
-);
-
-////////////////////////////////////////////////////////////////////////
 export const USER_MYPROFILE = "USER_MYPROFILE";
 
 export const userMyProfileAction = createAction<IProfile>(USER_MYPROFILE);

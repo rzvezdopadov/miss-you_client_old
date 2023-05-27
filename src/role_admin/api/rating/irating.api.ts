@@ -1,5 +1,5 @@
-import { IProfile } from "../../../role_all/interfaces/iprofiles";
 import { IQueryAnswerError } from "../../../role_all/api/iquerys.api";
+import { IAdminProfile } from "../../interfaces/iadmin";
 
 export interface IQuerySetRating {
 	userid: string;
@@ -7,7 +7,7 @@ export interface IQuerySetRating {
 }
 
 export interface IQueryAnswerSetRating {
-	dataSetRating: IProfile;
+	dataSetRating: IAdminProfile;
 	errorSetRating: IQueryAnswerError;
 	loadedSetRating: boolean;
 	querySendSetRating(data: IQuerySetRating): void;

@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { IUserFilters } from "../../interfaces/iadmin";
+
 import {
 	data_age,
 	data_gender,
@@ -7,13 +7,14 @@ import {
 	data_growth,
 } from "../../../role_all/data/profiles";
 import { ACCTYPE } from "../../../role_all/interfaces/iprofiles";
+import { IAdminUserFilters } from "../../interfaces/iadmin";
 
 ////////////////////////////////////////////////////////////////////////
 export const USER_FILTERS = "USER_FILTERS";
 
-export const userFiltersAction = createAction<IUserFilters>(USER_FILTERS);
+export const userFiltersAction = createAction<IAdminUserFilters>(USER_FILTERS);
 
-const initialStateUserFilters: IUserFilters = {
+const initialStateUserFilters: IAdminUserFilters = {
 	userid: "",
 	location: "",
 	agestart: data_age[0],
@@ -41,7 +42,7 @@ export const userFiltersReducer = createReducer(
 	(builder) => {
 		builder.addCase(
 			userFiltersAction,
-			(state: IUserFilters, action: any) => {
+			(state: IAdminUserFilters, action: any) => {
 				const filters = { ...action.payload };
 
 				return filters;

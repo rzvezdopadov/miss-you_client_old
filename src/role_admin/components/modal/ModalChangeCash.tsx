@@ -8,10 +8,9 @@ import {
 	initialStateModalChangeCash,
 	modalChangeCashAction,
 } from "../../store/redusers/modal";
-import { userProfileAction } from "../../../role_all/store/redusers/profile";
 import { useQuerySetCash } from "../../api/cash/cash.api.hook";
 import { ModalYesCancelWrapper } from "../../../role_all/components/wrappers/modal/ModalYesCancelWrapper";
-import { storeAll } from "../../../role_all/store/storeAll";
+import { userProfileAction } from "../../store/redusers/profile";
 
 export function modalChangeCashOpen(userid: string) {
 	store.dispatch(
@@ -47,7 +46,7 @@ export function ModalChangeCash() {
 	useEffect(() => {
 		if (!dataSetCash) return;
 
-		storeAll.dispatch(
+		store.dispatch(
 			userProfileAction({ enabled: true, profile: dataSetCash })
 		);
 		modalMessageOpen("Успешно выполненно!");

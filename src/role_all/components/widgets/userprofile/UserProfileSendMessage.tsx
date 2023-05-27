@@ -5,9 +5,11 @@ import { useQueryGetDialog } from "../../../api/dialog/dialog.api.hook";
 import { modalMessageOpen } from "../../modal/ModalMessage";
 import { IQueryDialog } from "../../../api/dialog/idialog.api";
 import { storeAll } from "../../../store/storeAll";
+import { store } from "../../../../role_user/store/store";
 
 export function UserProfileSendMessage() {
-	const { userMyProfile, userProfile } = storeAll.getState();
+	const { userMyProfile } = storeAll.getState();
+	const { userProfile } = store.getState();
 	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
 		useQueryGetDialog();
 

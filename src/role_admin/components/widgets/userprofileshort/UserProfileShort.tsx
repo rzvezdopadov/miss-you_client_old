@@ -5,16 +5,13 @@ import { IQueryGetProfile } from "../../../api/profile/iprofile.api";
 import { modalUserProfileOpen } from "../../modal/ModalUserProfile";
 import { modalMessageOpen } from "../../../../role_all/components/modal/ModalMessage";
 import { PhotoProfileShort } from "../../../../role_all/components/widgets/utils/Photo";
-import { UserProfileInterest } from "../../../../role_all/components/widgets/userprofile/UserProfileInterest";
 import { Button } from "../../../../role_all/components/utils/Buttons";
 import { DateTimeVisitShort } from "../../../../role_all/components/utils/DateTime";
 import { UserProfileShortDiscriptionWidget } from "../../../../role_all/components/widgets/userprofileshort/UserProfileShortDiscriptionWidget";
-import { storeAll } from "../../../../role_all/store/storeAll";
 
 export function UserProfileShort(payload: { profile: IProfileShort }) {
 	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
 		useQueryGetProfile();
-	const { userMyProfile } = storeAll.getState();
 
 	const openProfileHandler = () => {
 		const data: IQueryGetProfile = {

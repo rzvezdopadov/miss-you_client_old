@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { IProfile } from "../../../role_all/interfaces/iprofiles";
+import { useEffect, useState } from "react";
 import {
 	Label,
 	LabelCash,
@@ -7,12 +6,8 @@ import {
 } from "../../../role_all/components/utils/Labels";
 import {
 	Button,
-	ButtonClose,
+	ButtonImage,
 } from "../../../role_all/components/utils/Buttons";
-import {
-	initialStateUserProfile,
-	userProfileAction,
-} from "../../../role_all/store/redusers/profile";
 import { dialogAction } from "../../../role_all/store/redusers/dialog";
 import {
 	ModalDialog,
@@ -28,7 +23,6 @@ import { UserProfileAboutMe } from "../../../role_all/components/widgets/userpro
 import { UserProfileNameAge } from "../../../role_all/components/widgets/userprofile/UserProfileNameAge";
 import { useQueryGetDialog } from "../../../role_all/api/dialog/dialog.api.hook";
 import { IQueryDialog } from "../../../role_all/api/dialog/idialog.api";
-import { useRefDivVisible } from "../../../role_all/hooks/form.hook";
 import {
 	ModalChangeRating,
 	modalChangeRatingClose,
@@ -44,25 +38,29 @@ import { ModalPhotoDelete } from "./ModalPhotoDelete";
 import { storeAll } from "../../../role_all/store/storeAll";
 import { UserProfileSlider } from "../widgets/userprofile/UserProfileSlider";
 import { BG_COLOR } from "../../../assets/styles/enum";
+import statistics from "../../../assets/img/chart.png";
+import { ModalUserDataWrapper } from "../../../role_all/components/wrappers/modal/ModalUserDataWrapper";
+import { ModalUserStatistics } from "./ModalUserStatistic";
+import { store } from "../../store/store";
+import {
+	initialStateUserProfile,
+	userProfileAction,
+} from "../../store/redusers/profile";
+import { IAdminProfile } from "../../interfaces/iadmin";
 
-export function modalUserProfileOpen(profile: IProfile) {
-	storeAll.dispatch(userProfileAction({ enabled: true, profile }));
+export function modalUserProfileOpen(profile: IAdminProfile) {
+	store.dispatch(userProfileAction({ enabled: true, profile }));
 }
 
 function modalUserProfileClose() {
-	storeAll.dispatch(
-		userProfileAction({
-			enabled: false,
-			profile: initialStateUserProfile.profile,
-		})
-	);
+	store.dispatch(userProfileAction(initialStateUserProfile));
 }
 
 export function ModalUserProfile() {
 	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
 		useQueryGetDialog();
-	const { userProfile } = storeAll.getState();
-	const refUserProfile = useRefDivVisible(userProfile.enabled);
+	const { userProfile } = store.getState();
+	const [modalStatistics, setModalStatistics] = useState(false);
 
 	useEffect(() => {
 		if (!dataGetDialog) return;
@@ -94,12 +92,10 @@ export function ModalUserProfile() {
 	};
 
 	return (
-		<div
-			ref={refUserProfile}
-			className="flex flex-col invisible fixed justify-start bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl overflow-y-scroll lg:overflow-auto top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-20 pb-2 h-full lg:h-2/3 lg:max-w-5xl"
+		<ModalUserDataWrapper
+			enabled={userProfile.enabled}
+			clbkClose={closeUserProfileHandler}
 		>
-			<ButtonClose onClick={closeUserProfileHandler} />
-
 			<div className="flex flex-wrap mt-4 flex-col lg:flex-row justify-center items-center h-fit w-full">
 				<div className="flex flex-col">
 					<UserProfileSlider />
@@ -136,8 +132,14 @@ export function ModalUserProfile() {
 
 				<div className="flex items-center flex-col">
 					<UserProfileNameAge profile={userProfile.profile} />
-
 					<DateTimeVisit profile={userProfile.profile} />
+					<ButtonImage
+						imgSrc={statistics}
+						title="Статистика пользователя"
+						onClick={() => {
+							setModalStatistics(true);
+						}}
+					/>
 					<UserProfileAboutMe
 						discription={userProfile.profile.discription}
 					/>
@@ -151,6 +153,10 @@ export function ModalUserProfile() {
 			<ModalChangeCash />
 			<ModalBanned />
 			<ModalPhotoDelete />
-		</div>
+			<ModalUserStatistics
+				enabled={modalStatistics}
+				clbkClose={() => setModalStatistics(false)}
+			/>
+		</ModalUserDataWrapper>
 	);
 }
