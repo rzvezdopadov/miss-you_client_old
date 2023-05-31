@@ -79,8 +79,8 @@ export function ModalUserProfile() {
 									type: MESSAGETYPE.message,
 									userid: userProfile.profile.userid,
 									message: "",
-									stickerpackid: "",
-									stickerpos: 0,
+									stpid: "",
+									spos: 0,
 								},
 							})
 						}

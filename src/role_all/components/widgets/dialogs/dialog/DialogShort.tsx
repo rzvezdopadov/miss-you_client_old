@@ -52,10 +52,10 @@ export function DialogShort(payload: {
 					{`${dialog.name}, ${getAgeFromYear(dialog.yearofbirth)}`}
 				</div>
 				<div className="flex justify-start md:justify-center text-zinc-400 text-sm overflow-hidden select-none">
-					{dialog.messages[dialog.messages.length - 1].type ===
+					{dialog.msgs[dialog.msgs.length - 1].type ===
 					MESSAGETYPE.sticker
 						? "Cтикер"
-						: dialog.messages[dialog.messages.length - 1].message}
+						: dialog.msgs[dialog.msgs.length - 1].msg}
 				</div>
 			</div>
 		</div>

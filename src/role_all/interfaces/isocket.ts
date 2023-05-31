@@ -7,7 +7,7 @@ export interface IGetLike {
 
 export interface IGetMessage {
 	command: string;
-	userid1: string;
-	userid2: string;
-	message: IMessage;
+	id1: string;
+	id2: string;
+	msg: IMessage;
 }

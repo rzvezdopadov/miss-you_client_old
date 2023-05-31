@@ -47,8 +47,8 @@ export const initialStateComplaint: IComplaint = {
 		type: MESSAGETYPE.message,
 		userid: "",
 		message: "",
-		stickerpackid: "",
-		stickerpos: 0,
+		stpid: "",
+		spos: 0,
 	},
 };
 

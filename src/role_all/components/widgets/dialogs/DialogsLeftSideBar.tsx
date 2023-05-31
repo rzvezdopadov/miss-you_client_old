@@ -21,11 +21,9 @@ export function DialogsLeftSideBar() {
 	useEffect(() => {
 		if (!dataGetDialogs) return;
 
-		dataGetDialogs.sort(
-			(a, b) => b.messages[0].timecode - a.messages[0].timecode
-		);
+		dataGetDialogs.sort((a, b) => b.msgs[0].timecode - a.msgs[0].timecode);
 		dataGetDialogs.forEach((dialog) =>
-			dialog.messages.sort((a, b) => a.timecode - b.timecode)
+			dialog.msgs.sort((a, b) => a.timecode - b.timecode)
 		);
 
 		storeAll.dispatch(dialogsAction(dataGetDialogs));
@@ -58,7 +56,7 @@ export function DialogsLeftSideBar() {
 				dialogs.map((dialog: IDialog) => {
 					return (
 						<DialogShort
-							key={`DialogShort${dialog.timecode}`}
+							key={`DialogShort${dialog.userid}`}
 							dialog={dialog}
 							onClickHandler={() => {
 								setDialogOnClick(dialog.userid);

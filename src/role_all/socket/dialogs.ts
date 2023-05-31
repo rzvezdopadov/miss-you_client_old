@@ -15,29 +15,29 @@ export const socketMessageCreate = () => {
 		switch (socket.command) {
 			case "add":
 				if (
-					socket.userid1 === dialog.userid ||
-					socket.userid2 === dialog.userid
+					socket.id1 === dialog.userid ||
+					socket.id2 === dialog.userid
 				) {
 					const newDialog = { ...dialog };
-					const newMessages = [...newDialog.messages];
+					const newMessages = [...newDialog.msgs];
 
-					newMessages.push(socket.message);
+					newMessages.push(socket.msg);
 					newMessages.sort((a, b) => a.timecode - b.timecode);
-					newDialog.messages = newMessages;
+					newDialog.msgs = newMessages;
 
 					storeAll.dispatch(dialogAction(newDialog));
 				}
 
 				if (
-					socket.userid1 === modalDialog.dialog.userid ||
-					socket.userid2 === modalDialog.dialog.userid
+					socket.id1 === modalDialog.dialog.userid ||
+					socket.id2 === modalDialog.dialog.userid
 				) {
 					const newModalDialog = { ...modalDialog.dialog };
-					const newMessages = [...newModalDialog.messages];
+					const newMessages = [...newModalDialog.msgs];
 
-					newMessages.push(socket.message);
+					newMessages.push(socket.msg);
 					newMessages.sort((a, b) => a.timecode - b.timecode);
-					newModalDialog.messages = newMessages;
+					newModalDialog.msgs = newMessages;
 
 					storeAll.dispatch(
 						modalDialogAction({
@@ -50,23 +50,23 @@ export const socketMessageCreate = () => {
 				const newDialogs = [...dialogs];
 				const dialogPos = newDialogs.findIndex(
 					(value) =>
-						value.userid === socket.userid1 ||
-						value.userid === socket.userid2
+						value.userid === socket.id1 ||
+						value.userid === socket.id2
 				);
 
 				if (dialogPos !== -1) {
 					const newDialog = { ...newDialogs[dialogPos] };
-					const newMessages = [...newDialogs[dialogPos].messages];
+					const newMessages = [...newDialogs[dialogPos].msgs];
 
-					newMessages.push(socket.message);
+					newMessages.push(socket.msg);
 					newMessages.sort((a, b) => a.timecode - b.timecode);
-					newDialog.messages = newMessages;
+					newDialog.msgs = newMessages;
 					newDialogs[dialogPos] = newDialog;
 
 					newDialogs.sort(
 						(a, b) =>
-							b.messages[b.messages.length - 1].timecode -
-							a.messages[a.messages.length - 1].timecode
+							b.msgs[b.msgs.length - 1].timecode -
+							a.msgs[a.msgs.length - 1].timecode
 					);
 
 					storeAll.dispatch(dialogsAction(newDialogs));
@@ -78,7 +78,7 @@ export const socketMessageCreate = () => {
 		}
 
 		const { userMyProfile } = storeAll.getState();
-		if (socket.message.userid !== userMyProfile.userid)
+		if (socket.msg.id1 !== userMyProfile.userid)
 			modalMessageOpen("У вас новое сообщение =)");
 	});
 };
@@ -107,8 +107,8 @@ export const socketDialogCreate = () => {
 
 		newDialogs.sort(
 			(a, b) =>
-				b.messages[b.messages.length - 1].timecode -
-				a.messages[a.messages.length - 1].timecode
+				b.msgs[b.msgs.length - 1].timecode -
+				a.msgs[a.msgs.length - 1].timecode
 		);
 
 		storeAll.dispatch(dialogsAction(newDialogs));
@@ -121,7 +121,7 @@ export const socketDialogDestroy = () => {
 
 const notMessageID = `Чтобы отправить сообщение выберите пользователя!`;
 
-export const socketSendMessage = (message: string) => {
+export const socketSendMessage = (msg: string) => {
 	const { modalDialog, dialog } = storeAll.getState();
 
 	const userid = modalDialog.dialog.userid || dialog.userid || "";
@@ -136,7 +136,7 @@ export const socketSendMessage = (message: string) => {
 
 	const data: IQuerySendMessage = {
 		userid: userid,
-		message: message,
+		msg: msg,
 	};
 
 	socketClient.emit("message", data);

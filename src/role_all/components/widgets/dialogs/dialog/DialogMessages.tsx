@@ -17,31 +17,29 @@ export function DialogMessages(payload: IDialog) {
 			ref={bottomRef}
 			className="hover:overflow-y-scroll overflow-hidden justify-end shadow-[0px_0px_1px_1px] shadow-lime-300 flex-col bg-gray-900 text-neutral-50 rounded-xl px-2 pt-2 pb-2 h-full w-full"
 		>
-			{payload &&
-			Object.keys(payload).length &&
-			payload.messages.length ? (
-				payload.messages.map((value: IMessage) => {
+			{payload && Object.keys(payload).length && payload.msgs.length ? (
+				payload.msgs.map((value: IMessage) => {
 					let name = userMyProfile.name;
 					let photolink =
 						userMyProfile.photolink[userMyProfile.photomain];
 
-					if (userMyProfile.userid !== value.userid) {
+					if (userMyProfile.userid !== value.id1) {
 						name = payload.name;
 						photolink = payload.photolink;
 					}
 
 					return (
 						<DialogMessage
-							key={`DialogMessage${payload.timecode}${value.timecode}`}
-							keyopt={`${payload.timecode}${value.timecode}`}
-							userid={value.userid}
+							key={`DialogMessage${value.timecode}${value.timecode}`}
+							keyopt={`${value.id1}${value.timecode}`}
+							userid={value.id1}
 							name={name}
 							timecode={value.timecode}
 							messageType={value.type}
-							message={value.message}
+							message={value.msg}
 							photolink={photolink}
-							stickerpackid={value.stickerpackid}
-							stikerpos={value.stickerpos}
+							stickerpackid={value.stpid}
+							stikerpos={value.spos}
 						/>
 					);
 				})

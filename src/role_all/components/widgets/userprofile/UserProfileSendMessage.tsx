@@ -22,7 +22,7 @@ export function UserProfileSendMessage() {
 	useEffect(() => {
 		if (!dataGetDialog) return;
 
-		dataGetDialog.messages.sort((a, b) => a.timecode - b.timecode);
+		dataGetDialog.msgs.sort((a, b) => a.timecode - b.timecode);
 
 		modalDialogOpen(dataGetDialog);
 	}, [dataGetDialog]);

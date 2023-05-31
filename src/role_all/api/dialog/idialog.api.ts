@@ -7,7 +7,7 @@ export interface IQueryDialog {
 
 export interface IQuerySendMessage {
 	userid: string;
-	message: string;
+	msg: string;
 }
 
 export interface IQueryAnswerGetDialogs {

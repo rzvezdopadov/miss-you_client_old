@@ -97,8 +97,8 @@ export function DialogMessage(payload: {
 								type: payload.messageType,
 								userid: payload.userid,
 								message: payload.message,
-								stickerpackid: payload.stickerpackid,
-								stickerpos: payload.stikerpos,
+								stpid: payload.stickerpackid,
+								spos: payload.stikerpos,
 							},
 						})
 					}

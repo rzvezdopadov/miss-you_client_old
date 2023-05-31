@@ -21,14 +21,13 @@ export const DIALOG = "DIALOG";
 export const dialogAction = createAction<IDialog>(DIALOG);
 
 export const initialStateDialog: IDialog = {
-	timecode: 0,
 	userid: "",
 	name: "",
 	birthday: 0,
 	monthofbirth: 0,
 	yearofbirth: 0,
 	photolink: "",
-	messages: [],
+	msgs: [],
 };
 
 export const dialogReducer = createReducer(initialStateDialog, (builder) => {

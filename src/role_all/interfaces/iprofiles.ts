@@ -152,22 +152,25 @@ export enum MESSAGETYPE {
 
 export interface IMessage {
 	timecode: number;
+	id1: string;
+	id2: string;
+	id1rd: boolean;
+	id2rd: boolean;
+	dck: string;
 	type: MESSAGETYPE;
-	userid: string;
-	message: string;
-	stickerpackid: string;
-	stickerpos: number;
+	msg: string;
+	stpid: string;
+	spos: number;
 }
 
 export interface IDialog {
-	timecode: number;
 	userid: string;
 	name: string;
 	birthday: number;
 	monthofbirth: number;
 	yearofbirth: number;
 	photolink: string;
-	messages: IMessage[];
+	msgs: IMessage[];
 }
 
 export enum COMPLAINTTYPE {
@@ -181,6 +184,15 @@ export enum COMPLAINTSTATUS {
 	close = "close",
 }
 
+export interface IComplMessage {
+	timecode: number;
+	type: MESSAGETYPE;
+	userid: string;
+	message: string;
+	stpid: string;
+	spos: number;
+}
+
 export interface IComplaint {
 	userfrom: string;
 	userto: string;
@@ -191,7 +203,7 @@ export interface IComplaint {
 	dck: string;
 	cash: number;
 	status: COMPLAINTSTATUS;
-	complmessage: IMessage;
+	complmessage: IComplMessage;
 }
 
 export interface IModalDialog {
