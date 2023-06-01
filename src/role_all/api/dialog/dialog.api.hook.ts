@@ -15,10 +15,10 @@ export function useQueryGetDialogs() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetDialogs = async () => {
-		querySend("/api/dialogs", {}, true);
+		querySend("/api/dialogs", {}, false);
 	};
 
-	const dataNew = data as IDialog[];
+	const dataNew = data as string[];
 	const errorNew = error as IQueryAnswerError;
 
 	const queryAnswer: IQueryAnswerGetDialogs = {
@@ -38,7 +38,7 @@ export function useQueryGetDialog() {
 	const { data, error, loaded, querySend } = useQueryGet();
 
 	const querySendGetDialog = async (dataQuery: IQueryDialog) => {
-		querySend("/api/dialog", dataQuery, true);
+		querySend("/api/dialog", dataQuery, false);
 	};
 
 	const dataNew = data as IDialog;
