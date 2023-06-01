@@ -33,6 +33,9 @@ import { dialogsSort } from "../../../role_all/helpers/dialog";
 import { lazyloadingusercount } from "../../../config";
 import { IDialog } from "../../../role_all/interfaces/iprofiles";
 
+let queryCount = 0;
+let dialogs: IDialog[] = [];
+
 export function AppMain() {
 	const { jwt, userMyProfile } = storeAll.getState();
 	const [dialogsList, setDialogsList] = useState<string[]>([]);
@@ -47,36 +50,23 @@ export function AppMain() {
 	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
 		useQueryGetDialog();
 
-	const { queryCount, dialogs, getDialogByID, addDialog } = (function () {
-		let queryCount = 0;
-		let dialogs: IDialog[] = [];
-		const getDialogByID = function (userid: string) {
-			++queryCount;
-			querySendGetDialog({
-				userid,
-				startcount: 0,
-				amount: lazyloadingusercount,
-			});
-
-			console.log("getDialogByID", queryCount);
+	useEffect(() => {
+		return () => {
+			storeAll.dispatch(dialogsAction([]));
 		};
-		const addDialog = function (dialog: IDialog) {
-			--queryCount;
-			dialogs.push(dialog);
-
-			console.log("addDialog", queryCount);
-		};
-
-		return { queryCount, dialogs, getDialogByID, addDialog };
-	})();
+	}, []);
 
 	useEffect(() => {
 		if (jwt) {
-			querySendGetProfile({
-				userid: "0",
-			});
-			querySendGetStickerpacks();
-			querySendGetDialogs();
+			setTimeout(
+				() =>
+					querySendGetProfile({
+						userid: "0",
+					}),
+				50
+			);
+			setTimeout(() => querySendGetStickerpacks(), 100);
+			setTimeout(() => querySendGetDialogs(), 150);
 		}
 
 		querySendGetTowns();
@@ -132,22 +122,26 @@ export function AppMain() {
 	}, [errorGetDialogs]);
 
 	useEffect(() => {
-		if (queryCount === 0) {
-			console.log("dispatch");
-			storeAll.dispatch(dialogsAction(dialogs));
-		}
-	}, [queryCount]);
-
-	useEffect(() => {
 		if (dialogsList.length === 0) return;
 
-		dialogsList.forEach((value) => getDialogByID(value));
+		dialogsList.forEach((userid) =>
+			setTimeout(() => {
+				queryCount++;
+				querySendGetDialog({
+					userid,
+					startcount: 0,
+					amount: lazyloadingusercount,
+				});
+			}, 50)
+		);
 	}, [dialogsList]);
 
 	useEffect(() => {
 		if (!dataGetDialog) return;
 
-		addDialog(dataGetDialog);
+		dialogs.push(dataGetDialog);
+		if (dialogs.length === dialogsList.length)
+			storeAll.dispatch(dialogsAction(dialogs));
 	}, [dataGetDialog]);
 
 	useEffect(() => {
