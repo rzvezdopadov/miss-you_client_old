@@ -1,39 +1,13 @@
-import { useEffect } from "react";
 import { DialogShort } from "./dialog/DialogShort";
 import { storeAll } from "../../../store/storeAll";
-import { useQueryGetDialogs } from "../../../api/dialog/dialog.api.hook";
-import { dialogAction, dialogsAction } from "../../../store/redusers/dialog";
-import { modalMessageOpen } from "../../modal/ModalMessage";
+import { dialogAction } from "../../../store/redusers/dialog";
 import { IDialog } from "../../../interfaces/iprofiles";
 import { modalDialogOpen } from "../../modal/ModalDialog";
 import { store } from "../../../../role_user/store/store";
 
 export function DialogsLeftSideBar() {
-	const { userMyProfile, dialogs } = storeAll.getState();
+	const { dialogs } = storeAll.getState();
 	const { userProfile } = store.getState();
-	const { dataGetDialogs, errorGetDialogs, querySendGetDialogs } =
-		useQueryGetDialogs();
-
-	useEffect(() => {
-		if (userMyProfile.userid) querySendGetDialogs();
-	}, [userMyProfile.userid]);
-
-	useEffect(() => {
-		if (!dataGetDialogs) return;
-
-		dataGetDialogs.sort((a, b) => b.msgs[0].timecode - a.msgs[0].timecode);
-		dataGetDialogs.forEach((dialog) =>
-			dialog.msgs.sort((a, b) => a.timecode - b.timecode)
-		);
-
-		storeAll.dispatch(dialogsAction(dataGetDialogs));
-	}, [dataGetDialogs]);
-
-	useEffect(() => {
-		if (!errorGetDialogs) return;
-
-		modalMessageOpen(errorGetDialogs.response.data.message);
-	}, [errorGetDialogs]);
 
 	const setDialogOnClick = (userId: string) => {
 		const outDialog = dialogs.filter(
