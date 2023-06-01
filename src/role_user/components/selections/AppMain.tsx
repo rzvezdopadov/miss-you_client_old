@@ -1,9 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { storeAll } from "../../../role_all/store/storeAll";
 import { useQueryGetProfile } from "../../api/profile/profile.api.hook";
 import { useQueryGetStickerpacks } from "../../api/shop/sticker/sticker.api.hook";
-import { IQueryGetProfile } from "../../api/profile/iprofile.api";
 import { filtersUserAction } from "../../store/redusers/filters";
 import { userMyProfileAction } from "../../../role_all/store/redusers/profile";
 import { modalMessageOpen } from "../../../role_all/components/modal/ModalMessage";
@@ -25,24 +24,59 @@ import { AboutUs } from "../../../role_all/components/pages/AboutUs";
 import { Partners } from "../../../role_all/components/pages/Partners";
 import { useQueryGetTowns } from "../../../role_all/api/towns/towns.api.hook";
 import { townsAction } from "../../../role_all/store/redusers/towns";
+import {
+	useQueryGetDialog,
+	useQueryGetDialogs,
+} from "../../../role_all/api/dialog/dialog.api.hook";
+import { dialogsAction } from "../../../role_all/store/redusers/dialog";
+import { dialogsSort } from "../../../role_all/helpers/dialog";
+import { lazyloadingusercount } from "../../../config";
+import { IDialog } from "../../../role_all/interfaces/iprofiles";
 
 export function AppMain() {
 	const { jwt, userMyProfile } = storeAll.getState();
+	const [dialogsList, setDialogsList] = useState<string[]>([]);
 	const { dataGetProfile, errorGetProfile, querySendGetProfile } =
 		useQueryGetProfile();
 	const { dataStickerpacks, errorStickerpacks, querySendGetStickerpacks } =
 		useQueryGetStickerpacks();
 	const { dataGetTowns, errorGetTowns, querySendGetTowns } =
 		useQueryGetTowns();
+	const { dataGetDialogs, errorGetDialogs, querySendGetDialogs } =
+		useQueryGetDialogs();
+	const { dataGetDialog, errorGetDialog, querySendGetDialog } =
+		useQueryGetDialog();
+
+	const { queryCount, dialogs, getDialogByID, addDialog } = (function () {
+		let queryCount = 0;
+		let dialogs: IDialog[] = [];
+		const getDialogByID = function (userid: string) {
+			++queryCount;
+			querySendGetDialog({
+				userid,
+				startcount: 0,
+				amount: lazyloadingusercount,
+			});
+
+			console.log("getDialogByID", queryCount);
+		};
+		const addDialog = function (dialog: IDialog) {
+			--queryCount;
+			dialogs.push(dialog);
+
+			console.log("addDialog", queryCount);
+		};
+
+		return { queryCount, dialogs, getDialogByID, addDialog };
+	})();
 
 	useEffect(() => {
 		if (jwt) {
-			const data: IQueryGetProfile = {
+			querySendGetProfile({
 				userid: "0",
-			};
-
-			querySendGetProfile(data);
+			});
 			querySendGetStickerpacks();
+			querySendGetDialogs();
 		}
 
 		querySendGetTowns();
@@ -84,6 +118,43 @@ export function AppMain() {
 
 		modalMessageOpen(errorGetTowns.response.data.message);
 	}, [errorGetTowns]);
+
+	useEffect(() => {
+		if (!dataGetDialogs) return;
+
+		setDialogsList(dataGetDialogs);
+	}, [dataGetDialogs]);
+
+	useEffect(() => {
+		if (!errorGetDialogs) return;
+
+		modalMessageOpen(errorGetDialogs.response.data.message);
+	}, [errorGetDialogs]);
+
+	useEffect(() => {
+		if (queryCount === 0) {
+			console.log("dispatch");
+			storeAll.dispatch(dialogsAction(dialogs));
+		}
+	}, [queryCount]);
+
+	useEffect(() => {
+		if (dialogsList.length === 0) return;
+
+		dialogsList.forEach((value) => getDialogByID(value));
+	}, [dialogsList]);
+
+	useEffect(() => {
+		if (!dataGetDialog) return;
+
+		addDialog(dataGetDialog);
+	}, [dataGetDialog]);
+
+	useEffect(() => {
+		if (!errorGetDialog) return;
+
+		modalMessageOpen(errorGetDialogs.response.data.message);
+	}, [errorGetDialog]);
 
 	return (
 		<MainWrapper>
