@@ -6,6 +6,7 @@ import { modalMessageOpen } from "../../modal/ModalMessage";
 import { IQueryDialog } from "../../../api/dialog/idialog.api";
 import { storeAll } from "../../../store/storeAll";
 import { store } from "../../../../role_user/store/store";
+import { lazyloadingusercount } from "../../../../config";
 
 export function UserProfileSendMessage() {
 	const { userMyProfile } = storeAll.getState();
@@ -36,6 +37,8 @@ export function UserProfileSendMessage() {
 	const openDialogModalHandler = () => {
 		const data: IQueryDialog = {
 			userid: userProfile.profile.userid,
+			startcount: 0,
+			amount: lazyloadingusercount,
 		};
 
 		querySendGetDialog(data);

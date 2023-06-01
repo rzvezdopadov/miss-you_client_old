@@ -47,6 +47,7 @@ import {
 	userProfileAction,
 } from "../../store/redusers/profile";
 import { IAdminProfile } from "../../interfaces/iadmin";
+import { lazyloadingusercount } from "../../../config";
 
 export function modalUserProfileOpen(profile: IAdminProfile) {
 	store.dispatch(userProfileAction({ enabled: true, profile }));
@@ -78,6 +79,8 @@ export function ModalUserProfile() {
 	const modalDialogOpenHandler = () => {
 		const data: IQueryDialog = {
 			userid: userProfile.profile.userid,
+			startcount: 0,
+			amount: lazyloadingusercount,
 		};
 
 		querySendGetDialog(data);
