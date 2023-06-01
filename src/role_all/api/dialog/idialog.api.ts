@@ -3,6 +3,8 @@ import { IQueryAnswerError } from "../iquerys.api";
 
 export interface IQueryDialog {
 	userid: string;
+	startcount: number;
+	amount: number;
 }
 
 export interface IQuerySendMessage {
@@ -11,7 +13,7 @@ export interface IQuerySendMessage {
 }
 
 export interface IQueryAnswerGetDialogs {
-	dataGetDialogs: IDialog[];
+	dataGetDialogs: string[];
 	errorGetDialogs: IQueryAnswerError;
 	loadedGetDialogs: boolean;
 	querySendGetDialogs(): void;
