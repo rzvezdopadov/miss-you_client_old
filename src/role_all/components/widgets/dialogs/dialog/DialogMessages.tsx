@@ -30,8 +30,11 @@ export function DialogMessages(payload: IDialog) {
 
 					return (
 						<DialogMessage
-							key={`DialogMessage${value.timecode}${value.timecode}`}
-							keyopt={`${value.id1}${value.timecode}`}
+							key={`Dialog${
+								value.id1 === userMyProfile.userid
+									? value.id2
+									: value.id1
+							}Time${value.timecode}Msg${value.msg}`}
 							userid={value.id1}
 							name={name}
 							timecode={value.timecode}

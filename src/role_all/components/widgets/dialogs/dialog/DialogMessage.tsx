@@ -11,7 +11,6 @@ import { getDateTimeFromTimeCode } from "../../../../helpers/datetime";
 import { modalComplaintOpen } from "../../../../../role_user/components/modal/ModalComplaint";
 
 export function DialogMessage(payload: {
-	keyopt: string;
 	userid: string;
 	name: string;
 	timecode: number;
@@ -49,10 +48,7 @@ export function DialogMessage(payload: {
 	}, []);
 
 	return (
-		<div
-			key={payload.keyopt}
-			className="flex items-start my-1 w-auto h-fit"
-		>
+		<div className="flex items-start my-1 w-auto h-fit">
 			<div className="flex m-1">
 				<PhotoMessage src={payload.photolink} />
 			</div>
