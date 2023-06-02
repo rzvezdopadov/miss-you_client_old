@@ -33,7 +33,6 @@ import { dialogsSort } from "../../../role_all/helpers/dialog";
 import { lazyloadingusercount } from "../../../config";
 import { IDialog } from "../../../role_all/interfaces/iprofiles";
 
-let queryCount = 0;
 let dialogs: IDialog[] = [];
 
 export function AppMain() {
@@ -124,25 +123,32 @@ export function AppMain() {
 	useEffect(() => {
 		if (dialogsList.length === 0) return;
 
-		dialogsList.forEach((userid) =>
-			setTimeout(() => {
-				queryCount++;
-				querySendGetDialog({
-					userid,
-					startcount: 0,
-					amount: lazyloadingusercount,
-				});
-			}, 50)
-		);
+		querySendGetDialog({
+			userid: dialogsList[0],
+			startcount: 0,
+			amount: lazyloadingusercount,
+		});
 	}, [dialogsList]);
 
 	useEffect(() => {
-		if (!dataGetDialog) return;
+		if (dataGetDialog === undefined) return;
+		if (dataGetDialog !== null) {
+			dialogs.push(dataGetDialog);
+			const indexQuery = dialogsList.findIndex(
+				(userid) => userid === dataGetDialog.userid
+			);
+			if (indexQuery !== -1) dialogsList.splice(indexQuery, 1);
+		}
 
-		dialogs.push(dataGetDialog);
-		if (dialogs.length === dialogsList.length) {
+		if (dialogsList.length === 0) {
 			dialogs = dialogsSort(dialogs);
 			storeAll.dispatch(dialogsAction(dialogs));
+		} else {
+			querySendGetDialog({
+				userid: dialogsList[0],
+				startcount: 0,
+				amount: lazyloadingusercount,
+			});
 		}
 	}, [dataGetDialog]);
 
