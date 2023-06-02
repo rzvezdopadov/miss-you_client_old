@@ -7,69 +7,49 @@ import { IDialog } from "../interfaces/iprofiles";
 import { IQuerySendMessage } from "../api/dialog/idialog.api";
 import { socketClient } from "./socket";
 import { IQuerySendSticker } from "../../role_user/api/shop/sticker/isticker.api";
+import { dialogsSort } from "../helpers/dialog";
 
 export const socketMessageCreate = () => {
-	socketClient.on("message", (socket: IGetMessage) => {
+	socketClient.on("msg", (socket: IGetMessage) => {
 		const { dialogs, dialog, modalDialog } = storeAll.getState();
 
 		switch (socket.command) {
 			case "add":
-				if (
-					socket.id1 === dialog.userid ||
-					socket.id2 === dialog.userid
-				) {
-					const newDialog = { ...dialog };
-					const newMessages = [...newDialog.msgs];
-
-					newMessages.push(socket.msg);
-					newMessages.sort((a, b) => a.timecode - b.timecode);
-					newDialog.msgs = newMessages;
-
-					storeAll.dispatch(dialogAction(newDialog));
-				}
-
-				if (
-					socket.id1 === modalDialog.dialog.userid ||
-					socket.id2 === modalDialog.dialog.userid
-				) {
-					const newModalDialog = { ...modalDialog.dialog };
-					const newMessages = [...newModalDialog.msgs];
-
-					newMessages.push(socket.msg);
-					newMessages.sort((a, b) => a.timecode - b.timecode);
-					newModalDialog.msgs = newMessages;
-
-					storeAll.dispatch(
-						modalDialogAction({
-							enabled: true,
-							dialog: newModalDialog,
-						})
-					);
-				}
-
-				const newDialogs = [...dialogs];
-				const dialogPos = newDialogs.findIndex(
-					(value) =>
-						value.userid === socket.id1 ||
-						value.userid === socket.id2
+				const dialogPos = dialogs.findIndex(
+					(dialog) =>
+						socket.id1 === dialog.userid ||
+						socket.id2 === dialog.userid
 				);
 
-				if (dialogPos !== -1) {
+				if (dialogPos === -1) {
+				} else {
+					let newDialogs = [...dialogs];
 					const newDialog = { ...newDialogs[dialogPos] };
 					const newMessages = [...newDialogs[dialogPos].msgs];
-
 					newMessages.push(socket.msg);
-					newMessages.sort((a, b) => a.timecode - b.timecode);
 					newDialog.msgs = newMessages;
 					newDialogs[dialogPos] = newDialog;
-
-					newDialogs.sort(
-						(a, b) =>
-							b.msgs[b.msgs.length - 1].timecode -
-							a.msgs[a.msgs.length - 1].timecode
-					);
-
+					newDialogs = dialogsSort(newDialogs);
 					storeAll.dispatch(dialogsAction(newDialogs));
+
+					if (
+						socket.id1 === dialog.userid ||
+						socket.id2 === dialog.userid
+					) {
+						storeAll.dispatch(dialogAction(newDialog));
+					}
+
+					if (
+						socket.id1 === modalDialog.dialog.userid ||
+						socket.id2 === modalDialog.dialog.userid
+					) {
+						storeAll.dispatch(
+							modalDialogAction({
+								enabled: true,
+								dialog: newDialog,
+							})
+						);
+					}
 				}
 
 				break;
@@ -84,7 +64,7 @@ export const socketMessageCreate = () => {
 };
 
 export const socketMessageDestroy = () => {
-	socketClient.off("message");
+	socketClient.off("msg");
 };
 
 export const socketDialogCreate = () => {
@@ -139,7 +119,7 @@ export const socketSendMessage = (msg: string) => {
 		msg: msg,
 	};
 
-	socketClient.emit("message", data);
+	socketClient.emit("msg", data);
 };
 
 export const sendSticker = (stickerpackid: string, stickerpos: number) => {
