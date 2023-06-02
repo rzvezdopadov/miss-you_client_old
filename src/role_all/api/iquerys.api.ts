@@ -18,5 +18,5 @@ export interface IQueryAnswerError {
 }
 
 export interface IQueryAnswerMessageData {
-	message: "";
+	msg: "";
 }

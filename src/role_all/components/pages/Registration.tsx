@@ -58,7 +58,7 @@ export function Registration() {
 	useEffect(() => {
 		if (!dataRegistration) return;
 
-		modalMessageOpen(dataRegistration.message);
+		modalMessageOpen(dataRegistration.msg);
 	}, [dataRegistration]);
 
 	useEffect(() => {

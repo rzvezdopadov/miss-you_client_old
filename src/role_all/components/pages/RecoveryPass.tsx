@@ -36,7 +36,7 @@ export function RecoveryPass() {
 	useEffect(() => {
 		if (!dataRecoveryPass) return;
 
-		modalMessageOpen(dataRecoveryPass.message);
+		modalMessageOpen(dataRecoveryPass.msg);
 	}, [dataRecoveryPass]);
 
 	useEffect(() => {

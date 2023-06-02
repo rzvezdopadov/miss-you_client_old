@@ -29,11 +29,11 @@ export const socketStatusDisconnectDestroy = () => {
 };
 
 export const socketModalMessageCreate = () => {
-	socketClient.on("modalmessage", (socket: IQueryAnswerMessageData) => {
-		modalMessageOpen(socket.message);
+	socketClient.on("modalmsg", (socket: IQueryAnswerMessageData) => {
+		modalMessageOpen(socket.msg);
 	});
 };
 
 export const socketModalMessageDestroy = () => {
-	socketClient.off("modalmessage");
+	socketClient.off("modalmsg");
 };

@@ -51,7 +51,7 @@ export function ModalBanned() {
 	useEffect(() => {
 		if (!dataSetBanned) return;
 
-		modalMessageOpen(dataSetBanned.message);
+		modalMessageOpen(dataSetBanned.msg);
 		modalBannedClose();
 	}, [dataSetBanned]);
 

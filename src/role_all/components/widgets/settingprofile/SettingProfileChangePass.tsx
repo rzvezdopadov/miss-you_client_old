@@ -18,7 +18,7 @@ export function SettingProfileChangePass() {
 
 	useEffect(() => {
 		if (dataChangePass) {
-			modalMessageOpen(dataChangePass.message);
+			modalMessageOpen(dataChangePass.msg);
 		} else if (errorChangePass) {
 			modalMessageOpen(errorChangePass.response.data.message);
 		}
