@@ -140,8 +140,10 @@ export function AppMain() {
 		if (!dataGetDialog) return;
 
 		dialogs.push(dataGetDialog);
-		if (dialogs.length === dialogsList.length)
+		if (dialogs.length === dialogsList.length) {
+			dialogs = dialogsSort(dialogs);
 			storeAll.dispatch(dialogsAction(dialogs));
+		}
 	}, [dataGetDialog]);
 
 	useEffect(() => {
