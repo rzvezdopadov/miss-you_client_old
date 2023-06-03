@@ -78,12 +78,12 @@ export const socketMessageDestroy = () => {
 
 export const socketDialogCreate = () => {
 	socketClient.on("dialog", (socket: IDialog) => {
-		const { dialogs, dialog } = storeAll.getState();
+		const { dialogs, dialog, modalDialog } = storeAll.getState();
 		if (dialog.userid === socket.userid) {
 			storeAll.dispatch(dialogAction(socket));
 		}
 
-		const newDialogs = [...dialogs];
+		let newDialogs = [...dialogs];
 		const dialogPos = newDialogs.findIndex(
 			(value) => value.userid === socket.userid
 		);
@@ -94,13 +94,21 @@ export const socketDialogCreate = () => {
 			newDialogs.push(socket);
 		}
 
-		newDialogs.sort(
-			(a, b) =>
-				b.msgs[b.msgs.length - 1].timecode -
-				a.msgs[a.msgs.length - 1].timecode
-		);
+		newDialogs = dialogsSort(newDialogs);
 
 		storeAll.dispatch(dialogsAction(newDialogs));
+
+		if (
+			modalDialog.enabled &&
+			socket.userid === modalDialog.dialog.userid
+		) {
+			storeAll.dispatch(
+				modalDialogAction({
+					enabled: true,
+					dialog: socket,
+				})
+			);
+		}
 	});
 };
 
@@ -154,5 +162,5 @@ export const sendSticker = (stickerpackid: string, stickerpos: number) => {
 };
 
 export const getDialog = (payload: IQueryDialog) => {
-	socketClient.emit("get_dialog", payload);
+	socketClient.emit("dialog", payload);
 };
