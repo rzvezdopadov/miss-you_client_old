@@ -4,24 +4,34 @@ import { modalDialogAction, modalMessageAction } from "../store/redusers/modal";
 import { IGetMessage } from "../interfaces/isocket";
 import { modalMessageOpen } from "../components/modal/ModalMessage";
 import { IDialog } from "../interfaces/iprofiles";
-import { IQuerySendMessage } from "../api/dialog/idialog.api";
+import { IQueryDialog, IQuerySendMessage } from "../api/dialog/idialog.api";
 import { socketClient } from "./socket";
 import { IQuerySendSticker } from "../../role_user/api/shop/sticker/isticker.api";
 import { dialogsSort } from "../helpers/dialog";
+import { lazyloadingusercount } from "../../config";
 
 export const socketMessageCreate = () => {
 	socketClient.on("msg", (socket: IGetMessage) => {
-		const { dialogs, dialog, modalDialog } = storeAll.getState();
+		const { userMyProfile, dialogs, dialog, modalDialog } =
+			storeAll.getState();
 
 		switch (socket.command) {
 			case "add":
 				const dialogPos = dialogs.findIndex(
 					(dialog) =>
-						socket.id1 === dialog.userid ||
-						socket.id2 === dialog.userid
+						socket.msg.id1 === dialog.userid ||
+						socket.msg.id2 === dialog.userid
 				);
 
 				if (dialogPos === -1) {
+					getDialog({
+						userid:
+							socket.msg.id1 === userMyProfile.userid
+								? socket.msg.id2
+								: socket.msg.id1,
+						startcount: 0,
+						amount: lazyloadingusercount,
+					});
 				} else {
 					let newDialogs = [...dialogs];
 					const newDialog = { ...newDialogs[dialogPos] };
@@ -33,15 +43,15 @@ export const socketMessageCreate = () => {
 					storeAll.dispatch(dialogsAction(newDialogs));
 
 					if (
-						socket.id1 === dialog.userid ||
-						socket.id2 === dialog.userid
+						socket.msg.id1 === dialog.userid ||
+						socket.msg.id2 === dialog.userid
 					) {
 						storeAll.dispatch(dialogAction(newDialog));
 					}
 
 					if (
-						socket.id1 === modalDialog.dialog.userid ||
-						socket.id2 === modalDialog.dialog.userid
+						socket.msg.id1 === modalDialog.dialog.userid ||
+						socket.msg.id2 === modalDialog.dialog.userid
 					) {
 						storeAll.dispatch(
 							modalDialogAction({
@@ -57,7 +67,6 @@ export const socketMessageCreate = () => {
 				break;
 		}
 
-		const { userMyProfile } = storeAll.getState();
 		if (socket.msg.id1 !== userMyProfile.userid)
 			modalMessageOpen("У вас новое сообщение =)");
 	});
@@ -142,4 +151,8 @@ export const sendSticker = (stickerpackid: string, stickerpos: number) => {
 	};
 
 	socketClient.emit("sticker", data);
+};
+
+export const getDialog = (payload: IQueryDialog) => {
+	socketClient.emit("get_dialog", payload);
 };
