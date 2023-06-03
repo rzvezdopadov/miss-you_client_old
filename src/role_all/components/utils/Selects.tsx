@@ -9,7 +9,7 @@ export function SelectFromArr(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
@@ -41,7 +41,7 @@ export function SelectFromArrValue(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
@@ -74,7 +74,7 @@ export function FiltersOptionAtArr(payload: {
 	}>;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white">
 					{payload.headName}

@@ -12,7 +12,7 @@ export function SliderPhoto(payload: {
 				backgroundImage:
 					"URL(" + payload.photolink[payload.positionPhoto] + ")",
 			}}
-			className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
+			className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
 			onClick={payload.onClick}
 		></div>
 	);

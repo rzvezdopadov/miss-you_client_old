@@ -13,7 +13,7 @@ export function Input(payload: {
 				value={payload.value}
 				onChange={payload.onChange}
 				title={payload.placeholder}
-				className="flex text-center rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-0.5 py-1 px-3"
+				className="flex text-center rounded-md shadow-[0px_0px_2px_2px] shadow-lime-300 bg-slate-300 text-black m-0.5 py-1 px-3"
 				type={payload.type}
 				placeholder={payload.placeholder}
 			/>
@@ -33,7 +33,7 @@ export function TextArea(payload: {
 				onChange={payload.onChange}
 				title={payload.placeholder}
 				maxLength={50}
-				className="flex text-center resize-none rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black w-full"
+				className="flex text-center resize-none rounded-xl shadow-[0px_0px_2px_2px] shadow-lime-300 bg-slate-300 text-black w-full"
 				placeholder={payload.placeholder}
 			></textarea>
 		</div>
@@ -47,7 +47,7 @@ export function FiltersInput(payload: {
 	return (
 		<div
 			key={payload.headName}
-			className="flex flex-row flex-wrap bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl justify-center overflow-hidden"
+			className="flex flex-row flex-wrap bg-gray-900 p-0.5 px-1 m-1.5 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl justify-center overflow-hidden"
 		>
 			<span className="flex m-1">{payload.headName}</span>
 

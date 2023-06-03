@@ -23,7 +23,7 @@ export function SettingProfileCharacters() {
 							return (
 								<div
 									key={"ilikecharacter" + index}
-									className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+									className="flex items-center bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 									title={data_iLikeСharacter[value][1]}
 								>
 									{data_iLikeСharacter[value][0]}
@@ -33,7 +33,7 @@ export function SettingProfileCharacters() {
 					) : (
 						<div
 							key="ilikecharacter"
-							className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+							className="flex items-center bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 							title={"Отсутствуют"}
 						>
 							Отсутствуют
@@ -54,7 +54,7 @@ export function SettingProfileCharacters() {
 							return (
 								<div
 									key={"idontlikecharacter" + index}
-									className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+									className="flex items-center bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 									title={data_iDontLikeСharacter[value][1]}
 								>
 									{data_iDontLikeСharacter[value][0]}
@@ -64,7 +64,7 @@ export function SettingProfileCharacters() {
 					) : (
 						<div
 							key="idontlikecharacter"
-							className="flex items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
+							className="flex items-center bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl p-1 m-2 select-none"
 							title={"Отсутствуют"}
 						>
 							Отсутствуют

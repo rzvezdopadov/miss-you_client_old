@@ -43,7 +43,7 @@ export function ButtonScrollToTop(payload: {
 			onClick={() => {
 				scrollToTop(payload.scrollTopDiv);
 			}}
-			className="flex fixed invisible right-0 m-4 bg-slate-900 rotate-[270deg] shadow-[0px_0px_3px_3px] shadow-lime-300 justify-center items-center flex-shrink-0 h-12 w-12 text-3xl rounded-full cursor-pointer z-10"
+			className="flex fixed invisible right-0 m-4 bg-slate-900 rotate-[270deg] shadow-[0px_0px_2px_2px] shadow-lime-300 justify-center items-center flex-shrink-0 h-12 w-12 text-3xl rounded-full cursor-pointer z-10"
 		>
 			<div className="mb-0.5 ml-0.5">&#10148;</div>
 		</div>
@@ -58,7 +58,7 @@ export function ButtonClose(payload: {
 		<div className="flex justify-center h-6 w-full">
 			<button
 				onClick={payload.onClick}
-				className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full select-none bg-red-500  shadow-[0px_0px_3px_3px] shadow-lime-300 h-6 w-6 z-10"
+				className="flex justify-center absolute right-0 m-4 cursor-pointer rounded-full select-none bg-red-500  shadow-[0px_0px_2px_2px] shadow-lime-300 h-6 w-6 z-10"
 				title={payload.title ? payload.title : ""}
 			>
 				X

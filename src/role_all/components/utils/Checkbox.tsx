@@ -6,7 +6,7 @@ export function Checkbox(payload: { value: string | number; onChange: any }) {
 	return (
 		<div
 			key={payload.value}
-			className="flex justify-center items-center rounded-xl shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-800 text-white m-0.5 mx-0.5 px-2"
+			className="flex justify-center items-center rounded-xl shadow-[0px_0px_2px_2px] shadow-lime-300 bg-slate-800 text-white m-0.5 mx-0.5 px-2"
 		>
 			<input
 				checked={checked}

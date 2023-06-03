@@ -11,7 +11,7 @@ export function PhotoProfile(payload: {
 			style={{
 				backgroundImage: `URL(${getWayPhoto(payload.src)})`,
 			}}
-			className="flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
+			className="flex relative bg-center bg-cover bg-no-repeat shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-2xl justify-center h-80 w-80 m-1"
 			onClick={payload.onClick ? payload.onClick : () => {}}
 		>
 			{payload.children ? payload.children : <></>}
@@ -46,7 +46,7 @@ export function PhotoProfileLittle(payload: {
 				backgroundImage: `URL(${getWayPhoto(payload.src)})`,
 			}}
 			onClick={payload.onClick ? payload.onClick : () => {}}
-			className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-2xl cursor-pointer justify-center ml-2 mr-2 h-16 w-16 m-1"
+			className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-2xl cursor-pointer justify-center ml-2 mr-2 h-16 w-16 m-1"
 		>
 			{payload.children ? payload.children : <></>}
 		</div>

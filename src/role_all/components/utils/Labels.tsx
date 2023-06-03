@@ -19,7 +19,7 @@ export function Label(payload: {
 				payload.bgcolor ? ` ${payload.bgcolor}` : ""
 			}${
 				payload.shadow
-					? " shadow-[0px_0px_3px_3px] shadow-lime-300"
+					? " shadow-[0px_0px_2px_2px] shadow-lime-300"
 					: ""
 			}${payload.selectauto ? ` select-auto` : ` select-none`}`}
 			title={payload.title ? payload.title : ""}
@@ -61,7 +61,7 @@ export function LabelRating(payload: {
 }) {
 	return (
 		<div
-			className={`flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md${
+			className={`flex select-none shadow-[0px_0px_2px_2px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md${
 				payload.onClick ? " cursor-pointer" : ""
 			}`}
 			title="Рейтинг пользователя"
@@ -79,7 +79,7 @@ export function LabelCash(payload: {
 }) {
 	return (
 		<div
-			className={`flex select-none shadow-[0px_0px_3px_3px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md${
+			className={`flex select-none shadow-[0px_0px_2px_2px] shadow-lime-300 bg-orange-700 justify-center my-2 rounded-md${
 				payload.onClick ? " cursor-pointer" : ""
 			}`}
 			title="MY-Баллы платежная валюта сайта"

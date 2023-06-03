@@ -45,7 +45,7 @@ export function Captcha() {
 			<canvas
 				width="180"
 				height="32"
-				className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 justify-center rounded-2xl w-44 h-10 m-1"
+				className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_2px_2px] shadow-lime-300 justify-center rounded-2xl w-44 h-10 m-1"
 				ref={canvasCaptcha}
 			></canvas>
 

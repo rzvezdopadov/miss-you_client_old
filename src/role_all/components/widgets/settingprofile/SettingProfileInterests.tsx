@@ -49,11 +49,11 @@ export function SettingProfileInterests() {
 				return (
 					<div
 						key={"interest" + index}
-						className="flex select-none items-center bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl p-1 m-2"
+						className="flex select-none items-center bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl p-1 m-2"
 					>
 						{value}
 						<div
-							className="flex ml-2 justify-center cursor-pointer text-xs rounded-full shadow-[0px_0px_3px_3px] shadow-lime-300 bg-red-500 h-4 w-4"
+							className="flex ml-2 justify-center cursor-pointer text-xs rounded-full shadow-[0px_0px_2px_2px] shadow-lime-300 bg-red-500 h-4 w-4"
 							title="Удалить интерес"
 							onClick={() =>
 								interestDeleteOnClickHandler(value as never)
@@ -65,7 +65,7 @@ export function SettingProfileInterests() {
 				);
 			})}
 
-			<div className="flex bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center m-2">
+			<div className="flex bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl items-center m-2">
 				<input
 					className="flex  bg-gray-300 w-full text-center text-black m-1 px-1 rounded-lg"
 					value={interest}
