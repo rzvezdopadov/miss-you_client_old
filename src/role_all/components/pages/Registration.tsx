@@ -31,6 +31,7 @@ export function Registration() {
 		growth: data_growth[0],
 		email: "",
 		password: "",
+		referral: "",
 		captcha: "",
 	});
 	const { dataRegistration, errorRegistration, querySendRegistration } =
@@ -53,6 +54,13 @@ export function Registration() {
 
 	useEffect(() => {
 		checkboxAgreementCheck(null as never);
+
+		const newRegistration = { ...registration };
+		newRegistration.referral = window.location.search.replace(
+			"?userid=",
+			""
+		);
+		setRegistration(newRegistration);
 	}, []);
 
 	useEffect(() => {
@@ -281,6 +289,15 @@ export function Registration() {
 					}
 					type="password"
 					placeholder="Пароль"
+				/>
+
+				<Input
+					value={registration.referral}
+					onChange={(e) =>
+						onChangeValueRegistration(e, "referral", "string")
+					}
+					type="referral"
+					placeholder="Реферал"
 				/>
 
 				<Input

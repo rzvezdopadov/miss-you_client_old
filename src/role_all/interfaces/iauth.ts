@@ -9,6 +9,7 @@ export interface IRegistration {
 	growth: number;
 	email: string;
 	password: string;
+	referral: string;
 	captcha: string;
 }
 
