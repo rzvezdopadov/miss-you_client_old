@@ -44,7 +44,7 @@ export function DialogContent(payload: { dialog: IDialog }) {
 			<DialogHead {...payload.dialog} />
 			<DialogMessages {...payload.dialog} />
 
-			<div className="flex flex-shrink-0 justify-center items-end shadow-[0px_0px_1px_1px] shadow-lime-300 w-full mt-2 rounded-xl text-lime-400 select-none">
+			<div className="flex flex-shrink-0 justify-center items-end border border-lime-300 w-full mt-2 rounded-xl text-lime-400 select-none">
 				<div className="flex w-full flex-col my-1">
 					<textarea
 						onChange={(e) => {
@@ -57,7 +57,7 @@ export function DialogContent(payload: { dialog: IDialog }) {
 							setSmilesOpen(false);
 						}}
 						title="Напишите сообщение..."
-						className="flex text-center resize-none h-10 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-zinc-600 text-white m-2 p-2"
+						className="flex text-center resize-none h-10 rounded-md border-2 border-lime-300 bg-zinc-600 text-white m-2 p-2"
 						placeholder="Напишите сообщение..."
 						value={messageForUser}
 					></textarea>

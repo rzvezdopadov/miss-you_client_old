@@ -19,7 +19,7 @@ export function ModalMessage() {
 			ref={refModalMessage}
 			id="modal-message"
 			onClick={modalMessageClose}
-			className="fixed shadow-[0px_0px_2px_2px] shadow-lime-300 left-0 right-0 m-auto bottom-[-250px] rounded-t-xl h-auto w-80 z-40 bg-gray-700 p-2 flex flex-col space-y-5 text-white duration-1000 delay-300"
+			className="fixed border-2 border-lime-300 left-0 right-0 m-auto bottom-[-250px] rounded-t-xl h-auto w-80 z-40 bg-gray-700 p-2 flex flex-col space-y-5 text-white duration-1000 delay-300"
 		>
 			{modalMessage.text}
 		</div>

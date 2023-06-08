@@ -123,7 +123,7 @@ export function SettingProfileGeneral() {
 				title={"Кого ищу?"}
 			/>
 
-			<div className="flex justify-around bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-md items-center relative p-0.5 py-2 px-1 m-1.5 w-full min-[480px]:w-auto">
+			<div className="flex justify-around bg-inherit border-2 border-lime-300 rounded-md items-center relative p-0.5 py-2 px-1 m-1.5 w-full min-[480px]:w-auto">
 				<label htmlFor="date" className="text-white">
 					{`Дата рождения: `}
 				</label>
@@ -141,7 +141,7 @@ export function SettingProfileGeneral() {
 							? "0" + userMyProfile.birthday
 							: userMyProfile.birthday)
 					}
-					className="border rounded bg-slate-300 text-black h-6 "
+					className="border rounded bg-inherit text-white h-6 "
 					type="date"
 					max={minDateBirth}
 					name="date"

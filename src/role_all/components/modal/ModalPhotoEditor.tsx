@@ -249,7 +249,7 @@ export function ModalPhotoEditor() {
 	return (
 		<div
 			ref={refModalPhotoEditor}
-			className="flex flex-col fixed justify-start items-center bg-gray-900 shadow-[0px_0px_5px_5px] shadow-lime-300 text-neutral-50 rounded-xl top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-30 pb-2 w-96 h-fit"
+			className="flex flex-col fixed justify-start items-center bg-gray-900 border-2 border-lime-300 text-neutral-50 rounded-xl top-0 bottom-0 left-0 right-0 m-auto px-2 pt-2 z-30 pb-2 w-96 h-fit"
 		>
 			<ButtonClose onClick={modalPhotoEditorClose} />
 			<>
@@ -257,7 +257,7 @@ export function ModalPhotoEditor() {
 					id="photoeditor"
 					width="320"
 					height="320"
-					className="flex bg-center bg-cover bg-no-repeat shadow-[0px_0px_3px_3px] shadow-lime-300 justify-center rounded-2xl h-80 w-80 mt-8 mb-2"
+					className="flex bg-center bg-cover bg-no-repeat border-2 border-lime-300 justify-center rounded-2xl h-80 w-80 mt-8 mb-2"
 					onTouchStart={imageEditorMouseDownHandler}
 					onTouchEnd={imageEditorMouseUpHandler}
 					onTouchMove={biasImgHandler}

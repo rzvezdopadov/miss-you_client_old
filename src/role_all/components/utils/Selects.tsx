@@ -9,20 +9,24 @@ export function SelectFromArr(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+		<div className="flex justify-around flex-wrap bg-inherit border-2 border-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
-			<div className="flex ml-0.5">
+			<div className="flex ml-0.5 bg-inherit">
 				<select
 					value={params.value}
 					onChange={params.onChangeHandler}
-					className="flex bg-gray-300  text-center w-full text-black cursor-pointer m-1 rounded-md"
+					className="flex bg-inherit text-center w-full text-white border border-lime-300 cursor-pointer m-1 rounded-md"
 					title={params.title}
 				>
 					{params.arr.map((value, index) => {
 						return (
-							<option key={params.keyOpt + index} value={index}>
+							<option
+								className="bg-inherit"
+								key={params.keyOpt + index}
+								value={index}
+							>
 								{` ${value}`}
 							</option>
 						);
@@ -41,20 +45,24 @@ export function SelectFromArrValue(params: {
 	title: string;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+		<div className="flex justify-around flex-wrap bg-inherit border-2 border-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white"> {params.title} </span>
 			</div>
-			<div className="flex ml-0.5">
+			<div className="flex ml-0.5 bg-inherit">
 				<select
 					value={params.value}
 					onChange={params.onChangeHandler}
-					className="flex bg-gray-300  text-center w-full text-black cursor-pointer m-1 rounded-md"
+					className="flex bg-inherit text-center w-full text-white border border-lime-300 cursor-pointer m-1 rounded-md"
 					title={params.title}
 				>
 					{params.arr.map((value, index) => {
 						return (
-							<option key={params.keyOpt + index} value={value}>
+							<option
+								className="bg-inherit"
+								key={params.keyOpt + index}
+								value={value}
+							>
 								{` ${value}`}
 							</option>
 						);
@@ -74,17 +82,17 @@ export function FiltersOptionAtArr(payload: {
 	}>;
 }) {
 	return (
-		<div className="flex justify-around flex-wrap bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
+		<div className="flex justify-around flex-wrap bg-inherit border-2 border-lime-300 rounded-md p-0.5 px-1 m-1.5 relative items-center w-full min-[480px]:w-auto">
 			<div className="flex mr-0.5">
 				<span className="select-none text-white">
 					{payload.headName}
 				</span>
 			</div>
-			<div className="flex ml-0.5">
+			<div className="flex ml-0.5 bg-inherit">
 				{payload.arrArgs.map((arg, i: number) => {
 					return (
 						<select
-							className="flex bg-gray-300  text-center w-full text-black cursor-pointer m-1 rounded-md"
+							className="flex bg-inherit text-center w-full text-white border border-lime-300 cursor-pointer m-1 rounded-md"
 							key={i + payload.headName}
 							value={arg.filterParam.value}
 							onChange={arg.filterParam.onChange}
@@ -92,6 +100,7 @@ export function FiltersOptionAtArr(payload: {
 							{arg.data.map((value, i: number) => {
 								return payload.arrArgs.length < 2 ? (
 									<option
+										className="bg-inherit"
 										key={String(i) + value}
 										value={arg.valen ? value : i}
 									>
@@ -99,6 +108,7 @@ export function FiltersOptionAtArr(payload: {
 									</option>
 								) : (
 									<option
+										className="bg-inherit"
 										key={String(i) + value}
 										value={value}
 									>

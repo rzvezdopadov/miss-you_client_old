@@ -9,8 +9,8 @@ export function DialogEmojis(payload: {
 	const [emodjiBookMark, setEmodjiBookMark] = useState(0);
 
 	return (
-		<div className="flex flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-700 h-72 w-72">
-			<div className="flex flex-wrap overflow-y-scroll h-60 w-72">
+		<div className="flex flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 bg-slate-700 h-72 w-72">
+			<div className="flex flex-wrap overflow-y-scroll rounded-t-md border-2 border-lime-300 h-60 w-72">
 				{data_emojis[emodjiBookMark].map((value) => {
 					return (
 						<div
@@ -24,7 +24,7 @@ export function DialogEmojis(payload: {
 				})}
 			</div>
 
-			<div className="flex bg-slate-800 h-12 w-72">
+			<div className="flex border-x-2 border-lime-300 bg-slate-800 h-12 w-72">
 				{data_emojis.map((value, index) => {
 					return (
 						<div

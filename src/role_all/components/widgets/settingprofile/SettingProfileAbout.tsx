@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Label, LabelCash, LabelRating } from "../../utils/Labels";
 import { onChangeValueProfile } from "../../../helpers/profile";
-import { Input } from "../../utils/Inputs";
+import { Input, TextArea } from "../../utils/Inputs";
 import { storeAll } from "../../../store/storeAll";
 import { BG_COLOR } from "../../../../assets/styles/enum";
 import { convertTextToSign } from "../../../helpers/convert";
@@ -53,15 +53,11 @@ export function SettingProfileAbout() {
 				placeholder={"Ваше имя"}
 			/>
 
-			<div className="flex flex-col my-1">
-				<textarea
-					value={userMyProfile.discription}
-					onChange={discriptionOnChangeHandler}
-					title="О себе"
-					className="flex text-center resize-none rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-300 text-black m-0.5"
-					placeholder="О себе"
-				></textarea>
-			</div>
+			<TextArea
+				value={userMyProfile.discription}
+				onChange={discriptionOnChangeHandler}
+				placeholder={"О себе"}
+			/>
 		</WidgetWrapper>
 	);
 }

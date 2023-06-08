@@ -49,11 +49,11 @@ export function SettingProfileInterests() {
 				return (
 					<div
 						key={"interest" + index}
-						className="flex select-none items-center bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl p-1 m-2"
+						className="flex select-none items-center bg-gray-900 border-2 border-lime-300 rounded-md p-1 m-2"
 					>
 						{value}
 						<div
-							className="flex ml-2 justify-center cursor-pointer text-xs rounded-full shadow-[0px_0px_2px_2px] shadow-lime-300 bg-red-500 h-4 w-4"
+							className="flex ml-2 justify-center cursor-pointer text-xs rounded-full border-2 border-lime-300 bg-red-500 h-5 w-5"
 							title="Удалить интерес"
 							onClick={() =>
 								interestDeleteOnClickHandler(value as never)
@@ -65,15 +65,15 @@ export function SettingProfileInterests() {
 				);
 			})}
 
-			<div className="flex bg-gray-900 shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-xl items-center m-2">
+			<div className="flex bg-gray-900 border-2 border-lime-300 rounded-md items-center m-2">
 				<input
-					className="flex  bg-gray-300 w-full text-center text-black m-1 px-1 rounded-lg"
+					className="flex bg-inherit w-full text-center border-2 border-lime-300 text-white m-1 px-1 rounded-md"
 					value={interest}
 					onChange={interestOnChangeHandler}
 					onKeyDown={interestAddOnKeyPressHandler}
 				/>
 				<div
-					className="flex border-2 rounded-full cursor-pointer border-white justify-center items-center text-lg m-2 h-8 w-8"
+					className="flex rounded-full cursor-pointer border-2 border-lime-300 justify-center items-center text-lg m-2 h-8 w-8"
 					onClick={interestAddOnClickHandler}
 				>
 					+

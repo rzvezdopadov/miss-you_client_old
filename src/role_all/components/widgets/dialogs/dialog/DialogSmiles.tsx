@@ -20,7 +20,7 @@ export function DialogSmiles(payload: {
 
 	return (
 		<div
-			className="flex invisible flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-700 h-72 w-72"
+			className="flex invisible flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md h-72 w-72"
 			ref={refSmiles}
 		>
 			{typeStickers === stickers.emojis ? (
@@ -29,7 +29,7 @@ export function DialogSmiles(payload: {
 				<DialogStickers onAddStrInMsgClbk={payload.onAddStrInMsgClbk} />
 			)}
 
-			<div className="flex absolute bottom-0 bg-slate-800 h-12 w-72">
+			<div className="flex absolute bottom-0 bg-slate-800 rounded-b-md border-2 border-lime-300 h-12 w-72">
 				<div
 					className="flex hover:bg-slate-500 justify-center items-center text-3xl h-10 w-10 cursor-pointer"
 					onClick={() => {

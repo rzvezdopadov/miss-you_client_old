@@ -28,8 +28,8 @@ export function DialogStickers(payload: {
 
 	const [stikersBookMark, setStickersBookMark] = useState(0);
 	return (
-		<div className="flex flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 rounded-md shadow-[0px_0px_3px_3px] shadow-lime-300 bg-slate-700 h-72 w-72">
-			<div className="flex flex-wrap overflow-y-scroll h-60 w-72">
+		<div className="flex flex-col justify-center items-start text-sm absolute cursor-auto bottom-12 right-0 z-40 h-72 w-72">
+			<div className="flex flex-wrap overflow-y-scroll justify-center rounded-t-md border-2 border-lime-300 bg-slate-700 h-60 w-72">
 				{userMyProfile.stickerpacks &&
 				userMyProfile.stickerpacks.length ? (
 					myStickerpacks[stikersBookMark]?.stickers.map((value) => {
@@ -41,7 +41,7 @@ export function DialogStickers(payload: {
 									)})`,
 								}}
 								key={`stickers${value.position}`}
-								className="flex bg-center bg-cover bg-no-repeat justify-center items-center text-3xl h-24 w-24 cursor-pointer"
+								className="flex bg-center bg-cover bg-no-repeat justify-center items-center text-3xl h-20 w-20 cursor-pointer"
 								onClick={(e) => {
 									sendSticker(
 										myStickerpacks[stikersBookMark]
@@ -62,7 +62,7 @@ export function DialogStickers(payload: {
 				)}
 			</div>
 
-			<div className="flex bg-slate-800 h-12 w-72">
+			<div className="flex border-x-2 border-lime-300 bg-slate-800 h-12 w-72">
 				{userMyProfile.stickerpacks &&
 				userMyProfile.stickerpacks.length ? (
 					myStickerpacks?.map((value, index) => {

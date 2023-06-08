@@ -9,12 +9,12 @@ export function SettingProfileCharacter(payload: {
 	return (
 		<>
 			<div
-				className={`flex flex-col  shadow-[0px_0px_3px_3px] rounded-xl p-3 relative items-center min-h-12 m-2 ${payload.color}`}
+				className={`flex flex-col  shadow-[0px_0px_2px_2px] rounded-xl p-3 relative items-center min-h-12 m-2 ${payload.color}`}
 				title={payload.title}
 			>
 				<div className="flex items-center">
 					<input
-						className="cursor-pointer shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-lg m-2"
+						className="cursor-pointer border-2 border-lime-300 rounded-lg m-2"
 						onChange={() => {
 							payload.changeClbk(payload.id);
 						}}

@@ -228,7 +228,7 @@ export function Registration() {
 					title={"Локация:"}
 				/>
 
-				<div className="flex justify-around bg-gray-900 shadow-[0px_0px_3px_3px] shadow-lime-300 rounded-xl items-center relative p-1.5 m-1.5">
+				<div className="flex justify-around bg-inherit shadow-[0px_0px_2px_2px] shadow-lime-300 rounded-md items-center relative p-1.5 m-1.5">
 					<label htmlFor="date" className="text-white">
 						{"Дата рождения:"}
 					</label>
@@ -246,7 +246,7 @@ export function Registration() {
 								? "0" + registration.birthday
 								: registration.birthday)
 						}
-						className="border rounded-lg select-none bg-slate-300 text-black "
+						className="border border-lime-300 rounded-lg select-none bg-inherit text-white "
 						type="date"
 						max={minDateBirth}
 						name="date"
