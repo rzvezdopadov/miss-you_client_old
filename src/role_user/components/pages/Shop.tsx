@@ -10,12 +10,14 @@ import { Rating } from "../widgets/shop/rating/Rating";
 import { Stickers } from "../widgets/shop/stickers/Stickers";
 import { Options } from "../widgets/shop/paid/Options";
 import { BuyMYPoints } from "../widgets/shop/bymypoint/BuyMYPoints";
+import { Transactions } from "../widgets/shop/transactions/Transactions";
 
 enum Pages {
 	rating,
 	stickers,
 	options,
 	buyballs,
+	transactions,
 }
 
 export function Shop() {
@@ -50,6 +52,11 @@ export function Shop() {
 					onClick={() => setPage(Pages.buyballs)}
 					checked={page === Pages.buyballs}
 				/>
+				<Button
+					value={"Транзакции"}
+					onClick={() => setPage(Pages.transactions)}
+					checked={page === Pages.transactions}
+				/>
 			</div>
 			{page === Pages.rating ? (
 				<Rating />
@@ -57,8 +64,12 @@ export function Shop() {
 				<Stickers />
 			) : page === Pages.options ? (
 				<Options />
-			) : (
+			) : page === Pages.buyballs ? (
 				<BuyMYPoints />
+			) : page === Pages.transactions ? (
+				<Transactions />
+			) : (
+				<></>
 			)}
 		</MainScrollWrapper>
 	);
