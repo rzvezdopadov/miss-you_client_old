@@ -21,7 +21,7 @@ export function WidgetWrapper(payload: {
 					: " shadow-[0px_0px_2px_2px] shadow-lime-300 p-2.5 my-1.5"
 			}${
 				payload.shadowDisable
-					? ``
+					? ` bg-inherit`
 					: payload.bgcolor
 					? ` ${payload.bgcolor}`
 					: " bg-gray-900"
