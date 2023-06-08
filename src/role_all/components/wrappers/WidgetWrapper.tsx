@@ -19,7 +19,13 @@ export function WidgetWrapper(payload: {
 				payload.shadowDisable
 					? " p-0 my-0"
 					: " shadow-[0px_0px_2px_2px] shadow-lime-300 p-2.5 my-1.5"
-			}${payload.bgcolor ? ` ${payload.bgcolor}` : " bg-gray-900"}`}
+			}${
+				payload.shadowDisable
+					? ``
+					: payload.bgcolor
+					? ` ${payload.bgcolor}`
+					: " bg-gray-900"
+			}`}
 			title={payload.title ? payload.title : ""}
 		>
 			{payload.children}
