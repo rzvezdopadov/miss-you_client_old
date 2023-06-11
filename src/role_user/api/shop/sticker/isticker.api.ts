@@ -4,8 +4,8 @@ import { IQueryAnswerError } from "../../../../role_all/api/iquerys.api";
 
 export interface IQuerySendSticker {
 	userid: string;
-	stickerpackid: string;
-	stickerpos: number;
+	spkid: string;
+	spos: number;
 }
 
 export interface IQueryAnswerStickerpacks {

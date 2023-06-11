@@ -6,6 +6,7 @@ import {
 import { useQueryGetTransactions } from "../../../../api/shop/transactions/transactions.api.hook";
 import { ITransaction } from "../../../../interfaces/itransaction";
 import { Transaction } from "./Transaction";
+import { WidgetWrapper } from "../../../../../role_all/components/wrappers/WidgetWrapper";
 
 export function Transactions() {
 	const { dataTransactions, errorTransactions, querySendGetTransactions } =
@@ -61,7 +62,9 @@ export function Transactions() {
 						</tbody>
 					</table>
 				) : (
-					<Label value="Пока транзакций нет =(" />
+					<WidgetWrapper shadowDisable={true}>
+						<Label value="Пока транзакций нет =(" />
+					</WidgetWrapper>
 				)}
 			</div>
 		</div>

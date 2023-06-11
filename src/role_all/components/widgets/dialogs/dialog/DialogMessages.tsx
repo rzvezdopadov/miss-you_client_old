@@ -41,7 +41,7 @@ export function DialogMessages(payload: IDialog) {
 							messageType={value.type}
 							message={value.msg}
 							photolink={photolink}
-							stickerpackid={value.stpid}
+							stickerpackid={value.spkid}
 							stikerpos={value.spos}
 						/>
 					);

@@ -154,8 +154,8 @@ export const sendSticker = (stickerpackid: string, stickerpos: number) => {
 
 	const data: IQuerySendSticker = {
 		userid: userid,
-		stickerpackid,
-		stickerpos,
+		spkid: stickerpackid,
+		spos: stickerpos,
 	};
 
 	socketClient.emit("sticker", data);

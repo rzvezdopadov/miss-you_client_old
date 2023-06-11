@@ -159,7 +159,7 @@ export interface IMessage {
 	dck: string;
 	type: MESSAGETYPE;
 	msg: string;
-	stpid: string;
+	spkid: string;
 	spos: number;
 }
 
